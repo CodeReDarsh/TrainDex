@@ -5,7 +5,7 @@ import type { Sign } from "./dex";
 
 export type CheckStatus = "pass" | "warn" | "fail";
 export interface MatchCheck {
-  key: "sign_text" | "lettering" | "car_model" | "glare" | "tilt" | "blur";
+  key: "sign_text" | "lettering" | "car_model" | "glare" | "tilt" | "blur" | "design";
   label: string;
   detail: string;
   status: CheckStatus;

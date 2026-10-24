@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import type { Sign } from "./dex";
+import type { Rarity, Sign } from "./dex";
 import { normalize } from "./lines";
 import { localCatalog } from "./local-catalog";
 import type { MatchCheck, MatchResult } from "./match-mock";
@@ -17,13 +17,43 @@ interface Reading {
   notes: string;
 }
 
+/** A design from Aidan's sign catalog, ranked by how well it fits what Gemini saw. */
+interface SignMatch {
+  id: string;
+  name: string;
+  route: string | null;
+  score: number;
+  color: string | null;
+  technology: string;
+  status: string;
+  historical: boolean;
+  verified: boolean;
+  image: string | null;
+  credit: string | null;
+}
+
 type Identify =
-  | { status: "identified"; line: { id: string; color: string }; reading: Reading }
-  | { status: "rare"; text: string; reading: Reading }
+  | {
+      status: "identified";
+      line: { id: string; color: string };
+      matches?: SignMatch[];
+      reading: Reading;
+    }
+  | { status: "rare"; text: string; matches?: SignMatch[]; reading: Reading }
   | { status: "retake" | "not_found"; reason: string; reading: Reading }
   | { error: { message: string } };
 
 const SCORE = { high: 94, medium: 83, low: 70 } as const;
+
+function rarityFor(m: SignMatch): Rarity {
+  if (m.status === "discontinued") return "legendary";
+  if (m.historical) return "rare";
+  if (m.technology !== "artwork") return "uncommon";
+  return "common";
+}
+
+// "A blue circle — R32-labeled set, Standard set" -> "R32-labeled set, Standard set"
+const variantOf = (name: string) => name.split(" — ").slice(1).join(" — ") || null;
 
 async function catalog(): Promise<Sign[]> {
   if (!supabaseConfigured()) return localCatalog();
@@ -77,6 +107,7 @@ export const matchRollsign = createServerFn({ method: "POST" })
     if (res.status === "retake" || res.status === "not_found") throw new Error(res.reason);
 
     const r = res.reading;
+    const best = "matches" in res ? res.matches?.[0] : undefined;
     const signs = await catalog();
     let sign: Sign | undefined;
 
@@ -94,6 +125,26 @@ export const matchRollsign = createServerFn({ method: "POST" })
         car_models: [],
         description: "",
         line: { letter: id, color: res.line.color },
+      };
+      if (best) {
+        sign = {
+          ...sign,
+          id: best.id,
+          subtitle: variantOf(best.name) ?? sign.subtitle,
+          rarity: rarityFor(best),
+          description: best.name,
+        };
+      }
+    } else if (best) {
+      sign = {
+        id: best.id,
+        dex_number: 0,
+        destination: `${r.sign_text} train`,
+        subtitle: variantOf(best.name) ?? "Retired line",
+        rarity: rarityFor(best),
+        car_models: [],
+        description: best.name,
+        line: { letter: r.sign_text, color: best.color ?? "#808183" },
       };
     } else {
       sign = {
@@ -127,6 +178,12 @@ export const matchRollsign = createServerFn({ method: "POST" })
         status: r.sign_shape === "circle" || r.sign_shape === "diamond" ? "pass" : "warn",
       },
       {
+        key: "design",
+        label: "Sign design",
+        detail: best ? best.name : "No matching design in the catalog",
+        status: best && best.score >= 0.8 ? "pass" : "warn",
+      },
+      {
         key: "blur",
         label: "Sharpness",
         detail: r.confidence === "high" ? "Clear" : "A bit hard to read",
@@ -136,7 +193,7 @@ export const matchRollsign = createServerFn({ method: "POST" })
 
     return {
       rollsign_id: sign.id,
-      score: SCORE[r.confidence],
+      score: best ? Math.round(best.score * SCORE[r.confidence]) : SCORE[r.confidence],
       checks,
       car_model: null,
       station: "Unknown station",
