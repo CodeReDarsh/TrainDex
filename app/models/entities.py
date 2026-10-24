@@ -148,6 +148,7 @@ class SignDesign(Base):
     font_weight: Mapped[str | None] = mapped_column(String(80))
     font_style: Mapped[str | None] = mapped_column(Text)
     font_variant: Mapped[str | None] = mapped_column(String(160))
+    feature_provenance: Mapped[dict] = mapped_column(JSON, default=dict)
     character_proportions: Mapped[dict | None] = mapped_column(JSON)
     border_style: Mapped[str | None] = mapped_column(Text)
     layout: Mapped[str | None] = mapped_column(String(100))
@@ -183,6 +184,7 @@ class SignDesign(Base):
     evidence: Mapped[list["SignSource"]] = relationship(lazy="selectin")
     equipment: Mapped[list["SignEquipment"]] = relationship(lazy="selectin")
     reviews: Mapped[list["ReviewIssue"]] = relationship(lazy="selectin")
+    specimen_entries: Mapped[list["SpecimenEntry"]] = relationship(lazy="selectin")
     __table_args__ = (
         CheckConstraint("aspect_ratio IS NULL OR aspect_ratio > 0", name="aspect_ratio"),
         CheckConstraint(
@@ -287,3 +289,32 @@ class ReviewIssue(Base):
     field_name: Mapped[str | None] = mapped_column(String(100))
     description: Mapped[str] = mapped_column(Text)
     resolved: Mapped[bool] = mapped_column(Boolean, default=False)
+
+
+class SpecimenSet(Base):
+    __tablename__ = "specimen_sets"
+    set_id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    display_name: Mapped[str] = mapped_column(String(120))
+    font_file: Mapped[str] = mapped_column(String(200))
+    display_order: Mapped[int] = mapped_column(Integer)
+    source_id: Mapped[str] = mapped_column(ForeignKey("sources.source_id"))
+    source_url: Mapped[str] = mapped_column(Text)
+
+
+class SpecimenEntry(Base):
+    __tablename__ = "specimen_entries"
+    set_id: Mapped[str] = mapped_column(ForeignKey("specimen_sets.set_id"), primary_key=True)
+    key: Mapped[str] = mapped_column(String(160), primary_key=True)
+    sign_id: Mapped[str] = mapped_column(ForeignKey("sign_designs.sign_id"), index=True)
+    codepoint: Mapped[str] = mapped_column(String(8))
+    description: Mapped[str] = mapped_column(Text)
+    service_label: Mapped[str] = mapped_column(Text)
+    filename: Mapped[str] = mapped_column(Text)
+    display_order: Mapped[int] = mapped_column(Integer)
+    listing_status: Mapped[str] = mapped_column(String(20))
+    source_id: Mapped[str] = mapped_column(ForeignKey("sources.source_id"))
+    __table_args__ = (
+        CheckConstraint(
+            "listing_status IN ('listed', 'unassigned', 'proposed', 'blank')", name="listing_status"
+        ),
+    )

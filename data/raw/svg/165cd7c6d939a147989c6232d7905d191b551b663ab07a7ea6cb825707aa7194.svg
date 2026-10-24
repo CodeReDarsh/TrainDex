@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="11in" height="11in" viewBox="0 0 279.4 279.4" version="1.1" id="svg5682" xmlns="http://www.w3.org/2000/svg">
+  <defs id="defs5679">
+    <rect x="-368" y="530" width="156" height="76" id="rect13253"/>
+    <rect x="-406" y="458" width="126" height="104" id="rect12193"/>
+    <rect x="-256.84772" y="256.84772" width="294.89924" height="195.01401" id="rect9778"/>
+  </defs>
+  <g id="layer1">
+    <circle style="fill-opacity: 1; stroke-width: 0.534012; fill: rgb(0, 163, 224);" id="path8323" cx="139.7" cy="139.7" r="139.7"/>
+    <text transform="scale(0.26458333)" id="text12191" style="font-size:66.6667px;font-family:'SLRM Filled';-inkscape-font-specification:'SLRM Filled, Normal';white-space:pre;shape-inside:url(#rect12193);display:inline;fill:#b3b3b3;fill-opacity:1"/>
+    <text transform="scale(0.26458333)" id="text13251" style="fill:#b3b3b3;-inkscape-font-specification:'SLRM Filled, Normal';font-family:'SLRM Filled';font-size:66.66666667px;fill-opacity:1;white-space:pre;shape-inside:url(#rect13253)"/>
+  </g>
+  <g transform="matrix(0.264583, 0, 0, 0.264583, 147.430359, 40.672886)">
+    <g data-paper-data="{&quot;isPaintingLayer&quot;:true}" fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" style="mix-blend-mode: normal">
+      <path d="M166.29408,199.39067c-49.51465,0 -99.02928,0 -148.76798,0c0,145.40727 0,290.36642 0,435.77369c-33.6072,0 -66.99041,0 -100.59761,0c0,-145.18319 0,-290.36642 0,-435.77369c-49.96274,0 -99.47738,0 -149.21608,0c0,-30.2465 0,-60.49301 0,-90.51547c132.86058,0 265.72112,0 398.5817,0c0,30.02246 0,60.04491 0,90.51547z"/>
+    </g>
+  </g>
+</svg>

@@ -6,7 +6,7 @@ from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
-from app.models.entities import SignDesign
+from app.models.entities import SignDesign, SpecimenEntry
 from app.models.enums import Verification
 from app.schemas.matching import FeatureResult, Match, MatchRequest, MatchResponse
 from app.services.serialization import sign_out
@@ -35,6 +35,12 @@ def normalize(value: str) -> str:
 def match_signs(session: Session, query: MatchRequest) -> MatchResponse:
     settings = get_settings()
     statement = select(SignDesign)
+    if not query.include_artwork:
+        statement = statement.where(SignDesign.sign_technology != "artwork")
+    if query.specimen_set:
+        statement = statement.where(
+            SignDesign.specimen_entries.any(SpecimenEntry.set_id == query.specimen_set)
+        )
     weights = query.weights.model_dump()
     # A low-confidence route remains supporting evidence, avoiding premature exclusion.
     if (
@@ -67,6 +73,9 @@ def match_signs(session: Session, query: MatchRequest) -> MatchResponse:
                 uncertain.append(feature)
                 continue
             actual = getattr(sign, feature, None)
+            provenance = sign.feature_provenance.get(feature, {})
+            if provenance.get("basis") == "visual_estimate":
+                weight *= 0.5
             similarity = None
             reason = "Reference attribute is unknown"
             if feature == "route":
@@ -85,6 +94,11 @@ def match_signs(session: Session, query: MatchRequest) -> MatchResponse:
                     similarity, reason = 1.0, "Documented equipment compatibility"
                 else:
                     reason = "No verified compatibility for this equipment; absence is not incompatibility"
+            elif sign.sign_technology == "artwork" and feature in {
+                "sign_technology",
+                "font_family",
+            }:
+                reason = "Reconstructed artwork does not establish physical display technology or original train typeface"
             elif actual not in (None, "unknown"):
                 if feature.endswith("_color"):
                     distance = delta_e(value, actual)

@@ -30,6 +30,8 @@ class SearchQuery(DataModel):
     train_model: str | None = Field(default=None, min_length=1, max_length=80)
     historical_era: str | None = Field(default=None, min_length=1, max_length=120)
     service_type: ServiceType | None = None
+    include_artwork: bool = True
+    specimen_set: str | None = Field(default=None, min_length=1, max_length=40)
     strict_route: bool = True
     limit: int = Field(default=10, ge=1, le=100)
     min_score: float = Field(default=0, ge=0, le=1)

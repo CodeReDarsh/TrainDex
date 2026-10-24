@@ -1,0 +1,1658 @@
+{
+  "commit": "1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4",
+  "archive_url": "https://codeload.github.com/nyumathclinic/nyc-subway-bullets-font/zip/1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4",
+  "archive_sha256": "ee5d0dd42f9107186108d06635ac661885030ed0ec4d9e09296a9dd5a9749c55",
+  "accessed_at": "2026-10-24T07:48:06.051623+00:00",
+  "files": {
+    "1 (1967-1979 New York City Subway bullet).svg": {
+      "path": "svg/dd10ff2a00da7c43450f72f26be6d2cf43bba7a04b246b300935a966a40cfa0b.svg",
+      "sha256": "dd10ff2a00da7c43450f72f26be6d2cf43bba7a04b246b300935a966a40cfa0b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:1_(1967-1979_New_York_City_Subway_bullet).svg"
+    },
+    "2 (1967-1979 New York City Subway bullet).svg": {
+      "path": "svg/07de55061db2ad0994af3c9b0740da93058613deb75eb0b4e5747052b32925c3.svg",
+      "sha256": "07de55061db2ad0994af3c9b0740da93058613deb75eb0b4e5747052b32925c3",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:2_(1967-1979_New_York_City_Subway_bullet).svg"
+    },
+    "3 (1967-1979 New York City Subway bullet).svg": {
+      "path": "svg/fffbd475c3abc6129861b5b5b3218115d3786899c0cdd62fb72d07eb446d45e1.svg",
+      "sha256": "fffbd475c3abc6129861b5b5b3218115d3786899c0cdd62fb72d07eb446d45e1",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:3_(1967-1979_New_York_City_Subway_bullet).svg"
+    },
+    "4 (1967-1979 New York City Subway bullet).svg": {
+      "path": "svg/8ec462eb10d1eb0eff44f1825405a0b270bde3f19045ab4aff7732a64051e5f9.svg",
+      "sha256": "8ec462eb10d1eb0eff44f1825405a0b270bde3f19045ab4aff7732a64051e5f9",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:4_(1967-1979_New_York_City_Subway_bullet).svg"
+    },
+    "5 (1967-1979 New York City Subway bullet).svg": {
+      "path": "svg/e0122edb435bd28b525ba90996c9ac8dbf0baae8d071bbb47c1fbe0e11e2ff50.svg",
+      "sha256": "e0122edb435bd28b525ba90996c9ac8dbf0baae8d071bbb47c1fbe0e11e2ff50",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:5_(1967-1979_New_York_City_Subway_bullet).svg"
+    },
+    "6 (1967-1979 New York City Subway bullet).svg": {
+      "path": "svg/9a77ae049717b2b60fe6ea3611657309abbdf178faa68d14f5b29c9edab5a400.svg",
+      "sha256": "9a77ae049717b2b60fe6ea3611657309abbdf178faa68d14f5b29c9edab5a400",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:6_(1967-1979_New_York_City_Subway_bullet).svg"
+    },
+    "7 (1967-1979 New York City Subway bullet).svg": {
+      "path": "svg/6e5d3db58b5f10810ff63ece3d7f7f7927e5e2bb8a63d7a643dbe1ae3913d140.svg",
+      "sha256": "6e5d3db58b5f10810ff63ece3d7f7f7927e5e2bb8a63d7a643dbe1ae3913d140",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:7_(1967-1979_New_York_City_Subway_bullet).svg"
+    },
+    "8 (1967-1979 New York City Subway bullet).svg": {
+      "path": "svg/95e416b486a80d1a19abb591284deebdf8206c82eb203c20eb94e1990c348474.svg",
+      "sha256": "95e416b486a80d1a19abb591284deebdf8206c82eb203c20eb94e1990c348474",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:8_(1967-1979_New_York_City_Subway_bullet).svg"
+    },
+    "A Train (1967-1979).svg": {
+      "path": "svg/300d7a3e5c0c21aceb7bf7fa220ca1a7887ba0a61ea56d8d320fad404ee61fa8.svg",
+      "sha256": "300d7a3e5c0c21aceb7bf7fa220ca1a7887ba0a61ea56d8d320fad404ee61fa8",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_Train_(1967-1979).svg"
+    },
+    "A Train (1967-1987).svg": {
+      "path": "svg/31817a7335e556257b0a0b2837582d487321e3e8ed14e9f5e2d07db4b9ac0ba0.svg",
+      "sha256": "31817a7335e556257b0a0b2837582d487321e3e8ed14e9f5e2d07db4b9ac0ba0",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_Train_(1967-1987).svg"
+    },
+    "AA Train (1967-1979).svg": {
+      "path": "svg/1c3c1b449f408e3af0f5b6c60f03d91e0ccac1e479370e0aa870c646f0f65f99.svg",
+      "sha256": "1c3c1b449f408e3af0f5b6c60f03d91e0ccac1e479370e0aa870c646f0f65f99",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:AA_Train_(1967-1979).svg"
+    },
+    "AA Train (1979-1985).svg": {
+      "path": "svg/78b85b5fbe99a9dfb1e7e6700334846fc4dc9efadb013c4ff581c99194d78cf0.svg",
+      "sha256": "78b85b5fbe99a9dfb1e7e6700334846fc4dc9efadb013c4ff581c99194d78cf0",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:AA_Train_(1979-1985).svg"
+    },
+    "B Train (1967-1979).svg": {
+      "path": "svg/ec8fe09deaa4447436db89c3053c5934644496e544f43739c4cbc830cceaaad2.svg",
+      "sha256": "ec8fe09deaa4447436db89c3053c5934644496e544f43739c4cbc830cceaaad2",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:B_Train_(1967-1979).svg"
+    },
+    "C Train (1985-1987).svg": {
+      "path": "svg/af845f0132d7de8a6f494cc0602ce3c08c9546d3fd858f0ecdcc2b5dd5051001.svg",
+      "sha256": "af845f0132d7de8a6f494cc0602ce3c08c9546d3fd858f0ecdcc2b5dd5051001",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:C_Train_(1985-1987).svg"
+    },
+    "C Train - diamond (pre-1987).svg": {
+      "path": "svg/d89121599cf1dbf19a3c46c185fc1f11647933568b9433a247c08e8106c4ccc8.svg",
+      "sha256": "d89121599cf1dbf19a3c46c185fc1f11647933568b9433a247c08e8106c4ccc8",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:C_Train_-_diamond_(pre-1987).svg"
+    },
+    "CC Train (1967-1979).svg": {
+      "path": "svg/0de571b6c07955940a55ebd3fe0daac1ac78dda2280a04295616e8c4f31d6723.svg",
+      "sha256": "0de571b6c07955940a55ebd3fe0daac1ac78dda2280a04295616e8c4f31d6723",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CC_Train_(1967-1979).svg"
+    },
+    "CC Train (1979-1985).svg": {
+      "path": "svg/6df4aa895d452f7ed413585cad4adf94b09b702505f4ba91c32da173d07fe9f9.svg",
+      "sha256": "6df4aa895d452f7ed413585cad4adf94b09b702505f4ba91c32da173d07fe9f9",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CC_Train_(1979-1985).svg"
+    },
+    "CC Train - diamond.svg": {
+      "path": "svg/c27564da27a536056bedd72b44f4df9ae86b75dc552a60446df59aaea4f60e36.svg",
+      "sha256": "c27564da27a536056bedd72b44f4df9ae86b75dc552a60446df59aaea4f60e36",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CC_Train_-_diamond.svg"
+    },
+    "D Train (1967-1979).svg": {
+      "path": "svg/4aa71678edee01b3d6a8a7b57e8dcab7e7278ae1908ebfee28f39bafb65325ac.svg",
+      "sha256": "4aa71678edee01b3d6a8a7b57e8dcab7e7278ae1908ebfee28f39bafb65325ac",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:D_Train_(1967-1979).svg"
+    },
+    "E Train (1967-1979).svg": {
+      "path": "svg/3d8ada793059d8a6707f3d2b437aa067820d3762925859aa36606161efb75eba.svg",
+      "sha256": "3d8ada793059d8a6707f3d2b437aa067820d3762925859aa36606161efb75eba",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:E_Train_(1967-1979).svg"
+    },
+    "E Train (1979-1987).svg": {
+      "path": "svg/48a4596be2504279ccd89f38c2334a86949b240625193fca41ee07bd2863b640.svg",
+      "sha256": "48a4596be2504279ccd89f38c2334a86949b240625193fca41ee07bd2863b640",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:E_Train_(1979-1987).svg"
+    },
+    "EE Train (1967-1976).svg": {
+      "path": "svg/7edf2c495dbd1755be88b88aec631e80e99ae6811e501e5a08f09f7599bdce8b.svg",
+      "sha256": "7edf2c495dbd1755be88b88aec631e80e99ae6811e501e5a08f09f7599bdce8b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:EE_Train_(1967-1976).svg"
+    },
+    "F Train (1967-1979).svg": {
+      "path": "svg/f68528e7e0aee365bb603d428d996f6fe77fcda964f96de57bb74ebd066ad354.svg",
+      "sha256": "f68528e7e0aee365bb603d428d996f6fe77fcda964f96de57bb74ebd066ad354",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:F_Train_(1967-1979).svg"
+    },
+    "GG Train (1967-1979).svg": {
+      "path": "svg/afaa8952665ef25d76be0d7639244c9fc06bd9aae3d0294a25c9e2af1c449546.svg",
+      "sha256": "afaa8952665ef25d76be0d7639244c9fc06bd9aae3d0294a25c9e2af1c449546",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:GG_Train_(1967-1979).svg"
+    },
+    "GG Train (1979-1985).svg": {
+      "path": "svg/da31243db4100522e9fc9d7e20a5cffbe0e46a908ae0fb7cc75830041b0fa4ed.svg",
+      "sha256": "da31243db4100522e9fc9d7e20a5cffbe0e46a908ae0fb7cc75830041b0fa4ed",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:GG_Train_(1979-1985).svg"
+    },
+    "H Train (1985-1987).svg": {
+      "path": "svg/fad2f2c407ed023fd1619825195715f149389ecdef91f84592cf29d2726bf7cd.svg",
+      "sha256": "fad2f2c407ed023fd1619825195715f149389ecdef91f84592cf29d2726bf7cd",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:H_Train_(1985-1987).svg"
+    },
+    "HH Train (1967-1972).svg": {
+      "path": "svg/272545a9738fb6b3598d008b6c585b03ccb71dedbd227ae3b758394426557543.svg",
+      "sha256": "272545a9738fb6b3598d008b6c585b03ccb71dedbd227ae3b758394426557543",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:HH_Train_(1967-1972).svg"
+    },
+    "J Train (1973-1979).svg": {
+      "path": "svg/546994eff865f8b541e7aba2419dd7a71325f5b11f6ed79cb8a08e953e1538ac.svg",
+      "sha256": "546994eff865f8b541e7aba2419dd7a71325f5b11f6ed79cb8a08e953e1538ac",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:J_Train_(1973-1979).svg"
+    },
+    "JJ Train (1967-1973).svg": {
+      "path": "svg/87ddfa5b84ab17143ba86cde5c8b7631c6c2ca29d0c716382f059cd3c6274c23.svg",
+      "sha256": "87ddfa5b84ab17143ba86cde5c8b7631c6c2ca29d0c716382f059cd3c6274c23",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:JJ_Train_(1967-1973).svg"
+    },
+    "K Train (1973-1976).svg": {
+      "path": "svg/889878428ea5ce5b4fce6dd07b0fc90c43f89334fc513ee4eaf5ccd7967a9c6e.svg",
+      "sha256": "889878428ea5ce5b4fce6dd07b0fc90c43f89334fc513ee4eaf5ccd7967a9c6e",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:K_Train_(1973-1976).svg"
+    },
+    "K Train (1985-1987).svg": {
+      "path": "svg/99385d29a4dd0e2159fb6fa320e0f38294bed57716b9b0b3bde787b3c2e381b4.svg",
+      "sha256": "99385d29a4dd0e2159fb6fa320e0f38294bed57716b9b0b3bde787b3c2e381b4",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:K_Train_(1985-1987).svg"
+    },
+    "KK Train (1967-1973).svg": {
+      "path": "svg/cf2b7c57ca8bb1242bac1b1444b84920a6908d70a83561d5e5189593f57bc418.svg",
+      "sha256": "cf2b7c57ca8bb1242bac1b1444b84920a6908d70a83561d5e5189593f57bc418",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:KK_Train_(1967-1973).svg"
+    },
+    "LL Train (1967-1979).svg": {
+      "path": "svg/9f255b691cb15b75e8339fcfdaf81e70f5f8f81c04cf90989d6bd5c1cf4e4f2f.svg",
+      "sha256": "9f255b691cb15b75e8339fcfdaf81e70f5f8f81c04cf90989d6bd5c1cf4e4f2f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:LL_Train_(1967-1979).svg"
+    },
+    "LL Train (1979-1985).svg": {
+      "path": "svg/e0526e5effb990c6bb3e83086ec568ed149ad0d1268729f001f246e0cce1f101.svg",
+      "sha256": "e0526e5effb990c6bb3e83086ec568ed149ad0d1268729f001f246e0cce1f101",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:LL_Train_(1979-1985).svg"
+    },
+    "M Train (1967-1979).svg": {
+      "path": "svg/586ba41bfe4199d40971a64370fad84ecf80ecdfeed76aafd18470a45f298e09.svg",
+      "sha256": "586ba41bfe4199d40971a64370fad84ecf80ecdfeed76aafd18470a45f298e09",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:M_Train_(1967-1979).svg"
+    },
+    "MJ Train (1967-1979).svg": {
+      "path": "svg/fa96aec95230351e6c5197880c12dc21ccb6242b94865f07243f5ddd402f1618.svg",
+      "sha256": "fa96aec95230351e6c5197880c12dc21ccb6242b94865f07243f5ddd402f1618",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:MJ_Train_(1967-1979).svg"
+    },
+    "N Train (1967-1979).svg": {
+      "path": "svg/1575290e9aa973f5141fc23ffea9bcfcb7a89152da6e3f5c341ffedb70d7511f.svg",
+      "sha256": "1575290e9aa973f5141fc23ffea9bcfcb7a89152da6e3f5c341ffedb70d7511f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:N_Train_(1967-1979).svg"
+    },
+    "NX Train (1967-1968).svg": {
+      "path": "svg/1109f074e52b1a229da4d1affd0274729ad1057d785943e08f545cadfe1bb169.svg",
+      "sha256": "1109f074e52b1a229da4d1affd0274729ad1057d785943e08f545cadfe1bb169",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NX_Train_(1967-1968).svg"
+    },
+    "NYCS-bull-trans---Std.svg": {
+      "path": "svg/4e4d532f41ad37866e4e5ac435e239d96b7ab698d13ed957743abbfd2261ff53.svg",
+      "sha256": "4e4d532f41ad37866e4e5ac435e239d96b7ab698d13ed957743abbfd2261ff53",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans---Std.svg"
+    },
+    "NYCS-bull-trans--d-Std.svg": {
+      "path": "svg/abcf732ad56dfd1b025317e107a9e6cc1c907e3d2adcbdc5de450b58258ad0ca.svg",
+      "sha256": "abcf732ad56dfd1b025317e107a9e6cc1c907e3d2adcbdc5de450b58258ad0ca",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans--d-Std.svg"
+    },
+    "NYCS-bull-trans-0-Std.svg": {
+      "path": "svg/06797a1f4aca946806de23ecf5636ebf8ebd059c02c92ab81bd27b0a788429cf.svg",
+      "sha256": "06797a1f4aca946806de23ecf5636ebf8ebd059c02c92ab81bd27b0a788429cf",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-0-Std.svg"
+    },
+    "NYCS-bull-trans-0d-Std.svg": {
+      "path": "svg/06ffb7ea64bf58e5d68e3db88f955dcd66449ae3fb536ebde300b4bdcb5c175e.svg",
+      "sha256": "06ffb7ea64bf58e5d68e3db88f955dcd66449ae3fb536ebde300b4bdcb5c175e",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-0d-Std.svg"
+    },
+    "NYCS-bull-trans-1-Std.svg": {
+      "path": "svg/04c0fd7aca662d5f8e71d22ae73bb9a3fd71a1118969642471fa6f75a5882e4f.svg",
+      "sha256": "04c0fd7aca662d5f8e71d22ae73bb9a3fd71a1118969642471fa6f75a5882e4f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-1-Std.svg"
+    },
+    "NYCS-bull-trans-1.svg": {
+      "path": "svg/6f55ef2d0c87ab741e5d36ed5dbf5f1bdfe4f8209fa57fdb35053a8a86354e72.svg",
+      "sha256": "6f55ef2d0c87ab741e5d36ed5dbf5f1bdfe4f8209fa57fdb35053a8a86354e72",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-1.svg"
+    },
+    "NYCS-bull-trans-10-Std.svg": {
+      "path": "svg/47d51e3439e207ad9eb8e5269894098133492c04470fa254677f14a25cffcc3c.svg",
+      "sha256": "47d51e3439e207ad9eb8e5269894098133492c04470fa254677f14a25cffcc3c",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-10-Std.svg"
+    },
+    "NYCS-bull-trans-11-Std.svg": {
+      "path": "svg/c97a8bab9783a31ba54127b249c0bd38e8134f506b53dd159cae4f1c2b061529.svg",
+      "sha256": "c97a8bab9783a31ba54127b249c0bd38e8134f506b53dd159cae4f1c2b061529",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-11-Std.svg"
+    },
+    "NYCS-bull-trans-12-Std.svg": {
+      "path": "svg/d07b748eea0f661fe0af37ceea2c365a9a94062eea2cf205dd427b6c084723a7.svg",
+      "sha256": "d07b748eea0f661fe0af37ceea2c365a9a94062eea2cf205dd427b6c084723a7",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-12-Std.svg"
+    },
+    "NYCS-bull-trans-13-Std.svg": {
+      "path": "svg/d91c6baf2a190b0629910633d7dd71d144b0a9a933b5a7dd76223180d7237c76.svg",
+      "sha256": "d91c6baf2a190b0629910633d7dd71d144b0a9a933b5a7dd76223180d7237c76",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-13-Std.svg"
+    },
+    "NYCS-bull-trans-1d-Std.svg": {
+      "path": "svg/0077bc55e2899b9c2f46f14de926c4021516131b45a9f623343126b5f4f9324f.svg",
+      "sha256": "0077bc55e2899b9c2f46f14de926c4021516131b45a9f623343126b5f4f9324f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-1d-Std.svg"
+    },
+    "NYCS-bull-trans-2-Std.svg": {
+      "path": "svg/721a29fcc438c4436ee91af829224d9e59fecedfe98a73636fedfb6faf040ff7.svg",
+      "sha256": "721a29fcc438c4436ee91af829224d9e59fecedfe98a73636fedfb6faf040ff7",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-2-Std.svg"
+    },
+    "NYCS-bull-trans-2.svg": {
+      "path": "svg/08b19822675c3044b0cfcb4a947da8db3e614372975979600839e2442ecf352d.svg",
+      "sha256": "08b19822675c3044b0cfcb4a947da8db3e614372975979600839e2442ecf352d",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-2.svg"
+    },
+    "NYCS-bull-trans-2d-Std.svg": {
+      "path": "svg/41fdd5650cc11febbf4608d75addd0f0f5a03f04ae933d879c93a983ead5a8bb.svg",
+      "sha256": "41fdd5650cc11febbf4608d75addd0f0f5a03f04ae933d879c93a983ead5a8bb",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-2d-Std.svg"
+    },
+    "NYCS-bull-trans-3-Std.svg": {
+      "path": "svg/1935116ad3664ea683b1e48414ab2eb0738b51628e279fc077c861c97c5acd63.svg",
+      "sha256": "1935116ad3664ea683b1e48414ab2eb0738b51628e279fc077c861c97c5acd63",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-3-Std.svg"
+    },
+    "NYCS-bull-trans-3.svg": {
+      "path": "svg/388342af6408df5d99dfcf5fbd80a66bfd4d18bb47463eea9c712209cc027773.svg",
+      "sha256": "388342af6408df5d99dfcf5fbd80a66bfd4d18bb47463eea9c712209cc027773",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-3.svg"
+    },
+    "NYCS-bull-trans-3d-Std.svg": {
+      "path": "svg/1f712d3b99dd2df377f9c68d2a80572c837b3cd345a79de7fc167ace3f903daa.svg",
+      "sha256": "1f712d3b99dd2df377f9c68d2a80572c837b3cd345a79de7fc167ace3f903daa",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-3d-Std.svg"
+    },
+    "NYCS-bull-trans-4-Std.svg": {
+      "path": "svg/1d571f215c7193ce98011f2e8a3de6c8f17a209f6a0aeeb7bef2dc79c44b9fd1.svg",
+      "sha256": "1d571f215c7193ce98011f2e8a3de6c8f17a209f6a0aeeb7bef2dc79c44b9fd1",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-4-Std.svg"
+    },
+    "NYCS-bull-trans-4.svg": {
+      "path": "svg/3c4682156d8e50f2ee11f22b1fd143e583b297aeb4577e8da192c5573e0535eb.svg",
+      "sha256": "3c4682156d8e50f2ee11f22b1fd143e583b297aeb4577e8da192c5573e0535eb",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-4.svg"
+    },
+    "NYCS-bull-trans-4d-Std.svg": {
+      "path": "svg/52e02ad8b27683c622283283cdb36332c7cb63b919ca25806437a5f83c9273a8.svg",
+      "sha256": "52e02ad8b27683c622283283cdb36332c7cb63b919ca25806437a5f83c9273a8",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-4d-Std.svg"
+    },
+    "NYCS-bull-trans-4d.svg": {
+      "path": "svg/5002e6c4e702b8c15cb0e5de24e25e94de68e0a14ca59ce358a9c0f2ed8fd0df.svg",
+      "sha256": "5002e6c4e702b8c15cb0e5de24e25e94de68e0a14ca59ce358a9c0f2ed8fd0df",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-4d.svg"
+    },
+    "NYCS-bull-trans-5-Std.svg": {
+      "path": "svg/d6110c5498f397479b48d8ea4c88ebe9782a4e3174a9aa9fed340e92e2e0e598.svg",
+      "sha256": "d6110c5498f397479b48d8ea4c88ebe9782a4e3174a9aa9fed340e92e2e0e598",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-5-Std.svg"
+    },
+    "NYCS-bull-trans-5.svg": {
+      "path": "svg/0a5b25403fcb4f810e705eebd2e743d9a14e8c92c3a161978161f545b76bc0af.svg",
+      "sha256": "0a5b25403fcb4f810e705eebd2e743d9a14e8c92c3a161978161f545b76bc0af",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-5.svg"
+    },
+    "NYCS-bull-trans-5d-Std.svg": {
+      "path": "svg/f307118b69717c97ca632839c8930a8a33c7eb2b39be23bab8939be7809ed7f3.svg",
+      "sha256": "f307118b69717c97ca632839c8930a8a33c7eb2b39be23bab8939be7809ed7f3",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-5d-Std.svg"
+    },
+    "NYCS-bull-trans-5d.svg": {
+      "path": "svg/b734aa960081d7df763a7b6e9b2c8606bafd617f480c1742a5cf341b7576daa1.svg",
+      "sha256": "b734aa960081d7df763a7b6e9b2c8606bafd617f480c1742a5cf341b7576daa1",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-5d.svg"
+    },
+    "NYCS-bull-trans-6-Std.svg": {
+      "path": "svg/aee744f795c92a46f4c7f2897e4f7d1492ad018999022eb14d818352f7d8636f.svg",
+      "sha256": "aee744f795c92a46f4c7f2897e4f7d1492ad018999022eb14d818352f7d8636f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-6-Std.svg"
+    },
+    "NYCS-bull-trans-6.svg": {
+      "path": "svg/bfd2a34b995200acd936ddb479164cd14857bec34fb20db0841dbb6e539f0243.svg",
+      "sha256": "bfd2a34b995200acd936ddb479164cd14857bec34fb20db0841dbb6e539f0243",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-6.svg"
+    },
+    "NYCS-bull-trans-6d-Std.svg": {
+      "path": "svg/867e3107d504a9c84e97ab848220b1d64baf409a80e297b2aaea2e3d7d7445e6.svg",
+      "sha256": "867e3107d504a9c84e97ab848220b1d64baf409a80e297b2aaea2e3d7d7445e6",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-6d-Std.svg"
+    },
+    "NYCS-bull-trans-6d.svg": {
+      "path": "svg/b6401ce47ca7e28fd32bcd2970f1629bf9fbaeb334fd5e33e692c23504247d22.svg",
+      "sha256": "b6401ce47ca7e28fd32bcd2970f1629bf9fbaeb334fd5e33e692c23504247d22",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-6d.svg"
+    },
+    "NYCS-bull-trans-7-Std.svg": {
+      "path": "svg/e41c37351be1cd5cd3923f295548fbd71cd0e91cb91b3019076ee31bc90ac7ca.svg",
+      "sha256": "e41c37351be1cd5cd3923f295548fbd71cd0e91cb91b3019076ee31bc90ac7ca",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-7-Std.svg"
+    },
+    "NYCS-bull-trans-7.svg": {
+      "path": "svg/ffa3ea48b5574c5f999592d7b818bf67c41eb8dffa392f51ede27daf78c471e3.svg",
+      "sha256": "ffa3ea48b5574c5f999592d7b818bf67c41eb8dffa392f51ede27daf78c471e3",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-7.svg"
+    },
+    "NYCS-bull-trans-7d-Std.svg": {
+      "path": "svg/f28cb99155a172d486c673b574de7bf6186f2bf6cba993d3140ddcba9efcbd1b.svg",
+      "sha256": "f28cb99155a172d486c673b574de7bf6186f2bf6cba993d3140ddcba9efcbd1b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-7d-Std.svg"
+    },
+    "NYCS-bull-trans-7d.svg": {
+      "path": "svg/c766356e7bed28d670af09b8ede6ad14624dc4fa542277ac56d92849f0a3abe8.svg",
+      "sha256": "c766356e7bed28d670af09b8ede6ad14624dc4fa542277ac56d92849f0a3abe8",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-7d.svg"
+    },
+    "NYCS-bull-trans-8-Std-turquoise.svg": {
+      "path": "svg/d4c41268f5cb11c43a423aa3615417b340c5b6ebff98eae10ca129bde10c20cf.svg",
+      "sha256": "d4c41268f5cb11c43a423aa3615417b340c5b6ebff98eae10ca129bde10c20cf",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-8-Std-turquoise.svg"
+    },
+    "NYCS-bull-trans-8-Std.svg": {
+      "path": "svg/1b697db8fa1a97b058a3de96086d212d6debe95e7269e45c41aabb99dccb9203.svg",
+      "sha256": "1b697db8fa1a97b058a3de96086d212d6debe95e7269e45c41aabb99dccb9203",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-8-Std.svg"
+    },
+    "NYCS-bull-trans-8d-Std-turquoise.svg": {
+      "path": "svg/0a62e2170ea8721d7fb3d48f20c38adc9455c9739e8eae784c1f2b8fabaca2c3.svg",
+      "sha256": "0a62e2170ea8721d7fb3d48f20c38adc9455c9739e8eae784c1f2b8fabaca2c3",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-8d-Std-turquoise.svg"
+    },
+    "NYCS-bull-trans-8d-Std.svg": {
+      "path": "svg/2a66153261b5d9f9e934fdc21683ae2ca21ada020217177a9cf27eeb4ebb747e.svg",
+      "sha256": "2a66153261b5d9f9e934fdc21683ae2ca21ada020217177a9cf27eeb4ebb747e",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-8d-Std.svg"
+    },
+    "NYCS-bull-trans-9-Std.svg": {
+      "path": "svg/e7012f88ed5c26f2a08726878185f32225a6af378ec030032ae31b0d19916da7.svg",
+      "sha256": "e7012f88ed5c26f2a08726878185f32225a6af378ec030032ae31b0d19916da7",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-9-Std.svg"
+    },
+    "NYCS-bull-trans-9-red.svg": {
+      "path": "svg/b27a7ea9d9495f1c1f443c326263f480d221be11dc00246a0b582021c8387fab.svg",
+      "sha256": "b27a7ea9d9495f1c1f443c326263f480d221be11dc00246a0b582021c8387fab",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-9-red.svg"
+    },
+    "NYCS-bull-trans-9.svg": {
+      "path": "svg/ffda99bff4c011a1ba8d0767dc3528180b86b295f8b0ca0220c8c4da681c077c.svg",
+      "sha256": "ffda99bff4c011a1ba8d0767dc3528180b86b295f8b0ca0220c8c4da681c077c",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-9.svg"
+    },
+    "NYCS-bull-trans-9d-Std.svg": {
+      "path": "svg/fedf5120e342f231a13a0065def76418a8765b749eadb684307a7f55c0273337.svg",
+      "sha256": "fedf5120e342f231a13a0065def76418a8765b749eadb684307a7f55c0273337",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-9d-Std.svg"
+    },
+    "NYCS-bull-trans-A gray.svg": {
+      "path": "svg/b672604d15140e160c30b1ff662fdab9df42d7c67d1259617ff5be5e664cecaa.svg",
+      "sha256": "b672604d15140e160c30b1ff662fdab9df42d7c67d1259617ff5be5e664cecaa",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-A_gray.svg"
+    },
+    "NYCS-bull-trans-A-Orange.svg": {
+      "path": "svg/b0890600f9dc7a220b5e7917ab070238383994580941e1f94053d53e7d747851.svg",
+      "sha256": "b0890600f9dc7a220b5e7917ab070238383994580941e1f94053d53e7d747851",
+      "license": "CC0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-A-Orange.svg"
+    },
+    "NYCS-bull-trans-A-Std-gray.svg": {
+      "path": "svg/c7b19c294b28cde46ff713b41d54615709b111595384337ef08e09cbf3379e63.svg",
+      "sha256": "c7b19c294b28cde46ff713b41d54615709b111595384337ef08e09cbf3379e63",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-A-Std-gray.svg"
+    },
+    "NYCS-bull-trans-A-Std.svg": {
+      "path": "svg/b9ca37920db8b89043c21e8976c1c6ec78540334591dce2b07b4512c275434bb.svg",
+      "sha256": "b9ca37920db8b89043c21e8976c1c6ec78540334591dce2b07b4512c275434bb",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-A-Std.svg"
+    },
+    "NYCS-bull-trans-A.svg": {
+      "path": "svg/08c48e1b9864bedffe20f496caa421aded2068d18e3ae5ebba471a1226a03e56.svg",
+      "sha256": "08c48e1b9864bedffe20f496caa421aded2068d18e3ae5ebba471a1226a03e56",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-A.svg"
+    },
+    "NYCS-bull-trans-Ad-(1979-1987).svg": {
+      "path": "svg/bb26c05aa8192eabb733a447e503ec304893187fb3247e8d4abdf4cd0c5729f2.svg",
+      "sha256": "bb26c05aa8192eabb733a447e503ec304893187fb3247e8d4abdf4cd0c5729f2",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Ad-(1979-1987).svg"
+    },
+    "NYCS-bull-trans-Ad-Std-gray.svg": {
+      "path": "svg/a5364b6569984c8b62a788c7e4d40cecd4e781dd7910b0bb98cf53964fabd718.svg",
+      "sha256": "a5364b6569984c8b62a788c7e4d40cecd4e781dd7910b0bb98cf53964fabd718",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Ad-Std-gray.svg"
+    },
+    "NYCS-bull-trans-Ad-Std.svg": {
+      "path": "svg/e94042cf72c62943090f905b2c2cbdae6746f0621908c3dbfdd302a56e154bf1.svg",
+      "sha256": "e94042cf72c62943090f905b2c2cbdae6746f0621908c3dbfdd302a56e154bf1",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Ad-Std.svg"
+    },
+    "NYCS-bull-trans-Ad.svg": {
+      "path": "svg/1b5e2b69370624fb22274da98ddae71fbeecdfa13a1caecf1cda173d6360afdc.svg",
+      "sha256": "1b5e2b69370624fb22274da98ddae71fbeecdfa13a1caecf1cda173d6360afdc",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Ad.svg"
+    },
+    "NYCS-bull-trans-B yellow.svg": {
+      "path": "svg/267ad76669a2587aeea8db4b737eacdfc024f3a6651983feb0c648a14f06e1e9.svg",
+      "sha256": "267ad76669a2587aeea8db4b737eacdfc024f3a6651983feb0c648a14f06e1e9",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-B_yellow.svg"
+    },
+    "NYCS-bull-trans-B-Std.svg": {
+      "path": "svg/577962d5c53ef99ec6c3da466aeb1a511e618a9104da8cb7c6ef940caaf3da66.svg",
+      "sha256": "577962d5c53ef99ec6c3da466aeb1a511e618a9104da8cb7c6ef940caaf3da66",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-B-Std.svg"
+    },
+    "NYCS-bull-trans-B.svg": {
+      "path": "svg/42f49e2b72a4b1d81ac2c07e2fa9e16e86df97ef87aac7c0532311aaa91e5b78.svg",
+      "sha256": "42f49e2b72a4b1d81ac2c07e2fa9e16e86df97ef87aac7c0532311aaa91e5b78",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-B.svg"
+    },
+    "NYCS-bull-trans-Bd yellow.svg": {
+      "path": "svg/471c68684f317c80e67bc32874d4dbf2cd057a9d8530c0cda7eba8aed1cd76a0.svg",
+      "sha256": "471c68684f317c80e67bc32874d4dbf2cd057a9d8530c0cda7eba8aed1cd76a0",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Bd_yellow.svg"
+    },
+    "NYCS-bull-trans-Bd-Std.svg": {
+      "path": "svg/a69bc4b1968caea04d7c6af3087e17724bf0839499a25a432be899b71c7565d9.svg",
+      "sha256": "a69bc4b1968caea04d7c6af3087e17724bf0839499a25a432be899b71c7565d9",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Bd-Std.svg"
+    },
+    "NYCS-bull-trans-Bd.svg": {
+      "path": "svg/0e5b180d175108ecc9571911514a07f47f42f2bb92fc8813ec85a2f74395a836.svg",
+      "sha256": "0e5b180d175108ecc9571911514a07f47f42f2bb92fc8813ec85a2f74395a836",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Bd.svg"
+    },
+    "NYCS-bull-trans-Bs-Std.svg": {
+      "path": "svg/6b4aefa8dd97c89e90d0eb94094dd0fa22d233d6e6e416b4c8e35139c00f0c52.svg",
+      "sha256": "6b4aefa8dd97c89e90d0eb94094dd0fa22d233d6e6e416b4c8e35139c00f0c52",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Bs-Std.svg"
+    },
+    "NYCS-bull-trans-Bsd-Std.svg": {
+      "path": "svg/03e43415412baa0cf0ea3d2f3bb58a35b73575a3741c7d7b8e00efea19c627df.svg",
+      "sha256": "03e43415412baa0cf0ea3d2f3bb58a35b73575a3741c7d7b8e00efea19c627df",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Bsd-Std.svg"
+    },
+    "NYCS-bull-trans-C-Std.svg": {
+      "path": "svg/cfcdfee1498b228075a0cb00da28d8f9d1dfa956507b02a6177f75ce1d86b418.svg",
+      "sha256": "cfcdfee1498b228075a0cb00da28d8f9d1dfa956507b02a6177f75ce1d86b418",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-C-Std.svg"
+    },
+    "NYCS-bull-trans-C.svg": {
+      "path": "svg/2e513a49b31404f40d7a22dd331fda2aeb16e8b3de332d28ee4ab16d0ecb6d9d.svg",
+      "sha256": "2e513a49b31404f40d7a22dd331fda2aeb16e8b3de332d28ee4ab16d0ecb6d9d",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-C.svg"
+    },
+    "NYCS-bull-trans-Cd-Std.svg": {
+      "path": "svg/7e3b88da1507fd185e7d4c62ff7cf4b9d9dd211ed8a5f6a77bcb8ecd5923d938.svg",
+      "sha256": "7e3b88da1507fd185e7d4c62ff7cf4b9d9dd211ed8a5f6a77bcb8ecd5923d938",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Cd-Std.svg"
+    },
+    "NYCS-bull-trans-Cd.svg": {
+      "path": "svg/cf5805e678e4ddbcc5b0f305be51370ce4a7ebef44805696ee84fbcb1f877f8e.svg",
+      "sha256": "cf5805e678e4ddbcc5b0f305be51370ce4a7ebef44805696ee84fbcb1f877f8e",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Cd.svg"
+    },
+    "NYCS-bull-trans-D yellow.svg": {
+      "path": "svg/eb005131acd9f6fcd7bb1cb1af3bd97dc1cf7fb37fd4bd7795b5ad4d33d70c2f.svg",
+      "sha256": "eb005131acd9f6fcd7bb1cb1af3bd97dc1cf7fb37fd4bd7795b5ad4d33d70c2f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-D_yellow.svg"
+    },
+    "NYCS-bull-trans-D-Std.svg": {
+      "path": "svg/d7dcf2d11030895200dc815beb15304171f6bb25bf653b9867e3e9105f66dfc2.svg",
+      "sha256": "d7dcf2d11030895200dc815beb15304171f6bb25bf653b9867e3e9105f66dfc2",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-D-Std.svg"
+    },
+    "NYCS-bull-trans-D.svg": {
+      "path": "svg/b1370cc9d9debda3d81642aa219d14f8e3d2bbd4e24c8d451f6585d5152de541.svg",
+      "sha256": "b1370cc9d9debda3d81642aa219d14f8e3d2bbd4e24c8d451f6585d5152de541",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-D.svg"
+    },
+    "NYCS-bull-trans-Dd-Std.svg": {
+      "path": "svg/a7e9cba3797385dfbc1b6c069dd5949bb345d689bd0c2c3542aabead52d3893f.svg",
+      "sha256": "a7e9cba3797385dfbc1b6c069dd5949bb345d689bd0c2c3542aabead52d3893f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Dd-Std.svg"
+    },
+    "NYCS-bull-trans-Dd.svg": {
+      "path": "svg/608efe56864e5683f6972cd93ec1d7b1014ba97ee9bec7768349094200b48aab.svg",
+      "sha256": "608efe56864e5683f6972cd93ec1d7b1014ba97ee9bec7768349094200b48aab",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Dd.svg"
+    },
+    "NYCS-bull-trans-Ds-Std.svg": {
+      "path": "svg/ee46f614a488388611d78aee86bd161bbf92f571b55a2fdbadd5a4898e72a5c6.svg",
+      "sha256": "ee46f614a488388611d78aee86bd161bbf92f571b55a2fdbadd5a4898e72a5c6",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Ds-Std.svg"
+    },
+    "NYCS-bull-trans-Dsd-Std.svg": {
+      "path": "svg/2579ee3ba4201eaf5869baeab9288def6113d7d45e883a7be5e6c8685571ab10.svg",
+      "sha256": "2579ee3ba4201eaf5869baeab9288def6113d7d45e883a7be5e6c8685571ab10",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Dsd-Std.svg"
+    },
+    "NYCS-bull-trans-E-Std.svg": {
+      "path": "svg/760d87903d7531a5e41f88070cd0f3e1fbb7948c9700967d432d9a44ad09e593.svg",
+      "sha256": "760d87903d7531a5e41f88070cd0f3e1fbb7948c9700967d432d9a44ad09e593",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-E-Std.svg"
+    },
+    "NYCS-bull-trans-E.svg": {
+      "path": "svg/a4b13b0c684656b297f42fe32be335657c8af4163e73e98bcd97152eafea6554.svg",
+      "sha256": "a4b13b0c684656b297f42fe32be335657c8af4163e73e98bcd97152eafea6554",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-E.svg"
+    },
+    "NYCS-bull-trans-Ed-Std.svg": {
+      "path": "svg/d7222564923d67428ad16518e6a85fcf7c55085a374002602a90a32435e8c095.svg",
+      "sha256": "d7222564923d67428ad16518e6a85fcf7c55085a374002602a90a32435e8c095",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Ed-Std.svg"
+    },
+    "NYCS-bull-trans-F-Std.svg": {
+      "path": "svg/49c9362a7485ce9483d65bbc877e7704704179532bec7350897fbd05c892b4a0.svg",
+      "sha256": "49c9362a7485ce9483d65bbc877e7704704179532bec7350897fbd05c892b4a0",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-F-Std.svg"
+    },
+    "NYCS-bull-trans-F.svg": {
+      "path": "svg/02213c2d1cd945ead18cd7fa23cb499f0ea7edf0ed162821b85d8e716e5c3edb.svg",
+      "sha256": "02213c2d1cd945ead18cd7fa23cb499f0ea7edf0ed162821b85d8e716e5c3edb",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-F.svg"
+    },
+    "NYCS-bull-trans-Fd-Std.svg": {
+      "path": "svg/f26b69d8d5b965c0147b98602f64cb3b6e02c0341a5817c80a6d6c5305a39fc3.svg",
+      "sha256": "f26b69d8d5b965c0147b98602f64cb3b6e02c0341a5817c80a6d6c5305a39fc3",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Fd-Std.svg"
+    },
+    "NYCS-bull-trans-Fd.svg": {
+      "path": "svg/04998c83a53301ccdd89768852c0530e8d53a6fe44f9cd7fd08a163637f4dd2e.svg",
+      "sha256": "04998c83a53301ccdd89768852c0530e8d53a6fe44f9cd7fd08a163637f4dd2e",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Fd.svg"
+    },
+    "NYCS-bull-trans-G-Std.svg": {
+      "path": "svg/805f392ccdbbf35c1f9976cf2aa3f58918442162a3f63105814790189817dcb2.svg",
+      "sha256": "805f392ccdbbf35c1f9976cf2aa3f58918442162a3f63105814790189817dcb2",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-G-Std.svg"
+    },
+    "NYCS-bull-trans-G.svg": {
+      "path": "svg/6d370cf78188c7c12476983eb28bb15f041bfcaad255038faf0da3ba66680a1f.svg",
+      "sha256": "6d370cf78188c7c12476983eb28bb15f041bfcaad255038faf0da3ba66680a1f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-G.svg"
+    },
+    "NYCS-bull-trans-Gd-Std.svg": {
+      "path": "svg/f1005bf9b3f96beac28a8b56978f0dac1b0bee075459440576a9942c65841972.svg",
+      "sha256": "f1005bf9b3f96beac28a8b56978f0dac1b0bee075459440576a9942c65841972",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Gd-Std.svg"
+    },
+    "NYCS-bull-trans-H-Std.svg": {
+      "path": "svg/4cacef2640ea64d71e1700baaac1de47035eb1b359eaf608e31e426c81af2c06.svg",
+      "sha256": "4cacef2640ea64d71e1700baaac1de47035eb1b359eaf608e31e426c81af2c06",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-H-Std.svg"
+    },
+    "NYCS-bull-trans-H.svg": {
+      "path": "svg/e51c6410ff4e162775dd63a8acb604c69b5826d838c29499105c984676931d72.svg",
+      "sha256": "e51c6410ff4e162775dd63a8acb604c69b5826d838c29499105c984676931d72",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-H.svg"
+    },
+    "NYCS-bull-trans-Hd-Std.svg": {
+      "path": "svg/a472a27b31d5e654b26b158a21f3fbbc44fce1607a25298fccd21c6715defc98.svg",
+      "sha256": "a472a27b31d5e654b26b158a21f3fbbc44fce1607a25298fccd21c6715defc98",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Hd-Std.svg"
+    },
+    "NYCS-bull-trans-I-Std.svg": {
+      "path": "svg/4dbdd4d51af16803b508304b011742fca0550f32da050e66f183eed619a55f8a.svg",
+      "sha256": "4dbdd4d51af16803b508304b011742fca0550f32da050e66f183eed619a55f8a",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-I-Std.svg"
+    },
+    "NYCS-bull-trans-Id-Std.svg": {
+      "path": "svg/84ae61b6eca06fe481511d70ef063b2ec66f2590dcfd9e1f6ac384db926c8b8e.svg",
+      "sha256": "84ae61b6eca06fe481511d70ef063b2ec66f2590dcfd9e1f6ac384db926c8b8e",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Id-Std.svg"
+    },
+    "NYCS-bull-trans-J-Std.svg": {
+      "path": "svg/3c80d0bfa9966d14de0b5ca368f07e7f437cf1e147a1085422c534bdd7085e6c.svg",
+      "sha256": "3c80d0bfa9966d14de0b5ca368f07e7f437cf1e147a1085422c534bdd7085e6c",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-J-Std.svg"
+    },
+    "NYCS-bull-trans-J.svg": {
+      "path": "svg/fb9f45b41cbdb053a43bb8c144779616203a4295f7c9f0431045a679768d9b52.svg",
+      "sha256": "fb9f45b41cbdb053a43bb8c144779616203a4295f7c9f0431045a679768d9b52",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-J.svg"
+    },
+    "NYCS-bull-trans-JFK.svg": {
+      "path": "svg/20498d22b739676a06c6e8987b42fed58234740262bbfb0b3a34a1bc54bd0839.svg",
+      "sha256": "20498d22b739676a06c6e8987b42fed58234740262bbfb0b3a34a1bc54bd0839",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-JFK.svg"
+    },
+    "NYCS-bull-trans-Jd-Std.svg": {
+      "path": "svg/c3f251560f9aefc5ddce9ebd4f18a5e23dbad3644e50574ded4d8b9ab7268dcf.svg",
+      "sha256": "c3f251560f9aefc5ddce9ebd4f18a5e23dbad3644e50574ded4d8b9ab7268dcf",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Jd-Std.svg"
+    },
+    "NYCS-bull-trans-Jd.svg": {
+      "path": "svg/1b1ad1a53c3c652672992abc69a21d430cd7d8ca75858a31dcc8847e20452893.svg",
+      "sha256": "1b1ad1a53c3c652672992abc69a21d430cd7d8ca75858a31dcc8847e20452893",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Jd.svg"
+    },
+    "NYCS-bull-trans-K-Std.svg": {
+      "path": "svg/78c2b553d61c6f38918788052cdb93ee8725d34c65f0058f57c8ad0190363174.svg",
+      "sha256": "78c2b553d61c6f38918788052cdb93ee8725d34c65f0058f57c8ad0190363174",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-K-Std.svg"
+    },
+    "NYCS-bull-trans-K-gray.svg": {
+      "path": "svg/3dfb4a379418224232f7db39cca1a15c3ea4ca58998cbcfd4cdb29aa7ec29b98.svg",
+      "sha256": "3dfb4a379418224232f7db39cca1a15c3ea4ca58998cbcfd4cdb29aa7ec29b98",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-K-gray.svg"
+    },
+    "NYCS-bull-trans-K.svg": {
+      "path": "svg/eca2235019c52194baf605357aae24a6ba8d926c42878560c02a6212754fb1c4.svg",
+      "sha256": "eca2235019c52194baf605357aae24a6ba8d926c42878560c02a6212754fb1c4",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-K.svg"
+    },
+    "NYCS-bull-trans-Kd-Std.svg": {
+      "path": "svg/daf3b5d3a5ae0ec0d733e2891098ffad1fcddea790510e159e799fdfe6098227.svg",
+      "sha256": "daf3b5d3a5ae0ec0d733e2891098ffad1fcddea790510e159e799fdfe6098227",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Kd-Std.svg"
+    },
+    "NYCS-bull-trans-L-Std.svg": {
+      "path": "svg/d5d6b503d9aaa4e33b9baf6f694a38f6fb21e3886f0559a984e55322612d669d.svg",
+      "sha256": "d5d6b503d9aaa4e33b9baf6f694a38f6fb21e3886f0559a984e55322612d669d",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-L-Std.svg"
+    },
+    "NYCS-bull-trans-L.svg": {
+      "path": "svg/dec1dcb9a2a9d6f827f71e99e0de80dd860a17168fce5046b5cc3ff9281b7150.svg",
+      "sha256": "dec1dcb9a2a9d6f827f71e99e0de80dd860a17168fce5046b5cc3ff9281b7150",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-L.svg"
+    },
+    "NYCS-bull-trans-Ld-Std.svg": {
+      "path": "svg/12813cb622894c9d16042d007d6d7b5f9cc8089468d44e6f60c6ea9680204a58.svg",
+      "sha256": "12813cb622894c9d16042d007d6d7b5f9cc8089468d44e6f60c6ea9680204a58",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Ld-Std.svg"
+    },
+    "NYCS-bull-trans-M brown.svg": {
+      "path": "svg/e890e6d568e09238f2a9f54f2f7d5d456f837b6c9e8ac6543c688114d529bb2f.svg",
+      "sha256": "e890e6d568e09238f2a9f54f2f7d5d456f837b6c9e8ac6543c688114d529bb2f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-M_brown.svg"
+    },
+    "NYCS-bull-trans-M-Std-brown.svg": {
+      "path": "svg/16acc7bd4eac504ca1f289fa328da4f75976d4bf7242ca553bb0c50b0680b95f.svg",
+      "sha256": "16acc7bd4eac504ca1f289fa328da4f75976d4bf7242ca553bb0c50b0680b95f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-M-Std-brown.svg"
+    },
+    "NYCS-bull-trans-M-Std.svg": {
+      "path": "svg/155402898726930b24a718f7f09fb35b9df4c4251c8662d54414c605ad1794d2.svg",
+      "sha256": "155402898726930b24a718f7f09fb35b9df4c4251c8662d54414c605ad1794d2",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-M-Std.svg"
+    },
+    "NYCS-bull-trans-M.svg": {
+      "path": "svg/5fb32ae2bcfe3f7108238c7e395b2f764d334a6f4e254d5bf85f1c78d1cfe264.svg",
+      "sha256": "5fb32ae2bcfe3f7108238c7e395b2f764d334a6f4e254d5bf85f1c78d1cfe264",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-M.svg"
+    },
+    "NYCS-bull-trans-Md brown.svg": {
+      "path": "svg/afca8c8e8d3c627e388b8375bb9ec178e5273fa2cbcfc24ebec4a400217d6016.svg",
+      "sha256": "afca8c8e8d3c627e388b8375bb9ec178e5273fa2cbcfc24ebec4a400217d6016",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Md_brown.svg"
+    },
+    "NYCS-bull-trans-Md-Std-brown.svg": {
+      "path": "svg/ba6acf46497d983e879fa5616fb65a4003f62c2c5fc5c492a092a1bdd7affb15.svg",
+      "sha256": "ba6acf46497d983e879fa5616fb65a4003f62c2c5fc5c492a092a1bdd7affb15",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Md-Std-brown.svg"
+    },
+    "NYCS-bull-trans-Md-Std.svg": {
+      "path": "svg/e78c31cfea567bc15da1dcc317fbe2f4b1d65b0a6d7a8411fce3de76e4d03f6b.svg",
+      "sha256": "e78c31cfea567bc15da1dcc317fbe2f4b1d65b0a6d7a8411fce3de76e4d03f6b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Md-Std.svg"
+    },
+    "NYCS-bull-trans-N-Std.svg": {
+      "path": "svg/6f9fed2d96aa3cc6b4ded295ac7a3946c322cfb703c4549ba6230a5bdeeb322f.svg",
+      "sha256": "6f9fed2d96aa3cc6b4ded295ac7a3946c322cfb703c4549ba6230a5bdeeb322f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-N-Std.svg"
+    },
+    "NYCS-bull-trans-N.svg": {
+      "path": "svg/acddd419d0ec49c38c52bb6af1aa92cdf55f5a3a153a10a8bfc980996d085282.svg",
+      "sha256": "acddd419d0ec49c38c52bb6af1aa92cdf55f5a3a153a10a8bfc980996d085282",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-N.svg"
+    },
+    "NYCS-bull-trans-Nd-Std.svg": {
+      "path": "svg/0e06ddd316230462dcb0d70897dc4c1cdf6d3fc2fc99eb21f942bd31f04786f7.svg",
+      "sha256": "0e06ddd316230462dcb0d70897dc4c1cdf6d3fc2fc99eb21f942bd31f04786f7",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Nd-Std.svg"
+    },
+    "NYCS-bull-trans-Nd.svg": {
+      "path": "svg/e065f7aa74a6f0a17bdeafaca9ca22cafac582999f3f64ab682fe0492cc500f3.svg",
+      "sha256": "e065f7aa74a6f0a17bdeafaca9ca22cafac582999f3f64ab682fe0492cc500f3",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Nd.svg"
+    },
+    "NYCS-bull-trans-O-Std.svg": {
+      "path": "svg/e109d67705124dee33814c5b8589bc54626026bddb976728acbd7cef0cb36006.svg",
+      "sha256": "e109d67705124dee33814c5b8589bc54626026bddb976728acbd7cef0cb36006",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-O-Std.svg"
+    },
+    "NYCS-bull-trans-Od-Std.svg": {
+      "path": "svg/8439755aae30dcad825bfb43fb105275c0dd9e1572f889a3a69589ce7ac198fc.svg",
+      "sha256": "8439755aae30dcad825bfb43fb105275c0dd9e1572f889a3a69589ce7ac198fc",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Od-Std.svg"
+    },
+    "NYCS-bull-trans-P-Std.svg": {
+      "path": "svg/d5edaf169c0494b0ef4afca8e27709708dc2a5bcdb5f2563b3d0c76ace7786d1.svg",
+      "sha256": "d5edaf169c0494b0ef4afca8e27709708dc2a5bcdb5f2563b3d0c76ace7786d1",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-P-Std.svg"
+    },
+    "NYCS-bull-trans-Pd-Std.svg": {
+      "path": "svg/1d827e60d584cd82abfb6189c3366fad1732035ea2d0aae06e328318b43b7be2.svg",
+      "sha256": "1d827e60d584cd82abfb6189c3366fad1732035ea2d0aae06e328318b43b7be2",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Pd-Std.svg"
+    },
+    "NYCS-bull-trans-Q orange.svg": {
+      "path": "svg/e42ff57097a1bea20b3b137b1551b7cab289896aa993aa3d761115f1b3ccc84b.svg",
+      "sha256": "e42ff57097a1bea20b3b137b1551b7cab289896aa993aa3d761115f1b3ccc84b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Q_orange.svg"
+    },
+    "NYCS-bull-trans-Q-Std-orange.svg": {
+      "path": "svg/b28f028bd3c447c3ad2d2685c565c15f9f5fc192ee7e5a6d77179f89f289a1dc.svg",
+      "sha256": "b28f028bd3c447c3ad2d2685c565c15f9f5fc192ee7e5a6d77179f89f289a1dc",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Q-Std-orange.svg"
+    },
+    "NYCS-bull-trans-Q-Std.svg": {
+      "path": "svg/4576431cdd80d2f395dedbb0dd75377bc9dc417e695b23f75bf4906229779437.svg",
+      "sha256": "4576431cdd80d2f395dedbb0dd75377bc9dc417e695b23f75bf4906229779437",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Q-Std.svg"
+    },
+    "NYCS-bull-trans-Q-alt.svg": {
+      "path": "svg/926063f326e82c1143dc3d101a2a848abc0104b04b8ccd4af36e05dc3e04c556.svg",
+      "sha256": "926063f326e82c1143dc3d101a2a848abc0104b04b8ccd4af36e05dc3e04c556",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Q-alt.svg"
+    },
+    "NYCS-bull-trans-Q.svg": {
+      "path": "svg/748261aee77d2b69d627bd4c049a5d44f80dbbdbe4aa881c8467b7c3215e2567.svg",
+      "sha256": "748261aee77d2b69d627bd4c049a5d44f80dbbdbe4aa881c8467b7c3215e2567",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Q.svg"
+    },
+    "NYCS-bull-trans-Qd-Std-orange.svg": {
+      "path": "svg/9bdcff372189d2f9955f633e3e47cc41685d79cc7c24a3c3f731f9e5663bd9f7.svg",
+      "sha256": "9bdcff372189d2f9955f633e3e47cc41685d79cc7c24a3c3f731f9e5663bd9f7",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Qd-Std-orange.svg"
+    },
+    "NYCS-bull-trans-Qd-Std.svg": {
+      "path": "svg/5d0de90b4472b7221fc4f8f1b7578f252426487567033af4716dec27acf4322d.svg",
+      "sha256": "5d0de90b4472b7221fc4f8f1b7578f252426487567033af4716dec27acf4322d",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Qd-Std.svg"
+    },
+    "NYCS-bull-trans-Qd.svg": {
+      "path": "svg/d7154e8962b4adc4d22ced9f9f3cdac2f5bd2675e7b3cafd3ec9ad1e0af81e99.svg",
+      "sha256": "d7154e8962b4adc4d22ced9f9f3cdac2f5bd2675e7b3cafd3ec9ad1e0af81e99",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Qd.svg"
+    },
+    "NYCS-bull-trans-R-Std-brown.svg": {
+      "path": "svg/1b0de7820fa1650aae91202720912c7744372830284363e69f5d9d4e497547de.svg",
+      "sha256": "1b0de7820fa1650aae91202720912c7744372830284363e69f5d9d4e497547de",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-R-Std-brown.svg"
+    },
+    "NYCS-bull-trans-R-Std.svg": {
+      "path": "svg/2c10ab7453d7b9999cf2c7eb6ef97cfeee9652747f9ce12e6a53570d650c9356.svg",
+      "sha256": "2c10ab7453d7b9999cf2c7eb6ef97cfeee9652747f9ce12e6a53570d650c9356",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-R-Std.svg"
+    },
+    "NYCS-bull-trans-R-alt.svg": {
+      "path": "svg/ddb341b4e00d46ac563086f129845f390641650d7b3ea7512a294add1c46ef76.svg",
+      "sha256": "ddb341b4e00d46ac563086f129845f390641650d7b3ea7512a294add1c46ef76",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-R-alt.svg"
+    },
+    "NYCS-bull-trans-R.svg": {
+      "path": "svg/c2736075c87be9fccd465ccefada8ac86d92725eff3c096c77f62dcb32b7c5df.svg",
+      "sha256": "c2736075c87be9fccd465ccefada8ac86d92725eff3c096c77f62dcb32b7c5df",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-R.svg"
+    },
+    "NYCS-bull-trans-Rd-Std-brown.svg": {
+      "path": "svg/e046cfd4a29a8d3e18d4d0499a44f049a72b5f55506a1d27670d6b8748593a80.svg",
+      "sha256": "e046cfd4a29a8d3e18d4d0499a44f049a72b5f55506a1d27670d6b8748593a80",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Rd-Std-brown.svg"
+    },
+    "NYCS-bull-trans-Rd-Std.svg": {
+      "path": "svg/52df90a4215ad05c60534321a432f15a9d3aaaf107183bd4902dc13f3b598f08.svg",
+      "sha256": "52df90a4215ad05c60534321a432f15a9d3aaaf107183bd4902dc13f3b598f08",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Rd-Std.svg"
+    },
+    "NYCS-bull-trans-Rd.svg": {
+      "path": "svg/5865a1ea2c7654bb8ed8da1db9bc33416c1fd5739125b8bde2563491dfeb13c5.svg",
+      "sha256": "5865a1ea2c7654bb8ed8da1db9bc33416c1fd5739125b8bde2563491dfeb13c5",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Rd.svg"
+    },
+    "NYCS-bull-trans-S blue.svg": {
+      "path": "svg/cc9af774280cbbad4c785560afafa593c4e917cac73ae2a5dc3de02611294f30.svg",
+      "sha256": "cc9af774280cbbad4c785560afafa593c4e917cac73ae2a5dc3de02611294f30",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-S_blue.svg"
+    },
+    "NYCS-bull-trans-S orange.svg": {
+      "path": "svg/db24191ac8595e4b8e79021a9e2666db6460f9ef38edc513893ee28801234aba.svg",
+      "sha256": "db24191ac8595e4b8e79021a9e2666db6460f9ef38edc513893ee28801234aba",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-S_orange.svg"
+    },
+    "NYCS-bull-trans-S yellow.svg": {
+      "path": "svg/36c23b2ad30803f76cd44d9c56d99686ef6300fb8b41cb0753487af4672b6b1e.svg",
+      "sha256": "36c23b2ad30803f76cd44d9c56d99686ef6300fb8b41cb0753487af4672b6b1e",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-S_yellow.svg"
+    },
+    "NYCS-bull-trans-S-Std.svg": {
+      "path": "svg/61ed041c0d9971435c3c773aeebb3b439d4480cd2e3fcfe582f933f67a10ce47.svg",
+      "sha256": "61ed041c0d9971435c3c773aeebb3b439d4480cd2e3fcfe582f933f67a10ce47",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-S-Std.svg"
+    },
+    "NYCS-bull-trans-S.svg": {
+      "path": "svg/02ba8562ca833cc477e7effbd3e089e63a4610157029dc8abad6036d23715acc.svg",
+      "sha256": "02ba8562ca833cc477e7effbd3e089e63a4610157029dc8abad6036d23715acc",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-S.svg"
+    },
+    "NYCS-bull-trans-S6-Std.svg": {
+      "path": "svg/2a0886a3b5f0fbddb49b86e6f5fa464e794df98ab783cecbce767db927122242.svg",
+      "sha256": "2a0886a3b5f0fbddb49b86e6f5fa464e794df98ab783cecbce767db927122242",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-S6-Std.svg"
+    },
+    "NYCS-bull-trans-S6d-Std.svg": {
+      "path": "svg/76bb894fa3ba43ac58a60fdd00969558cd76ef5c49265f5fed8d48648350e9c0.svg",
+      "sha256": "76bb894fa3ba43ac58a60fdd00969558cd76ef5c49265f5fed8d48648350e9c0",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-S6d-Std.svg"
+    },
+    "NYCS-bull-trans-SB-Std.svg": {
+      "path": "svg/5d2f27ec09d9b78a2af869665d7db24a615a6591bebbeede6451e3ec00811e9e.svg",
+      "sha256": "5d2f27ec09d9b78a2af869665d7db24a615a6591bebbeede6451e3ec00811e9e",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SB-Std.svg"
+    },
+    "NYCS-bull-trans-SBd-Std.svg": {
+      "path": "svg/ac0a215a0c81b4d1e7063e7dc2d124c29df89cca4007cff42f10479070a030e0.svg",
+      "sha256": "ac0a215a0c81b4d1e7063e7dc2d124c29df89cca4007cff42f10479070a030e0",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SBd-Std.svg"
+    },
+    "NYCS-bull-trans-SF-Std-silver.svg": {
+      "path": "svg/99b21e3bda8998c7e0598cc12526d1518f6ee949bcb990b7ae7765cce7a85ef3.svg",
+      "sha256": "99b21e3bda8998c7e0598cc12526d1518f6ee949bcb990b7ae7765cce7a85ef3",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SF-Std-silver.svg"
+    },
+    "NYCS-bull-trans-SF-Std.svg": {
+      "path": "svg/895671e0d220cc61c362f150f9091c6326f6346942f3486dccf52102aff11fa4.svg",
+      "sha256": "895671e0d220cc61c362f150f9091c6326f6346942f3486dccf52102aff11fa4",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SF-Std.svg"
+    },
+    "NYCS-bull-trans-SF.svg": {
+      "path": "svg/27e43cdae33f14c20d57e6f006375f4c6dc9ef2be7d29ada9f22c6cd96118548.svg",
+      "sha256": "27e43cdae33f14c20d57e6f006375f4c6dc9ef2be7d29ada9f22c6cd96118548",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SF.svg"
+    },
+    "NYCS-bull-trans-SFd-Std-silver.svg": {
+      "path": "svg/530de4cabc813ff91336ef9dd721157ae3d7391fcc525ca7f70e1a60175b35ec.svg",
+      "sha256": "530de4cabc813ff91336ef9dd721157ae3d7391fcc525ca7f70e1a60175b35ec",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SFd-Std-silver.svg"
+    },
+    "NYCS-bull-trans-SIR-2016-2017.svg": {
+      "path": "svg/089045cb310d5be8882b9bdd4a07140f515a7a441e27ca5046badcdbdeab8d5d.svg",
+      "sha256": "089045cb310d5be8882b9bdd4a07140f515a7a441e27ca5046badcdbdeab8d5d",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SIR-2016-2017.svg"
+    },
+    "NYCS-bull-trans-SIR-Std.svg": {
+      "path": "svg/4523d598a046976bc153f0eb5872c4f94bda6f78dee0fddc43bbaa90ddb64685.svg",
+      "sha256": "4523d598a046976bc153f0eb5872c4f94bda6f78dee0fddc43bbaa90ddb64685",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SIR-Std.svg"
+    },
+    "NYCS-bull-trans-SIR.svg": {
+      "path": "svg/16a47a3f7840a249857ef8250a77d073759d860d4d67b57396f8672fb617d87b.svg",
+      "sha256": "16a47a3f7840a249857ef8250a77d073759d860d4d67b57396f8672fb617d87b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SIR.svg"
+    },
+    "NYCS-bull-trans-SIRd-Std.svg": {
+      "path": "svg/9a6875dabed424d03014c84f891ebaace09f32d95920fc53ebd24c30b9f4cb4a.svg",
+      "sha256": "9a6875dabed424d03014c84f891ebaace09f32d95920fc53ebd24c30b9f4cb4a",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SIRd-Std.svg"
+    },
+    "NYCS-bull-trans-SR-Std-blue.svg": {
+      "path": "svg/a29c17eab9bf6c28c20914332a555ac9ef61f6b96bdb6a5f123810a0d47caa91.svg",
+      "sha256": "a29c17eab9bf6c28c20914332a555ac9ef61f6b96bdb6a5f123810a0d47caa91",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SR-Std-blue.svg"
+    },
+    "NYCS-bull-trans-SR-Std.svg": {
+      "path": "svg/486fb6af03985060b034dedcc2d8201b94a631abcb26d534b5f5c41c6e0e03da.svg",
+      "sha256": "486fb6af03985060b034dedcc2d8201b94a631abcb26d534b5f5c41c6e0e03da",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SR-Std.svg"
+    },
+    "NYCS-bull-trans-SR.svg": {
+      "path": "svg/16cfe60a9a81a096d8de97430dbb5b2ff7e8ea2fded7347bd71fad2a4945c892.svg",
+      "sha256": "16cfe60a9a81a096d8de97430dbb5b2ff7e8ea2fded7347bd71fad2a4945c892",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SR.svg"
+    },
+    "NYCS-bull-trans-SRd-Std-blue.svg": {
+      "path": "svg/079a5e690a48149ca4e95168ec84b422a1b26d3cc835f5594408d6cb4788a0db.svg",
+      "sha256": "079a5e690a48149ca4e95168ec84b422a1b26d3cc835f5594408d6cb4788a0db",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-SRd-Std-blue.svg"
+    },
+    "NYCS-bull-trans-Sd-Std.svg": {
+      "path": "svg/f451e9f6980ac940e70ce02cc9b43d154f37d1bd18912582ad17764932c03389.svg",
+      "sha256": "f451e9f6980ac940e70ce02cc9b43d154f37d1bd18912582ad17764932c03389",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Sd-Std.svg"
+    },
+    "NYCS-bull-trans-T-Std-black.svg": {
+      "path": "svg/84f295eea1fe949186b4e61472ea11147aca646f8b81698585ad92c6f81f0d7c.svg",
+      "sha256": "84f295eea1fe949186b4e61472ea11147aca646f8b81698585ad92c6f81f0d7c",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-T-Std-black.svg"
+    },
+    "NYCS-bull-trans-T-Std.svg": {
+      "path": "svg/f6ab10475f868e65ae2208c597a9073fcda83840060138ae9a3ba1cb44aab390.svg",
+      "sha256": "f6ab10475f868e65ae2208c597a9073fcda83840060138ae9a3ba1cb44aab390",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-T-Std.svg"
+    },
+    "NYCS-bull-trans-T.svg": {
+      "path": "svg/813b7b1e15a645782337960ae2c28f8ede70bf46dd6f84fadcc832b89a330947.svg",
+      "sha256": "813b7b1e15a645782337960ae2c28f8ede70bf46dd6f84fadcc832b89a330947",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-T.svg"
+    },
+    "NYCS-bull-trans-Td-Std-black.svg": {
+      "path": "svg/89e0d5b46acf1ed80ff0dfc3a27d199b75073b2b3718c4566dcfe1d20d4e37e0.svg",
+      "sha256": "89e0d5b46acf1ed80ff0dfc3a27d199b75073b2b3718c4566dcfe1d20d4e37e0",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Td-Std-black.svg"
+    },
+    "NYCS-bull-trans-Td-Std.svg": {
+      "path": "svg/f680a17f404005584b741a76b3248691536a645d9422ba20704266d85b32d47a.svg",
+      "sha256": "f680a17f404005584b741a76b3248691536a645d9422ba20704266d85b32d47a",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Td-Std.svg"
+    },
+    "NYCS-bull-trans-U-Std.svg": {
+      "path": "svg/9620dd7f3ed467ed3a1ca1b3ed4a4b84b9c52ceb3b2695d1d32393e0f7326f5b.svg",
+      "sha256": "9620dd7f3ed467ed3a1ca1b3ed4a4b84b9c52ceb3b2695d1d32393e0f7326f5b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-U-Std.svg"
+    },
+    "NYCS-bull-trans-Ud-Std.svg": {
+      "path": "svg/3cb230b5691298e423c199fd31e1cdfea8f83671fe82069f4d792bd9094ecc23.svg",
+      "sha256": "3cb230b5691298e423c199fd31e1cdfea8f83671fe82069f4d792bd9094ecc23",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Ud-Std.svg"
+    },
+    "NYCS-bull-trans-V-Std.svg": {
+      "path": "svg/473d028a07950299ca2f06b9b2ea0b337d87cf14fc91e411ef19c85bcf276757.svg",
+      "sha256": "473d028a07950299ca2f06b9b2ea0b337d87cf14fc91e411ef19c85bcf276757",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-V-Std.svg"
+    },
+    "NYCS-bull-trans-V.svg": {
+      "path": "svg/ff4c48c28b14c27c731200060093ed89d5d8a7991bfe6ad134b95266ac0cf792.svg",
+      "sha256": "ff4c48c28b14c27c731200060093ed89d5d8a7991bfe6ad134b95266ac0cf792",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-V.svg"
+    },
+    "NYCS-bull-trans-Vd-Std.svg": {
+      "path": "svg/083cf2138878d340f0be62f2772761ab3b65cc9aa94eb089f994356936cc03ee.svg",
+      "sha256": "083cf2138878d340f0be62f2772761ab3b65cc9aa94eb089f994356936cc03ee",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Vd-Std.svg"
+    },
+    "NYCS-bull-trans-W-Std.svg": {
+      "path": "svg/eaad14a6f7256ffe2748c750382ef83b9da47431a83636900e40f87bded50f4a.svg",
+      "sha256": "eaad14a6f7256ffe2748c750382ef83b9da47431a83636900e40f87bded50f4a",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-W-Std.svg"
+    },
+    "NYCS-bull-trans-W.svg": {
+      "path": "svg/efe49068777eabece3802daba0c24cfb05c29a55806aa32f9a81f9f0b60cbbdc.svg",
+      "sha256": "efe49068777eabece3802daba0c24cfb05c29a55806aa32f9a81f9f0b60cbbdc",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-W.svg"
+    },
+    "NYCS-bull-trans-Wd-Std.svg": {
+      "path": "svg/fc2565f80ccb133d83366dc344bcd894ead773e5d448701ef9d21029e8e59e27.svg",
+      "sha256": "fc2565f80ccb133d83366dc344bcd894ead773e5d448701ef9d21029e8e59e27",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Wd-Std.svg"
+    },
+    "NYCS-bull-trans-Wd.svg": {
+      "path": "svg/c3a4bcae9ae0a817807f59215dff7dae3e6c0600ab23dc57b0f460a36a9f417a.svg",
+      "sha256": "c3a4bcae9ae0a817807f59215dff7dae3e6c0600ab23dc57b0f460a36a9f417a",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Wd.svg"
+    },
+    "NYCS-bull-trans-X-Std.svg": {
+      "path": "svg/295efc76c0c1804d3ab5077d26d1a829ab9e373ac55d695ff584e220a86e93c9.svg",
+      "sha256": "295efc76c0c1804d3ab5077d26d1a829ab9e373ac55d695ff584e220a86e93c9",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-X-Std.svg"
+    },
+    "NYCS-bull-trans-Xd-Std.svg": {
+      "path": "svg/7eec4374cb3760ec06d834fe31ac89dde0f6afffb3b3922df60c34940be18463.svg",
+      "sha256": "7eec4374cb3760ec06d834fe31ac89dde0f6afffb3b3922df60c34940be18463",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Xd-Std.svg"
+    },
+    "NYCS-bull-trans-Y-Std.svg": {
+      "path": "svg/080cdd4ca2126d76fa40be5ee0d666d1f7906c0c1e00bbe3740cdb06ef31d0c7.svg",
+      "sha256": "080cdd4ca2126d76fa40be5ee0d666d1f7906c0c1e00bbe3740cdb06ef31d0c7",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Y-Std.svg"
+    },
+    "NYCS-bull-trans-Yd-Std.svg": {
+      "path": "svg/fc0c1dc12d11e57c170858b4090dc921929abbbd562ae0056aa5b8883cd92d9b.svg",
+      "sha256": "fc0c1dc12d11e57c170858b4090dc921929abbbd562ae0056aa5b8883cd92d9b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Yd-Std.svg"
+    },
+    "NYCS-bull-trans-Z-Std.svg": {
+      "path": "svg/78520b177edbb602555bacbff5a85f091f090e9caf3fcbf6105be352bd641d98.svg",
+      "sha256": "78520b177edbb602555bacbff5a85f091f090e9caf3fcbf6105be352bd641d98",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Z-Std.svg"
+    },
+    "NYCS-bull-trans-Z.svg": {
+      "path": "svg/c87d13383e2647c0d21cad72b39cbbfddd1ad77c505e6e77708ee9b55e7b4b74.svg",
+      "sha256": "c87d13383e2647c0d21cad72b39cbbfddd1ad77c505e6e77708ee9b55e7b4b74",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Z.svg"
+    },
+    "NYCS-bull-trans-Zd-Std.svg": {
+      "path": "svg/4155ce29b5a07830d0a11cb641fc1870051bbe4449121b60c280723bc1109374.svg",
+      "sha256": "4155ce29b5a07830d0a11cb641fc1870051bbe4449121b60c280723bc1109374",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Zd-Std.svg"
+    },
+    "NYCS-bull-trans-Zd.svg": {
+      "path": "svg/c742db601780365527d962c22890663ecc9269dd15e9179487304114f29d22b0.svg",
+      "sha256": "c742db601780365527d962c22890663ecc9269dd15e9179487304114f29d22b0",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCS-bull-trans-Zd.svg"
+    },
+    "NYCTA Standard-Medium-Qd.svg": {
+      "path": "svg/8b753e6e033cdf63e8bb3c703f24545c6053ffc0a51f03261518bea9bac39370.svg",
+      "sha256": "8b753e6e033cdf63e8bb3c703f24545c6053ffc0a51f03261518bea9bac39370",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA_Standard-Medium-Qd.svg"
+    },
+    "NYCTA-Standard-Medium-1.svg": {
+      "path": "svg/5edef14cb5fbcfe7199bd3ad6a43eac070f7db12f5fe0bec72fac2ecb17135de.svg",
+      "sha256": "5edef14cb5fbcfe7199bd3ad6a43eac070f7db12f5fe0bec72fac2ecb17135de",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-1.svg"
+    },
+    "NYCTA-Standard-Medium-2.svg": {
+      "path": "svg/cbb14497d1719ac5ebc48bc3b26b603c8e63f256fbb1dc14a3424cedeb3e740d.svg",
+      "sha256": "cbb14497d1719ac5ebc48bc3b26b603c8e63f256fbb1dc14a3424cedeb3e740d",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-2.svg"
+    },
+    "NYCTA-Standard-Medium-3.svg": {
+      "path": "svg/68e48deae7d6fe2b2caf1adf1b72261aded3cca598572f6ffcef35974b190c3b.svg",
+      "sha256": "68e48deae7d6fe2b2caf1adf1b72261aded3cca598572f6ffcef35974b190c3b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-3.svg"
+    },
+    "NYCTA-Standard-Medium-4.svg": {
+      "path": "svg/158b163b5d98acbc0fe1c9abd93624a196005f2737b8090d4c617af2974f574a.svg",
+      "sha256": "158b163b5d98acbc0fe1c9abd93624a196005f2737b8090d4c617af2974f574a",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-4.svg"
+    },
+    "NYCTA-Standard-Medium-4d.svg": {
+      "path": "svg/31f1d6cc3685879f9343ddc1511b5cc9072b12b670fc6cff34d68f3fd6aa1d4e.svg",
+      "sha256": "31f1d6cc3685879f9343ddc1511b5cc9072b12b670fc6cff34d68f3fd6aa1d4e",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-4d.svg"
+    },
+    "NYCTA-Standard-Medium-5.svg": {
+      "path": "svg/907a8dcbe08bd928c35ab4f2032a75b5905ead36cbc645cf189c5f0351d8c00c.svg",
+      "sha256": "907a8dcbe08bd928c35ab4f2032a75b5905ead36cbc645cf189c5f0351d8c00c",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-5.svg"
+    },
+    "NYCTA-Standard-Medium-5d.svg": {
+      "path": "svg/0f93b0990bf05ae030dee60d94c0efc077fd0d86185a640b0d1acef0ad5a7753.svg",
+      "sha256": "0f93b0990bf05ae030dee60d94c0efc077fd0d86185a640b0d1acef0ad5a7753",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-5d.svg"
+    },
+    "NYCTA-Standard-Medium-6.svg": {
+      "path": "svg/11e5535a0afc12b16ae834e17d87a0f3cd40be10e14a7e02c9907f8ae9e558c4.svg",
+      "sha256": "11e5535a0afc12b16ae834e17d87a0f3cd40be10e14a7e02c9907f8ae9e558c4",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-6.svg"
+    },
+    "NYCTA-Standard-Medium-6d.svg": {
+      "path": "svg/e00f4abae1c4938c090e2accfa84efe0781a490e4b17c070f4c425ea979731c9.svg",
+      "sha256": "e00f4abae1c4938c090e2accfa84efe0781a490e4b17c070f4c425ea979731c9",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-6d.svg"
+    },
+    "NYCTA-Standard-Medium-7.svg": {
+      "path": "svg/9df5cb379677fd3845b2c3568d0dd1d0e195066fea1f17a732cd33021386ff79.svg",
+      "sha256": "9df5cb379677fd3845b2c3568d0dd1d0e195066fea1f17a732cd33021386ff79",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-7.svg"
+    },
+    "NYCTA-Standard-Medium-7d.svg": {
+      "path": "svg/a9086ad3d90c878626cfe2d1c79a5df61f357f886d9b7de26850d95543cb08db.svg",
+      "sha256": "a9086ad3d90c878626cfe2d1c79a5df61f357f886d9b7de26850d95543cb08db",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-7d.svg"
+    },
+    "NYCTA-Standard-Medium-9.svg": {
+      "path": "svg/de3947fe28f84e770cd1b5b6642b65a24b2978fde068111c1514c1e902740cac.svg",
+      "sha256": "de3947fe28f84e770cd1b5b6642b65a24b2978fde068111c1514c1e902740cac",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-9.svg"
+    },
+    "NYCTA-Standard-Medium-A sixth.svg": {
+      "path": "svg/3c90a6f638ed42205bbf5df53def862172c311bc57e154a2b90990fda203cac4.svg",
+      "sha256": "3c90a6f638ed42205bbf5df53def862172c311bc57e154a2b90990fda203cac4",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-A_sixth.svg"
+    },
+    "NYCTA-Standard-Medium-A.svg": {
+      "path": "svg/7ef2197ab1fb640fd8532742b3debee73b8dbe7e9b864dd37650b59c4151edf9.svg",
+      "sha256": "7ef2197ab1fb640fd8532742b3debee73b8dbe7e9b864dd37650b59c4151edf9",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-A.svg"
+    },
+    "NYCTA-Standard-Medium-B broadway.svg": {
+      "path": "svg/1e9e299585687ad6bc7b7fe0e0c1e4c28c8a1fa2cd3b4101e294ba879ba9a252.svg",
+      "sha256": "1e9e299585687ad6bc7b7fe0e0c1e4c28c8a1fa2cd3b4101e294ba879ba9a252",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-B_broadway.svg"
+    },
+    "NYCTA-Standard-Medium-B.svg": {
+      "path": "svg/e12bfe17025b949d0d368b906e6567eab862c0ad3bf5a79c5f57875291bc37dc.svg",
+      "sha256": "e12bfe17025b949d0d368b906e6567eab862c0ad3bf5a79c5f57875291bc37dc",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-B.svg"
+    },
+    "NYCTA-Standard-Medium-Bd broadway.svg": {
+      "path": "svg/a3bb622f6ac19d956f4909a5755d72d2e755390d28fd16e0be2e66eae961822f.svg",
+      "sha256": "a3bb622f6ac19d956f4909a5755d72d2e755390d28fd16e0be2e66eae961822f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Bd_broadway.svg"
+    },
+    "NYCTA-Standard-Medium-Bd.svg": {
+      "path": "svg/47496ea380f97952c23be733e57ecc55ad4d71609f9b62d987c4a900621db0a1.svg",
+      "sha256": "47496ea380f97952c23be733e57ecc55ad4d71609f9b62d987c4a900621db0a1",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Bd.svg"
+    },
+    "NYCTA-Standard-Medium-C.svg": {
+      "path": "svg/fffcc9d8eb62e2b036738cf060b11b0044f2e756c4afd4ee8c7322b7dd1b48f4.svg",
+      "sha256": "fffcc9d8eb62e2b036738cf060b11b0044f2e756c4afd4ee8c7322b7dd1b48f4",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-C.svg"
+    },
+    "NYCTA-Standard-Medium-Cd.svg": {
+      "path": "svg/049c1381bb2a43961524b14a4d4bf4ec243817c4a6fad8cdccea2a2082e73996.svg",
+      "sha256": "049c1381bb2a43961524b14a4d4bf4ec243817c4a6fad8cdccea2a2082e73996",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Cd.svg"
+    },
+    "NYCTA-Standard-Medium-D broadway.svg": {
+      "path": "svg/03b78254f1c8f474f602bf71a5794bff9b4525f4bd0e7fa8026436276e1b6a95.svg",
+      "sha256": "03b78254f1c8f474f602bf71a5794bff9b4525f4bd0e7fa8026436276e1b6a95",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-D_broadway.svg"
+    },
+    "NYCTA-Standard-Medium-D.svg": {
+      "path": "svg/0195ae984d9795aa6949e8d22290b65c5afc4d8f84996e28a21efd9004c01972.svg",
+      "sha256": "0195ae984d9795aa6949e8d22290b65c5afc4d8f84996e28a21efd9004c01972",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-D.svg"
+    },
+    "NYCTA-Standard-Medium-E.svg": {
+      "path": "svg/bf00390394d00dc11522e00cb99f1bb44b5b558d8b1c1341c47ac2c189547e12.svg",
+      "sha256": "bf00390394d00dc11522e00cb99f1bb44b5b558d8b1c1341c47ac2c189547e12",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-E.svg"
+    },
+    "NYCTA-Standard-Medium-F.svg": {
+      "path": "svg/8dce71de264690ba57261bc1a013a744d2c3daf0ecfeebacc6156b679d2fb73f.svg",
+      "sha256": "8dce71de264690ba57261bc1a013a744d2c3daf0ecfeebacc6156b679d2fb73f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-F.svg"
+    },
+    "NYCTA-Standard-Medium-Fd.svg": {
+      "path": "svg/b838a203ddb98d2bbfb7ec950f3ddcf50f77be5f4fa1a1d448e5a0c1c5f2549d.svg",
+      "sha256": "b838a203ddb98d2bbfb7ec950f3ddcf50f77be5f4fa1a1d448e5a0c1c5f2549d",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Fd.svg"
+    },
+    "NYCTA-Standard-Medium-G.svg": {
+      "path": "svg/f7e70fc3d13a445fd628e0148110e82c36f586d6798b04314598557108d552e1.svg",
+      "sha256": "f7e70fc3d13a445fd628e0148110e82c36f586d6798b04314598557108d552e1",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-G.svg"
+    },
+    "NYCTA-Standard-Medium-H.svg": {
+      "path": "svg/7dff2ff8710c6c25db3f81e209b35c0cd7f2b66e5262ab13da24cce303e97faf.svg",
+      "sha256": "7dff2ff8710c6c25db3f81e209b35c0cd7f2b66e5262ab13da24cce303e97faf",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-H.svg"
+    },
+    "NYCTA-Standard-Medium-J.svg": {
+      "path": "svg/4b5bd4aa19174c8a868291923fb360daef16262dc3c4f0e05089ec94398d8acb.svg",
+      "sha256": "4b5bd4aa19174c8a868291923fb360daef16262dc3c4f0e05089ec94398d8acb",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-J.svg"
+    },
+    "NYCTA-Standard-Medium-Jd.svg": {
+      "path": "svg/5a456f287139269acf55a83f21443222e9b2feeef17c0769f17c2ae761eb88c2.svg",
+      "sha256": "5a456f287139269acf55a83f21443222e9b2feeef17c0769f17c2ae761eb88c2",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Jd.svg"
+    },
+    "NYCTA-Standard-Medium-K canarsie.svg": {
+      "path": "svg/9a3457643852cae0e856d53dacd7eeb6464949821ddb365c2c4461799e7cfa19.svg",
+      "sha256": "9a3457643852cae0e856d53dacd7eeb6464949821ddb365c2c4461799e7cfa19",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-K_canarsie.svg"
+    },
+    "NYCTA-Standard-Medium-K.svg": {
+      "path": "svg/1fb00b2bf19a6ff987bfb3339c42d0f11da5a014faedcecfc2a7111906629089.svg",
+      "sha256": "1fb00b2bf19a6ff987bfb3339c42d0f11da5a014faedcecfc2a7111906629089",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-K.svg"
+    },
+    "NYCTA-Standard-Medium-L.svg": {
+      "path": "svg/23f387309caafe52bc02b9e12e99c5e912860c0cec38cbd865d4ecadcfdf3608.svg",
+      "sha256": "23f387309caafe52bc02b9e12e99c5e912860c0cec38cbd865d4ecadcfdf3608",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-L.svg"
+    },
+    "NYCTA-Standard-Medium-M-nassau.svg": {
+      "path": "svg/cd7c620c66730ba6b3fc22898b44b5b1f2a45ae65a725b004745379f2c6a9098.svg",
+      "sha256": "cd7c620c66730ba6b3fc22898b44b5b1f2a45ae65a725b004745379f2c6a9098",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-M-nassau.svg"
+    },
+    "NYCTA-Standard-Medium-M.svg": {
+      "path": "svg/f821339cdd7fac533abb7893d8488b4c603937b4b1628b01ac2f3a3cab34535a.svg",
+      "sha256": "f821339cdd7fac533abb7893d8488b4c603937b4b1628b01ac2f3a3cab34535a",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-M.svg"
+    },
+    "NYCTA-Standard-Medium-Md nassau.svg": {
+      "path": "svg/d83f0b9f7cfec0ef79dcca80a0495d23710dffd424cfce1f1fc4820705d05ba8.svg",
+      "sha256": "d83f0b9f7cfec0ef79dcca80a0495d23710dffd424cfce1f1fc4820705d05ba8",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Md_nassau.svg"
+    },
+    "NYCTA-Standard-Medium-N.svg": {
+      "path": "svg/1e414d420bc238d97bc880c48e58f77b98b7ab7143428840a0e9054320adf799.svg",
+      "sha256": "1e414d420bc238d97bc880c48e58f77b98b7ab7143428840a0e9054320adf799",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-N.svg"
+    },
+    "NYCTA-Standard-Medium-Nd.svg": {
+      "path": "svg/d285b4dbf34913212ce0ed4b67c0f2ccaf812a770ca0cd637bc531fa8b9670cd.svg",
+      "sha256": "d285b4dbf34913212ce0ed4b67c0f2ccaf812a770ca0cd637bc531fa8b9670cd",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Nd.svg"
+    },
+    "NYCTA-Standard-Medium-Q sixth.svg": {
+      "path": "svg/7175b7ab230d3b8b1238861633412bb5aafe883eb453ba38d075478cc3241b59.svg",
+      "sha256": "7175b7ab230d3b8b1238861633412bb5aafe883eb453ba38d075478cc3241b59",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Q_sixth.svg"
+    },
+    "NYCTA-Standard-Medium-Q.svg": {
+      "path": "svg/3943690f92204c22ca246abb4c2870ddad0b066058a73b6b58f8996618245c08.svg",
+      "sha256": "3943690f92204c22ca246abb4c2870ddad0b066058a73b6b58f8996618245c08",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Q.svg"
+    },
+    "NYCTA-Standard-Medium-R.svg": {
+      "path": "svg/f4ee722c96bb83c025778cfac5c786acee8d8e78f9fc395c867bc783d5d80aa3.svg",
+      "sha256": "f4ee722c96bb83c025778cfac5c786acee8d8e78f9fc395c867bc783d5d80aa3",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-R.svg"
+    },
+    "NYCTA-Standard-Medium-Rd nassau.svg": {
+      "path": "svg/740a961c2726ff983aba4e3ab1f1d38f574475e21bfa3f6826724dc9c31b263b.svg",
+      "sha256": "740a961c2726ff983aba4e3ab1f1d38f574475e21bfa3f6826724dc9c31b263b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Rd_nassau.svg"
+    },
+    "NYCTA-Standard-Medium-Rd.svg": {
+      "path": "svg/ce3739f714899a4e1e32ed00d761ec0afbab0603051a904848d0e21d83a3602b.svg",
+      "sha256": "ce3739f714899a4e1e32ed00d761ec0afbab0603051a904848d0e21d83a3602b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Rd.svg"
+    },
+    "NYCTA-Standard-Medium-S 63.svg": {
+      "path": "svg/0f730076fa5e48af7bef017749de34944862ca1b4ac4ed0cc4a64eda287ba312.svg",
+      "sha256": "0f730076fa5e48af7bef017749de34944862ca1b4ac4ed0cc4a64eda287ba312",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-S_63.svg"
+    },
+    "NYCTA-Standard-Medium-S rockaway.svg": {
+      "path": "svg/3eeec0e3457b8ee4952f10cf9618706483eeadb385eb7ece5a5bb1a0430e9299.svg",
+      "sha256": "3eeec0e3457b8ee4952f10cf9618706483eeadb385eb7ece5a5bb1a0430e9299",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-S_rockaway.svg"
+    },
+    "NYCTA-Standard-Medium-S sixth.svg": {
+      "path": "svg/d75e1174ce0fa594ced66f61653c8cf3bc83894dbb907a09aaa37aa8d089bb01.svg",
+      "sha256": "d75e1174ce0fa594ced66f61653c8cf3bc83894dbb907a09aaa37aa8d089bb01",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-S_sixth.svg"
+    },
+    "NYCTA-Standard-Medium-S.svg": {
+      "path": "svg/d1f12902c3668a6ca854a249f56648c7b7584533c4ae04d3b2ac16333d937714.svg",
+      "sha256": "d1f12902c3668a6ca854a249f56648c7b7584533c4ae04d3b2ac16333d937714",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-S.svg"
+    },
+    "NYCTA-Standard-Medium-T.svg": {
+      "path": "svg/165cd7c6d939a147989c6232d7905d191b551b663ab07a7ea6cb825707aa7194.svg",
+      "sha256": "165cd7c6d939a147989c6232d7905d191b551b663ab07a7ea6cb825707aa7194",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-T.svg"
+    },
+    "NYCTA-Standard-Medium-V.svg": {
+      "path": "svg/64664f571d2682282164d1df46565e52fe8fe210c49313db635b51119c715775.svg",
+      "sha256": "64664f571d2682282164d1df46565e52fe8fe210c49313db635b51119c715775",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-V.svg"
+    },
+    "NYCTA-Standard-Medium-W.svg": {
+      "path": "svg/5a94c6e1b83d4675127cbb01b2e26234e6abf0fdd484e9dcf0a59aeabbc648d4.svg",
+      "sha256": "5a94c6e1b83d4675127cbb01b2e26234e6abf0fdd484e9dcf0a59aeabbc648d4",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-W.svg"
+    },
+    "NYCTA-Standard-Medium-Wd.svg": {
+      "path": "svg/d37b3d3efaa17db8f33248594bd7b4232d1bb1c48e3fe96dd809d768bcdc44d5.svg",
+      "sha256": "d37b3d3efaa17db8f33248594bd7b4232d1bb1c48e3fe96dd809d768bcdc44d5",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Wd.svg"
+    },
+    "NYCTA-Standard-Medium-Z.svg": {
+      "path": "svg/9710bc57c8a94e09cd0ce93cd9005ef971e4828f4334163c8114ecff7a3157c6.svg",
+      "sha256": "9710bc57c8a94e09cd0ce93cd9005ef971e4828f4334163c8114ecff7a3157c6",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NYCTA-Standard-Medium-Z.svg"
+    },
+    "QB Train (1967-1979).svg": {
+      "path": "svg/cbaf8ec1320fd249bcf6cba6daaa2b88f2e79f985a874afa04a755d2eb75027c.svg",
+      "sha256": "cbaf8ec1320fd249bcf6cba6daaa2b88f2e79f985a874afa04a755d2eb75027c",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:QB_Train_(1967-1979).svg"
+    },
+    "QB Train (1979-1985).svg": {
+      "path": "svg/b82795798e893434e350993ef22a9bcf9203c8ad76f66bb45203b2637036149f.svg",
+      "sha256": "b82795798e893434e350993ef22a9bcf9203c8ad76f66bb45203b2637036149f",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:QB_Train_(1979-1985).svg"
+    },
+    "QJ Train (1967-1976).svg": {
+      "path": "svg/11583de7a96f27b82eb18cd7e0c921c4dcacf9844658a5601fc3f329586e6e0d.svg",
+      "sha256": "11583de7a96f27b82eb18cd7e0c921c4dcacf9844658a5601fc3f329586e6e0d",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:QJ_Train_(1967-1976).svg"
+    },
+    "RJ Train (1967-1968).svg": {
+      "path": "svg/de089501a82f4922434e9d788fc5e980c5f787b94bd2bcd85e491384c64c89b1.svg",
+      "sha256": "de089501a82f4922434e9d788fc5e980c5f787b94bd2bcd85e491384c64c89b1",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:RJ_Train_(1967-1968).svg"
+    },
+    "RR Train (1967-1979).svg": {
+      "path": "svg/b61254fd98ce6148f3c72c8511023232728fb99c864b26b2219e800faf20f59b.svg",
+      "sha256": "b61254fd98ce6148f3c72c8511023232728fb99c864b26b2219e800faf20f59b",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:RR_Train_(1967-1979).svg"
+    },
+    "RR Train (1979-1985).svg": {
+      "path": "svg/5102a1728fd2cb43a70869fdcdb3570000c6268c1e421634aaa4d1b615e86c1c.svg",
+      "sha256": "5102a1728fd2cb43a70869fdcdb3570000c6268c1e421634aaa4d1b615e86c1c",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:RR_Train_(1979-1985).svg"
+    },
+    "RR Train - Yellow diamond.svg": {
+      "path": "svg/9131b19bd694584ae4a987240a0064140f187e1a3fef37c03a5a05e6b72a1fcd.svg",
+      "sha256": "9131b19bd694584ae4a987240a0064140f187e1a3fef37c03a5a05e6b72a1fcd",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:RR_Train_-_Yellow_diamond.svg"
+    },
+    "SS Train (1967-1968, Black).svg": {
+      "path": "svg/d067d699512718c0f68da032629efc03ac15b864e7f5b94550a803a3f08874d6.svg",
+      "sha256": "d067d699512718c0f68da032629efc03ac15b864e7f5b94550a803a3f08874d6",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:SS_Train_(1967-1968,_Black).svg"
+    },
+    "SS Train (1967-1968, Blue).svg": {
+      "path": "svg/b6fa0d33210a99d0fcfec1a780e662037e11fa3c05b3e82d689f6e7daf671620.svg",
+      "sha256": "b6fa0d33210a99d0fcfec1a780e662037e11fa3c05b3e82d689f6e7daf671620",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:SS_Train_(1967-1968,_Blue).svg"
+    },
+    "SS Train (1967-1968, Orange).svg": {
+      "path": "svg/16379b3cec851207ae3d3b3938fd16de2eae3f64d87a5287586a3e1516234d6e.svg",
+      "sha256": "16379b3cec851207ae3d3b3938fd16de2eae3f64d87a5287586a3e1516234d6e",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:SS_Train_(1967-1968,_Orange).svg"
+    },
+    "SS Train (1967-1968, Turquoise).svg": {
+      "path": "svg/90bb53c50ff9e114895ad45e0f801b3780050049c9f55810c167f0f08de901d8.svg",
+      "sha256": "90bb53c50ff9e114895ad45e0f801b3780050049c9f55810c167f0f08de901d8",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:SS_Train_(1967-1968,_Turquoise).svg"
+    },
+    "SS Train (1967-1968, Yellow).svg": {
+      "path": "svg/9a3af871a44f23e846af4143638a48f882e3f147621147bf8b18eb90e7779c18.svg",
+      "sha256": "9a3af871a44f23e846af4143638a48f882e3f147621147bf8b18eb90e7779c18",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:SS_Train_(1967-1968,_Yellow).svg"
+    },
+    "SS Train (1967-1979).svg": {
+      "path": "svg/5c18843f44e646374e303e97b461fe2f2b249d93e4d7d825cc008635e8075d50.svg",
+      "sha256": "5c18843f44e646374e303e97b461fe2f2b249d93e4d7d825cc008635e8075d50",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:SS_Train_(1967-1979).svg"
+    },
+    "Special (1967-1979).svg": {
+      "path": "svg/fa569a0d45fd202c6290ecf72e8b08c18b632f79077a34989339bd27b756f55b.svg",
+      "sha256": "fa569a0d45fd202c6290ecf72e8b08c18b632f79077a34989339bd27b756f55b",
+      "license": "CC BY 4.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Special_(1967-1979).svg"
+    },
+    "TT Train (1967).svg": {
+      "path": "svg/97b4ae53b8ad4c29426dfbc0b42c4860d85351fab9d033e01559a685ab75dc12.svg",
+      "sha256": "97b4ae53b8ad4c29426dfbc0b42c4860d85351fab9d033e01559a685ab75dc12",
+      "license": "Public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:TT_Train_(1967).svg"
+    }
+  }
+}

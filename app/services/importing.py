@@ -23,6 +23,8 @@ TABLES = {
     "observations": m.SignObservation,
     "route_group_history": m.RouteGroupHistory,
     "review_issues": m.ReviewIssue,
+    "specimen_sets": m.SpecimenSet,
+    "specimen_entries": m.SpecimenEntry,
 }
 
 
@@ -89,7 +91,15 @@ def import_bundle(
                         f"Conflicting {section} {identity}: {list(changes)}; review before --allow-updates"
                     )
                 if changes and section == "signs":
+                    has_conflict = False
                     for key, (old, new) in changes.items():
+                        if (
+                            old is None
+                            or old in ("unknown", {}, [])
+                            or key in {"display_name", "display_order", "manual_review"}
+                        ):
+                            continue
+                        has_conflict = True
                         issue_id = (
                             "conflict:"
                             + hashlib.sha256(f"{identity}:{key}:{old}:{new}".encode()).hexdigest()[
@@ -104,7 +114,8 @@ def import_bundle(
                                 description=f"Import changed {old!r} to {new!r}; review evidence.",
                             )
                         )
-                    values["manual_review"] = True
+                    if has_conflict:
+                        values["manual_review"] = True
                 for key, value in values.items():
                     if value is None and getattr(existing, key) is not None and not allow_updates:
                         continue

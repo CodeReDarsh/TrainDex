@@ -1,6 +1,6 @@
 {
   "reviewed_on": "2026-10-24",
-  "notes": "Design identities are curator keys based on displayed text, structural shape, layout, and technology. No exact physical HEX colors, typefaces, manufacturing dates, or unsupported equipment links are inferred from photographs. Observations are not route operation evidence. Source dates are retained raw; ambiguous dates are not coerced into timestamps.",
+  "notes": "Fixed reviewed hackathon catalog. Photographic swatches are explicitly labeled visual estimates, not original paint specifications. Exact physical font families, manufacture dates and unsupported compatibility stay unknown. Multiple photographs share a design identity. Artwork candidates remain labeled separately.",
   "designs": [
     {
       "file": "An R62A rollsign with LED green circle.jpg",
@@ -15,7 +15,22 @@
       "features": [
         "Mechanical route character with a green illuminated circular local indicator",
         "Destination text to the left of route indicator"
-      ]
+      ],
+      "additional_references": [
+        {
+          "file": "51st St IRT Lex td (2019-03-29) 01.jpg"
+        },
+        {
+          "file": "R62A Rollsign.jpg"
+        },
+        {
+          "file": "Cyan 6 train???.jpg",
+          "candidate": true,
+          "observation_notes": "Source alleges a cyan alteration. Original design identity retained provisionally; no manufactured color variant inferred from this photograph."
+        }
+      ],
+      "font_style": "sans_serif",
+      "display_name": "6 \u2014 Mechanical route character with a green illuminated circular local indicator"
     },
     {
       "file": "An R62A rollsign with LED red diamond.jpg",
@@ -30,7 +45,9 @@
       "features": [
         "Mechanical route character with an illuminated diamond express indicator",
         "Distinct from a manufactured green diamond route bullet"
-      ]
+      ],
+      "font_style": "sans_serif",
+      "display_name": "6 \u2014 Mechanical route character with an illuminated diamond express indicator"
     },
     {
       "file": "Brown diamond R vc.jpg",
@@ -46,7 +63,12 @@
         "Brown diamond R bullet",
         "Nassau St / 4 Avenue text beside bullet",
         "Route R retains its current Broadway classification independently of this sign's brown color"
-      ]
+      ],
+      "background_color": "#966A45",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "R \u2014 Brown diamond R bullet"
     },
     {
       "file": "R68A V Train.jpg",
@@ -60,7 +82,12 @@
       "historical": true,
       "features": [
         "Orange circular V retained on equipment after route discontinuation"
-      ]
+      ],
+      "background_color": "#E56D29",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "V \u2014 Orange circular V retained on equipment after route discontinuation"
     },
     {
       "file": "R62 3 train Rollsign @ Franklin Avenue.jpg",
@@ -74,7 +101,12 @@
       "features": [
         "Red circular 3 rollsign in side destination assembly",
         "Route bullet to the left of terminal text"
-      ]
+      ],
+      "background_color": "#CA393F",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "3 \u2014 Red circular 3 rollsign in side destination assembly"
     },
     {
       "file": "R62A 6 Train 033.jpg",
@@ -89,7 +121,12 @@
         "Green circular 6 rollsign at the end of an R62A",
         "No illuminated local/express ring"
       ],
-      "view_angle": "close_up"
+      "view_angle": "close_up",
+      "background_color": "#25844F",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "6 \u2014 Green circular 6 rollsign at the end of an R62A"
     },
     {
       "file": "R68 B Train Rollsign.jpg",
@@ -102,7 +139,24 @@
       "equipment": "R68",
       "features": [
         "Orange circular B route bullet in side destination assembly"
-      ]
+      ],
+      "additional_references": [
+        {
+          "file": "96 Street B train vc.jpg"
+        },
+        {
+          "file": "R68 B Train Rollsign 001.jpg"
+        },
+        {
+          "file": "R68A B Train Rollsign.JPG",
+          "equipment": "R68A"
+        }
+      ],
+      "background_color": "#E56D29",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "B \u2014 Orange circular B route bullet in side destination assembly"
     },
     {
       "file": "R68A G Train Rollsign.jpg",
@@ -115,7 +169,21 @@
       "equipment": "R68A",
       "features": [
         "Light green circular G route bullet in side destination assembly"
-      ]
+      ],
+      "additional_references": [
+        {
+          "file": "DSC03301ttrain.jpg",
+          "equipment": "R68"
+        },
+        {
+          "file": "R68A G Train Rollsign 001.jpg"
+        }
+      ],
+      "background_color": "#80AF42",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "G \u2014 Light green circular G route bullet in side destination assembly"
     },
     {
       "file": "R68 W Train Rollsign.jpg",
@@ -128,7 +196,21 @@
       "equipment": "R68",
       "features": [
         "Yellow circular W route bullet in side destination assembly"
-      ]
+      ],
+      "additional_references": [
+        {
+          "file": "R68 rollsign.jpg"
+        },
+        {
+          "file": "R68A W Train Rollsign.jpg",
+          "equipment": "R68A"
+        }
+      ],
+      "background_color": "#E9CD26",
+      "foreground_color": "#171717",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "W \u2014 Yellow circular W route bullet in side destination assembly"
     },
     {
       "file": "Diamond Q vc.jpg",
@@ -142,7 +224,17 @@
       "features": [
         "Yellow diamond Q bullet with dark route character",
         "57 St/7 Av and Brighton Beach text alongside bullet"
-      ]
+      ],
+      "additional_references": [
+        {
+          "file": "NoKingss20251018a 12.png"
+        }
+      ],
+      "background_color": "#E9CD26",
+      "foreground_color": "#171717",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "Q \u2014 Yellow diamond Q bullet with dark route character"
     },
     {
       "file": "JFK Express Sign.jpg",
@@ -158,7 +250,11 @@
         "Photographed on Franklin Avenue Shuttle equipment; not evidence of operating JFK Express service"
       ],
       "observed_route": "S",
-      "observation_notes": "Commons photo description explicitly identifies the Franklin Avenue Shuttle. Its JFK Express bullet is a sign setting, not evidence of operating JFK Express service. Original date text is retained without an invented timestamp."
+      "observation_notes": "Commons photo description explicitly identifies the Franklin Avenue Shuttle. Its JFK Express bullet is a sign setting, not evidence of operating JFK Express service. Original date text is retained without an invented timestamp.",
+      "background_color": "#298493",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "display_name": "airplane \u2014 Airplane pictogram on a blue-green circular bullet"
     },
     {
       "file": "K train in museum vc.jpg",
@@ -172,7 +268,12 @@
       "features": [
         "Blue circular K with white character in museum train",
         "168 St and World Trade Center destination text"
-      ]
+      ],
+      "background_color": "#2454A6",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "K \u2014 Blue circular K with white character in museum train"
     },
     {
       "file": "7 train red diamond express lcd.JPG",
@@ -186,7 +287,9 @@
       "features": [
         "Illuminated diamond indicator around mechanical 7 character",
         "Filename calls this LCD; display technology subtype remains unverified"
-      ]
+      ],
+      "font_style": "sans_serif",
+      "display_name": "7 \u2014 Illuminated diamond indicator around mechanical 7 character"
     },
     {
       "file": "10 train.jpg",
@@ -199,7 +302,21 @@
       "features": [
         "Unused green circular 10 designation on physical rollsign",
         "Route assignment and equipment model require review; not a discontinued operating route"
-      ]
+      ],
+      "layout": "route_bullet",
+      "additional_references": [
+        {
+          "file": "Erroneous 10 Train Rollsign.jpg",
+          "observed_route": "6",
+          "position": "rear",
+          "observation_notes": "Source explicitly identifies the rear of car 1829 on route 6. The unused 10 display does not create an operating route 10."
+        }
+      ],
+      "background_color": "#25844F",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "10 \u2014 Unused green circular 10 designation on physical rollsign"
     },
     {
       "file": "13 train in Line 1.jpg",
@@ -213,7 +330,809 @@
         "Unused red circular 13 designation on physical rollsign",
         "Photograph title mentions Line 1; no route or equipment assignment inferred"
       ],
-      "view_angle": "close_up"
+      "view_angle": "close_up",
+      "layout": "route_bullet",
+      "additional_references": [
+        {
+          "file": "Line 13! (5990503211).jpg",
+          "observed_route": "7"
+        },
+        {
+          "file": "R62A with 13 Bullet and Original and Modified Destination Rollsigns.jpg",
+          "equipment": "R62A"
+        }
+      ],
+      "background_color": "#CA393F",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "display_name": "13 \u2014 Unused red circular 13 designation on physical rollsign"
+    },
+    {
+      "file": "'Train of Many Colors' Prep (14337079774).jpg",
+      "sign_id": "IRT_7_RED_CIRCLE_HERITAGE_END",
+      "text": "7",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "unknown",
+      "features": [
+        "Historical red/orange circular 7 end curtain",
+        "Preserved train photographed during Train of Many Colors preparation"
+      ],
+      "display_name": "7 \u2014 Historical red/orange circular 7 end curtain",
+      "service": "unknown",
+      "route": "7",
+      "historical": true,
+      "layout": "end_route_bullet",
+      "background_color": "#C84A36",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "149th Street Jerome Redbird vc.jpg",
+      "sign_id": "WORK_EXP_RED_DISPLAY",
+      "text": "EXP",
+      "shape": "rectangle",
+      "technology": "unknown",
+      "position": "unknown",
+      "features": [
+        "Red illuminated EXP work-train display",
+        "No passenger route inferred from work-train setting"
+      ],
+      "display_name": "EXP \u2014 Red illuminated EXP work-train display",
+      "service": "special",
+      "candidate": true,
+      "layout": "end_text_display",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "34th St-Penn td 06 - IND.jpg",
+      "sign_id": "B_C_BLUE_CIRCLE_SIDE",
+      "text": "C",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Blue circular C in a side service panel",
+        "Separate terminal windows above the route and service strip"
+      ],
+      "display_name": "C \u2014 Blue circular C in a side service panel",
+      "service": "unknown",
+      "route": "C",
+      "layout": "side_service_panel",
+      "additional_references": [
+        {
+          "file": "C train at Carroll Street vc.jpg"
+        },
+        {
+          "file": "R32IMG 3837.jpg"
+        },
+        {
+          "file": "R32IMG 3838.jpg"
+        },
+        {
+          "file": "R32IMG 3839.jpg"
+        },
+        {
+          "file": "R32IMG 3840.jpg"
+        },
+        {
+          "file": "R32IMG 3841.jpg"
+        }
+      ],
+      "background_color": "#2454A6",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "Bombardier R62A 1 Train Side Rollsigns.jpg",
+      "sign_id": "IRT_1_RED_CIRCLE_SIDE",
+      "text": "1",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Red circular 1 beside side destination text"
+      ],
+      "display_name": "1 \u2014 Red circular 1 beside side destination text",
+      "service": "unknown",
+      "route": "1",
+      "equipment": "R62A",
+      "additional_references": [
+        {
+          "file": "59th St\u2013Columbus Cir td 01 - IRT.jpg"
+        },
+        {
+          "file": "59th St\u2013Columbus Cir td 02 - IRT.jpg"
+        },
+        {
+          "file": "59th St\u2013Columbus Cir td 03 - IRT.jpg"
+        }
+      ],
+      "background_color": "#CA393F",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "7 Line Extension Ceremonia Ride (11469730544).jpg",
+      "sign_id": "IRT_7_SIDE_GREEN_RING",
+      "text": "7",
+      "shape": "circle",
+      "technology": "hybrid",
+      "position": "side",
+      "features": [
+        "Mechanical 7 character with illuminated green circular indicator",
+        "Distinct local display state from the red diamond indicator"
+      ],
+      "display_name": "7 \u2014 Mechanical 7 character with illuminated green circular indicator",
+      "service": "unknown",
+      "route": "7",
+      "additional_references": [
+        {
+          "file": "7 Line Extension Ceremonia Ride (11469802736).jpg"
+        },
+        {
+          "file": "7 Line Extension Ceremonia Ride (11469851933) (2).jpg"
+        },
+        {
+          "file": "7 Line Extension Ceremonia Ride (11469852683).jpg"
+        },
+        {
+          "file": "Electronic LCD Display Upgrade on the R62A 7 Train 2.JPG",
+          "equipment": "R62A"
+        },
+        {
+          "file": "Electronic LCD Display Upgrade on the R62A 7 Train.JPG"
+        }
+      ],
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "A Day In New Dec 2021 (51756146727).jpg",
+      "sign_id": "B_D_ORANGE_CIRCLE_SERVICE_PANEL",
+      "text": "D",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Small orange circular D beside Concourse / 6 Avenue service text",
+        "Route and service strip below separate terminal curtains"
+      ],
+      "display_name": "D \u2014 Small orange circular D beside Concourse / 6 Avenue service text",
+      "service": "unknown",
+      "route": "D",
+      "layout": "side_service_panel",
+      "additional_references": [
+        {
+          "file": "A Day In New Dec 2021 (51756275317).jpg"
+        },
+        {
+          "file": "A Day In New York 02.01.2022 (51794018052).jpg"
+        },
+        {
+          "file": "A Day In New York 02.01.2022 (51795090793).jpg"
+        }
+      ],
+      "background_color": "#E56D29",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "DtrainDSC00618.jpg",
+      "sign_id": "B_D_ORANGE_CIRCLE_STACKED_SIDE",
+      "text": "D",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Orange circular D to the right of two stacked terminal panels"
+      ],
+      "display_name": "D \u2014 Orange circular D to the right of two stacked terminal panels",
+      "service": "unknown",
+      "route": "D",
+      "equipment": "R68",
+      "background_color": "#E56D29",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "additional_references": [
+        {
+          "file": "Dtrain Vlcsnap-2023-09-04-17h50m18s233.png"
+        }
+      ]
+    },
+    {
+      "file": "R40 D train.JPG",
+      "sign_id": "B_D_ORANGE_CIRCLE_COMBINED_SIDE",
+      "text": "D",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Orange circular D to the left of terminal text in a combined side panel"
+      ],
+      "display_name": "D \u2014 Orange circular D to the left of terminal text in a combined side panel",
+      "service": "unknown",
+      "route": "D",
+      "equipment": "R40",
+      "layout": "side_combined_route_left",
+      "additional_references": [
+        {
+          "file": "Snow Storm- January 21, 2014 (12079204166).jpg"
+        },
+        {
+          "file": "West 4th St td (2018-07-07) 01 - D via 8th Av Express.jpg"
+        }
+      ],
+      "background_color": "#E56D29",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "A Day In New York 02.01.2022 (51795333314).jpg",
+      "sign_id": "SPECIAL_S_MONOCHROME_PANEL",
+      "text": "S SPECIAL",
+      "shape": "rectangle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "White S and SPECIAL lettering on a black rectangular service curtain",
+        "Special sign is not automatically assigned to the current shuttle route"
+      ],
+      "display_name": "S SPECIAL \u2014 White S and SPECIAL lettering on a black rectangular service curtain",
+      "service": "special",
+      "historical": true,
+      "layout": "side_text_service_panel",
+      "additional_references": [
+        {
+          "file": "A Day In New York 02.01.2022 (51795698595).jpg"
+        },
+        {
+          "file": "A Day In New York 02.01.22 (51794897704).jpg"
+        },
+        {
+          "file": "A Day In New York 14th May 2015- Rally to Save NYC (17658735711).jpg"
+        },
+        {
+          "file": "Nostalgia Train rollsign Forest Hills Lafayette St.jpg"
+        }
+      ],
+      "background_color": "#171717",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "E interior rollsign.JPG",
+      "sign_id": "B_E_BLUE_RECTANGLE_INTERIOR",
+      "text": "E",
+      "shape": "rectangle",
+      "technology": "rollsign",
+      "position": "interior",
+      "features": [
+        "White E on a blue rectangular interior route field",
+        "Side destination assembly photographed from inside the train"
+      ],
+      "display_name": "E \u2014 White E on a blue rectangular interior route field",
+      "service": "unknown",
+      "route": "E",
+      "layout": "interior_route_and_destination",
+      "background_color": "#2454A6",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "E rollsigns.jpg",
+      "sign_id": "B_E_BLUE_CIRCLE_SIDE",
+      "text": "E",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Blue circular E in an exterior side service strip",
+        "Terminal windows stacked above the route and service strip"
+      ],
+      "display_name": "E \u2014 Blue circular E in an exterior side service strip",
+      "service": "unknown",
+      "route": "E",
+      "layout": "side_service_panel",
+      "background_color": "#2454A6",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "Grant Av IND td 01 - A to Euclid?.jpg",
+      "sign_id": "B_A_BLUE_CIRCLE_SIDE",
+      "text": "A",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Blue circular A beside Washington Hts / 8 Av-Fulton service text"
+      ],
+      "display_name": "A \u2014 Blue circular A beside Washington Hts / 8 Av-Fulton service text",
+      "service": "unknown",
+      "route": "A",
+      "equipment": "R32",
+      "layout": "side_service_panel",
+      "additional_references": [
+        {
+          "file": "NYCT 8190 (7952157712).jpg"
+        }
+      ],
+      "background_color": "#2454A6",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "H train in museum vc.jpg",
+      "sign_id": "B_H_BLUE_CIRCLE_SIDE",
+      "text": "H",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Blue circular H beside destination panels",
+        "Historical Rockaway-associated bullet; operational route identity requires review"
+      ],
+      "display_name": "H \u2014 Blue circular H beside destination panels",
+      "service": "unknown",
+      "historical": true,
+      "candidate": true,
+      "background_color": "#2454A6",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "additional_references": [
+        {
+          "file": "R68 H Train.jpg",
+          "equipment": "R68",
+          "observed_route": "D"
+        }
+      ]
+    },
+    {
+      "file": "Kawasaki R68A Q Train Side Rollsigns.jpg",
+      "sign_id": "B_Q_YELLOW_CIRCLE_SIDE",
+      "text": "Q",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Dark Q on a yellow circular side bullet",
+        "Distinct from the documented yellow diamond Q"
+      ],
+      "display_name": "Q \u2014 Dark Q on a yellow circular side bullet",
+      "service": "unknown",
+      "route": "Q",
+      "equipment": "R68A",
+      "background_color": "#E9CD26",
+      "foreground_color": "#171717",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif",
+      "additional_references": [
+        {
+          "file": "R68A 5092.jpg",
+          "equipment": "R68A"
+        }
+      ]
+    },
+    {
+      "file": "NYC Subway 11 Train.jpg",
+      "sign_id": "IRT_11_PURPLE_CIRCLE_SIDE",
+      "text": "11",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Unused white 11 on a purple circular rollsign",
+        "Photo description identifies Times Square shuttle service"
+      ],
+      "display_name": "11 \u2014 Unused white 11 on a purple circular rollsign",
+      "service": "unknown",
+      "candidate": true,
+      "observed_route": "S",
+      "background_color": "#953A9D",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "NYC Subway Car (23241861891).jpg",
+      "sign_id": "HERITAGE_LOCAL_TEXT_PANEL",
+      "text": "LOCAL",
+      "shape": "rectangle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "White LOCAL lettering on a black rectangular service curtain",
+        "Flushing destination text does not prove an operating route assignment"
+      ],
+      "display_name": "LOCAL \u2014 White LOCAL lettering on a black rectangular service curtain",
+      "service": "local",
+      "historical": true,
+      "layout": "side_text_service_panel",
+      "background_color": "#171717",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "NYC Subway Special Coney Island vc.jpg",
+      "sign_id": "SPECIAL_S_YELLOW_CIRCLE_SIDE",
+      "text": "S",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Dark S on a yellow circular special-service bullet",
+        "Special / Coney Island destination text"
+      ],
+      "display_name": "S \u2014 Dark S on a yellow circular special-service bullet",
+      "service": "special",
+      "background_color": "#E9CD26",
+      "foreground_color": "#171717",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "NYC Transit Museum (15133564034).jpg",
+      "sign_id": "B_C_BLUE_CIRCLE_COMBINED_SIDE",
+      "text": "C",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "interior",
+      "features": [
+        "Large blue circular C beside two horizontal terminal readings",
+        "Distinct combined assembly from the three-window service-panel layout"
+      ],
+      "display_name": "C \u2014 Large blue circular C beside two horizontal terminal readings",
+      "service": "unknown",
+      "route": "C",
+      "historical": true,
+      "layout": "interior_route_and_destination",
+      "background_color": "#2454A6",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "NYCS R32 Rollsign.jpg",
+      "sign_id": "B_F_ORANGE_CIRCLE_SIDE",
+      "text": "F",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Orange circular F beside Queens Blvd / 6 Av-Culver service text"
+      ],
+      "display_name": "F \u2014 Orange circular F beside Queens Blvd / 6 Av-Culver service text",
+      "service": "unknown",
+      "route": "F",
+      "equipment": "R32",
+      "layout": "side_service_panel",
+      "additional_references": [
+        {
+          "file": "R32 June 2025 002.jpg"
+        },
+        {
+          "file": "R32 June 2025 003.jpg"
+        }
+      ],
+      "background_color": "#E56D29",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "Ntrain2011 02 01 16 34 02.jpg",
+      "sign_id": "B_N_YELLOW_CIRCLE_SERVICE_PANEL",
+      "text": "N",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Dark N on a small yellow circular bullet beside Astoria / Bway / Sea Beach text",
+        "Route service strip below separate terminal curtains"
+      ],
+      "display_name": "N \u2014 Dark N on a small yellow circular bullet beside Astoria / Bway / Sea Beach text",
+      "service": "unknown",
+      "route": "N",
+      "layout": "side_service_panel",
+      "background_color": "#E9CD26",
+      "foreground_color": "#171717",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "NoKingss20251018a 13.png",
+      "sign_id": "B_N_YELLOW_CIRCLE_STACKED_SIDE",
+      "text": "N",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "interior",
+      "features": [
+        "Dark N on a large yellow circular bullet",
+        "Two destination panels to the left of the route field"
+      ],
+      "display_name": "N \u2014 Dark N on a large yellow circular bullet",
+      "service": "unknown",
+      "route": "N",
+      "layout": "interior_route_and_destination",
+      "background_color": "#E9CD26",
+      "foreground_color": "#171717",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "P train.jpg",
+      "sign_id": "B_P_UNUSED_CIRCLE_SIDE",
+      "text": "P",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Unused white P on a dark circular route field",
+        "Photograph identifies an R32 operating on J while displaying P"
+      ],
+      "display_name": "P \u2014 Unused white P on a dark circular route field",
+      "service": "unknown",
+      "equipment": "R32",
+      "candidate": true,
+      "layout": "side_service_panel",
+      "observed_route": "J",
+      "background_color": "#171717",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "R-42 Subway Car Retirement (49529618398).jpg",
+      "sign_id": "B_A_BLUE_WHITE_BORDER_INTERIOR",
+      "text": "A",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "interior",
+      "features": [
+        "Blue A bullet with a thin white circular outline",
+        "Combined interior destination and route panel"
+      ],
+      "display_name": "A \u2014 Blue A bullet with a thin white circular outline",
+      "service": "unknown",
+      "route": "A",
+      "equipment": "R42",
+      "historical": true,
+      "layout": "interior_route_and_destination",
+      "border_style": "thin white circular outline",
+      "background_color": "#2454A6",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "R16 interior rollsign.jpg",
+      "sign_id": "BMT_01_BROADWAY_EXP_TEXT",
+      "text": "01",
+      "shape": "rectangle",
+      "technology": "rollsign",
+      "position": "interior",
+      "features": [
+        "White 01 BROADWAY EXP lettering on a black rectangular curtain",
+        "Historical BMT designation is not mapped to current IRT route 1"
+      ],
+      "display_name": "01 \u2014 White 01 BROADWAY EXP lettering on a black rectangular curtain",
+      "service": "express",
+      "equipment": "R16",
+      "historical": true,
+      "candidate": true,
+      "layout": "interior_text_service_panel",
+      "background_color": "#171717",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "R32 C at 34 Street Penn Station with 0 train rollsign from Joker filming, March 2019.jpg",
+      "sign_id": "FILM_0_GOTHAM_PROP",
+      "text": "0",
+      "shape": "rectangle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Custom 0 Local to Old Gotham film-prop curtain",
+        "Documented Joker production prop; not an operating MTA route"
+      ],
+      "display_name": "0 \u2014 Custom 0 Local to Old Gotham film-prop curtain",
+      "service": "special",
+      "equipment": "R32",
+      "candidate": true,
+      "layout": "side_text_service_panel",
+      "observed_route": "C",
+      "background_color": "#171717",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "R32 T Line Roll Sign.jpg",
+      "sign_id": "B_T_WHITE_CIRCLE_SIDE",
+      "text": "T",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Dark T on a pale circular bullet",
+        "57 St/7 Av and Stillwell Av destination readings; not the future Second Avenue T designation"
+      ],
+      "display_name": "T \u2014 Dark T on a pale circular bullet",
+      "service": "unknown",
+      "equipment": "R32",
+      "historical": true,
+      "candidate": true,
+      "layout": "side_service_panel",
+      "background_color": "#C3C3B5",
+      "foreground_color": "#171717",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "R32 Train to the Plane.jpg",
+      "sign_id": "B_JFK_AIRPLANE_SIDE",
+      "text": "airplane",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "interior",
+      "features": [
+        "Small blue-green airplane bullet with Train to the Plane text",
+        "Interior service strip on R32 equipment"
+      ],
+      "display_name": "airplane \u2014 Small blue-green airplane bullet with Train to the Plane text",
+      "service": "unknown",
+      "route": "JFK_EXPRESS",
+      "equipment": "R32",
+      "historical": true,
+      "layout": "interior_service_panel",
+      "observed_route": "J",
+      "background_color": "#298493",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate"
+    },
+    {
+      "file": "R32 Z Rollsign.jpg",
+      "sign_id": "B_Z_BROWN_CIRCLE_SIDE",
+      "text": "Z",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "White Z on a brown circular route bullet",
+        "Separate terminal windows above the route curtain"
+      ],
+      "display_name": "Z \u2014 White Z on a brown circular route bullet",
+      "service": "unknown",
+      "route": "Z",
+      "equipment": "R32",
+      "layout": "side_service_panel",
+      "background_color": "#966A45",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "R33 RollSign NYCTM.JPG",
+      "sign_id": "IRT_5_GREEN_DIAMOND_HERITAGE_SIDE",
+      "text": "5",
+      "shape": "diamond",
+      "technology": "rollsign",
+      "position": "interior",
+      "features": [
+        "Green diamond 5 beside Lexington Avenue Express / Bronx Thru Express text",
+        "Preserved Redbird rollsign"
+      ],
+      "display_name": "5 \u2014 Green diamond 5 beside Lexington Avenue Express / Bronx Thru Express text",
+      "service": "express",
+      "route": "5",
+      "equipment": "R33",
+      "historical": true,
+      "layout": "interior_service_panel",
+      "background_color": "#25844F",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "R62A Showing 12 Sign.jpg",
+      "sign_id": "IRT_12_GREEN_CIRCLE_END",
+      "text": "12",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "unknown",
+      "features": [
+        "Unused white 12 on a green circular end rollsign",
+        "R62A equipment explicitly identified by the source"
+      ],
+      "display_name": "12 \u2014 Unused white 12 on a green circular end rollsign",
+      "service": "unknown",
+      "equipment": "R62A",
+      "candidate": true,
+      "layout": "end_route_bullet",
+      "background_color": "#25844F",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "R62A Times Square Shuttle 035.jpg",
+      "sign_id": "IRT_S_GRAY_CIRCLE_SIDE",
+      "text": "S",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "White S on a gray circular shuttle bullet",
+        "Grand Central and Times Square destination readings"
+      ],
+      "display_name": "S \u2014 White S on a gray circular shuttle bullet",
+      "service": "shuttle",
+      "route": "S",
+      "equipment": "R62A",
+      "additional_references": [
+        {
+          "file": "R62A Times Square Shuttle 031.jpg"
+        }
+      ],
+      "background_color": "#909793",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "SubwayJ.jpg",
+      "sign_id": "B_J_BROWN_CIRCLE_SIDE",
+      "text": "J",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "White J on a brown circular bullet",
+        "Combined panel with Metropolitan Avenue and Chambers Street terminal text"
+      ],
+      "display_name": "J \u2014 White J on a brown circular bullet",
+      "service": "unknown",
+      "route": "J",
+      "background_color": "#966A45",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
+    },
+    {
+      "file": "Rockaway photos 141 (8242742638).jpg",
+      "sign_id": "B_H_BLUE_SERVICE_PANEL",
+      "text": "H",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "features": [
+        "Small H bullet with Rockaway Shuttle service lettering",
+        "Official photograph documents the temporary post-Sandy H shuttle"
+      ],
+      "display_name": "H \u2014 Small H bullet with Rockaway Shuttle service lettering",
+      "service": "shuttle",
+      "historical": true,
+      "candidate": true,
+      "layout": "side_service_panel",
+      "background_color": "#2454A6",
+      "foreground_color": "#F4F1E9",
+      "color_basis": "visual_estimate",
+      "font_style": "sans_serif"
     }
   ]
 }

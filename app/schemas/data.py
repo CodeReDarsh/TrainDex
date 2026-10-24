@@ -82,6 +82,7 @@ class SignData(DataModel):
     font_weight: str | None = None
     font_style: str | None = None
     font_variant: str | None = None
+    feature_provenance: dict[str, dict] = Field(default_factory=dict)
     character_proportions: dict | None = None
     border_style: str | None = None
     layout: str | None = None
@@ -174,6 +175,28 @@ class ReviewData(DataModel):
     resolved: bool = False
 
 
+class SpecimenSetData(DataModel):
+    set_id: Identifier
+    display_name: str
+    font_file: str
+    display_order: int
+    source_id: Identifier
+    source_url: HttpUrl
+
+
+class SpecimenEntryData(DataModel):
+    set_id: Identifier
+    key: str = Field(min_length=1, max_length=160)
+    sign_id: Identifier
+    codepoint: str = Field(pattern=r"^[0-9A-F]{4,6}$")
+    description: str
+    service_label: str
+    filename: str
+    display_order: int
+    listing_status: str = Field(pattern=r"^(listed|unassigned|proposed|blank)$")
+    source_id: Identifier
+
+
 class Bundle(DataModel):
     sources: list[SourceData] = Field(default_factory=list)
     route_groups: list[RouteGroupData] = Field(default_factory=list)
@@ -186,6 +209,8 @@ class Bundle(DataModel):
     observations: list[ObservationData] = Field(default_factory=list)
     route_group_history: list[HistoryData] = Field(default_factory=list)
     review_issues: list[ReviewData] = Field(default_factory=list)
+    specimen_sets: list[SpecimenSetData] = Field(default_factory=list)
+    specimen_entries: list[SpecimenEntryData] = Field(default_factory=list)
 
 
 class Classification(DataModel):
@@ -201,6 +226,7 @@ class Classification(DataModel):
 
 
 class SignOut(SignData):
+    reference_kind: str
     created_at: datetime
     updated_at: datetime
     classification: Classification
@@ -208,6 +234,8 @@ class SignOut(SignData):
     sources: list[SignSourceData]
     equipment: list[SignEquipmentData]
     review_issues: list[ReviewData]
+    specimen_entries: list[SpecimenEntryData]
+    style_families: list[str]
 
 
 T = TypeVar("T")

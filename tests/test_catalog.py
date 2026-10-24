@@ -5,14 +5,20 @@ from scripts.build_catalog import build
 
 def test_retained_real_catalog_is_evidence_based():
     bundle = build(Path("data/raw"), Path("data/references"))
-    assert len(bundle.signs) == 15
-    assert sum(s.verification_status == "verified" for s in bundle.signs) == 13
-    assert len({s.identity_key for s in bundle.signs}) == 15
-    assert len(bundle.sign_sources) == 15
-    assert all(s.font_family is None and s.valid_from is None for s in bundle.signs)
-    assert all(s.background_color is None for s in bundle.signs)
+    physical = [s for s in bundle.signs if s.sign_technology != "artwork"]
+    artwork = [s for s in bundle.signs if s.sign_technology == "artwork"]
+    assert len(physical) == 48
+    assert len(artwork) == 275
+    assert len({s.identity_key for s in bundle.signs}) == len(bundle.signs)
+    assert all(s.font_family is None and s.valid_from is None for s in physical)
+    assert all(s.verification_status == "candidate" for s in artwork)
+    assert all(
+        s.feature_provenance["background_color"]["basis"] == "visual_estimate"
+        for s in physical
+        if s.background_color
+    )
     assert all(i.license and i.attribution for i in bundle.reference_images)
-    assert all(i.image_type == "authentic_photograph" for i in bundle.reference_images)
+    assert sum(i.image_type == "authentic_photograph" for i in bundle.reference_images) == 92
 
 
 def test_real_classification_uncertainty():

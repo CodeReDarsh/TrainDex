@@ -1,0 +1,955 @@
+{
+  "source_category": "Category:New York City Subway rollsigns",
+  "reviewed_on": "2026-10-24",
+  "scope": "All 158 files in the retained category snapshot; not every sign ever manufactured or photographed.",
+  "files": [
+    {
+      "file": "'Train of Many Colors' Prep (14337079774).jpg",
+      "page_id": 38322916,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_7_RED_CIRCLE_HERITAGE_END"
+    },
+    {
+      "file": "10 train.jpg",
+      "page_id": 61304610,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_10_GREEN_CIRCLE_SIDE"
+    },
+    {
+      "file": "13 train in Line 1.jpg",
+      "page_id": 61304609,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_13_RED_CIRCLE_END"
+    },
+    {
+      "file": "149th Street Jerome Redbird vc.jpg",
+      "page_id": 36672145,
+      "disposition": "physical_reference",
+      "sign_id": "WORK_EXP_RED_DISPLAY"
+    },
+    {
+      "file": "34th St-Penn td 06 - IND.jpg",
+      "page_id": 67684376,
+      "disposition": "physical_reference",
+      "sign_id": "B_C_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "51st St IRT Lex td (2019-03-29) 01.jpg",
+      "page_id": 77742073,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_6_SIDE_GREEN_RING"
+    },
+    {
+      "file": "59th St\u2013Columbus Cir td 01 - IRT.jpg",
+      "page_id": 68750018,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_1_RED_CIRCLE_SIDE"
+    },
+    {
+      "file": "59th St\u2013Columbus Cir td 02 - IRT.jpg",
+      "page_id": 68750017,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_1_RED_CIRCLE_SIDE"
+    },
+    {
+      "file": "59th St\u2013Columbus Cir td 03 - IRT.jpg",
+      "page_id": 68750016,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_1_RED_CIRCLE_SIDE"
+    },
+    {
+      "file": "7 Line Extension Ceremonia Ride (11469730544).jpg",
+      "page_id": 30341885,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_7_SIDE_GREEN_RING"
+    },
+    {
+      "file": "7 Line Extension Ceremonia Ride (11469802736).jpg",
+      "page_id": 30341890,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_7_SIDE_GREEN_RING"
+    },
+    {
+      "file": "7 Line Extension Ceremonia Ride (11469851933) (2).jpg",
+      "page_id": 30343180,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_7_SIDE_GREEN_RING"
+    },
+    {
+      "file": "7 Line Extension Ceremonia Ride (11469852683).jpg",
+      "page_id": 30341891,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_7_SIDE_GREEN_RING"
+    },
+    {
+      "file": "7 train red diamond express lcd.JPG",
+      "page_id": 32010946,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_7_SIDE_RED_DIAMOND"
+    },
+    {
+      "file": "96 Street B train vc.jpg",
+      "page_id": 56368871,
+      "disposition": "physical_reference",
+      "sign_id": "B_B_ORANGE_CIRCLE_SIDE"
+    },
+    {
+      "file": "A Day In New Dec 2021 (51756146727).jpg",
+      "page_id": 114758792,
+      "disposition": "physical_reference",
+      "sign_id": "B_D_ORANGE_CIRCLE_SERVICE_PANEL"
+    },
+    {
+      "file": "A Day In New Dec 2021 (51756275317).jpg",
+      "page_id": 114684250,
+      "disposition": "physical_reference",
+      "sign_id": "B_D_ORANGE_CIRCLE_SERVICE_PANEL"
+    },
+    {
+      "file": "A Day In New York 02.01.2022 (51794018052).jpg",
+      "page_id": 114714378,
+      "disposition": "physical_reference",
+      "sign_id": "B_D_ORANGE_CIRCLE_SERVICE_PANEL"
+    },
+    {
+      "file": "A Day In New York 02.01.2022 (51795090793).jpg",
+      "page_id": 114714827,
+      "disposition": "physical_reference",
+      "sign_id": "B_D_ORANGE_CIRCLE_SERVICE_PANEL"
+    },
+    {
+      "file": "A Day In New York 02.01.2022 (51795333314).jpg",
+      "page_id": 114714313,
+      "disposition": "physical_reference",
+      "sign_id": "SPECIAL_S_MONOCHROME_PANEL"
+    },
+    {
+      "file": "A Day In New York 02.01.2022 (51795698595).jpg",
+      "page_id": 114713956,
+      "disposition": "physical_reference",
+      "sign_id": "SPECIAL_S_MONOCHROME_PANEL"
+    },
+    {
+      "file": "A Day In New York 02.01.22 (51794897704).jpg",
+      "page_id": 114684049,
+      "disposition": "physical_reference",
+      "sign_id": "SPECIAL_S_MONOCHROME_PANEL"
+    },
+    {
+      "file": "A Day In New York 14th May 2015- Rally to Save NYC (17658735711).jpg",
+      "page_id": 43623641,
+      "disposition": "physical_reference",
+      "sign_id": "SPECIAL_S_MONOCHROME_PANEL"
+    },
+    {
+      "file": "An R62A rollsign with LED green circle.jpg",
+      "page_id": 41432054,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_6_SIDE_GREEN_RING"
+    },
+    {
+      "file": "An R62A rollsign with LED red diamond.jpg",
+      "page_id": 41432086,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_6_SIDE_RED_DIAMOND"
+    },
+    {
+      "file": "BMT 13.png",
+      "page_id": 49452884,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "Bmt triplex no 1.png",
+      "page_id": 4225832,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "Bmt triplex no 2.png",
+      "page_id": 116805740,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "Bmt triplex no 3.png",
+      "page_id": 38038298,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "Bmt triplex no 4.png",
+      "page_id": 38038299,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "Bmt triplex no 5.png",
+      "page_id": 38038300,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "Bmt triplex no 7.png",
+      "page_id": 38038302,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "Bombardier R62A 1 Train Side Rollsigns.jpg",
+      "page_id": 129763284,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_1_RED_CIRCLE_SIDE"
+    },
+    {
+      "file": "Brown diamond R vc.jpg",
+      "page_id": 50519608,
+      "disposition": "physical_reference",
+      "sign_id": "B_R_BROWN_DIAMOND_SIDE"
+    },
+    {
+      "file": "C train at Carroll Street vc.jpg",
+      "page_id": 33338878,
+      "disposition": "physical_reference",
+      "sign_id": "B_C_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "Church Avenue IND td (2019-02-03) 03.jpg",
+      "page_id": 91237305,
+      "disposition": "excluded_insufficient_evidence",
+      "reason": "Train and destination assembly visible, but no readable route bullet; no new design asserted."
+    },
+    {
+      "file": "Cyan 6 train???.jpg",
+      "page_id": 178932484,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_6_SIDE_GREEN_RING"
+    },
+    {
+      "file": "DSC03301ttrain.jpg",
+      "page_id": 158155778,
+      "disposition": "physical_reference",
+      "sign_id": "B_G_LIGHT_GREEN_CIRCLE_SIDE"
+    },
+    {
+      "file": "Diamond Q vc.jpg",
+      "page_id": 52280504,
+      "disposition": "physical_reference",
+      "sign_id": "B_Q_YELLOW_DIAMOND_SIDE"
+    },
+    {
+      "file": "Dtrain Vlcsnap-2023-09-04-17h50m18s233.png",
+      "page_id": 136985433,
+      "disposition": "physical_reference",
+      "sign_id": "B_D_ORANGE_CIRCLE_STACKED_SIDE"
+    },
+    {
+      "file": "DtrainDSC00618.jpg",
+      "page_id": 53880644,
+      "disposition": "physical_reference",
+      "sign_id": "B_D_ORANGE_CIRCLE_STACKED_SIDE"
+    },
+    {
+      "file": "E interior rollsign.JPG",
+      "page_id": 6079216,
+      "disposition": "physical_reference",
+      "sign_id": "B_E_BLUE_RECTANGLE_INTERIOR"
+    },
+    {
+      "file": "E rollsigns.jpg",
+      "page_id": 1968996,
+      "disposition": "physical_reference",
+      "sign_id": "B_E_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "Electronic LCD Display Upgrade on the R62A 7 Train 2.JPG",
+      "page_id": 39749795,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_7_SIDE_GREEN_RING"
+    },
+    {
+      "file": "Electronic LCD Display Upgrade on the R62A 7 Train.JPG",
+      "page_id": 38431232,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_7_SIDE_GREEN_RING"
+    },
+    {
+      "file": "Erroneous 10 Train Rollsign.jpg",
+      "page_id": 180424837,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_10_GREEN_CIRCLE_SIDE"
+    },
+    {
+      "file": "Grant Av IND td 01 - A to Euclid?.jpg",
+      "page_id": 66752851,
+      "disposition": "physical_reference",
+      "sign_id": "B_A_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "H train in museum vc.jpg",
+      "page_id": 127594591,
+      "disposition": "physical_reference",
+      "sign_id": "B_H_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "JFK Express Sign.jpg",
+      "page_id": 3963777,
+      "disposition": "physical_reference",
+      "sign_id": "B_JFK_AIRPLANE_CIRCLE_END"
+    },
+    {
+      "file": "K train in museum vc.jpg",
+      "page_id": 88729983,
+      "disposition": "physical_reference",
+      "sign_id": "B_K_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "Kawasaki R68A Q Train Side Rollsigns.jpg",
+      "page_id": 129507717,
+      "disposition": "physical_reference",
+      "sign_id": "B_Q_YELLOW_CIRCLE_SIDE"
+    },
+    {
+      "file": "Line 13! (5990503211).jpg",
+      "page_id": 30792967,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_13_RED_CIRCLE_END"
+    },
+    {
+      "file": "MTA Kew Gdns Union Tpke 21.jpg",
+      "page_id": 61474943,
+      "disposition": "excluded_insufficient_evidence",
+      "reason": "Refuse-train terminal windows without a readable route glyph; observation does not establish a new design."
+    },
+    {
+      "file": "NYC Rockaway Excursion (14843385303).jpg",
+      "page_id": 115063408,
+      "disposition": "excluded_insufficient_evidence",
+      "reason": "Oblique partial sign behind a worker; insufficient visual evidence for a distinct design."
+    },
+    {
+      "file": "NYC Subway 11 Train.jpg",
+      "page_id": 3687400,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_11_PURPLE_CIRCLE_SIDE"
+    },
+    {
+      "file": "NYC Subway Car (23241861891).jpg",
+      "page_id": 63982566,
+      "disposition": "physical_reference",
+      "sign_id": "HERITAGE_LOCAL_TEXT_PANEL"
+    },
+    {
+      "file": "NYC Subway Special Coney Island vc.jpg",
+      "page_id": 74350572,
+      "disposition": "physical_reference",
+      "sign_id": "SPECIAL_S_YELLOW_CIRCLE_SIDE"
+    },
+    {
+      "file": "NYC Transit Museum (15133564034).jpg",
+      "page_id": 67321342,
+      "disposition": "physical_reference",
+      "sign_id": "B_C_BLUE_CIRCLE_COMBINED_SIDE"
+    },
+    {
+      "file": "NYCS R32 Rollsign.jpg",
+      "page_id": 1687604,
+      "disposition": "physical_reference",
+      "sign_id": "B_F_ORANGE_CIRCLE_SIDE"
+    },
+    {
+      "file": "NYCT 8190 (7952157712).jpg",
+      "page_id": 30355876,
+      "disposition": "physical_reference",
+      "sign_id": "B_A_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "NYCTA Subway Rollsign 4 (Lexington Avenue Express) Train (A Division).svg",
+      "page_id": 183072403,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "NYCTA Subway Rollsign 6 (Lexington Avenue Local-Pelham Lcl) Train (A Division).svg",
+      "page_id": 183401740,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "NYCTA Subway Rollsign A ( Eighth Avenue Express) Train (B Division).svg",
+      "page_id": 183439463,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "NYCTA Subway Rollsign C (Eighth Avenue Local) Train (B Division).svg",
+      "page_id": 183406893,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "NYCTA Subway Rollsign E (Eighth Avenue Local) Train (B Division).svg",
+      "page_id": 183462290,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "NYCTA Subway Rollsign F (Queens Boulevard Express-Sixth Avenue Local) Train (B Division).svg",
+      "page_id": 183010939,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "NYCTA Subway Rollsign G (Brooklyn-Queens Crosstown) Train (B Division).svg",
+      "page_id": 183404902,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "NYCTA Subway Rollsign J (Nassau Street Local) Train (B Division).svg",
+      "page_id": 183402851,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "NoKingss20251018a 12.png",
+      "page_id": 176977279,
+      "disposition": "physical_reference",
+      "sign_id": "B_Q_YELLOW_DIAMOND_SIDE"
+    },
+    {
+      "file": "NoKingss20251018a 13.png",
+      "page_id": 176977280,
+      "disposition": "physical_reference",
+      "sign_id": "B_N_YELLOW_CIRCLE_STACKED_SIDE"
+    },
+    {
+      "file": "Nostalgia Train rollsign Forest Hills Lafayette St.jpg",
+      "page_id": 39875424,
+      "disposition": "physical_reference",
+      "sign_id": "SPECIAL_S_MONOCHROME_PANEL"
+    },
+    {
+      "file": "Ntrain2011 02 01 16 34 02.jpg",
+      "page_id": 123858176,
+      "disposition": "physical_reference",
+      "sign_id": "B_N_YELLOW_CIRCLE_SERVICE_PANEL"
+    },
+    {
+      "file": "P train.jpg",
+      "page_id": 51569405,
+      "disposition": "physical_reference",
+      "sign_id": "B_P_UNUSED_CIRCLE_SIDE"
+    },
+    {
+      "file": "R-32 Transfer (51910386045).jpg",
+      "page_id": 115675963,
+      "disposition": "excluded_insufficient_evidence",
+      "reason": "Blank or rolled-away curtains on transferred cars; no distinct displayed design established."
+    },
+    {
+      "file": "R-42 Subway Car Retirement (49529618398).jpg",
+      "page_id": 87002262,
+      "disposition": "physical_reference",
+      "sign_id": "B_A_BLUE_WHITE_BORDER_INTERIOR"
+    },
+    {
+      "file": "R1 BMT 1.gif",
+      "page_id": 86827,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 10.gif",
+      "page_id": 86837,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 13 14th.PNG",
+      "page_id": 82038424,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 13 14th.gif",
+      "page_id": 86838,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 13 Fulton.gif",
+      "page_id": 86840,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 14.gif",
+      "page_id": 86841,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 15.gif",
+      "page_id": 86842,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 16 14th.gif",
+      "page_id": 86844,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 16 Canarsie.gif",
+      "page_id": 86845,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 2.gif",
+      "page_id": 86829,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 3.gif",
+      "page_id": 86828,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 4.gif",
+      "page_id": 86830,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 5.gif",
+      "page_id": 86831,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 BMT 7.gif",
+      "page_id": 86835,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND A.gif",
+      "page_id": 87574,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND AA.gif",
+      "page_id": 87575,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND B.gif",
+      "page_id": 87576,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND BB.gif",
+      "page_id": 87577,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND C.gif",
+      "page_id": 87578,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND CC.gif",
+      "page_id": 87579,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND D Houston.gif",
+      "page_id": 87582,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND D.gif",
+      "page_id": 87581,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND DD.gif",
+      "page_id": 87583,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND E.gif",
+      "page_id": 87584,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND EE.gif",
+      "page_id": 87585,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND F Houston.gif",
+      "page_id": 87587,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND F.gif",
+      "page_id": 87586,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND FF.gif",
+      "page_id": 87588,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND GG.gif",
+      "page_id": 87589,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND HH.gif",
+      "page_id": 87590,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R1 IND S.gif",
+      "page_id": 87591,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT 1.gif",
+      "page_id": 86850,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT 1.svg",
+      "page_id": 4569688,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT 2.gif",
+      "page_id": 86851,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT 3.gif",
+      "page_id": 86852,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT 4.gif",
+      "page_id": 86853,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT 5.gif",
+      "page_id": 86854,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT 6.gif",
+      "page_id": 86855,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT 7.gif",
+      "page_id": 86856,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT 8.gif",
+      "page_id": 86858,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT 9.gif",
+      "page_id": 86859,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT no passengers.gif",
+      "page_id": 86861,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT shuttle.gif",
+      "page_id": 86862,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R12 IRT special.gif",
+      "page_id": 86863,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "R16 interior rollsign.jpg",
+      "page_id": 123100667,
+      "disposition": "physical_reference",
+      "sign_id": "BMT_01_BROADWAY_EXP_TEXT"
+    },
+    {
+      "file": "R32 C at 34 Street Penn Station with 0 train rollsign from Joker filming, March 2019.jpg",
+      "page_id": 77199191,
+      "disposition": "physical_reference",
+      "sign_id": "FILM_0_GOTHAM_PROP"
+    },
+    {
+      "file": "R32 June 2025 002.jpg",
+      "page_id": 166791469,
+      "disposition": "physical_reference",
+      "sign_id": "B_F_ORANGE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R32 June 2025 003.jpg",
+      "page_id": 166791475,
+      "disposition": "physical_reference",
+      "sign_id": "B_F_ORANGE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R32 T Line Roll Sign.jpg",
+      "page_id": 76923861,
+      "disposition": "physical_reference",
+      "sign_id": "B_T_WHITE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R32 Train to the Plane.jpg",
+      "page_id": 51834419,
+      "disposition": "physical_reference",
+      "sign_id": "B_JFK_AIRPLANE_SIDE"
+    },
+    {
+      "file": "R32 Z Rollsign.jpg",
+      "page_id": 92280941,
+      "disposition": "physical_reference",
+      "sign_id": "B_Z_BROWN_CIRCLE_SIDE"
+    },
+    {
+      "file": "R32IMG 3837.jpg",
+      "page_id": 59167343,
+      "disposition": "physical_reference",
+      "sign_id": "B_C_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R32IMG 3838.jpg",
+      "page_id": 59167342,
+      "disposition": "physical_reference",
+      "sign_id": "B_C_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R32IMG 3839.jpg",
+      "page_id": 59167345,
+      "disposition": "physical_reference",
+      "sign_id": "B_C_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R32IMG 3840.jpg",
+      "page_id": 59167346,
+      "disposition": "physical_reference",
+      "sign_id": "B_C_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R32IMG 3841.jpg",
+      "page_id": 59167347,
+      "disposition": "physical_reference",
+      "sign_id": "B_C_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R33 RollSign NYCTM.JPG",
+      "page_id": 18226442,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_5_GREEN_DIAMOND_HERITAGE_SIDE"
+    },
+    {
+      "file": "R40 D train.JPG",
+      "page_id": 3879599,
+      "disposition": "physical_reference",
+      "sign_id": "B_D_ORANGE_CIRCLE_COMBINED_SIDE"
+    },
+    {
+      "file": "R62 3 train Rollsign @ Franklin Avenue.jpg",
+      "page_id": 124766787,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_3_RED_CIRCLE_SIDE"
+    },
+    {
+      "file": "R62A 6 Train 033.jpg",
+      "page_id": 187083394,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_6_GREEN_CIRCLE_END"
+    },
+    {
+      "file": "R62A Rollsign.jpg",
+      "page_id": 108457779,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_6_SIDE_GREEN_RING"
+    },
+    {
+      "file": "R62A Showing 12 Sign.jpg",
+      "page_id": 2544110,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_12_GREEN_CIRCLE_END"
+    },
+    {
+      "file": "R62A Times Square Shuttle 023.jpg",
+      "page_id": 126814295,
+      "disposition": "excluded_insufficient_evidence",
+      "reason": "Destination-only crop; no visible route glyph."
+    },
+    {
+      "file": "R62A Times Square Shuttle 031.jpg",
+      "page_id": 152907946,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_S_GRAY_CIRCLE_SIDE"
+    },
+    {
+      "file": "R62A Times Square Shuttle 035.jpg",
+      "page_id": 158443881,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_S_GRAY_CIRCLE_SIDE"
+    },
+    {
+      "file": "R62A with 13 Bullet and Original and Modified Destination Rollsigns.jpg",
+      "page_id": 136710434,
+      "disposition": "physical_reference",
+      "sign_id": "IRT_13_RED_CIRCLE_END"
+    },
+    {
+      "file": "R68 B Train Rollsign 001.jpg",
+      "page_id": 150862303,
+      "disposition": "physical_reference",
+      "sign_id": "B_B_ORANGE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R68 B Train Rollsign.jpg",
+      "page_id": 127060813,
+      "disposition": "physical_reference",
+      "sign_id": "B_B_ORANGE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R68 H Train.jpg",
+      "page_id": 150028891,
+      "disposition": "physical_reference",
+      "sign_id": "B_H_BLUE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R68 W Train Rollsign.jpg",
+      "page_id": 129076876,
+      "disposition": "physical_reference",
+      "sign_id": "B_W_YELLOW_CIRCLE_SIDE"
+    },
+    {
+      "file": "R68 rollsign.jpg",
+      "page_id": 129190190,
+      "disposition": "physical_reference",
+      "sign_id": "B_W_YELLOW_CIRCLE_SIDE"
+    },
+    {
+      "file": "R68A 5092.jpg",
+      "page_id": 1031562,
+      "disposition": "physical_reference",
+      "sign_id": "B_Q_YELLOW_CIRCLE_SIDE"
+    },
+    {
+      "file": "R68A B Train Rollsign.JPG",
+      "page_id": 20093434,
+      "disposition": "physical_reference",
+      "sign_id": "B_B_ORANGE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R68A G Train Rollsign 001.jpg",
+      "page_id": 159230593,
+      "disposition": "physical_reference",
+      "sign_id": "B_G_LIGHT_GREEN_CIRCLE_SIDE"
+    },
+    {
+      "file": "R68A G Train Rollsign.jpg",
+      "page_id": 158732667,
+      "disposition": "physical_reference",
+      "sign_id": "B_G_LIGHT_GREEN_CIRCLE_SIDE"
+    },
+    {
+      "file": "R68A V Train.jpg",
+      "page_id": 150028975,
+      "disposition": "physical_reference",
+      "sign_id": "B_V_ORANGE_CIRCLE_SIDE"
+    },
+    {
+      "file": "R68A W Train Rollsign.jpg",
+      "page_id": 117812247,
+      "disposition": "physical_reference",
+      "sign_id": "B_W_YELLOW_CIRCLE_SIDE"
+    },
+    {
+      "file": "Rockaway photos 141 (8242742638).jpg",
+      "page_id": 30354944,
+      "disposition": "physical_reference",
+      "sign_id": "B_H_BLUE_SERVICE_PANEL"
+    },
+    {
+      "file": "Sample post Chrystie rollsign.png",
+      "page_id": 89875,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "Sample post Chrystie rollsign.svg",
+      "page_id": 17731935,
+      "disposition": "archival_artwork_candidate",
+      "reason": "Historical reconstruction, graphic or photostat; not a photograph proving a sign in use."
+    },
+    {
+      "file": "Snow Storm- January 21, 2014 (12079204166).jpg",
+      "page_id": 33087526,
+      "disposition": "physical_reference",
+      "sign_id": "B_D_ORANGE_CIRCLE_COMBINED_SIDE"
+    },
+    {
+      "file": "SubwayJ.jpg",
+      "page_id": 2258164,
+      "disposition": "physical_reference",
+      "sign_id": "B_J_BROWN_CIRCLE_SIDE"
+    },
+    {
+      "file": "West 4th St td (2018-07-07) 01 - D via 8th Av Express.jpg",
+      "page_id": 70836620,
+      "disposition": "physical_reference",
+      "sign_id": "B_D_ORANGE_CIRCLE_COMBINED_SIDE"
+    }
+  ]
+}

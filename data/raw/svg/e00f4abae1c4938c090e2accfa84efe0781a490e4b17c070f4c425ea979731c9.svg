@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="10.75in"
+   height="10.75in"
+   viewBox="0 0 273.05 273.05"
+   version="1.1"
+   id="svg17729"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
+   sodipodi:docname="NYCTA_6d_2009.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview17731"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.5"
+     inkscape:cx="417"
+     inkscape:cy="568"
+     inkscape:window-width="1440"
+     inkscape:window-height="804"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs17726" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#009645;fill-opacity:1;stroke-width:0.796543"
+       id="rect17954"
+       width="193.0755"
+       height="193.0755"
+       x="96.53775"
+       y="-96.53775"
+       transform="rotate(45)" />
+    <path
+       fill="currentColor"
+       d="m 137.38903,134.29284 q -10.65675,0 -17.92926,7.1285 -7.27251,7.12851 -7.27251,17.49724 0,10.51273 7.20051,17.92926 7.2005,7.41652 17.85725,7.41652 10.36873,0 17.71325,-7.41652 7.34452,-7.41653 7.34452,-18.07328 0,-10.94477 -7.0565,-17.71324 -7.0565,-6.76848 -17.85726,-6.76848 z m 48.67543,25.05777 q 0,18.00126 -12.7449,31.3222 -12.74489,13.32094 -35.06647,13.32094 -24.04969,0 -37.65865,-15.76911 -13.608965,-15.76911 -13.608965,-47.88337 0,-32.5463 14.401025,-51.915656 14.40101,-19.369364 40.17883,-19.369364 19.58537,0 30.96218,9.50467 11.3768,9.504669 13.39294,24.91375 l -25.05777,1.87213 q -0.86406,-7.488522 -6.12043,-12.024841 -5.25637,-4.53632 -13.46495,-4.53632 -11.95283,0 -19.9454,9.288654 -7.99256,9.288647 -9.57667,27.145907 10.65675,-10.65675 28.94604,-10.65675 20.30543,0 32.83431,12.45688 12.52888,12.45688 12.52888,32.33028 z"
+       id="path17522"
+       style="fill:#ffffff;stroke-width:0.14401" />
+  </g>
+</svg>

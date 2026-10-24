@@ -7,28 +7,26 @@
     "/train-models": 200,
     "/sources": 200,
     "/stats": 200,
-    "/signs/IRT_6_GREEN_CIRCLE_END/references": 200,
-    "/routes/6/signs": 200,
-    "/train-models/R62A/signs": 200,
-    "/signs/search?route=6&shape=diamond": 200
+    "/specimen-sets": 200,
+    "/specimen-sets/r62a/signs": 200,
+    "/signs/search?route=6&shape=diamond&specimen_set=r62a": 200
   },
-  "match_top_sign": "IRT_6_SIDE_RED_DIAMOND",
-  "match_score": 1.0,
-  "evidence_coverage": 0.818182,
-  "classification": {
-    "sign_id": "IRT_6_SIDE_RED_DIAMOND",
-    "route_id": "6",
-    "color_group_id": "green",
-    "dex_category": "active",
-    "service_status": "active",
-    "display_name": "IRT 6 SIDE RED DIAMOND",
-    "display_order": null,
-    "requires_manual_review": false,
-    "review_reasons": []
+  "website_listings_verified": 647,
+  "unique_website_graphics_verified": 275,
+  "missing_entries": 0,
+  "duplicate_graphics": 0,
+  "match_request": {
+    "route": "6",
+    "shape": "diamond",
+    "specimen_set": "r62a"
   },
-  "invalid_queries": 422,
-  "missing_sign": 404,
-  "unused_13_category": null,
-  "brown_R_category": "active",
-  "V_category": "not_in_service"
+  "match_top_sign": "ART_867E3107D504A9C84E97",
+  "match_style_families": [
+    "r62a",
+    "std"
+  ],
+  "proposed": 17,
+  "unassigned": 47,
+  "missing_set_status": 404,
+  "invalid_request_status": 422
 }

@@ -14,6 +14,8 @@ from app.models.entities import (
     SignDesign,
     SignEquipment,
     Source,
+    SpecimenEntry,
+    SpecimenSet,
     TrainModel,
 )
 from app.models.enums import Shape, Technology, Verification
@@ -24,6 +26,8 @@ from app.schemas.data import (
     RouteGroupData,
     SignOut,
     SourceData,
+    SpecimenEntryData,
+    SpecimenSetData,
     TrainModelData,
 )
 from app.schemas.matching import MatchRequest, MatchResponse, SearchQuery
@@ -79,6 +83,7 @@ def signs(
     verification_status: Verification | None = None,
     color_group_id: str | None = None,
     train_model: str | None = None,
+    specimen_set: str | None = None,
 ):
     statement = select(SignDesign)
     for key, value in {
@@ -94,6 +99,10 @@ def signs(
     if train_model:
         statement = statement.where(
             SignDesign.equipment.any(SignEquipment.train_model_id == train_model)
+        )
+    if specimen_set:
+        statement = statement.where(
+            SignDesign.specimen_entries.any(SpecimenEntry.set_id == specimen_set)
         )
     return page(db, statement.order_by(SignDesign.sign_id), SignOut, limit, offset)
 
@@ -180,3 +189,37 @@ def train_signs(train_model_id: str, db: DB, limit: Limit = 50, offset: Offset =
 @router.get("/sources", response_model=Page[SourceData])
 def sources(db: DB, limit: Limit = 50, offset: Offset = 0):
     return page(db, select(Source).order_by(Source.source_id), SourceData, limit, offset)
+
+
+@router.get("/specimen-sets", response_model=Page[SpecimenSetData])
+def specimen_sets(db: DB, limit: Limit = 50, offset: Offset = 0):
+    return page(
+        db, select(SpecimenSet).order_by(SpecimenSet.display_order), SpecimenSetData, limit, offset
+    )
+
+
+@router.get("/specimen-entries", response_model=Page[SpecimenEntryData])
+def specimen_entries(
+    db: DB, limit: Limit = 50, offset: Offset = 0, set_id: str | None = None, key: str | None = None
+):
+    statement = select(SpecimenEntry)
+    if set_id is not None:
+        statement = statement.where(SpecimenEntry.set_id == set_id)
+    if key is not None:
+        statement = statement.where(SpecimenEntry.key == key)
+    return page(
+        db,
+        statement.order_by(SpecimenEntry.set_id, SpecimenEntry.display_order),
+        SpecimenEntryData,
+        limit,
+        offset,
+    )
+
+
+@router.get("/specimen-sets/{set_id}/signs", response_model=Page[SignOut])
+def specimen_set_signs(set_id: str, db: DB, limit: Limit = 50, offset: Offset = 0):
+    require(db, SpecimenSet, set_id)
+    statement = select(SignDesign).where(
+        SignDesign.specimen_entries.any(SpecimenEntry.set_id == set_id)
+    )
+    return page(db, statement.order_by(SignDesign.sign_id), SignOut, limit, offset)

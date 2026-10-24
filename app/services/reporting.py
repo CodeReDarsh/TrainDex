@@ -11,6 +11,8 @@ from app.models.entities import (
     RouteGroup,
     SignDesign,
     Source,
+    SpecimenEntry,
+    SpecimenSet,
     TrainModel,
 )
 from app.models.enums import Verification
@@ -18,7 +20,9 @@ from app.services.classification import classify
 
 
 def coverage(session: Session) -> dict:
-    signs = session.scalars(select(SignDesign).order_by(SignDesign.sign_id)).all()
+    entries = session.scalars(select(SignDesign).order_by(SignDesign.sign_id)).all()
+    signs = [s for s in entries if s.sign_technology != "artwork"]
+    artwork = [s for s in entries if s.sign_technology == "artwork"]
     unresolved = set(
         session.scalars(select(ReviewIssue.sign_id).where(ReviewIssue.resolved.is_(False)))
     )
@@ -45,6 +49,23 @@ def coverage(session: Session) -> dict:
     return {
         "generated_at": datetime.now(UTC).isoformat(),
         "total_distinct_designs": len(signs),
+        "total_catalog_entries": len(entries),
+        "artwork_reference_candidates": len(artwork),
+        "specimen_sets": count(SpecimenSet),
+        "specimen_listings": count(SpecimenEntry),
+        "specimen_listings_by_set": dict(
+            session.execute(
+                select(SpecimenEntry.set_id, func.count())
+                .group_by(SpecimenEntry.set_id)
+                .order_by(SpecimenEntry.set_id)
+            ).all()
+        ),
+        "artwork_candidates_with_colors": sum(s.background_color is not None for s in artwork),
+        "artwork_candidates_with_declared_font": sum(s.font_family is not None for s in artwork),
+        "physical_designs_with_estimated_colors": sum(
+            s.feature_provenance.get("background_color", {}).get("basis") == "visual_estimate"
+            for s in signs
+        ),
         "verified_designs": verified,
         "unverified_candidates": candidates,
         "other_unverified_designs": len(signs) - verified - candidates,
@@ -53,6 +74,7 @@ def coverage(session: Session) -> dict:
         "train_models": count(TrainModel),
         "sources": count(Source),
         "reference_images": count(ReferenceImage),
+        "physical_reference_photographs": sum(len(s.references) for s in signs),
         "by_route": dict(sorted(by_route.items())),
         "by_color_group": dict(sorted(by_group.items())),
         "not_in_service_designs": inactive,
@@ -65,7 +87,7 @@ def coverage(session: Session) -> dict:
         ),
         "designs_missing_source_verification": missing,
         "designs_requiring_manual_review": review,
-        "coverage_notice": "Initial evidence-based catalog; not a comprehensive census. Photographs are not design counts. Reconstructed datasets are staged separately.",
+        "coverage_notice": "Bounded fixed catalog from documented sources, not a census of every sign ever seen. Physical designs and reconstructed artwork candidates are counted separately. Photographic colors are labeled estimates; SVG colors and fonts describe artwork, not physical manufacture.",
     }
 
 

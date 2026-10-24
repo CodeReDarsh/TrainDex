@@ -2,7 +2,55 @@
 
 An evidence-based reference catalog for a future train-spotting Dex. This repository contains PostgreSQL storage, reproducible imports, FastAPI access, and feature-based candidate retrieval. It does not contain a frontend, accounts, uploads, collection tracking, or Gemini API calls.
 
-The initial catalog contains **15 designs: 13 photographically verified and 2 candidates**, with 15 reference photographs, 27 route designations, 11 classification groups, 16 equipment models, and 20 sources. This is an initial catalog, **not a comprehensive census of manufactured NYC rollsigns**. Another 275 reconstructed artwork files are staged for review and are excluded from these database counts. See [database coverage](reports/coverage.md), [JSON coverage](reports/coverage.json), and [research notes](docs/research.md).
+The fixed catalog includes **all 647 listings / 275 unique graphics** on the [NYC Subway Bullets specimen website](https://nyumathclinic.github.io/nyc-subway-bullets-font/specimen/), across eight sections. The populated database also retains 48 photographic design records with 92 reference photographs. The website graphics remain explicitly labeled reconstructed reference candidates. See the exact [website coverage audit](reports/specimen-coverage.md), [overall coverage](reports/coverage.md), and [research notes](docs/research.md).
+
+## Fixed specimen database
+
+The complete, portable website-only seed is **`data/processed/specimen_catalog.json`**. It contains the 275 unique graphics, all 647 section/key memberships, source metadata, colors, shape, typography/style labels, reference URLs and checksums. Normal application operation does not scrape the website or call Gemini.
+
+```bash
+alembic upgrade head
+python -m scripts.import_data data/processed/specimen_catalog.json
+python -m scripts.audit_specimen
+```
+
+The default `data/processed/catalog.json` additionally retains the photographic catalog, for 323 total entries. Existing data is preserved when importing the website-only seed. Repeated imports do not duplicate graphics or section memberships.
+
+| Section ID | Website section | Listings |
+|---|---|---:|
+| std | Standard | 106 |
+| helv | Helvetica | 57 |
+| nycta | NYCTA | 52 |
+| r62a | R62A | 18 |
+| r32 | R32 | 36 |
+| retired | Retired | 99 |
+| legacy | Legacy | 4 |
+| all | All | 275 |
+
+Some graphics occur in several sections; `specimen_entries` links each original key and code point to one stable `sign_id`. `specimen_sets` preserves style-family names and font filenames. Every source listing has its original description, service label, filename, ordering, and `listing_status` (`listed`, `unassigned`, `proposed`, or `blank`). A style-set name does not automatically establish physical train compatibility.
+
+```bash
+curl 'http://127.0.0.1:8000/specimen-sets'
+curl 'http://127.0.0.1:8000/specimen-entries?set_id=r62a&key=6d'
+curl 'http://127.0.0.1:8000/specimen-sets/all/signs?limit=100'
+curl 'http://127.0.0.1:8000/signs?specimen_set=helv&route_id=6'
+curl -X POST 'http://127.0.0.1:8000/signs/match' \
+  -H 'Content-Type: application/json' \
+  -d '{"route":"6","shape":"diamond","specimen_set":"r62a"}'
+```
+
+Sign responses expose `reference_kind`, `style_families`, `specimen_entries`, and `feature_provenance`. Matching includes artwork by default; set `include_artwork=false` to search only physical design records. `specimen_set` selects a website style family. It is separate from `train_model` and equipment evidence.
+
+All 275 artwork backgrounds and 273 foregrounds have sourced HEX values; the two blank bullets have no foreground character. Fonts declared in the SVG are recorded for 44 graphics. Other glyphs are outlines without an exact font declaration; their website style families remain available. SVG font declarations describe how the reconstruction was authored, not a verified typeface used on a manufactured train sign. Matching therefore treats artwork font declarations and physical technology as uncertain evidence. Approximate photographic color/style descriptors are labeled `visual_estimate` and receive half feature weight.
+
+The checked-in curated files are `data/curated/artwork_patterns.json` and `data/curated/specimen_entries.json`. Rebuild both full and website-only import bundles offline:
+
+```bash
+python -m scripts.build_catalog
+python -m scripts.build_catalog --specimen-only --output data/processed/specimen_catalog.json
+```
+
+`data/raw/specimen_inventory.json` retains every source listing and the source page checksum. To deliberately refresh the website audit, download the HTML and run `python -m scripts.import_specimen --page /path/to/specimen.html`; the script fails if the website and pinned TSV mappings disagree. No source change is silently converted to a verified physical design. Licensed original SVGs and their per-file attribution/checksums are retained in `data/raw/svg/` and `data/raw/svg-index.json`; the local development database also links checked copies under `data/references/artwork/`.
 
 ## Architecture and schema
 
@@ -35,6 +83,7 @@ erDiagram
 | `sources` / `sign_sources` | Reusable citations, source type, access date, and per-sign evidence claims |
 | `sign_observations` | Actual sign settings; separate from design identity and scheduled operating service |
 | `review_issues` | Conflicting or incomplete evidence; exposed in sign responses |
+| `specimen_sets` / `specimen_entries` | Eight website sections and all 647 aliases/memberships linked to 275 unique graphics |
 
 Foreign keys prevent orphan records; composite foreign keys ensure an observation's image belongs to the same design. Unique keys prevent duplicate source URLs, design identities, repeated sign/equipment pairs, and repeated sign/image-source pairs. Enums, dates, positive dimensions, and override evidence have constraints. Pydantic additionally validates HEX syntax and import fields. Files stay outside PostgreSQL.
 
@@ -90,7 +139,7 @@ The retained reviewed seed imports without network access or downloaded images:
 python -m scripts.import_data data/processed/catalog.json
 ```
 
-Imports are transactional and repeatable. Stable keys are reused, unknown incoming values preserve existing enrichment, and conflicting non-null values fail with an explanation. Run imports serially. Apply a deliberately reviewed update with `--allow-updates`; sign changes create persistent review issues instead of disappearing silently. Changing a design identity is a curation decision, not a photograph import operation.
+Imports are transactional and repeatable. Stable keys are reused, unknown incoming values preserve existing enrichment, and conflicting non-null values fail with an explanation. Run imports serially. Apply a deliberately reviewed update with `--allow-updates`; substantive conflicting sign changes create persistent review issues. Changing a design identity is a curation decision, not a photograph import operation.
 
 To rebuild the seed from retained snapshots:
 
@@ -154,7 +203,7 @@ curl -X POST 'http://127.0.0.1:8000/signs/match' \
   -d '{"route":"6","shape":"diamond","train_model":"R62A","background_color":"#00933C"}'
 ```
 
-The last request retrieves the documented hybrid diamond indicator among the available designs. It is not proof that the photograph depicts a green manufactured diamond bullet. Exact physical colors in this seed are unknown; supplying a color therefore adds an uncertainty explanation rather than inventing a match.
+The last request ranks candidates across the available physical and artwork references. Use `include_artwork=false` to restrict it to photographed designs, or `specimen_set` to select a website family. Exact manufacturing colors remain unknown; photographic swatches are explicitly labeled estimates, while artwork colors come from the SVG declarations.
 
 ## Matching behavior and future Gemini integration
 
@@ -220,10 +269,10 @@ TEST_DATABASE_URL=postgresql+psycopg://USER:PASSWORD@localhost/traindex_migratio
 
 The catalog is small and mostly contains side rollsigns. Front/rear identification coverage is especially limited. It does not yet establish a manufacturer-level taxonomy of typography or every physical rollsign generation. Photographic verification means the source supports the visible design and listed claims; it does not verify manufacture dates, original paint values, scheduled operating service, or every equipment variant.
 
-All physical HEX values, font families, font variants, and sign validity dates remain null in this seed because suitable specifications were not established. Color/typography matching is implemented and tested, but those features cannot discriminate these production records until sourced measurements/specifications are added. Most equipment manufacturer/year/status fields remain unknown because the official car inventory has conflicting records. R32 metadata uses a separate official retirement announcement. R211A/R211T are represented explicitly rather than creating an unsupported generic R211 design association.
+Exact physical font families and sign validity dates remain unknown. Forty-three physical records have approximate photographic color swatches, explicitly separated from manufacturer specifications by `feature_provenance`. The website graphics have source SVG colors and style-family labels. Most equipment manufacturer/year/status fields remain unknown because the official car inventory has conflicting records. R32 metadata uses a separate official retirement announcement. R211A/R211T are represented explicitly rather than creating an unsupported generic R211 design association.
 
-Two unused-number designs require route/identity review; one hybrid 7 display requires LED/LCD subtype review. Historical route classifications use a clearly labeled community history source. Observation timestamps remain null where only date-only, ambiguous, or timezone-free descriptions are available; original date text is preserved. Historical operational route reuse, such as different K services, needs additional route-identity research before adding those earlier designs.
+Unused-number, special, historical H/T and film-prop records retain review flags where route identity is uncertain. One hybrid 7 display requires LED/LCD subtype review. Historical route classifications use a clearly labeled community history source. Observation timestamps remain null where only date-only, ambiguous, or timezone-free descriptions are available; original date text is preserved. Historical operational route reuse, such as different K services, needs additional route-identity research.
 
-The font repository's artwork is useful for reviewing glyph and shape variations, but reconstructed bullets cannot automatically establish physical train compatibility or distinguish manufactured designs. No staged reconstruction is labeled an authentic photograph. The backend does not call Gemini, download arbitrary user URLs, expose image uploads, serve local image files, implement authentication, or deploy publicly. Reference `file_path` values are backend-relative; consumers can use `source_url` or add a separately designed asset-serving layer later.
+The website is the bounded reference scope; it is not a census of every physical sign ever manufactured. Proposed/unassigned graphics remain labeled candidates, and no reconstruction is labeled an authentic photograph. The backend retrieves metadata candidates; visual comparison of the user's photo with candidate images still needs Gemini integration and evaluation on held-out photos. No accuracy guarantee is claimed. The backend does not call Gemini, expose image uploads, serve local image files, implement authentication, or deploy publicly. Reference `file_path` values are backend-relative; consumers can use `source_url` or add an asset-serving layer later. SVG references will need suitable raster previews for a vision API that does not accept SVG input.
 
 Code remains under [MIT](LICENSE). Data and photographs retain their original terms and attribution; see [data notices](data/NOTICE.md). This project is not affiliated with the MTA.

@@ -5,26 +5,16 @@ without an explicit entry in curation.json and review of its supporting evidence
 """
 
 import argparse
-import hashlib
-import html
 import json
-import re
 from pathlib import Path
-from urllib.parse import quote
 
 from app.schemas.data import Bundle
 
 
-def plain(text):
-    return html.unescape(re.sub(r"<[^>]+>", "", text)).strip()
-
-
-def build(raw_root: Path, reference_root: Path, include_local=False) -> Bundle:
+def build(raw_root: Path, reference_root: Path, include_local=False, specimen_only=False) -> Bundle:
     raw = lambda name: json.loads((raw_root / name).read_text())
     retrievals = raw("retrievals.json")
-    sources, groups, routes, trains, signs, evidence, equipment, images, issues, observations = (
-        [] for _ in range(10)
-    )
+    sources, groups, routes, trains = ([] for _ in range(4))
     accessed = retrievals["commons.json"]["accessed_at"]
 
     def source(
@@ -211,143 +201,37 @@ def build(raw_root: Path, reference_root: Path, include_local=False) -> Bundle:
                 source_id="r32-retirement",
                 description="Retired R32; official retirement announcement takes precedence over contradictory inventory active flags.",
             )
-    pages = {
-        p["title"].removeprefix("File:"): p for p in raw("commons.json")["query"]["pages"].values()
-    }
-    for row in raw("curation.json")["designs"]:
-        page = pages[row["file"]]
-        info = page["imageinfo"][0]
-        ext = info["extmetadata"]
+    from scripts.build_physical_catalog import build_physical
 
-        def get(key, metadata=ext):
-            return plain(metadata.get(key, {}).get("value", "")) or None
-
-        sid, image_id = row["sign_id"], f"commons-{page['pageid']}"
-        license_name, artist = get("LicenseShortName"), get("Artist")
-        url = "https://commons.wikimedia.org/wiki/File:" + quote(
-            row["file"].replace(" ", "_"), safe="()"
+    physical = (
+        Bundle()
+        if specimen_only
+        else build_physical(
+            raw_root, reference_root, include_local, {m["train_model_id"] for m in trains}
         )
-        source(
-            image_id,
-            row["file"],
-            url,
-            "photographic_evidence",
-            "Wikimedia Commons",
-            license_name,
-            notes=f"Description: {get('ImageDescription')}. Raw date: {get('DateTimeOriginal')}. Photograph proves displayed design, not scheduled route operation or manufacturing period.",
-            author=artist,
-        )
-        candidate = row.get("candidate", False)
-        status = "candidate" if candidate else "verified"
-        signs.append(
-            {
-                "sign_id": sid,
-                "identity_key": f"curated:{sid.lower()}",
-                "sign_text": row["text"],
-                "route_id": row.get("route"),
-                "display_name": sid.replace("_", " "),
-                "shape": row["shape"],
-                "sign_technology": row["technology"],
-                "layout": "side_route_and_destination"
-                if row["position"] == "side"
-                else "end_route_bullet",
-                "service_type": row.get("service", "unknown"),
-                "is_historical": row.get("historical", False),
-                "design_family": "photographically_documented_rollsigns",
-                "description": "; ".join(row["features"]),
-                "distinguishing_features": row["features"],
-                "verification_status": status,
-                "manual_review": candidate,
-            }
-        )
-        evidence.append(
-            {
-                "sign_id": sid,
-                "source_id": image_id,
-                "claim": "Photographic evidence of displayed character, structural shape and assembly. "
-                + "; ".join(row["features"]),
-                "verification_status": status,
-            }
-        )
-        if row.get("equipment"):
-            equipment.append(
-                {
-                    "sign_id": sid,
-                    "train_model_id": row["equipment"],
-                    "source_id": image_id,
-                    "verification_status": "verified",
-                    "notes": "Model explicitly identified by photograph title or source description; no other equipment inferred.",
-                }
-            )
-        local = reference_root / "commons" / f"{page['pageid']}.jpg"
-        local_path = f"commons/{page['pageid']}.jpg" if include_local and local.exists() else None
-        images.append(
-            {
-                "image_id": image_id,
-                "sign_id": sid,
-                "source_url": info["url"],
-                "source_id": image_id,
-                "image_format": "jpeg",
-                "image_type": "authentic_photograph",
-                "view_angle": row.get("view_angle", row["position"]),
-                "photographer": artist,
-                "license": license_name,
-                "attribution": f"{artist}; {row['file']}; {url}; {license_name}; {get('LicenseUrl') or 'see source license'}; unmodified original.",
-                "width": info["width"],
-                "height": info["height"],
-                "verification_status": status,
-                "file_path": local_path,
-                "checksum": hashlib.sha256(local.read_bytes()).hexdigest() if local_path else None,
-            }
-        )
-        observations.append(
-            {
-                "observation_id": f"obs:{image_id}",
-                "sign_id": sid,
-                "image_id": image_id,
-                "observed_route": row.get("observed_route"),
-                "observed_train_model": row.get("equipment"),
-                "sign_position": row["position"],
-                "verification_status": status,
-                "notes": row.get(
-                    "observation_notes",
-                    "Sign setting only; displayed route does not prove operating service. Dates retained in raw metadata without inventing a time or timezone.",
-                ),
-            }
-        )
-        if candidate:
-            issues.append(
-                {
-                    "issue_id": f"review:{sid}",
-                    "sign_id": sid,
-                    "source_id": image_id,
-                    "description": "Unused designation: physical sign documented, but route assignment, equipment and broader design identity need review. Category intentionally null.",
-                }
-            )
-        if sid == "IRT_7_SIDE_RED_DIAMOND":
-            issues.append(
-                {
-                    "issue_id": f"review:{sid}:technology",
-                    "sign_id": sid,
-                    "source_id": image_id,
-                    "field_name": "sign_technology",
-                    "description": "Source filename says LCD; illuminated indicator subtype is not independently verified. Hybrid assembly is retained without asserting LED or LCD subtype.",
-                }
-            )
-    return Bundle.model_validate(
-        {
-            "sources": sources,
-            "route_groups": groups,
-            "routes": routes,
-            "train_models": trains,
-            "signs": signs,
-            "sign_sources": evidence,
-            "sign_equipment": equipment,
-            "reference_images": images,
-            "observations": observations,
-            "review_issues": issues,
-        }
     )
+    base = Bundle.model_validate(
+        {"sources": sources, "route_groups": groups, "routes": routes, "train_models": trains}
+    )
+    artwork_path = raw_root.parent / "curated" / "artwork_patterns.json"
+    artwork = Bundle.model_validate_json(artwork_path.read_text())
+    if include_local:
+        for reference in artwork.reference_images:
+            relative = f"artwork/{reference.checksum}.svg"
+            if (reference_root / relative).is_file():
+                reference.file_path = relative
+    specimen = Bundle.model_validate_json(
+        (raw_root.parent / "curated" / "specimen_entries.json").read_text()
+    )
+    combined = {}
+    for section in Bundle.model_fields:
+        combined[section] = [
+            *getattr(base, section),
+            *getattr(physical, section),
+            *getattr(artwork, section),
+            *getattr(specimen, section),
+        ]
+    return Bundle.model_validate(combined)
 
 
 def main():
@@ -355,9 +239,14 @@ def main():
     parser.add_argument("--raw-root", type=Path, default=Path("data/raw"))
     parser.add_argument("--reference-root", type=Path, default=Path("data/references"))
     parser.add_argument("--include-local-files", action="store_true")
+    parser.add_argument(
+        "--specimen-only",
+        action="store_true",
+        help="Include exactly the 275 website graphics, without additional photographic designs",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/processed/catalog.json"))
     args = parser.parse_args()
-    bundle = build(args.raw_root, args.reference_root, args.include_local_files)
+    bundle = build(args.raw_root, args.reference_root, args.include_local_files, args.specimen_only)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(bundle.model_dump_json(indent=2) + "\n")
     print(f"Wrote {len(bundle.signs)} curated signs to {args.output}")
