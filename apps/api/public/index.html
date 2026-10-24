@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TrainDex test</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 480px; margin: 0 auto; padding: 16px; background: #111; color: #eee; }
+  label { display: block; padding: 16px; border: 2px dashed #555; border-radius: 12px; text-align: center; cursor: pointer; }
+  input { display: none; }
+  img { width: 100%; border-radius: 12px; margin-top: 12px; }
+  .bullet { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; font: bold 40px system-ui; color: #fff; margin: 16px auto 8px; }
+  #result { text-align: center; margin-top: 12px; }
+  pre { font-size: 12px; background: #222; padding: 8px; border-radius: 8px; overflow-x: auto; text-align: left; }
+</style>
+</head>
+<body>
+<h1>TrainDex test</h1>
+<label>Take or pick a photo<input id="photo" type="file" accept="image/*" capture="environment"></label>
+<img id="preview" hidden alt="">
+<div id="result"></div>
+<script>
+const out = document.getElementById("result");
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
+const preview = document.getElementById("preview");
+
+document.getElementById("photo").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  preview.src = URL.createObjectURL(file);
+  preview.hidden = false;
+  out.textContent = "Reading sign...";
+
+  const body = new FormData();
+  body.append("image", file);
+  const res = await fetch("/v1/identify", { method: "POST", body });
+  const data = await res.json();
+
+  const head = {
+    identified: () => `<div class="bullet" style="background:${data.line.color}">${data.line.id}</div>Caught the ${data.line.id} train!`,
+    rare: () => `Rare sign: <b>${esc(data.text)}</b>`,
+    retake: () => esc(data.reason),
+    not_found: () => esc(data.reason),
+  }[data.status];
+
+  out.innerHTML = (head ? head() : data.error?.message ?? "Something broke") + `<pre>${esc(JSON.stringify(data, null, 2))}</pre>`;
+});
+</script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 import Fastify from "fastify";
 import multipart from "@fastify/multipart";
+import { readFileSync } from "node:fs";
 import { identify } from "./identify.ts";
 import { lines } from "./lines.ts";
 
@@ -8,6 +9,10 @@ const app = Fastify({ logger: true });
 await app.register(multipart, { limits: { fileSize: 8 * 1024 * 1024, files: 1 } });
 
 const allowed = new Set(["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"]);
+
+const page = readFileSync(new URL("../public/index.html", import.meta.url));
+
+app.get("/", (_req, reply) => reply.type("text/html").send(page));
 
 app.get("/healthz", async () => ({ ok: true }));
 

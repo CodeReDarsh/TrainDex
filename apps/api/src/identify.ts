@@ -4,7 +4,7 @@ import { GoogleGenAI } from "@google/genai";
 import { z } from "zod";
 import { findLine, type Line } from "./lines.ts";
 
-const model = process.env.GEMINI_MODEL ?? "gemini-3.8-flash";
+const model = process.env.GEMINI_MODEL ?? "gemini-flash-lite-latest";
 const client = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 const reading = z.object({
@@ -69,7 +69,7 @@ export async function identify(image: Buffer, mimeType: string): Promise<Result>
       mime_type: "application/json",
       schema: z.toJSONSchema(reading),
     },
-    generation_config: { thinking_level: "minimal" },
+    generation_config: { thinking_level: "low" },
   });
 
   const r = reading.parse(JSON.parse(res.output_text ?? "{}"));
