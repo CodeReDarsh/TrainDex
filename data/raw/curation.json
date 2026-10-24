@@ -1,0 +1,219 @@
+{
+  "reviewed_on": "2026-10-24",
+  "notes": "Design identities are curator keys based on displayed text, structural shape, layout, and technology. No exact physical HEX colors, typefaces, manufacturing dates, or unsupported equipment links are inferred from photographs. Observations are not route operation evidence. Source dates are retained raw; ambiguous dates are not coerced into timestamps.",
+  "designs": [
+    {
+      "file": "An R62A rollsign with LED green circle.jpg",
+      "sign_id": "IRT_6_SIDE_GREEN_RING",
+      "text": "6",
+      "route": "6",
+      "shape": "circle",
+      "technology": "hybrid",
+      "position": "side",
+      "equipment": "R62A",
+      "service": "local",
+      "features": [
+        "Mechanical route character with a green illuminated circular local indicator",
+        "Destination text to the left of route indicator"
+      ]
+    },
+    {
+      "file": "An R62A rollsign with LED red diamond.jpg",
+      "sign_id": "IRT_6_SIDE_RED_DIAMOND",
+      "text": "6",
+      "route": "6",
+      "shape": "diamond",
+      "technology": "hybrid",
+      "position": "side",
+      "equipment": "R62A",
+      "service": "express",
+      "features": [
+        "Mechanical route character with an illuminated diamond express indicator",
+        "Distinct from a manufactured green diamond route bullet"
+      ]
+    },
+    {
+      "file": "Brown diamond R vc.jpg",
+      "sign_id": "B_R_BROWN_DIAMOND_SIDE",
+      "text": "R",
+      "route": "R",
+      "shape": "diamond",
+      "technology": "rollsign",
+      "position": "side",
+      "equipment": "R32",
+      "historical": true,
+      "features": [
+        "Brown diamond R bullet",
+        "Nassau St / 4 Avenue text beside bullet",
+        "Route R retains its current Broadway classification independently of this sign's brown color"
+      ]
+    },
+    {
+      "file": "R68A V Train.jpg",
+      "sign_id": "B_V_ORANGE_CIRCLE_SIDE",
+      "text": "V",
+      "route": "V",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "equipment": "R68A",
+      "historical": true,
+      "features": [
+        "Orange circular V retained on equipment after route discontinuation"
+      ]
+    },
+    {
+      "file": "R62 3 train Rollsign @ Franklin Avenue.jpg",
+      "sign_id": "IRT_3_RED_CIRCLE_SIDE",
+      "text": "3",
+      "route": "3",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "equipment": "R62",
+      "features": [
+        "Red circular 3 rollsign in side destination assembly",
+        "Route bullet to the left of terminal text"
+      ]
+    },
+    {
+      "file": "R62A 6 Train 033.jpg",
+      "sign_id": "IRT_6_GREEN_CIRCLE_END",
+      "text": "6",
+      "route": "6",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "unknown",
+      "equipment": "R62A",
+      "features": [
+        "Green circular 6 rollsign at the end of an R62A",
+        "No illuminated local/express ring"
+      ],
+      "view_angle": "close_up"
+    },
+    {
+      "file": "R68 B Train Rollsign.jpg",
+      "sign_id": "B_B_ORANGE_CIRCLE_SIDE",
+      "text": "B",
+      "route": "B",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "equipment": "R68",
+      "features": [
+        "Orange circular B route bullet in side destination assembly"
+      ]
+    },
+    {
+      "file": "R68A G Train Rollsign.jpg",
+      "sign_id": "B_G_LIGHT_GREEN_CIRCLE_SIDE",
+      "text": "G",
+      "route": "G",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "equipment": "R68A",
+      "features": [
+        "Light green circular G route bullet in side destination assembly"
+      ]
+    },
+    {
+      "file": "R68 W Train Rollsign.jpg",
+      "sign_id": "B_W_YELLOW_CIRCLE_SIDE",
+      "text": "W",
+      "route": "W",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "equipment": "R68",
+      "features": [
+        "Yellow circular W route bullet in side destination assembly"
+      ]
+    },
+    {
+      "file": "Diamond Q vc.jpg",
+      "sign_id": "B_Q_YELLOW_DIAMOND_SIDE",
+      "text": "Q",
+      "route": "Q",
+      "shape": "diamond",
+      "technology": "rollsign",
+      "position": "side",
+      "historical": true,
+      "features": [
+        "Yellow diamond Q bullet with dark route character",
+        "57 St/7 Av and Brighton Beach text alongside bullet"
+      ]
+    },
+    {
+      "file": "JFK Express Sign.jpg",
+      "sign_id": "B_JFK_AIRPLANE_CIRCLE_END",
+      "text": "airplane",
+      "route": "JFK_EXPRESS",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "unknown",
+      "historical": true,
+      "features": [
+        "Airplane pictogram on a blue-green circular bullet",
+        "Photographed on Franklin Avenue Shuttle equipment; not evidence of operating JFK Express service"
+      ],
+      "observed_route": "S",
+      "observation_notes": "Commons photo description explicitly identifies the Franklin Avenue Shuttle. Its JFK Express bullet is a sign setting, not evidence of operating JFK Express service. Original date text is retained without an invented timestamp."
+    },
+    {
+      "file": "K train in museum vc.jpg",
+      "sign_id": "B_K_BLUE_CIRCLE_SIDE",
+      "text": "K",
+      "route": "K",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "historical": true,
+      "features": [
+        "Blue circular K with white character in museum train",
+        "168 St and World Trade Center destination text"
+      ]
+    },
+    {
+      "file": "7 train red diamond express lcd.JPG",
+      "sign_id": "IRT_7_SIDE_RED_DIAMOND",
+      "text": "7",
+      "route": "7",
+      "shape": "diamond",
+      "technology": "hybrid",
+      "position": "side",
+      "service": "express",
+      "features": [
+        "Illuminated diamond indicator around mechanical 7 character",
+        "Filename calls this LCD; display technology subtype remains unverified"
+      ]
+    },
+    {
+      "file": "10 train.jpg",
+      "sign_id": "IRT_10_GREEN_CIRCLE_SIDE",
+      "text": "10",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "side",
+      "candidate": true,
+      "features": [
+        "Unused green circular 10 designation on physical rollsign",
+        "Route assignment and equipment model require review; not a discontinued operating route"
+      ]
+    },
+    {
+      "file": "13 train in Line 1.jpg",
+      "sign_id": "IRT_13_RED_CIRCLE_END",
+      "text": "13",
+      "shape": "circle",
+      "technology": "rollsign",
+      "position": "unknown",
+      "candidate": true,
+      "features": [
+        "Unused red circular 13 designation on physical rollsign",
+        "Photograph title mentions Line 1; no route or equipment assignment inferred"
+      ],
+      "view_angle": "close_up"
+    }
+  ]
+}

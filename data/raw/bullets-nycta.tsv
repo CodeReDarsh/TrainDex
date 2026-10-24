@@ -1,0 +1,53 @@
+file	key	codepoint	description	service
+NYCTA-Standard-Medium-1.svg	1	E000	1 red circle	Broadway–Seventh Avenue Local
+NYCTA-Standard-Medium-2.svg	2	E001	2 red circle	Seventh Avenue Express
+NYCTA-Standard-Medium-3.svg	3	E002	3 red circle	Seventh Avenue Express
+NYCTA-Standard-Medium-4.svg	4	E003	4 green circle	Lexington Avenue Express
+NYCTA-Standard-Medium-4d.svg	4d	E004	4 green diamond	Lexington Avenue Express
+NYCTA-Standard-Medium-5.svg	5	E005	5 green circle	Lexington Avenue Express
+NYCTA-Standard-Medium-5d.svg	5d	E006	5 green diamond	Lexington Avenue Express
+NYCTA-Standard-Medium-6.svg	6	E007	6 green circle	Lexington Avenue Local
+NYCTA-Standard-Medium-6d.svg	6d	E008	6 green diamond	Pelham Express
+NYCTA-Standard-Medium-7.svg	7	E009	7 purple circle	Flushing Local
+NYCTA-Standard-Medium-7d.svg	7d	E00A	7 purple diamond	Flushing Express
+NYCTA-Standard-Medium-9.svg	9	E00B	9 red circle	Broadway–Seventh Avenue Local
+NYCTA-Standard-Medium-A.svg	A	E00C	A blue circle	Eighth Avenue Express
+NYCTA-Standard-Medium-A sixth.svg	A.sixth	E00D	A orange circle	Eighth Avenue Express via Sixth Avenue
+NYCTA-Standard-Medium-B.svg	B	E00E	B orange circle	Sixth Avenue Express
+NYCTA-Standard-Medium-B broadway.svg	B.broadway	E00F	B yellow circle	Broadway Express
+NYCTA-Standard-Medium-Bd.svg	Bd	E010	B orange diamond	Sixth Avenue Express
+NYCTA-Standard-Medium-Bd broadway.svg	Bd.broadway	E011	B yellow diamond	Broadway Express
+NYCTA-Standard-Medium-C.svg	C	E012	C blue circle	Eighth Avenue Local
+NYCTA-Standard-Medium-Cd.svg	Cd	E013	C blue diamond	Eighth Avenue Express
+NYCTA-Standard-Medium-D.svg	D	E014	D orange circle	Sixth Avenue Express
+NYCTA-Standard-Medium-D broadway.svg	D.broadway	E015	D yellow circle	Broadway Express
+NYCTA-Standard-Medium-E.svg	E	E016	E blue circle	Eighth Avenue Local
+NYCTA-Standard-Medium-F.svg	F	E017	F orange circle	Sixth Avenue Local
+NYCTA-Standard-Medium-Fd.svg	Fd	E018	F orange diamond	Culver Express
+NYCTA-Standard-Medium-G.svg	G	E019	G lime green circle	Brooklyn–Queens Crosstown Local
+NYCTA-Standard-Medium-H.svg	H	E01A	H blue circle	Rockaway Park Shuttle
+NYCTA-Standard-Medium-J.svg	J	E01B	J brown circle	Nassau Street Local
+NYCTA-Standard-Medium-Jd.svg	Jd	E01C	J brown diamond	Nassau Street Express
+NYCTA-Standard-Medium-K.svg	K	E01D	K blue circle	Eighth Avenue Local
+NYCTA-Standard-Medium-K canarsie.svg	K.canarsie	E01E	K dark gray circle	Canarsie skip-stop (proposed)
+NYCTA-Standard-Medium-L.svg	L	E01F	L dark gray circle	14th Street–Canarsie Local
+NYCTA-Standard-Medium-M.svg	M	E020	M orange circle	Sixth Avenue Local
+NYCTA-Standard-Medium-M-nassau.svg	M.nassau	E021	M brown circle	Nassau Street Local
+NYCTA-Standard-Medium-Md nassau.svg	Md.nassau	E022	M brown diamond	Nassau Street Express
+NYCTA-Standard-Medium-N.svg	N	E023	N yellow circle	Broadway Express
+NYCTA-Standard-Medium-Nd.svg	Nd	E024	N yellow diamond	Broadway Express
+NYCTA-Standard-Medium-Q.svg	Q	E025	Q yellow circle	Second Avenue Express
+NYCTA-Standard-Medium-Q sixth.svg	Q.sixth	E026	Q orange circle	Sixth Avenue Express (1988–2001)
+NYCTA Standard-Medium-Qd.svg	Qd	E027	Q yellow diamond	Second Avenue Express
+NYCTA-Standard-Medium-R.svg	R	E028	R yellow circle	Broadway Local
+NYCTA-Standard-Medium-Rd.svg	Rd	E029	R yellow diamond	Broadway Express
+NYCTA-Standard-Medium-Rd nassau.svg	Rd.nassau	E02A	R brown diamond	Nassau Street Express
+NYCTA-Standard-Medium-S.svg	S	E02B	S dark gray circle	Shuttle
+NYCTA-Standard-Medium-S 63.svg	S.63	E02C	S yellow circle	63rd Street Shuttle
+NYCTA-Standard-Medium-S rockaway.svg	S.rockaway	E02D	S blue circle	Rockaway Park Shuttle
+NYCTA-Standard-Medium-S sixth.svg	S.sixth	E02E	S orange circle	Sixth Avenue Shuttle
+NYCTA-Standard-Medium-T.svg	T	E02F	T turquoise circle	Second Avenue Local (proposed)
+NYCTA-Standard-Medium-V.svg	V	E030	V orange circle	Sixth Avenue Local
+NYCTA-Standard-Medium-W.svg	W	E031	W yellow circle	Broadway Local
+NYCTA-Standard-Medium-Wd.svg	Wd	E032	W yellow diamond	Broadway Express
+NYCTA-Standard-Medium-Z.svg	Z	E033	Z brown circle	Nassau Street Express

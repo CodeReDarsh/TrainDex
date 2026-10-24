@@ -1,0 +1,134 @@
+{
+  "source_rows": 10001,
+  "models": [
+    {
+      "car_class": "R142",
+      "divisions": [
+        "A"
+      ],
+      "in_service": 1035,
+      "retired": 0
+    },
+    {
+      "car_class": "R142A",
+      "divisions": [
+        "A"
+      ],
+      "in_service": 220,
+      "retired": 700
+    },
+    {
+      "car_class": "R143",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 216,
+      "retired": 0
+    },
+    {
+      "car_class": "R160",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 1661,
+      "retired": 1
+    },
+    {
+      "car_class": "R179",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 413,
+      "retired": 0
+    },
+    {
+      "car_class": "R188",
+      "divisions": [
+        "A"
+      ],
+      "in_service": 517,
+      "retired": 0
+    },
+    {
+      "car_class": "R211A",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 1033,
+      "retired": 8
+    },
+    {
+      "car_class": "R211T",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 20,
+      "retired": 0
+    },
+    {
+      "car_class": "R32",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 358,
+      "retired": 287
+    },
+    {
+      "car_class": "R42",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 346,
+      "retired": 0
+    },
+    {
+      "car_class": "R44",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 2,
+      "retired": 0
+    },
+    {
+      "car_class": "R46",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 344,
+      "retired": 1045
+    },
+    {
+      "car_class": "R62",
+      "divisions": [
+        "A"
+      ],
+      "in_service": 320,
+      "retired": 0
+    },
+    {
+      "car_class": "R62A",
+      "divisions": [
+        "A",
+        "B"
+      ],
+      "in_service": 837,
+      "retired": 0
+    },
+    {
+      "car_class": "R68",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 420,
+      "retired": 18
+    },
+    {
+      "car_class": "R68A",
+      "divisions": [
+        "B"
+      ],
+      "in_service": 194,
+      "retired": 6
+    }
+  ]
+}

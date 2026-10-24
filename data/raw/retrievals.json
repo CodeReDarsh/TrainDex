@@ -1,0 +1,63 @@
+{
+  "stock.json": {
+    "url": "https://data.ny.gov/resource/kir5-i9xt.json?%24limit=50000",
+    "accessed_at": "2026-10-24T07:17:52.282706+00:00",
+    "sha256": "1ca73b508687021b988f31152eff23d830eb9bf07f72d4665d056f3e9f7766a1"
+  },
+  "commons.json": {
+    "url": "https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url%7Csize%7Csha1%7Cextmetadata",
+    "accessed_at": "2026-10-24T07:13:33.567906+00:00",
+    "sha256": "a4bf4adb637047b90add1d37d3d5963e6e454203e9a550345051b57bb231d3ab",
+    "notes": "Successfully retrieved with curl; see snapshot query.normalized and image titles. HTTPX refresh subsequently received HTTP 403; cached successful response retained."
+  },
+  "colors.json": {
+    "url": "https://data.ny.gov/resource/3uhz-sej2.json",
+    "accessed_at": "2026-10-24T07:18:57.731585+00:00",
+    "sha256": "7dc73f98fde2907a7adca08f0012644905dfc822bf4f752a47bbd06806c876eb"
+  },
+  "bullets-manifest.json": {
+    "url": "https://raw.githubusercontent.com/nyumathclinic/nyc-subway-bullets-font/1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4/sources/manifest.json",
+    "accessed_at": "2026-10-24T07:18:57.826778+00:00",
+    "sha256": "377863eabf4027a8d161c8df539e96fd5b4be6a124d5b3dba98d9eb83c525b9d"
+  },
+  "bullets-std.tsv": {
+    "url": "https://raw.githubusercontent.com/nyumathclinic/nyc-subway-bullets-font/1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4/data/mappings/std.tsv",
+    "accessed_at": "2026-10-24T07:18:57.935573+00:00",
+    "sha256": "db7055269ecf3c88d1dfe6f37f38eaf84ef89de2fc72fdf4e84fec9ba10d9dba"
+  },
+  "bullets-helv.tsv": {
+    "url": "https://raw.githubusercontent.com/nyumathclinic/nyc-subway-bullets-font/1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4/data/mappings/helv.tsv",
+    "accessed_at": "2026-10-24T07:18:58.037138+00:00",
+    "sha256": "ed1794d2ac582b19399645994ac209a645ded88cb87c92a76c295348c8e4d666"
+  },
+  "bullets-nycta.tsv": {
+    "url": "https://raw.githubusercontent.com/nyumathclinic/nyc-subway-bullets-font/1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4/data/mappings/nycta.tsv",
+    "accessed_at": "2026-10-24T07:18:58.143762+00:00",
+    "sha256": "95748f66cfc0b91ca80211e3fd146ba1520fd29ed72b54a720495426ba93fa2c"
+  },
+  "bullets-r62a.tsv": {
+    "url": "https://raw.githubusercontent.com/nyumathclinic/nyc-subway-bullets-font/1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4/data/mappings/r62a.tsv",
+    "accessed_at": "2026-10-24T07:18:58.219625+00:00",
+    "sha256": "c2700c130f9b38a999f96c21e0a74c08b5a9d4d409e73653644a5ebb564c9146"
+  },
+  "bullets-r32.tsv": {
+    "url": "https://raw.githubusercontent.com/nyumathclinic/nyc-subway-bullets-font/1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4/data/mappings/r32.tsv",
+    "accessed_at": "2026-10-24T07:18:58.311386+00:00",
+    "sha256": "c70b1fd6ca71f9d86ac90bfd194a844f3408736189b06ef089b2217fb76bd6b7"
+  },
+  "bullets-retired.tsv": {
+    "url": "https://raw.githubusercontent.com/nyumathclinic/nyc-subway-bullets-font/1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4/data/mappings/retired.tsv",
+    "accessed_at": "2026-10-24T07:18:58.413540+00:00",
+    "sha256": "2a76be852d54efeef4d69ac3b66dc62cc39d47e73ad4ee892a7d4d5e3009cb72"
+  },
+  "bullets-legacy.tsv": {
+    "url": "https://raw.githubusercontent.com/nyumathclinic/nyc-subway-bullets-font/1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4/data/mappings/legacy.tsv",
+    "accessed_at": "2026-10-24T07:18:58.502988+00:00",
+    "sha256": "38948069655fb9fa77997373816a74ee32fcddeba256b425155e3e1936b58179"
+  },
+  "bullets-data-license.txt": {
+    "url": "https://raw.githubusercontent.com/nyumathclinic/nyc-subway-bullets-font/1d2a6b05bf5ea7ec43c6ed608d1eb739f16089e4/LICENSES/CC0-1.0.txt",
+    "accessed_at": "2026-10-24T07:18:58.591079+00:00",
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+  }
+}

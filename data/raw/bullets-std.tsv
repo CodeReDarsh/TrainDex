@@ -1,0 +1,107 @@
+file	key	codepoint	description	service
+NYCS-bull-trans---Std.svg	-	E000	blank black circle	Blank
+NYCS-bull-trans--d-Std.svg	-d	E001	blank black diamond	Blank
+NYCS-bull-trans-0-Std.svg	0	E002	0 dark gray circle	42nd Street Shuttle
+NYCS-bull-trans-0d-Std.svg	0d	E003	0 black diamond	Unassigned
+NYCS-bull-trans-1-Std.svg	1	E004	1 red circle	Broadway–Seventh Avenue Local
+NYCS-bull-trans-1d-Std.svg	1d	E005	1 red diamond	Broadway–Seventh Avenue Express
+NYCS-bull-trans-2-Std.svg	2	E006	2 red circle	Seventh Avenue Express
+NYCS-bull-trans-2d-Std.svg	2d	E007	2 red diamond	Seventh Avenue Express
+NYCS-bull-trans-3-Std.svg	3	E008	3 red circle	Seventh Avenue Express
+NYCS-bull-trans-3d-Std.svg	3d	E009	3 red diamond	Seventh Avenue Express
+NYCS-bull-trans-4-Std.svg	4	E00A	4 green circle	Lexington Avenue Express
+NYCS-bull-trans-4d-Std.svg	4d	E00B	4 green diamond	Lexington Avenue Express
+NYCS-bull-trans-5-Std.svg	5	E00C	5 green circle	Lexington Avenue Express
+NYCS-bull-trans-5d-Std.svg	5d	E00D	5 green diamond	Lexington Avenue Express
+NYCS-bull-trans-6-Std.svg	6	E00E	6 green circle	Lexington Avenue Local
+NYCS-bull-trans-6d-Std.svg	6d	E00F	6 green diamond	Pelham Express
+NYCS-bull-trans-7-Std.svg	7	E010	7 purple circle	Flushing Local
+NYCS-bull-trans-7d-Std.svg	7d	E011	7 purple diamond	Flushing Express
+NYCS-bull-trans-8-Std.svg	8	E012	8 green circle	Unassigned
+NYCS-bull-trans-8-Std-turquoise.svg	8.turquoise	E013	8 turquoise circle	Third Avenue Local
+NYCS-bull-trans-8d-Std.svg	8d	E014	8 green diamond	Unassigned
+NYCS-bull-trans-8d-Std-turquoise.svg	8d.turquoise	E015	8 turquoise diamond	Third Avenue Express
+NYCS-bull-trans-9-Std.svg	9	E016	9 red circle	Broadway–Seventh Avenue Local
+NYCS-bull-trans-9d-Std.svg	9d	E017	9 red diamond	Broadway–Seventh Avenue Express
+NYCS-bull-trans-10-Std.svg	10	E018	10 green circle	Unassigned
+NYCS-bull-trans-11-Std.svg	11	E019	11 purple circle	Unassigned
+NYCS-bull-trans-12-Std.svg	12	E01A	12 green circle	Unassigned
+NYCS-bull-trans-13-Std.svg	13	E01B	13 red circle	Unassigned
+NYCS-bull-trans-A-Std.svg	A	E01C	A blue circle	Eighth Avenue Express
+NYCS-bull-trans-A-Std-gray.svg	A.gray	E01D	A dark gray circle	Rockaway Park Shuttle
+NYCS-bull-trans-Ad-Std.svg	Ad	E01E	A blue diamond	Eighth Avenue Express
+NYCS-bull-trans-Ad-Std-gray.svg	Ad.gray	E01F	A dark gray diamond	Rockaway Park Shuttle Express
+NYCS-bull-trans-B-Std.svg	B	E020	B orange circle	Sixth Avenue Express
+NYCS-bull-trans-Bd-Std.svg	Bd	E021	B orange diamond	Sixth Avenue Express
+NYCS-bull-trans-Bs-Std.svg	Bs	E022	B yellow circle	West End Local via Broadway (1986–1988)
+NYCS-bull-trans-Bsd-Std.svg	Bsd	E023	B yellow diamond	West End Express via Broadway (1986–1988)
+NYCS-bull-trans-C-Std.svg	C	E024	C blue circle	Eighth Avenue Local
+NYCS-bull-trans-Cd-Std.svg	Cd	E025	C blue diamond	Eighth Avenue Express
+NYCS-bull-trans-D-Std.svg	D	E026	D orange circle	Sixth Avenue Express
+NYCS-bull-trans-Dd-Std.svg	Dd	E027	D orange diamond	Sixth Avenue Express
+NYCS-bull-trans-Ds-Std.svg	Ds	E028	D yellow circle	Brighton Local via Broadway (1986–1988)
+NYCS-bull-trans-Dsd-Std.svg	Dsd	E029	D yellow diamond	Brighton Express via Broadway (1986–1988)
+NYCS-bull-trans-E-Std.svg	E	E02A	E blue circle	Eighth Avenue Local
+NYCS-bull-trans-Ed-Std.svg	Ed	E02B	E blue diamond	Eighth Avenue Express
+NYCS-bull-trans-F-Std.svg	F	E02C	F orange circle	Sixth Avenue Local
+NYCS-bull-trans-Fd-Std.svg	Fd	E02D	F orange diamond	Culver Express
+NYCS-bull-trans-G-Std.svg	G	E02E	G lime green circle	Brooklyn–Queens Crosstown Local
+NYCS-bull-trans-Gd-Std.svg	Gd	E02F	G lime green diamond	Brooklyn–Queens Crosstown Express
+NYCS-bull-trans-H-Std.svg	H	E030	H blue circle	Rockaway Park Shuttle
+NYCS-bull-trans-Hd-Std.svg	Hd	E031	H blue diamond	Rockaway Park Shuttle Express
+NYCS-bull-trans-I-Std.svg	I	E032	I black circle	Unassigned
+NYCS-bull-trans-Id-Std.svg	Id	E033	I black diamond	Unassigned
+NYCS-bull-trans-J-Std.svg	J	E034	J brown circle	Nassau Street Local
+NYCS-bull-trans-Jd-Std.svg	Jd	E035	J brown diamond	Nassau Street Express
+NYCS-bull-trans-K-Std.svg	K	E036	K blue circle	Eighth Avenue Local
+NYCS-bull-trans-Kd-Std.svg	Kd	E037	K blue diamond	Eighth Avenue Express
+NYCS-bull-trans-L-Std.svg	L	E038	L light gray circle	14th Street–Canarsie Local
+NYCS-bull-trans-Ld-Std.svg	Ld	E039	L light gray diamond	14th Street–Canarsie Express
+NYCS-bull-trans-M-Std.svg	M	E03A	M orange circle	Sixth Avenue Local
+NYCS-bull-trans-M-Std-brown.svg	M.brown	E03B	M brown circle	Nassau Street Local (1979–2010)
+NYCS-bull-trans-Md-Std.svg	Md	E03C	M orange diamond	Sixth Avenue Express
+NYCS-bull-trans-Md-Std-brown.svg	Md.brown	E03D	M brown diamond	Nassau Street Express (2001–2010)
+NYCS-bull-trans-N-Std.svg	N	E03E	N yellow circle	Broadway Express
+NYCS-bull-trans-Nd-Std.svg	Nd	E03F	N yellow diamond	Broadway Express
+NYCS-bull-trans-O-Std.svg	O	E040	O black circle	Unassigned
+NYCS-bull-trans-Od-Std.svg	Od	E041	O black diamond	Unassigned
+NYCS-bull-trans-P-Std.svg	P	E042	P black circle	Unassigned
+NYCS-bull-trans-Pd-Std.svg	Pd	E043	P black diamond	Unassigned
+NYCS-bull-trans-Q-Std.svg	Q	E044	Q yellow circle	Second Avenue Express
+NYCS-bull-trans-Q-Std-orange.svg	Q.orange	E045	Q orange circle	Sixth Avenue Express (1988–2001)
+NYCS-bull-trans-Qd-Std.svg	Qd	E046	Q yellow diamond	Second Avenue Express
+NYCS-bull-trans-Qd-Std-orange.svg	Qd.orange	E047	Q orange diamond	Sixth Avenue Express (1988–2001)
+NYCS-bull-trans-R-Std.svg	R	E048	R yellow circle	Broadway Local
+NYCS-bull-trans-R-Std-brown.svg	R.brown	E049	R brown circle	Nassau Street Local (1985–1987)
+NYCS-bull-trans-Rd-Std.svg	Rd	E04A	R yellow diamond	Broadway Express
+NYCS-bull-trans-Rd-Std-brown.svg	Rd.brown	E04B	R brown diamond	Nassau Street Express (1985–1987)
+NYCS-bull-trans-S-Std.svg	S	E04C	S dark gray circle	Shuttle
+NYCS-bull-trans-Sd-Std.svg	Sd	E04D	S dark gray diamond	Shuttle Express
+NYCS-bull-trans-S6-Std.svg	S6	E04E	S orange circle	Sixth Avenue Shuttle
+NYCS-bull-trans-S6d-Std.svg	S6d	E04F	S orange diamond	Sixth Avenue Shuttle Express
+NYCS-bull-trans-SB-Std.svg	SB	E050	S yellow circle	63rd Street Shuttle
+NYCS-bull-trans-SBd-Std.svg	SBd	E051	S yellow diamond	63rd Street Shuttle Express
+NYCS-bull-trans-SF-Std.svg	SF	E052	S with small F, dark gray circle	Franklin Avenue Shuttle
+NYCS-bull-trans-SF-Std-silver.svg	SF.silver	E053	S light gray circle	Franklin Avenue Shuttle
+NYCS-bull-trans-SFd-Std-silver.svg	SFd.silver	E054	S light gray diamond	Franklin Avenue Shuttle Express
+NYCS-bull-trans-SIR-Std.svg	SIR	E055	SIR blue circle	Staten Island Railway
+NYCS-bull-trans-SIRd-Std.svg	SIRd	E056	SIR blue diamond	Staten Island Railway Express
+NYCS-bull-trans-SR-Std.svg	SR	E057	S with small R, dark gray circle	Rockaway Park Shuttle
+NYCS-bull-trans-SR-Std-blue.svg	SR.blue	E058	S blue circle	Rockaway Park Shuttle
+NYCS-bull-trans-SRd-Std-blue.svg	SRd.blue	E059	S blue diamond	Rockaway Park Shuttle Express
+NYCS-bull-trans-T-Std.svg	T	E05A	T turquoise circle	Second Avenue Local (proposed)
+NYCS-bull-trans-T-Std-black.svg	T.black	E05B	T black circle	Unassigned
+NYCS-bull-trans-Td-Std.svg	Td	E05C	T turquoise diamond	Second Avenue Express (proposed)
+NYCS-bull-trans-Td-Std-black.svg	Td.black	E05D	T black diamond	Unassigned
+NYCS-bull-trans-U-Std.svg	U	E05E	U black circle	Unassigned
+NYCS-bull-trans-Ud-Std.svg	Ud	E05F	U black diamond	Unassigned
+NYCS-bull-trans-V-Std.svg	V	E060	V orange circle	Sixth Avenue Local
+NYCS-bull-trans-Vd-Std.svg	Vd	E061	V orange diamond	Sixth Avenue Express
+NYCS-bull-trans-W-Std.svg	W	E062	W yellow circle	Broadway Local
+NYCS-bull-trans-Wd-Std.svg	Wd	E063	W yellow diamond	Broadway Express
+NYCS-bull-trans-X-Std.svg	X	E064	X black circle	Placeholder for proposed services
+NYCS-bull-trans-Xd-Std.svg	Xd	E065	X black diamond	Placeholder for proposed services
+NYCS-bull-trans-Y-Std.svg	Y	E066	Y black circle	Unassigned
+NYCS-bull-trans-Yd-Std.svg	Yd	E067	Y black diamond	Unassigned
+NYCS-bull-trans-Z-Std.svg	Z	E068	Z brown circle	Nassau Street Express
+NYCS-bull-trans-Zd-Std.svg	Zd	E069	Z brown diamond	Nassau Street Express

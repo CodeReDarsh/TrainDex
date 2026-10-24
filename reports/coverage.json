@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-10-24T07:37:06.613672+00:00",
+  "total_distinct_designs": 15,
+  "verified_designs": 13,
+  "unverified_candidates": 2,
+  "other_unverified_designs": 0,
+  "routes": 27,
+  "route_groups": 11,
+  "train_models": 16,
+  "sources": 20,
+  "reference_images": 15,
+  "by_route": {
+    "3": 1,
+    "6": 3,
+    "7": 1,
+    "B": 1,
+    "G": 1,
+    "JFK_EXPRESS": 1,
+    "K": 1,
+    "Q": 1,
+    "R": 1,
+    "V": 1,
+    "W": 1,
+    "unknown": 2
+  },
+  "by_color_group": {
+    "blue": 1,
+    "green": 3,
+    "historical_jfk": 1,
+    "light_green": 1,
+    "orange": 2,
+    "purple": 1,
+    "red": 1,
+    "unknown": 2,
+    "yellow": 3
+  },
+  "not_in_service_designs": 3,
+  "by_sign_technology": {
+    "hybrid": 3,
+    "rollsign": 12
+  },
+  "by_verified_train_model": {
+    "R32": 1,
+    "R62": 1,
+    "R62A": 3,
+    "R68": 2,
+    "R68A": 2
+  },
+  "historical_designs": 5,
+  "designs_with_reference_images": 15,
+  "designs_with_local_reference_files": 15,
+  "designs_missing_source_verification": [
+    "IRT_10_GREEN_CIRCLE_SIDE",
+    "IRT_13_RED_CIRCLE_END"
+  ],
+  "designs_requiring_manual_review": [
+    "IRT_10_GREEN_CIRCLE_SIDE",
+    "IRT_13_RED_CIRCLE_END",
+    "IRT_7_SIDE_RED_DIAMOND"
+  ],
+  "coverage_notice": "Initial evidence-based catalog; not a comprehensive census. Photographs are not design counts. Reconstructed datasets are staged separately."
+}

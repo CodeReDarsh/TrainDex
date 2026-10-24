@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.env
+*.db
+*.sqlite*
+data/references/*
+!data/references/.gitkeep
+data/raw/downloads/
+data/processed/catalog.local.json
+.DS_Store

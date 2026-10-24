@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "/health": 200,
+    "/signs": 200,
+    "/routes": 200,
+    "/route-groups": 200,
+    "/train-models": 200,
+    "/sources": 200,
+    "/stats": 200,
+    "/signs/IRT_6_GREEN_CIRCLE_END/references": 200,
+    "/routes/6/signs": 200,
+    "/train-models/R62A/signs": 200,
+    "/signs/search?route=6&shape=diamond": 200
+  },
+  "match_top_sign": "IRT_6_SIDE_RED_DIAMOND",
+  "match_score": 1.0,
+  "evidence_coverage": 0.818182,
+  "classification": {
+    "sign_id": "IRT_6_SIDE_RED_DIAMOND",
+    "route_id": "6",
+    "color_group_id": "green",
+    "dex_category": "active",
+    "service_status": "active",
+    "display_name": "IRT 6 SIDE RED DIAMOND",
+    "display_order": null,
+    "requires_manual_review": false,
+    "review_reasons": []
+  },
+  "invalid_queries": 422,
+  "missing_sign": 404,
+  "unused_13_category": null,
+  "brown_R_category": "active",
+  "V_category": "not_in_service"
+}
