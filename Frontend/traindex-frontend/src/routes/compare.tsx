@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AlertTriangle, Camera, Check, ChevronLeft, Minus, ScanText, Sparkles, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCapture, updateCapture, setCapture } from "@/lib/capture-store";
@@ -37,10 +37,15 @@ function Compare() {
   const { data: owned } = useQuery(collectionQuery(user?.id));
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
+  // each photo costs a Gemini call; StrictMode runs effects twice in dev
+  const sent = useRef<string | null>(null);
 
   useEffect(() => {
     // A capture saved by an older build has a match without `method`; match it again.
     if (!capture || capture.match?.method) return;
+    const key = `${attempt}:${capture.capturedAt ?? capture.dataUrl.length}`;
+    if (sent.current === key) return;
+    sent.current = key;
     setError(null);
     match({ data: { image: capture.dataUrl, targetId: capture.targetId } })
       .then((m) => updateCapture({ match: m }))

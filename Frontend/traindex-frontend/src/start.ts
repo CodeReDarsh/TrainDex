@@ -2,6 +2,7 @@ import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/r
 
 import { renderErrorPage } from "./lib/error-page";
 import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
+import { supabaseConfigured } from "@/lib/supabase-config";
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
@@ -26,6 +27,7 @@ const csrfMiddleware = createCsrfMiddleware({
 });
 
 export const startInstance = createStart(() => ({
-  functionMiddleware: [attachSupabaseAuth],
+  // the generated Supabase client throws when it isn't configured, so only attach auth once it is
+  functionMiddleware: supabaseConfigured() ? [attachSupabaseAuth] : [],
   requestMiddleware: [errorMiddleware, csrfMiddleware],
 }));
