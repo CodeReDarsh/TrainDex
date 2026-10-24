@@ -37,7 +37,7 @@ function Catch() {
   const primaryRef = useRef<HTMLButtonElement>(null);
 
   const result = capture?.match;
-  const sign = result ? catalog?.find((s) => s.id === result.rollsign_id) : undefined;
+  const sign = result ? (catalog?.find((s) => s.id === result.rollsign_id) ?? result.sign) : undefined;
 
   if (!capture || !result) {
     return (

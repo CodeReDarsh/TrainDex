@@ -1,9 +1,11 @@
 // Pure mock matcher. Swap matchRollsign's implementation for real OCR + image
 // similarity later; the MatchResult contract stays the same.
 
+import type { Sign } from "./dex";
+
 export type CheckStatus = "pass" | "warn" | "fail";
 export interface MatchCheck {
-  key: "sign_text" | "lettering" | "car_model" | "glare" | "tilt";
+  key: "sign_text" | "lettering" | "car_model" | "glare" | "tilt" | "blur";
   label: string;
   detail: string;
   status: CheckStatus;
@@ -25,6 +27,8 @@ export interface MatchResult {
   method: MatchMethod;
   /** Raw text OCR pulled from the photo, or null when it found none. */
   ocr_text: string | null;
+  /** Card to show when the sign isn't in the catalog, e.g. a rare old rollsign. */
+  sign?: Sign | undefined;
 }
 
 export interface MockSign {

@@ -2,6 +2,7 @@ import { queryOptions } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { dataUrlToBlob } from "./capture-store";
 import { supabaseConfigured } from "./supabase-config";
+import { localCatalog } from "./local-catalog";
 import type { MatchResult } from "./match-mock";
 
 export type Rarity = "common" | "uncommon" | "rare" | "legendary";
@@ -38,7 +39,7 @@ export const RARITY_RANK: Record<Rarity, number> = { common: 0, uncommon: 1, rar
 export const catalogQuery = queryOptions({
   queryKey: ["catalog"],
   queryFn: async (): Promise<Sign[]> => {
-    if (!supabaseConfigured()) return [];
+    if (!supabaseConfigured()) return localCatalog();
     const { data, error } = await supabase
       .from("rollsigns")
       .select("id, dex_number, destination, subtitle, rarity, car_models, description, line:lines(letter, color)")

@@ -42,7 +42,7 @@ function Compare() {
     // A capture saved by an older build has a match without `method`; match it again.
     if (!capture || capture.match?.method) return;
     setError(null);
-    match({ data: { targetId: capture.targetId } })
+    match({ data: { image: capture.dataUrl, targetId: capture.targetId } })
       .then((m) => updateCapture({ match: m }))
       .catch((e) => setError(e instanceof Error ? e.message : "Matching failed"));
   }, [capture, match, attempt]);
@@ -64,7 +64,7 @@ function Compare() {
   }
 
   const result = capture.match;
-  const sign = result ? catalog?.find((s) => s.id === result.rollsign_id) : undefined;
+  const sign = result ? (catalog?.find((s) => s.id === result.rollsign_id) ?? result.sign) : undefined;
   const missing = !!result && !!catalog && !sign;
   const alreadyOwned = !!sign && !!owned?.some((o) => o.rollsign_id === sign.id);
 
