@@ -1,0 +1,11 @@
+{
+  "name": "Traindex",
+  "short_name": "Traindex",
+  "description": "Photograph NYC subway rollsigns and collect them as cards.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#15171A",
+  "theme_color": "#15171A",
+  "icons": [{ "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }]
+}

@@ -1,0 +1,241 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Traindex design system — dark only, modelled on the MTA status screen.
+ *
+ * Named tokens
+ *   background  asphalt, the page
+ *   surface     car body, grouped lists and panels
+ *   raised      platform, controls sitting on a surface
+ *   border      hairline separators
+ *   foreground  rollsign white; also the primary button fill
+ *   link        signal blue, links and focus rings
+ *   rarity-*    common / uncommon / rare / legendary
+ *   sign-*      the black rollsign box itself
+ *
+ * Line colours are not tokens: they come from the catalog (lines.color) and
+ * from LINE_GROUPS in src/lib/lines.ts, so the bullets always match the MTA.
+ */
+
+@theme inline {
+  --font-sans: "Archivo", "Helvetica Neue", Helvetica, Arial, ui-sans-serif, sans-serif;
+  --font-sign: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 28px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--raised);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--foreground);
+  --color-primary-foreground: var(--background);
+  --color-secondary: var(--raised);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--raised);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--raised);
+  --color-accent-foreground: var(--foreground);
+  --color-link: var(--link);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--link);
+
+  --color-rarity-common: var(--rarity-common);
+  --color-rarity-uncommon: var(--rarity-uncommon);
+  --color-rarity-rare: var(--rarity-rare);
+  --color-rarity-legendary: var(--rarity-legendary);
+
+  --color-sign: var(--sign);
+  --color-sign-frame: var(--sign-frame);
+  --color-sign-text: var(--sign-text);
+  --color-scrim: var(--scrim);
+
+  --animate-reveal-burst: reveal-burst 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-shutter: shutter 260ms ease-out both;
+  --animate-sheen: sheen 2.4s ease-in-out 1 both;
+}
+
+:root {
+  color-scheme: dark;
+
+  --background: #15171a;
+  --surface: #1f2226;
+  --raised: #2a2e33;
+  --border: #33373d;
+  --foreground: #f2f3f5;
+  --muted-foreground: #9aa0a8;
+  --link: #8ab4ff;
+  --success: #6fd49b;
+  --warning: #f5c451;
+  --destructive: #ff7a6e;
+
+  --rarity-common: #b4b9c0;
+  --rarity-uncommon: #6fd49b;
+  --rarity-rare: #8ab4ff;
+  --rarity-legendary: #f5c451;
+
+  --sign: #050506;
+  --sign-frame: #4c5057;
+  --sign-text: #ffffff;
+  --scrim: rgb(21 23 26 / 0.74);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-variation-settings: "wdth" 100;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: rgb(138 180 255 / 0.35);
+  }
+}
+
+/* 44px minimum touch target. */
+@utility tap {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Small supporting text: section titles, field names, counts. Sentence case. */
+@utility caption {
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--color-muted-foreground);
+}
+
+/* Expanded heavy cut of Archivo for the wordmark and card names. */
+@utility display-wide {
+  font-weight: 800;
+  font-variation-settings: "wdth" 118;
+  letter-spacing: -0.01em;
+}
+
+/* Rollsign lettering: tight, heavy, Helvetica-like. */
+@utility sign-type {
+  font-family: var(--font-sign);
+  font-weight: 700;
+  font-variation-settings: "wdth" 96;
+  letter-spacing: -0.015em;
+}
+
+@utility safe-top {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+
+/* ---------- Trading card flip ---------- */
+
+.card-stage {
+  perspective: 1400px;
+}
+.card-flipper {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+.card-flipper[data-revealed="true"] {
+  transform: rotateY(180deg);
+}
+.card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+/* The front sits in flow and sets the card's height; the back overlays it. */
+.card-face-front {
+  position: relative;
+  transform: rotateY(180deg);
+}
+.card-face-back {
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes reveal-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+@keyframes shutter {
+  0% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Runs from off the left edge to off the right; the base element is opacity-0. */
+@keyframes sheen {
+  0% {
+    opacity: 1;
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(340%) skewX(-18deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+  .card-flipper[data-revealed="true"] {
+    transform: none;
+  }
+  .card-face-back {
+    transition: opacity 1ms;
+  }
+  .card-flipper[data-revealed="true"] .card-face-back {
+    opacity: 0;
+  }
+  .card-face-front {
+    transform: none;
+  }
+  .card-flipper:not([data-revealed="true"]) .card-face-front {
+    opacity: 0;
+  }
+}
