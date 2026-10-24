@@ -3,6 +3,7 @@ import { extname, join } from "node:path";
 import { GoogleGenAI } from "@google/genai";
 import { z } from "zod";
 import { findLine, type Line } from "./lines.ts";
+import { findSigns, toRouteId, type SignMatch } from "./signs.ts";
 
 const model = process.env.GEMINI_MODEL ?? "gemini-flash-lite-latest";
 const client = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
@@ -12,6 +13,11 @@ const reading = z.object({
   sign_found: z.boolean().describe("true if a route sign or bullet is visible"),
   sign_text: z.string().describe("exact letters/numbers on the sign, empty if none"),
   sign_shape: z.enum(["circle", "diamond", "other", "none"]),
+  background_color: z.string().describe("hex color of the bullet's background, like #0039A6; empty if unsure"),
+  foreground_color: z.string().describe("hex color of the letter or number, like #FFFFFF; empty if unsure"),
+  sign_technology: z
+    .enum(["rollsign", "led", "lcd", "unknown"])
+    .describe("rollsign = printed scroll lit from behind, led = dot-matrix lights, lcd = flat screen"),
   blurry: z.boolean().describe("true if the sign is too blurry or dark to read"),
   confidence: z.enum(["high", "medium", "low"]),
   notes: z.string().describe("one short sentence on anything unusual"),
@@ -50,8 +56,8 @@ function loadExamples(dir = join(import.meta.dirname, "../examples")) {
 const examples = loadExamples();
 
 export type Result =
-  | { status: "identified"; line: Line; reading: Reading }
-  | { status: "rare"; text: string; reading: Reading }
+  | { status: "identified"; line: Line; matches: SignMatch[]; reading: Reading }
+  | { status: "rare"; text: string; matches: SignMatch[]; reading: Reading }
   | { status: "retake"; reason: string; reading: Reading }
   | { status: "not_found"; reason: string; reading: Reading };
 
@@ -81,8 +87,9 @@ export async function identify(image: Buffer, mimeType: string): Promise<Result>
   }
 
   const line = findLine(r.sign_text);
-  if (line) return { status: "identified", line, reading: r };
+  const matches = await findSigns(r, line?.id ?? toRouteId(r.sign_text));
+  if (line) return { status: "identified", line, matches, reading: r };
 
-  // a real sign we don't have in the list, e.g. a vintage rollsign on a museum train
-  return { status: "rare", text: r.sign_text, reading: r };
+  // not a current line, e.g. a K or V rollsign on a museum train; matches has it if the catalog does
+  return { status: "rare", text: r.sign_text, matches, reading: r };
 }
