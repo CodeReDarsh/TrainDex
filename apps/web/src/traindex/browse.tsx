@@ -240,7 +240,7 @@ export function Collection({ cards, signedIn, preferences, onPreferences, onScan
           </button></li>
         })}
       </ul> : <Dialogue tone="warn" title="Nothing here">No routes match these filters.</Dialogue>}
-      <p className="text-[0.9375rem] text-paper">{view === 'groups' ? 'Routes shown are a sample list. Counts are your own saved cards, not a catalog target.' : 'Every saved encounter is a separate card, including repeat sightings. Drafts are separate.'}</p>
+      <p className="text-[0.9375rem] text-paper">{view === 'groups' ? 'Routes shown are a sample list. Counts are your own saved cards, not a catalog target.' : 'Every saved encounter is a separate card, including repeat sightings.'}</p>
       <PxButton v="primary" size="lg" icon="camera" onClick={onScan}>Scan</PxButton>
     </main>
   </div>
@@ -689,7 +689,7 @@ export function Settings({
             </>
           )}
           <p className="text-[0.9375rem] text-ink/80">
-            Import is an explicit prototype choice. Nothing syncs automatically. Accounts, cards, and drafts are in-memory simulations.
+            Import is an explicit prototype choice. Nothing syncs automatically. Sign-in and account import are simulated.
           </p>
         </Panel>
 

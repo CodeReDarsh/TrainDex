@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 
 export type Nav = {
-  name: "capture" | "preview" | "recognizing" | "review" | "home" | "collection" | "settings" | "import" | "drafts" | "dex"
+  name: "capture" | "preview" | "recognizing" | "review" | "home" | "collection" | "settings" | "import" | "dex"
 } | { name: "reveal"; cardId: string; first: boolean | null } | { name: "pet"; route: string } | {
   name: "route"
   route: string

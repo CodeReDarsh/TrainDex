@@ -271,11 +271,9 @@ export function Preview({
   onBack,
   onPhoto,
   offline,
-  onKeep,
   cancelled,
 }: {
   offline: boolean
-  onKeep: () => void
   cancelled: boolean
   draft: Draft
   onCrop: (c: Draft['crop']) => void
@@ -356,7 +354,7 @@ export function Preview({
       <ScreenHeader title="Check photo" onBack={onBack} />
       <main className="flex flex-1 flex-col gap-3 p-4">
         {cancelled && <Dialogue live title="Processing cancelled">Your photo and crop are still here. Resume when ready.</Dialogue>}
-        {offline && <Dialogue tone="warn" live title="Waiting for connection">Recognition needs a connection. Keep an unrecognized photo draft for later in this demo session.</Dialogue>}
+        {offline && <Dialogue tone="warn" live title="Waiting for connection">Recognition needs a connection. This photo stays on this screen until you leave.</Dialogue>}
         <Panel className="!p-2">
           <div ref={box} onPointerDown={startGesture} onPointerMove={move} onPointerUp={endGesture} onPointerCancel={endGesture} onLostPointerCapture={endGesture} className="relative isolate mx-auto w-fit max-w-full overflow-hidden touch-none select-none bg-ink">
             <PhotoPreview key={draft.photo} src={draft.photo} alt="Your photo, full frame" className="block max-h-[46dvh] max-w-full" onStatus={setPhotoStatus}>
@@ -423,7 +421,6 @@ export function Preview({
           <PxButton v="primary" size="lg" icon="search" disabled={offline || photoStatus !== 'ready' || picker.busy} onClick={onRecognize}>
             Recognize sign
           </PxButton>
-          <PxButton onClick={onKeep}>Keep photo draft (demo)</PxButton>
           <div className="grid grid-cols-2 gap-2">
             <PxButton icon="camera" onClick={onRetake}>
               Retake

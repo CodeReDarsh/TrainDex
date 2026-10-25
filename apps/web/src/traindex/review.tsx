@@ -106,7 +106,7 @@ export function Review({
     const reason = r?.kind === 'no-sign' ? ['No train sign found', 'We could not find a subway route sign in this photo. Frame the sign or choose another train photo.']
       : r?.kind === 'blurry' ? ['Photo too blurry', 'The sign is too blurred to read. Hold steady, move closer, and avoid glare.']
       : r?.kind === 'upload-failed' ? ['Upload did not finish', 'The simulated upload failed before recognition finished. Retry with this photo or choose another.']
-      : r?.kind === 'unavailable' ? ['Recognition unavailable', 'The recognition service is temporarily unavailable. Your photo is still here. Retry later, adjust the crop, or keep a draft from Check photo.']
+      : r?.kind === 'unavailable' ? ['Recognition unavailable', 'The recognition service is temporarily unavailable. Your photo is still here. Retry later or adjust the crop.']
       : r?.kind === 'cancelled' ? ['Processing cancelled', 'Recognition stopped. No card was created. Your photo and crop are still here.']
       : ['Route unclear', 'We could not read the route lettering. Glare or a tight crop can hide it.']
     return (

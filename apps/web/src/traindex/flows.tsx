@@ -1,10 +1,8 @@
-import { PhotoPreview } from './photo'
 import { useDialog } from "./dialog"
 import { useEffect, useState } from "react"
-import type { Card, Draft } from "./data"
+import type { Card } from "./data"
 import { fmtDateTime } from "./data"
 import { Chip, Dialogue, Panel, PanelTitle, PxButton, ScreenHeader } from "./ui"
-import { Confirm } from "./review"
 
 export type AuthOutcome = "success" | "cancelled" | "error" | "expired"
 export function AccountFlow({
@@ -275,91 +273,6 @@ export function ImportCards({
           </div>
         )}
       </main>
-    </>
-  )
-}
-
-export function PhotoDrafts({
-  drafts,
-  offline,
-  onResume,
-  onDiscard,
-  onBack,
-  onScan,
-}: {
-  drafts: Draft[]
-  offline: boolean
-  onResume: (d: Draft) => void
-  onDiscard: (id: string) => void
-  onBack: () => void
-  onScan: () => void
-}) {
-  const [discard, setDiscard] = useState<string | null>(null)
-  return (
-    <>
-      <ScreenHeader title="Photo drafts" onBack={onBack} />
-      <main className="flex flex-col gap-4 p-4">
-        <Dialogue title="Unrecognized photos">
-          Drafts are separate from saved cards and route counts. This prototype
-          keeps photos only in memory until refresh.{" "}
-          {offline
-            ? "Waiting for a connection to recognize."
-            : "Open a draft to check the crop and resume recognition."}
-        </Dialogue>
-        {!drafts.length && (
-          <Panel>
-            <PanelTitle>No drafts yet</PanelTitle>
-            <p>
-              Keep a photo from Check photo to return to it later in this
-              session.
-            </p>
-          </Panel>
-        )}
-        {drafts.map((d) => (
-          <Panel key={d.id}>
-            <PhotoPreview
-              src={d.photo}
-              alt="Unrecognized photo draft"
-              className="mb-3 max-h-48 w-full object-contain"
-            />
-            <Chip tone="gold">
-              {offline ? "Waiting for connection" : "Ready to resume"} · not a
-              card
-            </Chip>
-            <p className="my-3">{fmtDateTime(d.captureAt)}</p>
-            <PxButton
-              className="w-full"
-              v="primary"
-              onClick={() => onResume(d)}
-            >
-              Open draft
-            </PxButton>
-            <PxButton
-              className="w-full"
-              icon="trash"
-              onClick={() => setDiscard(d.id)}
-            >
-              Discard draft
-            </PxButton>
-          </Panel>
-        ))}
-        <PxButton icon="camera" onClick={onScan}>
-          Scan a sign
-        </PxButton>
-      </main>
-      {discard && (
-        <Confirm
-          title="Discard photo draft?"
-          body="This removes this unrecognized photo from the demo session. Saved cards are unaffected."
-          confirm="Discard draft"
-          danger
-          onCancel={() => setDiscard(null)}
-          onConfirm={() => {
-            onDiscard(discard)
-            setDiscard(null)
-          }}
-        />
-      )}
     </>
   )
 }

@@ -18,7 +18,7 @@ import { Capture, Preview, Recognizing } from './traindex/capture'
 import { type SaveState, Confirm, Review, Reveal, SaveSheet } from './traindex/review'
 import { DEFAULT_COLLECTION_PREFERENCES, type CollectionPreferences, Collection, Detail, FullPhoto, Home, RouteView, Settings } from './traindex/browse'
 
-import { AccountFlow, ImportCards, PhotoDrafts, LoadState, type AuthOutcome } from './traindex/flows'
+import { AccountFlow, ImportCards, LoadState, type AuthOutcome } from './traindex/flows'
 
 import { useScreenHistory, leavesCapture, type Nav } from './traindex/navigation'
 import { closeTopDialog } from './traindex/dialog'
@@ -82,7 +82,6 @@ export default function App() {
   const [imported, setImported] = useState<string[]>([])
   const markImported = useCallback((id: string) => setImported(ids => ids.includes(id) ? ids : [...ids, id]), [])
   const [failImport, setFailImport] = useState(false)
-  const [drafts, setDrafts] = useState<Draft[]>([])
   const [offline, setOffline] = useState(false)
   const [cancelled, setCancelled] = useState(false)
   const [discardAction, setDiscardAction] = useState<(() => void) | null>(null)
@@ -114,13 +113,6 @@ export default function App() {
     else action()
   }
   const toCapture = () => go({ name: 'capture' })
-  const keepDraft = () => {
-    if (!draft) return
-    const unrecognized = { ...draft, result: undefined, model: null, modelSource: 'unknown' as const }
-    setDrafts(list => [unrecognized, ...list.filter(d => d.id !== draft.id)])
-    setDraft(null)
-    setNav({ name: 'drafts' })
-  }
   const recognize = () => { if (!offline) { setCancelled(false); go({ name: 'recognizing' }) } }
   const retryLoad = () => {
     setLoadState('loading')
@@ -128,11 +120,11 @@ export default function App() {
   }
   useEffect(() => {
     const warn = (e: BeforeUnloadEvent) => {
-      if (draft || drafts.length || detailDirty) { e.preventDefault(); e.returnValue = '' }
+      if (draft || detailDirty) { e.preventDefault(); e.returnValue = '' }
     }
     window.addEventListener('beforeunload', warn)
     return () => window.removeEventListener('beforeunload', warn)
-  }, [draft, drafts.length, detailDirty])
+  }, [draft, detailDirty])
   useEffect(() => {
     if (offline && nav.name === 'recognizing') { setCancelled(true); setNav({ name: 'preview' }) }
   }, [offline, nav.name])
@@ -180,7 +172,6 @@ export default function App() {
     const first = card.variantId ? !encounterInfo(visibleCards, card) : null
     setCards((cs) => (cs.some((c) => c.id === card.id) ? cs : [card, ...cs]))
     setSave({ mode: 'closed' })
-    setDrafts(list => list.filter(d => d.id !== card.id))
     setDraft(null)
     setNav({ name: 'reveal', cardId: card.id, first })
   }
@@ -222,7 +213,6 @@ export default function App() {
     setCards(empty ? [] : SAMPLE_CARDS)
     clearCards()
     setImported([])
-    setDrafts([])
     setDraft(null)
     setSave({ mode: 'closed' })
     setDetailDirty(false)
@@ -272,7 +262,6 @@ export default function App() {
           onCrop={(crop) => patchDraft({ crop })}
           offline={offline}
           cancelled={cancelled}
-          onKeep={keepDraft}
           onRecognize={recognize}
           onRetake={toCapture}
           onBack={toCapture}
@@ -398,9 +387,6 @@ export default function App() {
       break
     case 'pet':
       body = <PetDetail route={nav.route} cards={visibleCards} onBack={() => go({ name: 'dex' })} onOpenCard={(id) => go({ name: 'detail', cardId: id })} />
-      break
-    case 'drafts':
-      body = <PhotoDrafts drafts={drafts} offline={offline} onBack={() => go({ name: 'home' })} onScan={toCapture} onResume={d => { setDraft(d); setCancelled(false); go({ name: 'preview' }) }} onDiscard={id => setDrafts(list => list.filter(d => d.id !== id))} />
       break
     case 'import':
       body = signedIn ? <ImportCards paused={!!discardAction} onBusy={setImportBusy} cards={cards} offline={offline} imported={imported} failOne={failImport} onImported={markImported} onBack={() => go({ name: 'settings' })} /> : <div className="p-4"><Dialogue tone="warn" title="Session expired">Sign in before importing device cards. Your local copies are unchanged.</Dialogue><PxButton className="mt-4 w-full" onClick={() => setAuth({ kind: 'signin', card: false })}>Sign in</PxButton><PxButton className="w-full" onClick={() => go({ name: 'settings' })}>Back to Settings</PxButton></div>
@@ -532,8 +518,7 @@ export default function App() {
         </div>
 
         <div className="flex flex-1 flex-col" key={nav.name === 'detail' ? nav.cardId : nav.name}>
-          {['home', 'collection', 'settings'].includes(nav.name) && <div className="px-4 pt-4"><PxButton className="w-full" onClick={() => go({ name: 'drafts' })}>Photo drafts · {drafts.length}</PxButton></div>}
-          {offline && <div className="px-4 pt-3"><Dialogue tone="warn" title="Offline demo">Browse session cards and drafts. Recognition and account saves wait for a connection.</Dialogue></div>}
+          {offline && <div className="px-4 pt-3"><Dialogue tone="warn" title="Offline demo">Browse saved cards. Recognition and account saves wait for a connection.</Dialogue></div>}
           {notice && <div className="p-4"><Dialogue live title="Please wait">{notice}</Dialogue></div>}
           {body}
         </div>
@@ -548,7 +533,7 @@ export default function App() {
         onRetry={() => commit(save.mode === 'failed' ? save.target : 'device')}
       />
       {auth && <AccountFlow kind={auth.kind} outcome={offline ? 'error' : authOutcome} hasCard={auth.card} onClose={() => { if (auth.card) setSave({ mode: 'choose', note: 'Sign-in cancelled. Your photo and details are still here.' }); setAuth(null) }} onSuccess={() => { setSignedIn(true); if (!auth.card) go({ name: 'settings' }); setAuth(null) }} />}
-      {discardAction && <Confirm title={importBusy ? "Stop this import?" : "Discard unsaved work?"} body={importBusy ? "Completed demo imports and local copies are kept. Unfinished cards can be retried from Settings." : detailDirty ? "Your capture-detail edits have not been applied. Leaving discards these changes." : "Your current photo, crop, and card details have not been saved. Stay here to keep working or keep a photo draft from Check photo."} confirm={importBusy ? "Stop and continue" : "Discard and continue"} cancel="Keep working" danger onCancel={() => setDiscardAction(null)} onConfirm={() => { const action = discardAction; setDiscardAction(null); action() }} />}
+      {discardAction && <Confirm title={importBusy ? "Stop this import?" : "Discard unsaved work?"} body={importBusy ? "Completed demo imports and local copies are kept. Unfinished cards can be retried from Settings." : detailDirty ? "Your capture-detail edits have not been applied. Leaving discards these changes." : "Your current photo, crop, and card details have not been saved. Stay here to keep working, or leave and discard this photo."} confirm={importBusy ? "Stop and continue" : "Discard and continue"} cancel="Keep working" danger onCancel={() => setDiscardAction(null)} onConfirm={() => { const action = discardAction; setDiscardAction(null); action() }} />}
       {full && <FullPhoto src={full.src} alt={full.alt} onClose={() => setFull(null)} />}
     </div>
     </PhotoPreviewContext.Provider>
