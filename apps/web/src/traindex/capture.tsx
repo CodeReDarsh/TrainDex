@@ -1,4 +1,5 @@
 import { decodePhoto, PhotoPreview, type PhotoStatus } from './photo'
+import { boundCrop, cropFromGesture, type CropPoint } from './crop'
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent as RPointerEvent, KeyboardEvent as RKeyboardEvent } from 'react'
 import { type Draft, type Result, type Scenario, PHOTO, resolveScenario } from './data'
@@ -191,15 +192,22 @@ export function Preview({
   const picker = usePicker(onPhoto)
   const [photoStatus, setPhotoStatus] = useState<PhotoStatus>('loading')
   const box = useRef<HTMLDivElement>(null)
-  const drag = useRef(false)
+  const pointers = useRef(new Map<number, CropPoint>())
+  const gesture = useRef<{ crop: Draft['crop']; points: CropPoint[] } | null>(null)
+  const currentCrop = useRef(draft.crop)
+  currentCrop.current = draft.crop
   const { x, y, s } = draft.crop
   const [ratio, setRatio] = useState(1.5)
-  const bounded = (nx: number, ny: number, size = s) => {
-    size = Math.min(size, 1.5 / ratio)
-    const halfX = size / 2
-    const halfY = Math.min(0.5, size * ratio / 3)
-    return { x: Math.min(1 - halfX, Math.max(halfX, nx)), y: Math.min(1 - halfY, Math.max(halfY, ny)), s: size }
+  const bounded = (nx: number, ny: number, size = s) => boundCrop({ x: nx, y: ny, s: size }, ratio)
+  const rebase = () => {
+    gesture.current = pointers.current.size
+      ? { crop: currentCrop.current, points: [...pointers.current.values()] }
+      : null
   }
+  useEffect(() => {
+    pointers.current.clear()
+    gesture.current = null
+  }, [draft.photo])
   useEffect(() => {
     if (photoStatus !== 'ready' || !box.current) return
     const image = box.current.querySelector('img')
@@ -210,10 +218,26 @@ export function Preview({
     if (crop.x !== x || crop.y !== y || crop.s !== s) onCrop(crop)
   }, [ratio, x, y, s])
 
-  const move = (e: RPointerEvent) => {
-    if (!drag.current || !box.current) return
-    const r = box.current.getBoundingClientRect()
-    onCrop(bounded((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height))
+  const startGesture = (e: RPointerEvent<HTMLDivElement>) => {
+    if (photoStatus !== 'ready' || (e.pointerType === 'mouse' && e.button !== 0) || pointers.current.size >= 2) return
+    e.preventDefault()
+    pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
+    e.currentTarget.setPointerCapture(e.pointerId)
+    rebase()
+  }
+  const move = (e: RPointerEvent<HTMLDivElement>) => {
+    if (!pointers.current.has(e.pointerId) || !gesture.current || !box.current) return
+    e.preventDefault()
+    pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
+    const frame = box.current.getBoundingClientRect()
+    const crop = boundCrop(cropFromGesture(gesture.current.crop, gesture.current.points, [...pointers.current.values()], frame), ratio)
+    currentCrop.current = crop
+    onCrop(crop)
+  }
+  const endGesture = (e: RPointerEvent<HTMLDivElement>) => {
+    if (!pointers.current.delete(e.pointerId)) return
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
+    rebase()
   }
   const key = (e: RKeyboardEvent) => {
     const step = 0.03
@@ -239,22 +263,14 @@ export function Preview({
         {cancelled && <Dialogue live title="Processing cancelled">Your photo and crop are still here. Resume when ready.</Dialogue>}
         {offline && <Dialogue tone="warn" live title="Waiting for connection">Recognition needs a connection. Keep an unrecognized photo draft for later in this demo session.</Dialogue>}
         <Panel className="!p-2">
-          <div ref={box} className="relative isolate mx-auto w-fit max-w-full overflow-hidden touch-none select-none bg-ink">
+          <div ref={box} onPointerDown={startGesture} onPointerMove={move} onPointerUp={endGesture} onPointerCancel={endGesture} onLostPointerCapture={endGesture} className="relative isolate mx-auto w-fit max-w-full overflow-hidden touch-none select-none bg-ink">
             <PhotoPreview key={draft.photo} src={draft.photo} alt="Your photo, full frame" className="block max-h-[46dvh] max-w-full" onStatus={setPhotoStatus}>
             <div
               role="group"
               tabIndex={0}
-              aria-label="Sign crop position. Use arrow keys to move."
+              aria-label="Sign crop position. Drag to move, pinch to resize, or use arrow keys."
               aria-describedby="crop-position"
               onKeyDown={key}
-              onPointerDown={(e) => {
-                drag.current = true
-                e.currentTarget.setPointerCapture(e.pointerId)
-                move(e)
-              }}
-              onPointerMove={move}
-              onPointerUp={() => (drag.current = false)}
-              onPointerCancel={() => (drag.current = false)}
               className="absolute cursor-move"
               style={{
                 left: `${x * 100}%`,
@@ -270,7 +286,7 @@ export function Preview({
             </PhotoPreview>
           </div>
         </Panel>
-        <p id="crop-position" role="status" className="text-paper">Crop center: {Math.round(x * 100)}% across, {Math.round(y * 100)}% down. Drag the crop or focus it and use arrow keys.</p>
+        <p id="crop-position" role="status" className="text-paper">Crop center: {Math.round(x * 100)}% across, {Math.round(y * 100)}% down. Drag to move, pinch with two fingers to resize, or focus the crop and use arrow keys.</p>
 
         <Panel className="flex flex-col gap-3">
           <PanelTitle
@@ -282,7 +298,7 @@ export function Preview({
           >
             Adjust crop
           </PanelTitle>
-          <p className="text-[1rem]">Drag the box over the sign. Your full photo is always kept.</p>
+          <p className="text-[1rem]">Drag the box over the sign. Spread two fingers to enlarge it; pinch together to shrink it. You can also use the size slider. Your full photo is always kept.</p>
           <label className="flex flex-col gap-1">
             <span className="font-pixel text-[16px] font-bold uppercase tracking-normal">Crop size</span>
             <input

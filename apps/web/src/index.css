@@ -754,3 +754,15 @@
   nav[aria-label='Main'] { padding-inline: 8px; gap: 6px; }
   nav[aria-label='Main'] button { font-size: .875rem; }
 }
+
+/* Size the image itself: enlarging its container alone can just recenter a small image. */
+.photo-viewport { overscroll-behavior: contain; scrollbar-gutter: stable; }
+.photo-stage { display: grid; place-items: center; }
+.photo-stage .full-photo-image {
+  display: block;
+  width: var(--photo-width);
+  height: var(--photo-height);
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+}

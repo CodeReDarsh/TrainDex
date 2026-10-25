@@ -62,3 +62,17 @@ At 320px with 200% text, a DOM check confirmed the detail screen scroll width eq
 - Focus route search: search keyboard hint is present, spellcheck/autocorrection are off, font is at least 16px, and navigation becomes static while typing. Blur restores sticky navigation.
 - Open and cancel Delete card; tall confirmation/sheets can scroll within the viewport. Check Full photo close/zoom controls.
 - On real iOS/Android phones (pending): keyboard/browser chrome, landscape cutouts, home indicator, camera permission/fallback and pinch zoom. The desktop States width controls do not emulate those behaviors.
+
+## Full-photo zoom regression
+
+- Open Full photo from a card, wait for the photo to load, and verify 1× fits the whole frame.
+- Toggle 2×: the image itself doubles in width/height relative to its fitted size, centered on the visible area. Scroll horizontally/vertically (swipe on a phone, arrow keys in the focused photo region) and verify the photo remains reachable.
+- Toggle 1× after panning: the whole photo fits again with no residual offscreen offset. Close returns to the same card. Repeat with portrait/landscape photos and resize/rotate the viewport.
+
+## Crop pinch regression
+
+- On a physical touch device: open Check photo. Spread two fingers on the image to enlarge the crop; pinch together to shrink it. The 3:2 shape stays inside the photo and the size slider follows.
+- Drag with one finger before/after pinching. Lift either finger during a pinch and continue dragging with the remaining finger; there must be no crop jump. Release/cancel both fingers, then begin again. Touches may start outside the outlined crop.
+- Try minimum/maximum size near each edge on portrait/landscape images; the whole crop must remain inside the image. A third finger must not corrupt the gesture.
+- Verify slider, Reset and crop arrow keys still work. Page scroll/pinch zoom outside the photo remains browser-controlled.
+- Geometry checks: from the project root, run `node apps/web/scripts/crop-gesture.test.mjs` (Node 24). Browser desktop controls cannot reproduce a real two-finger gesture.

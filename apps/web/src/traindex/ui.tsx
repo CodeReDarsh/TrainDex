@@ -396,14 +396,14 @@ function CardPattern({ seed, shape }: { seed: string; shape: 'circle' | 'diamond
   )
 }
 
-export function CardPhoto({ src, alt, className = '', retry = true }: { src: string; alt: string; className?: string; retry?: boolean }) {
+export function CardPhoto({ src, alt, className = '', retry = true, onLoad }: { src: string; alt: string; className?: string; retry?: boolean; onLoad?: (image: HTMLImageElement) => void }) {
   const [failed, setFailed] = useState(false)
   const [attempt, setAttempt] = useState(0)
   if (!src || failed) return <div className="flex min-h-32 flex-col items-center justify-center gap-2 bg-paper-2 p-3 text-center text-ink" role="status">
     <PixelIcon name="photo" size={24} /><b>Photo unavailable</b><p className="text-sm">Card details are still available.</p>
     {src && retry && <button type="button" className="min-h-11 underline" onClick={(e) => { e.stopPropagation(); setFailed(false); setAttempt(n => n + 1) }}>Retry photo</button>}
   </div>
-  return <img key={attempt} src={src} alt={alt} loading="lazy" className={className} onError={() => setFailed(true)} />
+  return <img key={attempt} src={src} alt={alt} loading="lazy" className={className} onLoad={e => onLoad?.(e.currentTarget)} onError={() => setFailed(true)} />
 }
 
 /* ---------- Trading card ---------- */

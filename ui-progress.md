@@ -137,3 +137,7 @@ Check off remaining items only after implementing and verifying them. Keep proto
 Recognition, account flows and saved collections are still simulated/in memory; this layout pass does not implement backend wiring or durable IndexedDB storage.
 
 Validation for this pass: web typecheck/build passed; browser content previews checked at 320px and 375px, including 320px with 200% text, search-focus navigation behavior, grouping and opening/cancelling a confirmation. Real-phone behavior remains pending.
+
+Full-photo viewer fix: explicit fitted image dimensions replace the old 200%-wide wrapper. 2× enlarges the actual photo, preserves the visible center, and provides a contained scroll/pan region; 1× restores the fitted frame. Zoom waits for image dimensions; resize observation recomputes fitting. Browser verification and typecheck/build cover the fix; physical touch/rotation validation remains pending.
+
+Crop touch interaction: two-pointer pinch/spread now resizes the 3:2 crop while one-pointer dragging moves it. Gestures can start anywhere on the photo; pointer capture keeps tracking outside the crop, and lifting/cancelling a finger rebases the remaining drag. Size/position use the same photo bounds as the slider/keyboard controls. Six geometry tests cover translation, pinch in/out, combined movement, one-finger continuation, edge/size bounds and coincident pointers. Actual two-finger iOS/Android verification remains pending.

@@ -1,5 +1,5 @@
 import { useDialog } from './dialog'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import {
   type Card,
   MODELS,
@@ -537,6 +537,44 @@ export function Detail({
 export function FullPhoto({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
   const dialog = useDialog(true, onClose)
   const [zoom, setZoom] = useState(false)
+  const viewport = useRef<HTMLDivElement>(null)
+  const previousStage = useRef({ width: 0, height: 0 })
+  const [bounds, setBounds] = useState({ width: 0, height: 0 })
+  const [natural, setNatural] = useState({ width: 0, height: 0 })
+  useLayoutEffect(() => {
+    const element = viewport.current
+    if (!element) return
+    const measure = () => setBounds(current => {
+      // Leave one pixel for fractional CSS-pixel rounding at browser zoom levels.
+      const next = { width: Math.max(0, element.clientWidth - 1), height: Math.max(0, element.clientHeight - 1) }
+      return current.width === next.width && current.height === next.height ? current : next
+    })
+    measure()
+    const observer = new ResizeObserver(measure)
+    // Scrollbar appearance must not change the 1× baseline during zoom.
+    observer.observe(element, { box: 'border-box' })
+    return () => observer.disconnect()
+  }, [])
+  const fit = natural.width && natural.height
+    ? Math.min(bounds.width / natural.width, bounds.height / natural.height)
+    : 0
+  const width = natural.width * fit * (zoom ? 2 : 1)
+  const height = natural.height * fit * (zoom ? 2 : 1)
+  const stageWidth = Math.max(bounds.width, width)
+  const stageHeight = Math.max(bounds.height, height)
+  useLayoutEffect(() => {
+    const element = viewport.current
+    if (!element) return
+    const previous = previousStage.current
+    // Preserve the visible center when zooming; the scroll area owns all panning.
+    const viewWidth = element.clientWidth
+    const viewHeight = element.clientHeight
+    const x = previous.width ? (element.scrollLeft + viewWidth / 2) / previous.width : .5
+    const y = previous.height ? (element.scrollTop + viewHeight / 2) / previous.height : .5
+    element.scrollLeft = x * stageWidth - viewWidth / 2
+    element.scrollTop = y * stageHeight - viewHeight / 2
+    previousStage.current = { width: stageWidth, height: stageHeight }
+  }, [stageWidth, stageHeight, bounds.width, bounds.height])
   return (
     <div
       ref={dialog}
@@ -546,16 +584,19 @@ export function FullPhoto({ src, alt, onClose }: { src: string; alt: string; onC
       aria-label="Full photo"
       className="photo-dialog fixed inset-0 z-[70] flex flex-col bg-ink"
     >
-      <div className="flex items-center justify-between gap-2 p-4">
+      <div className="flex shrink-0 items-center justify-between gap-2 p-4">
         <PxButton icon="close" onClick={onClose} inline className="!mb-2">
           Close
         </PxButton>
-        <PxButton aria-pressed={zoom} onClick={() => setZoom((z) => !z)} inline className="!mb-2">
+        <PxButton aria-pressed={zoom} disabled={!fit} aria-controls="full-photo-viewport" onClick={() => setZoom((z) => !z)} inline className="!mb-2">
           {zoom ? 'Zoom: 2×' : 'Zoom: 1×'}
         </PxButton>
       </div>
-      <div className="flex-1 overflow-auto px-2 pb-6">
-        <div style={zoom ? { width: '200%' } : undefined}><CardPhoto key={src} src={src} alt={alt} className="mx-auto block max-h-full max-w-full object-contain" /></div>
+      <p className="px-4 pb-2 text-sm text-paper" role="status">{zoom ? '2× zoom · swipe or scroll to explore the photo.' : 'Full photo · select 2× to see more detail.'}</p>
+      <div ref={viewport} id="full-photo-viewport" tabIndex={0} role="region" aria-label="Photo; scroll to pan when zoomed" className="photo-viewport min-h-0 min-w-0 flex-1 overflow-auto">
+        <div className="photo-stage" style={{ width: stageWidth || '100%', height: stageHeight || '100%', '--photo-width': `${width}px`, '--photo-height': `${height}px` } as React.CSSProperties}>
+          <CardPhoto key={src} src={src} alt={alt} className="full-photo-image" onLoad={image => setNatural({ width: image.naturalWidth, height: image.naturalHeight })} />
+        </div>
       </div>
     </div>
   )
