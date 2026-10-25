@@ -69,11 +69,11 @@ export function Home({
         </PanelTitle>
         <dl className="grid grid-cols-2 gap-3">
           <div className="px-inset p-3">
-            <dt className="font-pixel text-[16px] font-medium uppercase tracking-normal">Cards</dt>
+            <dt className="font-pixel text-[16px] font-bold uppercase tracking-normal">Cards</dt>
             <dd><PixelText text={String(cards.length)} scale={6} /></dd>
           </div>
           <div className="px-inset p-3">
-            <dt className="font-pixel text-[16px] font-medium uppercase tracking-normal">Routes</dt>
+            <dt className="font-pixel text-[16px] font-bold uppercase tracking-normal">Routes</dt>
             <dd className="flex items-end gap-2"><PixelText text={String(routes)} scale={6} /><PixelText text={`/${ROUTES.length}`} scale={3} className="mb-0.5" /></dd>
           </div>
         </dl>
@@ -88,14 +88,14 @@ export function Home({
 
       <section aria-labelledby="recent-h">
         <div className="mb-2 flex items-center justify-between">
-          <h2 id="recent-h" className="font-pixel text-[16px] font-medium text-paper">
+          <h2 id="recent-h" className="font-pixel text-[18px] font-bold text-paper">
             Recent cards
           </h2>
         </div>
         {recent.length === 0 ? (
           <Panel className="text-center">
             <PixelIcon name="ask" size={32} className="mx-auto mb-2" />
-            <p className="font-pixel text-[16px] font-medium">No cards yet</p>
+            <p className="font-pixel text-[18px] font-bold">No cards yet</p>
             <p className="text-[1rem]">Scan your first sign. Every photo you save becomes its own card.</p>
           </Panel>
         ) : (
@@ -180,7 +180,7 @@ export function Collection({
               ['Signs', variants],
             ].map(([l, n]) => (
               <div key={l} className="px-inset p-2">
-                <dt className="font-pixel text-[16px] font-medium uppercase tracking-normal">{l}</dt>
+                <dt className="font-pixel text-[16px] font-bold uppercase tracking-normal">{l}</dt>
                 <dd><PixelText text={String(n)} scale={4} /></dd>
               </div>
             ))}
@@ -306,7 +306,7 @@ export function RouteView({
             <div className="px-inset flex h-28 w-28 items-center justify-center">
               <PixelIcon name="ask" size={48} />
             </div>
-            <h2 className="font-pixel text-[24px] font-medium">No cards yet</h2>
+            <h2 className="font-pixel text-[24px] font-bold">No cards yet</h2>
             <p className="text-[1.0625rem]">
               You have not saved a route {route} sign. Scanning does not force a route: we recognize whatever you photograph.
             </p>
@@ -432,7 +432,12 @@ export function Detail({
                 <div>{v.style}</div>
               </div>
             </div>
-            <p>Shape: {v.shape}. Credit: {v.credit}. The sign style is not proof of the photographed train model.</p>
+            <dl className="mt-2 flex flex-col gap-2">
+              <div><dt className="inline font-bold">Shape: </dt><dd className="inline">{v.shape}</dd></div>
+              <div><dt className="inline font-bold">Color: </dt><dd className="inline">{v.color}</dd></div>
+              <div><dt className="inline font-bold">Credit: </dt><dd className="inline">{v.credit}</dd></div>
+            </dl>
+            <p className="mt-3 text-[0.875rem] text-ink/80">The sign style does not prove which train model you photographed.</p>
           </Disclosure>
         )}
 

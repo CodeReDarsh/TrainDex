@@ -27,7 +27,7 @@ For Vercel, set the project root to `apps/web`, build command to `pnpm build`, a
 - Camera view and shutter use a sample photo. The photo picker accepts a real local image for preview.
 - Recognition, authentication, and device/account saves are simulated. Cards live in React state; refreshing resets them. No connection to `apps/api` or the Python catalog is configured yet.
 - Capture times and models in the sample scenarios are fixtures, not actual image analysis or EXIF extraction.
-- Sample photography is loaded from Unsplash and needs internet access. The user-supplied VCR OSD Mono font is bundled locally; font provenance is recorded in `public/fonts/README.md`. Imported logos and application icons are local assets.
+- Sample photography is loaded from Unsplash and needs internet access. The UI currently uses Courier New with Courier/monospace fallbacks. The user-supplied VCR font is retained in `public/fonts/` as a design asset but is not loaded. Imported logos and application icons are local assets.
 - The manifest and icons provide install metadata; there is no service worker or complete offline PWA support.
 
 Continue UI work here. The original ZIP remains an unchanged design checkpoint. Changes in this repository do not automatically sync to Figma Make. No deployment or backend integration is implied by the import.

@@ -1,16 +1,8 @@
 @import 'tailwindcss';
 
-@font-face {
-  font-family: 'VCR OSD Mono';
-  src: url('/fonts/VCR-OSD-Mono.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
-  --font-pixel: 'VCR OSD Mono', ui-monospace, monospace;
-  --font-body: 'VCR OSD Mono', ui-monospace, monospace;
+  --font-pixel: 'Courier New', Courier, monospace;
+  --font-body: 'Courier New', Courier, monospace;
   --color-ink: #14233f;
   --color-paper: #f7f0dc;
   --color-paper-2: #e9dfc0;
@@ -44,7 +36,7 @@
     font-synthesis: none;
     text-rendering: auto;
     font-kerning: none;
-    -webkit-font-smoothing: none;
+    -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: grayscale;
   }
   body {
@@ -81,7 +73,7 @@
   .px-sum,
   .tc-title {
     font-family: var(--font-pixel);
-    -webkit-font-smoothing: none;
+    -webkit-font-smoothing: auto;
     font-synthesis: none;
   }
 
@@ -324,7 +316,8 @@
     line-height: 1.2;
     letter-spacing: 0;
     color: #42516a;
-    text-shadow: .35px 0 currentColor;
+    font-weight: 700;
+    font-synthesis: weight;
   }
   .card-detail-row dd {
     min-width: 0;
@@ -467,7 +460,8 @@
   }
   .tc-info dt {
     font-family: var(--font-body);
-    font-weight: 400;
+    font-weight: 700;
+    font-synthesis: weight;
     font-size: 14px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -635,7 +629,8 @@
 @layer utilities {
   .uppercase.uppercase { font-weight: 400; }
   .uppercase.uppercase, .card-detail-row dt, .tc-info dt {
-    text-shadow: .3px 0 currentColor;
+    font-weight: 700;
+    font-synthesis: weight;
   }
 }
 
@@ -651,4 +646,33 @@
   p { line-height: 1.5; }
   .px-btn { line-height: 1.35; padding-block: 12px; }
   .px-input::placeholder { text-transform: uppercase; }
+}
+
+/* Shared type hierarchy applies to every screen, modal, and disclosure. */
+@layer components {
+  .px-btn { font-weight: 700; font-synthesis: weight; }
+  b, strong { font-weight: 700; font-synthesis: weight; }
+  .px-chip { font-weight: 700; font-synthesis: weight; letter-spacing: .025em; }
+  .card-detail-row dt { font-size: 15px; }
+  .tc-info dt { font-size: 15px; }
+  .capture-controls { container-type: inline-size; }
+  .capture-controls .capture-picker {
+    min-width: 0;
+    min-height: 52px;
+    padding-inline: 2px;
+    gap: 6px;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+  .capture-picker span { white-space: nowrap; }
+  .capture-picker svg { width: 20px; height: 20px; }
+}
+
+.traindex-logo {
+  animation: logo-float 3.8s ease-in-out infinite;
+}
+@keyframes logo-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }

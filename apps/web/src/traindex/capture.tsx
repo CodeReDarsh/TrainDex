@@ -56,7 +56,7 @@ export function Capture({
         {cameraDenied ? (
           <div className="flex h-full flex-col items-center justify-center gap-4 p-6 text-center text-paper">
             <PixelIcon name="ask" size={40} />
-            <h2 className="font-pixel text-[24px] font-medium">Camera is blocked</h2>
+            <h2 className="font-pixel text-[24px] font-bold">Camera is blocked</h2>
             <p className="max-w-[28ch] text-[1.0625rem]">
               Allow camera access in your browser, or choose a photo you already took. No account needed.
             </p>
@@ -129,9 +129,9 @@ export function Capture({
         </p>
       )}
 
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 pt-1">
-        <PxButton icon="photo" onClick={picker.open} className="!px-2 text-[1rem]">
-          Choose photo
+      <div className="capture-controls grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 pt-1">
+        <PxButton icon="photo" onClick={picker.open} className="capture-picker">
+          <span>Choose photo</span>
         </PxButton>
         <PxButton
           size="icon"
@@ -198,7 +198,7 @@ export function Preview({
       <ScreenHeader title="Check photo" onBack={onBack} />
       <main className="flex flex-1 flex-col gap-3 p-4">
         <Panel className="!p-2">
-          <div ref={box} className="relative mx-auto w-fit max-w-full touch-none select-none bg-ink">
+          <div ref={box} className="relative isolate mx-auto w-fit max-w-full overflow-hidden touch-none select-none bg-ink">
             <img src={draft.photo} alt="Your photo, full frame" className="block max-h-[46dvh] max-w-full" draggable={false} />
             <div
               role="slider"
@@ -241,7 +241,7 @@ export function Preview({
           </PanelTitle>
           <p className="text-[1rem]">Drag the box over the sign. Your full photo is always kept.</p>
           <label className="flex flex-col gap-1">
-            <span className="font-pixel text-[16px] font-medium uppercase tracking-normal">Crop size</span>
+            <span className="font-pixel text-[16px] font-bold uppercase tracking-normal">Crop size</span>
             <input
               type="range"
               min={0.1}
@@ -345,7 +345,7 @@ export function Recognizing({
             />
           </div>
           <div className="min-w-0 flex-1">
-            <h2 className="font-pixel text-[16px] font-medium leading-tight">
+            <h2 className="font-pixel text-[18px] font-bold leading-tight">
               {failed ? 'No answer yet' : 'Working on it'}
             </h2>
             <p className="mt-1 text-[1rem]">
@@ -370,7 +370,7 @@ export function Recognizing({
                     {state === 'fail' && <PixelIcon name="close" size={14} />}
                     {state === 'now' && <span className="blink block h-3 w-3 bg-ink" />}
                   </span>
-                  <span className={state === 'now' ? 'font-medium' : ''}>{label}</span>
+                  <span className={state === 'now' ? 'font-bold' : ''}>{label}</span>
                 </li>
               )
             })}

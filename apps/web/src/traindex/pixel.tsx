@@ -137,7 +137,7 @@ export function Logo({ width = 150 }: { width?: number }) {
       alt="TrainDex"
       width={width}
       style={{ height: 'auto' }}
-      className="block shrink-0"
+      className="traindex-logo block shrink-0"
     />
   )
 }

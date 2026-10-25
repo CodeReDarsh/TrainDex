@@ -10,6 +10,10 @@ import {
 
 /* Primary actions share a 24px outline grid with open, legible silhouettes. */
 const ACTION_ICONS = {
+  gear: [
+    'M9.48 4.41L9.73 1.85L14.27 1.85L14.52 4.41L15.59 4.85L17.57 3.22L20.78 6.43L19.15 8.41L19.59 9.48L22.15 9.73L22.15 14.27L19.59 14.52L19.15 15.59L20.78 17.57L17.57 20.78L15.59 19.15L14.52 19.59L14.27 22.15L9.73 22.15L9.48 19.59L8.41 19.15L6.43 20.78L3.22 17.57L4.85 15.59L4.41 14.52L1.85 14.27L1.85 9.73L4.41 9.48L4.85 8.41L3.22 6.43L6.43 3.22L8.41 4.85Z',
+    'M15.2 12a3.2 3.2 0 1 1-6.4 0a3.2 3.2 0 1 1 6.4 0Z',
+  ],
   home: [
     'M3 11h3V8h3V5h3V3h1v2h3v3h3v3h3',
     'M5 11v10h14V11',
@@ -32,7 +36,6 @@ const ACTION_ICONS = {
 /* ---------- Supporting bitmap icons ---------- */
 const ICONS = {
   photo: ['############', '#..........#', '#......##..#', '#......##..#', '#...#......#', '#..###..#..#', '#.#####.##.#', '#.########.#', '#..........#', '############'],
-  gear: ['....####....', '.##.####.##.', '.##########.', '..###..###..', '####....####', '####....####', '####....####', '####....####', '..###..###..', '.##########.', '.##.####.##.', '....####....'],
   back: ['....#.......', '...##.......', '..###.......', '.###########', '############', '.###########', '..###.......', '...##.......', '....#.......'],
   check: ['..........##', '.........###', '........###.', '##.....###..', '###...###...', '.###.###....', '..#####.....', '...###......', '....#.......'],
   close: ['###.....###', '####...####', '.####.####.', '..#######..', '...#####...', '....###....', '...#####...', '..#######..', '.####.####.', '####...####', '###.....###'],
@@ -48,7 +51,7 @@ const ICONS = {
 export type IconName = keyof typeof ICONS | keyof typeof ACTION_ICONS
 
 export function PixelIcon({ name, size = 24, className }: { name: IconName; size?: number; className?: string }) {
-  if (name === 'home' || name === 'camera' || name === 'cards') {
+  if (name === 'home' || name === 'camera' || name === 'cards' || name === 'gear') {
     return (
       <svg
         aria-hidden="true"
@@ -233,7 +236,7 @@ export function Dialogue({
 export function Field({ label, hint, children, id }: { label: string; hint?: ReactNode; children: ReactNode; id?: string }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="font-pixel text-[16px] font-medium uppercase tracking-normal">
+      <label htmlFor={id} className="font-pixel text-[16px] font-bold uppercase tracking-normal">
         {label}
       </label>
       {children}

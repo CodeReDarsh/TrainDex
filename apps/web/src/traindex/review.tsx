@@ -45,7 +45,7 @@ export function Confirm({
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/70 p-6" onKeyDown={(e) => e.key === 'Escape' && onCancel()}>
       <div role="alertdialog" aria-modal="true" aria-labelledby="cf-t" className="px-panel w-full max-w-[420px] p-5">
-        <h2 id="cf-t" className="font-pixel text-[24px] font-medium leading-tight">
+        <h2 id="cf-t" className="font-pixel text-[24px] font-bold leading-tight">
           {title}
         </h2>
         <div className="mb-4 mt-2 text-[1.0625rem]">{body}</div>
@@ -179,7 +179,7 @@ export function Review({
           <div className="flex items-center gap-3">
             <Sign route={r.route} variantId={r.variantId} unknown={!v} size={45} />
             <div className="min-w-0 flex-1">
-              <div className="font-pixel text-[16px] font-medium">Route {r.route}</div>
+              <div className="font-pixel text-[18px] font-bold">Route {r.route}</div>
               <div className="text-[1rem]">{v ? v.style : 'Sign appearance not matched'}</div>
             </div>
           </div>
@@ -271,10 +271,12 @@ export function Review({
                 <div>{v.style}</div>
               </div>
             </div>
-            <p className="text-ink/80">
-              Shape: {v.shape}. Color {v.color}. Credit: {v.credit}. The sign style does not prove which train model you
-              photographed.
-            </p>
+            <dl className="mt-2 flex flex-col gap-2">
+              <div><dt className="inline font-bold">Shape: </dt><dd className="inline">{v.shape}</dd></div>
+              <div><dt className="inline font-bold">Color: </dt><dd className="inline">{v.color}</dd></div>
+              <div><dt className="inline font-bold">Credit: </dt><dd className="inline">{v.credit}</dd></div>
+            </dl>
+            <p className="mt-3 text-[0.875rem] text-ink/80">The sign style does not prove which train model you photographed.</p>
           </Disclosure>
         )}
 
@@ -369,7 +371,7 @@ export function SaveSheet({
       >
         {state.mode === 'choose' && (
           <>
-            <h2 id="sheet-t" className="font-pixel text-[24px] font-medium">
+            <h2 id="sheet-t" className="font-pixel text-[24px] font-bold">
               Save your card
             </h2>
             <p className="mb-1 mt-1 text-[1.0625rem]">Device saves stay in this browser. Sign in to save to an account.</p>
@@ -397,7 +399,7 @@ export function SaveSheet({
         )}
         {state.mode === 'auth' && (
           <>
-            <h2 id="sheet-t" className="font-pixel text-[24px] font-medium">
+            <h2 id="sheet-t" className="font-pixel text-[24px] font-bold">
               {state.kind === 'signin' ? 'Sign in' : 'Create account'}
             </h2>
             <Dialogue tone="info" title="Placeholder" className="my-3">
@@ -414,7 +416,7 @@ export function SaveSheet({
         )}
         {state.mode === 'saving' && (
           <div role="status" aria-live="polite" className="py-4">
-            <h2 id="sheet-t" className="font-pixel text-[24px] font-medium">
+            <h2 id="sheet-t" className="font-pixel text-[24px] font-bold">
               {state.target === 'device' ? 'Saving on this device…' : 'Saving to your account…'}
             </h2>
             <div className="prog-bar my-4" />
@@ -423,7 +425,7 @@ export function SaveSheet({
         )}
         {state.mode === 'failed' && (
           <>
-            <h2 id="sheet-t" className="font-pixel text-[24px] font-medium">
+            <h2 id="sheet-t" className="font-pixel text-[24px] font-bold">
               Save did not work
             </h2>
             <Dialogue tone="error" live className="my-3">
@@ -475,7 +477,7 @@ export function Reveal({
               {device ? 'Saved on this device' : 'Saved to your account'}
             </Chip>
           </div>
-          <h1 className="mt-2 font-pixel text-[24px] font-medium leading-none text-paper">
+          <h1 className="mt-2 font-pixel text-[26px] font-bold leading-none text-paper">
             {firstEncounter === null ? 'Card saved!' : firstEncounter ? 'New sign!' : `Encounter #${info?.count}`}
           </h1>
           <p className="mt-1 text-[1rem] text-paper">
