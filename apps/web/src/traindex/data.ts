@@ -138,14 +138,24 @@ export type Result =
   | { kind: 'uncertain'; route: string; variantId: null; model: null }
   | { kind: 'unclear' }
   | { kind: 'timeout' }
+  | { kind: 'no-sign' }
+  | { kind: 'blurry' }
+  | { kind: 'upload-failed' }
+  | { kind: 'cancelled' }
+  | { kind: 'unavailable' }
 
-export type Scenario = 'first' | 'repeat' | 'uncertain' | 'unclear' | 'timeout'
+export type Scenario = 'first' | 'repeat' | 'uncertain' | 'unclear' | 'timeout' | 'no-sign' | 'blurry' | 'upload-failed' | 'cancelled' | 'unavailable'
 
 export const SCENARIOS: { id: Scenario; label: string }[] = [
   { id: 'first', label: 'First encounter (Q diamond)' },
   { id: 'repeat', label: 'Repeat encounter (A circle)' },
   { id: 'uncertain', label: 'Uncertain variant (N)' },
   { id: 'unclear', label: 'Route unclear' },
+  { id: 'no-sign', label: 'No sign / not a train' },
+  { id: 'blurry', label: 'Unusable blurry photo' },
+  { id: 'upload-failed', label: 'Upload failure' },
+  { id: 'cancelled', label: 'Processing cancelled' },
+  { id: 'unavailable', label: 'Recognition service unavailable' },
   { id: 'timeout', label: 'Provider timeout, then retry' },
 ]
 
@@ -159,6 +169,11 @@ export function resolveScenario(s: Scenario): Result {
       return { kind: 'uncertain', route: 'N', variantId: null, model: null }
     case 'unclear':
       return { kind: 'unclear' }
+    case 'no-sign': return { kind: 'no-sign' }
+    case 'blurry': return { kind: 'blurry' }
+    case 'upload-failed': return { kind: 'upload-failed' }
+    case 'unavailable': return { kind: 'unavailable' }
+    case 'cancelled': return { kind: 'cancelled' }
     default:
       return { kind: 'timeout' }
   }

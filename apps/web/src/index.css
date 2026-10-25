@@ -29,7 +29,7 @@
     background: var(--color-teal-deep);
     color: var(--color-ink);
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: 100%;
     line-height: 1.5;
     font-weight: 400;
     text-transform: uppercase;
@@ -675,4 +675,38 @@
 @keyframes logo-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
+}
+
+/* Reflow long labels and phone controls without hiding content. */
+@layer components {
+  h1, h2, h3, p, dd, .px-chip, .px-btn { overflow-wrap: anywhere; }
+  .px-btn { max-width: calc(100% - 8px); font-size: 1rem; }
+  .px-chip { white-space: normal; }
+  .tc-head { flex-wrap: wrap; }
+  .tc-head > div { min-width: 6ch; }
+  .tc-head > .px-chip { margin-left: auto; }
+  .traindex-logo { max-width: 100%; height: auto; }
+  header h1 { min-width: 0; }
+  input, select { scroll-margin-block: 5rem; }
+  .px-sum { min-height: 44px; }
+}
+.capture-screen { container-type: inline-size; }
+@container (max-width: 380px) {
+  .capture-controls { display: flex; flex-wrap: wrap; justify-content: center; }
+  .capture-controls > .shutter { order: -1; margin-inline: calc(50% - 40px); flex-shrink: 0; }
+  .capture-controls > .capture-picker, .capture-controls > :last-child { flex: 1 0 max-content; font-size: 1rem; }
+}
+
+@layer components {
+  .capture-picker { flex-wrap: wrap; }
+  nav[aria-label='Main'] button { min-width: 0; overflow-wrap: anywhere; padding-inline: 4px; }
+}
+
+@layer components {
+  .px-chip { max-width: 100%; }
+  .previous-encounter span { overflow-wrap: anywhere; }
+  .previous-encounter img { max-width: 100%; }
+}
+@layer components {
+  .px-panel { overflow-wrap: anywhere; }
 }

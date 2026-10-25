@@ -1,4 +1,6 @@
+import { useDialog } from './dialog'
 import { useEffect, useRef, useState } from 'react'
+import { usePicker } from './capture'
 import type { ReactNode } from 'react'
 import {
   type Card,
@@ -42,8 +44,9 @@ export function Confirm({
   onConfirm: () => void
   onCancel: () => void
 }) {
+  const dialog = useDialog(true, onCancel)
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/70 p-6" onKeyDown={(e) => e.key === 'Escape' && onCancel()}>
+    <div ref={dialog} tabIndex={-1} className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/70 p-6">
       <div role="alertdialog" aria-modal="true" aria-labelledby="cf-t" className="px-panel w-full max-w-[420px] p-5">
         <h2 id="cf-t" className="font-pixel text-[24px] font-bold leading-tight">
           {title}
@@ -53,7 +56,7 @@ export function Confirm({
           <PxButton v={danger ? 'danger' : 'primary'} onClick={onConfirm}>
             {confirm}
           </PxButton>
-          <PxButton autoFocus onClick={onCancel}>
+          <PxButton data-initial-focus onClick={onCancel}>
             {cancel}
           </PxButton>
         </div>
@@ -75,6 +78,7 @@ export function Review({
   onTryAgain,
   onFullPhoto,
   onSignIn,
+  onPhoto,
 }: {
   draft: Draft
   cards: Card[]
@@ -87,23 +91,30 @@ export function Review({
   onTryAgain: () => void
   onFullPhoto: () => void
   onSignIn: () => void
+  onPhoto: (url: string) => void
 }) {
+  const picker = usePicker(onPhoto)
+  const [previous, setPrevious] = useState(false)
   const r = draft.result
-  const [discard, setDiscard] = useState(false)
   const timeId = 'cap-time'
   const heading = useRef<HTMLHeadingElement>(null)
   useEffect(() => heading.current?.focus(), [])
 
-  if (!r || r.kind === 'timeout' || r.kind === 'unclear') {
+  if (!r || (r.kind !== 'matched' && r.kind !== 'uncertain')) {
+    const reason = r?.kind === 'no-sign' ? ['No train sign found', 'We could not find a subway route sign in this photo. Frame the sign or choose another train photo.']
+      : r?.kind === 'blurry' ? ['Photo too blurry', 'The sign is too blurred to read. Hold steady, move closer, and avoid glare.']
+      : r?.kind === 'upload-failed' ? ['Upload did not finish', 'The simulated upload failed before recognition finished. Retry with this photo or choose another.']
+      : r?.kind === 'unavailable' ? ['Recognition unavailable', 'The recognition service is temporarily unavailable. Your photo is still here. Retry later, adjust the crop, or keep a draft from Check photo.']
+      : r?.kind === 'cancelled' ? ['Processing cancelled', 'Recognition stopped. No card was created. Your photo and crop are still here.']
+      : ['Route unclear', 'We could not read the route lettering. Glare or a tight crop can hide it.']
     return (
       <div className="flex flex-1 flex-col">
-        <ScreenHeader title="No match" onBack={onAdjust} />
+        {picker.input}
+        {picker.busy && <Dialogue live title="Opening photo">Checking your selected photo…</Dialogue>}
+        <ScreenHeader title="Recognition result" onBack={onAdjust} />
         <main className="flex flex-1 flex-col gap-4 p-4">
-          <Dialogue tone="error" live title="Route unclear">
-            <p>
-              We could not read the route lettering. Glare or a tight crop can hide it. Your photo has not been saved
-              anywhere.
-            </p>
+          <Dialogue tone={r?.kind === 'cancelled' ? 'info' : 'error'} live title={reason[0]}>
+            <p>{reason[1]} This photo is only held in this demo session.</p>
           </Dialogue>
           <Panel className="!p-2">
             <img src={draft.photo} alt="Your photo" className="block max-h-[40dvh] w-full object-contain" />
@@ -112,10 +123,12 @@ export function Review({
             <PxButton v="primary" size="lg" icon="camera" onClick={onRetake}>
               Retake
             </PxButton>
-            <PxButton icon="photo" onClick={onAdjust}>
+            <PxButton icon="photo" onClick={picker.open}>
               Choose another photo
             </PxButton>
             <PxButton onClick={onAdjust}>Adjust crop</PxButton>
+            <PxButton onClick={onTryAgain}>Retry recognition</PxButton>
+            {picker.error && <Dialogue tone="error">{picker.error}</Dialogue>}
           </div>
         </main>
       </div>
@@ -169,6 +182,7 @@ export function Review({
           </Dialogue>
         )}
 
+        {existing && <PxButton onClick={() => setPrevious(true)}>View previous encounters</PxButton>}
         <div className="px-1">
           <TrainCard card={preview} cards={[...cards, preview]} sparkles={!uncertain} />
         </div>
@@ -283,10 +297,10 @@ export function Review({
         <Disclosure title="Something looks wrong?">
           <p className="mb-2">Recognition can make mistakes. Pick a simple fix:</p>
           <div className="flex flex-col">
-            <PxButton size="sm" icon="camera" onClick={() => setDiscard(true)}>
+            <PxButton size="sm" icon="camera" onClick={onRetake}>
               Retake
             </PxButton>
-            <PxButton size="sm" icon="search" onClick={onTryAgain}>
+            <PxButton size="sm" icon="search" onClick={onAdjust}>
               Adjust crop and retry
             </PxButton>
             <PxButton
@@ -301,9 +315,10 @@ export function Review({
 
         <div className="mt-2 flex flex-col">
           {uncertain && (
-            <PxButton size="lg" icon="search" onClick={onTryAgain}>
-              Try again
-            </PxButton>
+            <>
+              <PxButton size="lg" icon="search" onClick={onTryAgain}>Try again</PxButton>
+              <PxButton onClick={onAdjust}>Adjust crop</PxButton>
+            </>
           )}
           <PxButton v="primary" size="lg" icon="check" onClick={onSave}>
             {saveLabel}
@@ -313,31 +328,33 @@ export function Review({
               Sign in to save to an account instead
             </button>
           )}
-          <PxButton icon="camera" onClick={() => setDiscard(true)}>
+          <PxButton icon="camera" onClick={onRetake}>
             Retake
           </PxButton>
         </div>
       </main>
-
-      {discard && (
-        <Confirm
-          title="Discard this card?"
-          body="Your photo and the details you entered will be thrown away. Nothing has been saved yet."
-          confirm="Discard and retake"
-          danger
-          onConfirm={onRetake}
-          onCancel={() => setDiscard(false)}
-        />
-      )}
+      {previous && <PreviousEncounters cards={cards.filter(c => c.route === r.route && c.variantId === r.variantId)} allCards={cards} onClose={() => setPrevious(false)} />}
     </div>
   )
+}
+
+function PreviousEncounters({ cards, allCards, onClose }: { cards: Card[]; allCards: Card[]; onClose: () => void }) {
+  const dialog = useDialog(true, onClose)
+  const [selected, setSelected] = useState<Card | null>(null)
+  return <div ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="previous-title" className="fixed inset-0 z-50 overflow-y-auto bg-ink/80 p-4">
+    <Panel className="mx-auto my-2 w-full max-w-[440px]">
+      <h2 id="previous-title" className="mb-3 font-pixel text-[24px] font-bold">Previous encounters</h2>
+      <p className="mb-4">Your new card is still unsaved. Its photo and entered details are kept while you look.</p>
+      <PxButton className="w-full" onClick={onClose}>Return to unsaved card</PxButton>
+      {selected ? <><TrainCard card={selected} cards={allCards} /><PxButton className="mt-4 w-full" onClick={() => setSelected(null)}>Back to encounter list</PxButton></> : <ul className="flex flex-col gap-3">{cards.map(c => <li key={c.id}><PxButton className="w-full" onClick={() => setSelected(c)}>Open {c.model ?? 'Unknown model'} · {fmtDate(c.captureAt ?? c.savedAt)}</PxButton><p>{c.station || 'Station not added'}</p></li>)}</ul>}
+    </Panel>
+  </div>
 }
 
 /* ---------- 5. Guest save sheet (+ saving states) ---------- */
 export type SaveState =
   | { mode: 'closed' }
   | { mode: 'choose'; note?: string }
-  | { mode: 'auth'; kind: 'signin' | 'signup' }
   | { mode: 'saving'; target: 'device' | 'account' }
   | { mode: 'failed'; target: 'device' | 'account'; message: string }
 
@@ -346,27 +363,24 @@ export function SaveSheet({
   onClose,
   onDevice,
   onAuth,
-  onAuthCancel,
-  onAuthContinue,
   onRetry,
 }: {
   state: SaveState
   onClose: () => void
   onDevice: () => void
   onAuth: (k: 'signin' | 'signup') => void
-  onAuthCancel: () => void
-  onAuthContinue: () => void
   onRetry: () => void
 }) {
-  if (state.mode === 'closed') return null
   const busy = state.mode === 'saving'
+  const dialog = useDialog(state.mode !== 'closed', () => { if (!busy) onClose() })
+  if (state.mode === 'closed') return null
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/70" onKeyDown={(e) => e.key === 'Escape' && !busy && onClose()}>
+    <div ref={dialog} tabIndex={-1} className="fixed inset-0 z-50 flex items-end justify-center overflow-y-auto bg-ink/70 p-1">
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="sheet-t"
-        className="px-panel sheet-in w-full max-w-[480px] !m-0 px-4 pb-6 pt-4"
+        className="px-panel sheet-in max-h-[95dvh] w-full max-w-[480px] overflow-y-auto !m-0 px-4 pb-6 pt-4"
         style={{ boxShadow: '0 -4px 0 0 #14233f, -4px 0 0 0 #14233f, 4px 0 0 0 #14233f' }}
       >
         {state.mode === 'choose' && (
@@ -374,9 +388,9 @@ export function SaveSheet({
             <h2 id="sheet-t" className="font-pixel text-[24px] font-bold">
               Save your card
             </h2>
-            <p className="mb-1 mt-1 text-[1.0625rem]">Device saves stay in this browser. Sign in to save to an account.</p>
+            <p className="mb-1 mt-1 text-[1.0625rem]">Try a device or account save in this prototype.</p>
             <p className="mb-3 text-[0.9375rem] text-ink/80">
-              Clearing site data can remove cards saved on this device. Your photo and details are kept while you choose.
+              All saves are simulated and reset on refresh. Your photo and details stay in this open session while you choose.
             </p>
             {state.note && (
               <Dialogue tone="warn" live className="mb-3">
@@ -384,7 +398,7 @@ export function SaveSheet({
               </Dialogue>
             )}
             <div className="flex flex-col">
-              <PxButton autoFocus v="primary" onClick={() => onAuth('signin')}>
+              <PxButton v="primary" onClick={() => onAuth('signin')}>
                 Sign in
               </PxButton>
               <PxButton onClick={() => onAuth('signup')}>Create account</PxButton>
@@ -394,23 +408,6 @@ export function SaveSheet({
               <PxButton v="dark" onClick={onClose}>
                 Back to card
               </PxButton>
-            </div>
-          </>
-        )}
-        {state.mode === 'auth' && (
-          <>
-            <h2 id="sheet-t" className="font-pixel text-[24px] font-bold">
-              {state.kind === 'signin' ? 'Sign in' : 'Create account'}
-            </h2>
-            <Dialogue tone="info" title="Placeholder" className="my-3">
-              Provider and forms are not decided yet. This simulated step stands in for them. Your card is held safely
-              until you continue.
-            </Dialogue>
-            <div className="flex flex-col">
-              <PxButton autoFocus v="primary" onClick={onAuthContinue}>
-                Continue (simulated)
-              </PxButton>
-              <PxButton onClick={onAuthCancel}>Cancel</PxButton>
             </div>
           </>
         )}
@@ -433,7 +430,7 @@ export function SaveSheet({
               duplicated.
             </Dialogue>
             <div className="flex flex-col">
-              <PxButton autoFocus v="primary" onClick={onRetry}>
+              <PxButton v="primary" onClick={onRetry}>
                 Retry save
               </PxButton>
               {state.target === 'account' && <PxButton onClick={onDevice}>Save on this device instead</PxButton>}

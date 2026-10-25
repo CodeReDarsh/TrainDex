@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react'
 import { glyphPath } from './pixel'
 import {
@@ -192,7 +193,7 @@ export function Panel({
 
 export function PanelTitle({ children, right }: { children: ReactNode; right?: ReactNode }) {
   return (
-    <div className="mb-3 flex items-center justify-between gap-2">
+    <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
       <h2 className="font-pixel text-[18px] font-bold uppercase leading-snug tracking-normal">{children}</h2>
       {right}
     </div>
@@ -395,6 +396,16 @@ function CardPattern({ seed, shape }: { seed: string; shape: 'circle' | 'diamond
   )
 }
 
+export function CardPhoto({ src, alt, className = '', retry = true }: { src: string; alt: string; className?: string; retry?: boolean }) {
+  const [failed, setFailed] = useState(false)
+  const [attempt, setAttempt] = useState(0)
+  if (!src || failed) return <div className="flex min-h-32 flex-col items-center justify-center gap-2 bg-paper-2 p-3 text-center text-ink" role="status">
+    <PixelIcon name="photo" size={24} /><b>Photo unavailable</b><p className="text-sm">Card details are still available.</p>
+    {src && retry && <button type="button" className="min-h-11 underline" onClick={(e) => { e.stopPropagation(); setFailed(false); setAttempt(n => n + 1) }}>Retry photo</button>}
+  </div>
+  return <img key={attempt} src={src} alt={alt} loading="lazy" className={className} onError={() => setFailed(true)} />
+}
+
 /* ---------- Trading card ---------- */
 export function TrainCard({
   card,
@@ -442,7 +453,7 @@ export function TrainCard({
             )}
           </div>
           <div className="tc-photo">
-            <img src={card.photo} alt={`Your photo of a route ${card.route} train`} loading="lazy" />
+            <CardPhoto key={card.photo} retry={lg} src={card.photo} alt={`Your photo of a route ${card.route} train`} />
             {card.sample && showSample && (
               <span className="px-chip absolute bottom-1 left-1 !text-[0.6875rem]" data-tone="paper">
                 Sample

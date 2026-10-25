@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useDialog } from './dialog'
+import { useEffect, useState } from 'react'
 import {
   type Card,
   MODELS,
@@ -10,6 +11,7 @@ import {
   fmtDateTime,
 } from './data'
 import {
+  CardPhoto,
   Chip,
   Dialogue,
   Disclosure,
@@ -29,7 +31,7 @@ const byCapture = (a: Card, b: Card) => (b.captureAt ?? b.savedAt).localeCompare
 const bySaved = (a: Card, b: Card) => b.savedAt.localeCompare(a.savedAt)
 
 export function StorageChip({ signedIn }: { signedIn: boolean }) {
-  return signedIn ? <Chip tone="ok">Account</Chip> : <Chip tone="paper">On this device</Chip>
+  return signedIn ? <Chip tone="ok">Demo session</Chip> : <Chip tone="paper">Device demo</Chip>
 }
 
 /* ---------- 7. Home ---------- */
@@ -65,7 +67,7 @@ export function Home({
 
       <Panel>
         <PanelTitle right={<StorageChip signedIn={signedIn} />}>
-          {signedIn ? 'Your account' : 'This device'}
+          Session collection
         </PanelTitle>
         <dl className="grid grid-cols-2 gap-3">
           <div className="px-inset p-3">
@@ -87,7 +89,7 @@ export function Home({
       </div>
 
       <section aria-labelledby="recent-h">
-        <div className="mb-2 flex items-center justify-between">
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
           <h2 id="recent-h" className="font-pixel text-[18px] font-bold text-paper">
             Recent cards
           </h2>
@@ -131,149 +133,94 @@ export function Home({
 }
 
 /* ---------- 8. My Collection ---------- */
-type Filter = 'all' | 'collected' | 'missing'
+export type CollectionPreferences = {
+  view: 'groups' | 'cards'
+  filter: 'all' | 'collected' | 'missing'
+  query: string
+}
 
-export function Collection({
-  cards,
-  signedIn,
-  onScan,
-  onRoute,
-  onBack,
-}: {
+export const DEFAULT_COLLECTION_PREFERENCES: CollectionPreferences = {
+  view: 'cards', filter: 'all', query: '',
+}
+
+export function Collection({ cards, signedIn, preferences, onPreferences, onScan, onRoute, onOpen, onBack }: {
   cards: Card[]
   signedIn: boolean
+  preferences: CollectionPreferences
+  onPreferences: (p: CollectionPreferences) => void
   onScan: () => void
   onRoute: (r: string) => void
+  onOpen: (id: string) => void
   onBack: () => void
 }) {
-  const [filter, setFilter] = useState<Filter>('all')
-  const [q, setQ] = useState('')
+  const { view, filter, query } = preferences
+  const patch = (p: Partial<CollectionPreferences>) => onPreferences({ ...preferences, ...p })
   const counts = new Map<string, number>()
-  cards.forEach((c) => counts.set(c.route, (counts.get(c.route) ?? 0) + 1))
-  const variants = new Set(cards.filter((c) => c.variantId).map((c) => `${c.route}|${c.variantId}`)).size
-  const list = ROUTES.filter((r) => {
+  cards.forEach(c => counts.set(c.route, (counts.get(c.route) ?? 0) + 1))
+  const variants = new Set(cards.filter(c => c.variantId).map(c => `${c.route}|${c.variantId}`)).size
+  const matchesQuery = (r: string) => !query.trim() || r.toLowerCase().includes(query.trim().toLowerCase())
+  const routes = [...new Set([...ROUTES, ...cards.map(c => c.route)])]
+  const groups = routes.filter(r => {
     const has = counts.has(r)
-    if (filter === 'collected' && !has) return false
-    if (filter === 'missing' && has) return false
-    return !q.trim() || r.toLowerCase().includes(q.trim().toLowerCase())
+    return !(filter === 'collected' && !has) && !(filter === 'missing' && has) && matchesQuery(r)
   })
-  const dirty = filter !== 'all' || q !== ''
-  const segs: { id: Filter; label: string }[] = [
-    { id: 'all', label: 'All routes' },
-    { id: 'collected', label: 'Collected' },
-    { id: 'missing', label: 'Not yet' },
-  ]
+  const encounters = cards.filter(c => matchesQuery(c.route)).sort(byCapture)
+  const dirty = query !== '' || (view === 'groups' && filter !== 'all')
+  const clear = () => patch({ filter: 'all', query: '' })
 
-  return (
-    <div className="flex flex-col">
-      <ScreenHeader title="My Collection" onBack={onBack} backLabel="Back to Home" />
-      <main className="flex flex-col gap-4 p-4">
-        <Panel>
-          <div className="mb-2 flex items-center justify-between">
-            <StorageChip signedIn={signedIn} />
-            <span className="text-[0.9375rem]">{signedIn ? 'Account cards' : 'Saved on this device'}</span>
-          </div>
-          <dl className="grid grid-cols-3 gap-2 text-center">
-            {[
-              ['Cards', cards.length],
-              ['Routes', counts.size],
-              ['Signs', variants],
-            ].map(([l, n]) => (
-              <div key={l} className="px-inset p-2">
-                <dt className="font-pixel text-[16px] font-bold uppercase tracking-normal">{l}</dt>
-                <dd><PixelText text={String(n)} scale={4} /></dd>
-              </div>
-            ))}
-          </dl>
-        </Panel>
-
-        <div className="flex flex-col gap-3">
-          <div role="group" aria-label="Filter routes" className="grid grid-cols-3 gap-2">
-            {segs.map((s) => (
-              <PxButton
-                key={s.id}
-                size="sm"
-                aria-pressed={filter === s.id}
-                onClick={() => setFilter(s.id)}
-                className="!mb-2 !px-1 text-[0.9375rem]"
-              >
-                {s.label}
-              </PxButton>
-            ))}
-          </div>
-          <div className="relative">
-            <label htmlFor="rq" className="sr-only">
-              Search routes
-            </label>
-            <input
-              id="rq"
-              type="search"
-              inputMode="text"
-              placeholder="Search route, e.g. A"
-              className="px-input !pl-11"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-            />
-            <PixelIcon name="search" size={20} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2" />
-          </div>
-          {dirty && (
-            <PxButton
-              size="sm"
-              onClick={() => {
-                setFilter('all')
-                setQ('')
-              }}
-              className="!mb-1"
-            >
-              Clear filters
-            </PxButton>
-          )}
+  return <div className="flex flex-col">
+    <ScreenHeader title="My Collection" onBack={onBack} backLabel="Back to Home" />
+    <main className="flex flex-col gap-4 p-4">
+      <Panel>
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+          <StorageChip signedIn={signedIn} />
+          <span className="text-[0.9375rem]">Device + visible demo account cards</span>
         </div>
+        <dl className="grid grid-cols-3 gap-2 text-center">
+          {[['Cards', cards.length], ['Routes', counts.size], ['Signs', variants]].map(([label, count]) => <div key={label} className="px-inset p-2">
+            <dt className="font-pixel text-[16px] font-bold uppercase tracking-normal">{label}</dt>
+            <dd><PixelText text={String(count)} scale={4} /></dd>
+          </div>)}
+        </dl>
+      </Panel>
 
-        {list.length === 0 ? (
-          <Dialogue tone="warn" live title="Nothing here">
-            No routes match these filters.
-          </Dialogue>
-        ) : (
-          <ul className="grid grid-cols-3 gap-3">
-            {list.map((r) => {
-              const n = counts.get(r) ?? 0
-              const latest = [...cards].filter((c) => c.route === r).sort(byCapture)[0]
-              return (
-                <li key={r}>
-                  <button
-                    type="button"
-                    onClick={() => onRoute(r)}
-                    aria-label={n ? `Route ${r}, ${n} card${n > 1 ? 's' : ''}` : `Route ${r}, not collected yet`}
-                    className={`${n ? 'px-panel' : 'px-inset'} flex min-h-[132px] w-[calc(100%-8px)] flex-col items-center justify-center gap-2 p-2 active:translate-y-0.5`}
-                  >
-                    <Sign route={r} variantId={latest?.variantId} muted={!n} size={45} />
-                    {n ? (
-                      <>
-                        <span className="font-pixel text-[16px] font-medium leading-none">×{n}</span>
-                        <span className="text-[0.875rem] leading-none">card{n > 1 ? 's' : ''}</span>
-                      </>
-                    ) : (
-                      <>
-                        <PixelIcon name="ask" size={22} />
-                        <span className="text-[0.875rem] leading-none">No cards yet</span>
-                      </>
-                    )}
-                  </button>
-                </li>
-              )
-            })}
-          </ul>
-        )}
-        <p className="text-[0.9375rem] text-paper">
-          Routes shown are a sample list. Counts are your own saved cards, not a catalog target.
-        </p>
-        <PxButton v="primary" size="lg" icon="camera" onClick={onScan}>
-          Scan
-        </PxButton>
-      </main>
-    </div>
-  )
+      <div className="flex flex-col gap-3">
+        <div className="relative">
+          <label htmlFor="rq" className="sr-only">Search routes</label>
+          <input id="rq" type="search" inputMode="text" placeholder="Search route, e.g. A, F, 3, Q" className="px-input !pl-11" value={query} onChange={e => patch({ query: e.target.value })} />
+          <PixelIcon name="search" size={20} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2" />
+        </div>
+        <div role="group" aria-label="Collection view" className="grid grid-cols-2 gap-2">
+          <PxButton size="sm" icon="cards" aria-pressed={view === 'cards'} onClick={() => patch({ view: 'cards' })} className="!mb-2 !px-2">All cards</PxButton>
+          <PxButton size="sm" aria-pressed={view === 'groups'} onClick={() => patch({ view: 'groups' })} className="!mb-2 !px-2">Group by route</PxButton>
+        </div>
+        {view === 'groups' && <div role="group" aria-label="Filter routes" className="grid grid-cols-3 gap-2">
+          {([['all', 'All routes'], ['collected', 'Collected'], ['missing', 'Not yet']] as const).map(([id, label]) => <PxButton key={id} size="sm" aria-pressed={filter === id} onClick={() => patch({ filter: id })} className="!mb-2 !px-1 text-[0.9375rem]">{label}</PxButton>)}
+        </div>}
+        {dirty && <PxButton size="sm" onClick={clear} className="!mb-1">{view === 'cards' ? 'Clear search' : 'Clear filters'}</PxButton>}
+      </div>
+
+      <p role="status" className="text-paper">{view === 'groups' ? `${groups.length} route groups` : `${encounters.length} card${encounters.length === 1 ? '' : 's'}${encounters.length ? ' · tap any card to open it' : ''}`}</p>
+      {view === 'cards' ? encounters.length ? <ul aria-label="Collected cards" className="grid grid-cols-2 gap-4">
+        {encounters.map(c => <li key={c.id} className="min-w-0"><button type="button" className="block w-full text-left" onClick={() => onOpen(c.id)} aria-label={`Open card: route ${c.route}, ${c.model ?? 'unknown model'}, ${fmtDateTime(c.captureAt)}`}>
+          <TrainCard card={c} cards={cards} size="sm" />
+        </button></li>)}
+      </ul> : <Dialogue tone="warn" title={cards.length ? 'No cards match' : 'No cards yet'}>
+        {cards.length ? 'No saved cards match this search. Clear search to see all your cards.' : 'Scan a sign to create your first card. Group by route shows the routes you have not collected yet.'}
+      </Dialogue> : groups.length ? <ul aria-label="Route groups" className="grid grid-cols-3 gap-3">
+        {groups.map(r => {
+          const count = counts.get(r) ?? 0
+          const latest = [...cards].filter(c => c.route === r).sort(byCapture)[0]
+          return <li key={r}><button type="button" onClick={() => onRoute(r)} aria-label={count ? `Route ${r}, ${count} card${count > 1 ? 's' : ''}` : `Route ${r}, not collected yet`} className={`${count ? 'px-panel' : 'px-inset'} flex min-h-[132px] w-[calc(100%-8px)] flex-col items-center justify-center gap-2 p-2 active:translate-y-0.5`}>
+            <Sign route={r} variantId={latest?.variantId} muted={!count} size={45} />
+            {count ? <><span className="font-pixel text-[16px] font-medium leading-none">×{count}</span><span className="text-[0.875rem] leading-none">card{count > 1 ? 's' : ''}</span></> : <><PixelIcon name="ask" size={22} /><span className="text-[0.875rem] leading-none">No cards yet</span></>}
+          </button></li>
+        })}
+      </ul> : <Dialogue tone="warn" title="Nothing here">No routes match these filters.</Dialogue>}
+      <p className="text-[0.9375rem] text-paper">{view === 'groups' ? 'Routes shown are a sample list. Counts are your own saved cards, not a catalog target.' : 'Every saved encounter is a separate card, including repeat sightings. Drafts are separate.'}</p>
+      <PxButton v="primary" size="lg" icon="camera" onClick={onScan}>Scan</PxButton>
+    </main>
+  </div>
 }
 
 /* ---------- Route view ---------- */
@@ -316,7 +263,7 @@ export function RouteView({
           </Panel>
         ) : (
           <>
-            <div className="flex items-center justify-between gap-2 text-paper">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-paper">
               <p className="text-[1rem]">
                 {mine.length} separate card{mine.length > 1 ? 's' : ''}
               </p>
@@ -365,6 +312,12 @@ export function Detail({
   onFullPhoto,
   onUpdate,
   onDelete,
+  onDirty,
+  onBusy,
+  imported,
+  photoMissing,
+  backToCollection,
+  onRetryPhoto,
 }: {
   card: Card
   cards: Card[]
@@ -372,10 +325,34 @@ export function Detail({
   onScan: () => void
   onOpen: (id: string) => void
   onFullPhoto: () => void
-  onUpdate: (p: Partial<Card>) => void
+  onUpdate: (p: Partial<Card>) => Promise<boolean>
   onDelete: () => void
+  onBusy: (busy: boolean) => void
+  onDirty: (dirty: boolean) => void
+  imported: boolean
+  photoMissing: boolean
+  backToCollection: boolean
+  onRetryPhoto: () => void
 }) {
+  const backLabel = backToCollection ? 'Back to Collection' : `Back to route ${card.route}`
   const [edit, setEdit] = useState(false)
+  const [changes, setChanges] = useState<Card>(card)
+  const [applying, setApplying] = useState(false)
+  const [editState, setEditState] = useState<'idle' | 'error' | 'success'>('idle')
+  useEffect(() => {
+    if (editState === 'error') document.getElementById('apply-details')?.focus()
+    if (editState === 'success') document.getElementById('edit-success')?.focus()
+  }, [editState])
+  const dirty = edit && JSON.stringify(changes) !== JSON.stringify(card)
+  useEffect(() => { onBusy(applying); return () => onBusy(false) }, [applying, onBusy])
+  const apply = async () => {
+    setApplying(true); setEditState('idle')
+    const ok = await onUpdate(changes)
+    setApplying(false)
+    if (ok) { onDirty(false); setEdit(false); setEditState('success') }
+    else setEditState('error')
+  }
+  useEffect(() => { onDirty(dirty) }, [dirty, onDirty])
   const [del, setDel] = useState(false)
   const v = card.variantId ? VARIANTS[card.variantId] : null
   const info = encounterInfo(cards, card)
@@ -396,10 +373,12 @@ export function Detail({
 
   return (
     <div className="flex flex-col">
-      <ScreenHeader title="Card" onBack={onBack} backLabel={`Back to route ${card.route}`} />
+      <ScreenHeader title="Card" onBack={onBack} backLabel={backLabel} />
       <main className="flex flex-col gap-4 p-4">
         <div className="px-2">
-          <TrainCard card={card} cards={cards} sparkles />
+          <TrainCard card={photoMissing ? { ...card, photo: '' } : card} cards={cards} sparkles />
+          {photoMissing && <PxButton className="mt-4 w-full" onClick={onRetryPhoto}>Retry photo</PxButton>}
+          {imported && <Dialogue className="mt-4" title="Imported in demo">Added to Demo collector in this session. Local copy retained; this encounter is shown once.</Dialogue>}
         </div>
 
         <div className="flex flex-col">
@@ -451,15 +430,15 @@ export function Detail({
             <ul className="flex flex-col gap-3">
               {others.map((o) => (
                 <li key={o.id}>
-                  <button type="button" onClick={() => onOpen(o.id)} className="px-inset flex w-[calc(100%-4px)] items-center gap-3 p-2 text-left">
+                  <button type="button" onClick={() => onOpen(o.id)} className="previous-encounter px-inset grid w-[calc(100%-4px)] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 p-2 text-left">
                     <img src={o.photo} alt="" className="h-14 w-20 shrink-0 object-cover" />
-                    <span className="min-w-0 flex-1">
+                    <span className="col-span-2 row-start-2 min-w-0">
                       <span className="block font-medium">{fmtDateTime(o.captureAt)}</span>
                       <span className="block text-[0.9375rem]">
                         {o.model ?? 'Unknown'} · {o.station || 'No station'}
                       </span>
                     </span>
-                    <PixelIcon name="chev" size={14} />
+                    <PixelIcon name="chev" size={14} className="col-start-2 row-start-1" />
                   </button>
                 </li>
               ))}
@@ -468,15 +447,19 @@ export function Detail({
           <p className="mt-3 text-[0.9375rem] text-ink/80">Counts follow route + sign variant, whatever the train model.</p>
         </Panel>
 
+        {editState === 'success' && <div id="edit-success" tabIndex={-1}><Dialogue live tone="ok" title="Details updated (demo)">Changes are applied for this session. Reload still resets the prototype.</Dialogue></div>}
         {edit ? (
           <Panel className="flex flex-col gap-4">
             <PanelTitle>Edit capture details</PanelTitle>
+            {applying && <div role="status"><div className="prog-bar my-3" />Applying changes (demo)…</div>}
+            {editState === 'error' && <Dialogue live tone="error" title="Details were not updated">Your proposed changes are still in the form. Retry without re-entering them. Account edits need a connection.</Dialogue>}
             <Field label="Train model" id="e-model">
               <select
                 id="e-model"
+                disabled={applying}
                 className="px-input"
-                value={card.model ?? ''}
-                onChange={(e) => onUpdate({ model: e.target.value || null })}
+                value={changes.model ?? ''}
+                onChange={(e) => setChanges(c => ({ ...c, model: e.target.value || null }))}
               >
                 <option value="">Unknown</option>
                 {MODELS.map((m) => (
@@ -487,22 +470,23 @@ export function Detail({
             <Field label="Capture time" id="e-time">
               <input
                 id="e-time"
+                disabled={applying}
                 type="datetime-local"
                 className="px-input"
-                value={card.captureAt ?? ''}
-                onChange={(e) => onUpdate({ captureAt: e.target.value || null, timeSource: e.target.value ? 'user' : 'unknown' })}
+                value={changes.captureAt ?? ''}
+                onChange={(e) => setChanges(c => ({ ...c, captureAt: e.target.value || null, timeSource: e.target.value ? 'user' : 'unknown' }))}
               />
             </Field>
             <Field label="Station (optional)" id="e-st">
-              <input id="e-st" className="px-input" value={card.station} onChange={(e) => onUpdate({ station: e.target.value })} />
+              <input disabled={applying} id="e-st" className="px-input" value={changes.station} onChange={(e) => setChanges(c => ({ ...c, station: e.target.value }))} />
             </Field>
-            <PxButton v="primary" icon="check" onClick={() => setEdit(false)}>
-              Done
+            <PxButton id="apply-details" v="primary" icon="check" disabled={applying || !dirty} onClick={apply}>
+              {applying ? 'Applying…' : editState === 'error' ? 'Retry changes (demo)' : 'Apply changes (demo)'}
             </PxButton>
           </Panel>
         ) : (
           <div className="flex flex-col">
-            <PxButton icon="pencil" onClick={() => setEdit(true)}>
+            <PxButton icon="pencil" onClick={() => { setChanges(card); setEditState('idle'); setEdit(true) }}>
               Edit capture details
             </PxButton>
           </div>
@@ -520,9 +504,9 @@ export function Detail({
             Scan another
           </PxButton>
           <PxButton icon="back" onClick={onBack}>
-            Back to route {card.route}
+            {backLabel}
           </PxButton>
-          <PxButton v="danger" icon="trash" onClick={() => setDel(true)}>
+          <PxButton v="danger" icon="trash" disabled={applying} onClick={() => setDel(true)}>
             Delete card
           </PxButton>
         </div>
@@ -551,17 +535,19 @@ export function Detail({
 
 /* ---------- Full photo viewer ---------- */
 export function FullPhoto({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  const dialog = useDialog(true, onClose)
   const [zoom, setZoom] = useState(false)
   return (
     <div
+      ref={dialog}
+      tabIndex={-1}
       role="dialog"
       aria-modal="true"
       aria-label="Full photo"
       className="fixed inset-0 z-[70] flex flex-col bg-ink"
-      onKeyDown={(e) => e.key === 'Escape' && onClose()}
     >
       <div className="flex items-center justify-between gap-2 p-4">
-        <PxButton autoFocus icon="close" onClick={onClose} inline className="!mb-2">
+        <PxButton icon="close" onClick={onClose} inline className="!mb-2">
           Close
         </PxButton>
         <PxButton aria-pressed={zoom} onClick={() => setZoom((z) => !z)} inline className="!mb-2">
@@ -569,7 +555,7 @@ export function FullPhoto({ src, alt, onClose }: { src: string; alt: string; onC
         </PxButton>
       </div>
       <div className="flex-1 overflow-auto px-2 pb-6">
-        <img src={src} alt={alt} className={`mx-auto block ${zoom ? 'max-w-none' : 'max-h-full max-w-full object-contain'}`} style={zoom ? { width: '200%' } : undefined} />
+        <div style={zoom ? { width: '200%' } : undefined}><CardPhoto key={src} src={src} alt={alt} className="mx-auto block max-h-full max-w-full object-contain" /></div>
       </div>
     </div>
   )
@@ -583,6 +569,8 @@ export function Settings({
   onMotion,
   onSignIn,
   onSignOut,
+  onImport,
+  importedCount,
   onBack,
 }: {
   signedIn: boolean
@@ -591,6 +579,8 @@ export function Settings({
   onMotion: (m: 'system' | 'reduce' | 'full') => void
   onSignIn: () => void
   onSignOut: () => void
+  onImport: () => void
+  importedCount: number
   onBack: () => void
 }) {
   const opts: { id: 'system' | 'reduce' | 'full'; label: string }[] = [
@@ -606,13 +596,15 @@ export function Settings({
           <PanelTitle right={<StorageChip signedIn={signedIn} />}>Saving</PanelTitle>
           {signedIn ? (
             <>
-              <p className="mb-3 text-[1.0625rem]">Signed in as <b>sample.user@example.com</b> (simulated). New cards save to your account.</p>
+              <p className="mb-3 text-[1.0625rem]">Signed in as <b>Demo collector</b> (simulated). Account saves are simulated.</p>
+              <PxButton v="primary" onClick={onImport}>Add device cards to my account</PxButton>
+              <p className="mb-3">{importedCount} of {count} device cards imported in this demo. Local copies kept.</p>
               <PxButton onClick={onSignOut}>Sign out</PxButton>
             </>
           ) : (
             <>
               <p className="mb-3 text-[1.0625rem]">
-                Cards are saved on this device in your browser ({count} in this prototype). You do not need an account.
+                {count} device cards in this demo session. You do not need an account. Nothing survives refresh.
               </p>
               <PxButton v="primary" onClick={onSignIn}>
                 Sign in / Create account
@@ -620,28 +612,17 @@ export function Settings({
             </>
           )}
           <p className="text-[0.9375rem] text-ink/80">
-            Whether device cards can be added to an account later is still undecided. Nothing syncs automatically.
+            Import is an explicit prototype choice. Nothing syncs automatically. Accounts, cards, and drafts are in-memory simulations.
           </p>
         </Panel>
 
         <Panel>
           <PanelTitle>Reduced motion</PanelTitle>
           <p className="mb-3 text-[1rem]">Turns off sparkles, foil shimmer, and the reveal animation.</p>
-          <div role="radiogroup" aria-label="Motion" className="grid grid-cols-3 gap-2">
-            {opts.map((o) => (
-              <PxButton
-                key={o.id}
-                size="sm"
-                role="radio"
-                aria-checked={motion === o.id}
-                aria-pressed={motion === o.id}
-                onClick={() => onMotion(o.id)}
-                className="!mb-2 !px-1 text-[0.9375rem]"
-              >
-                {o.label}
-              </PxButton>
-            ))}
-          </div>
+          <fieldset className="flex flex-wrap gap-4">
+            <legend className="sr-only">Motion preference</legend>
+            {opts.map(o => <label key={o.id} className="flex min-h-11 items-center gap-2"><input type="radio" name="motion" checked={motion === o.id} onChange={() => onMotion(o.id)} className="h-5 w-5 accent-ink" />{o.label}</label>)}
+          </fieldset>
         </Panel>
 
         <Panel>

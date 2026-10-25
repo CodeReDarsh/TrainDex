@@ -1,3 +1,4 @@
+import { decodePhoto, PhotoPreview, type PhotoStatus } from './photo'
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent as RPointerEvent, KeyboardEvent as RKeyboardEvent } from 'react'
 import { type Draft, type Result, type Scenario, PHOTO, resolveScenario } from './data'
@@ -7,6 +8,9 @@ import { Chip, Dialogue, Panel, PanelTitle, PixelIcon, PxButton, ScreenHeader } 
 export function usePicker(onPhoto: (url: string) => void) {
   const ref = useRef<HTMLInputElement>(null)
   const [error, setError] = useState<string | null>(null)
+  const [busy, setBusy] = useState(false)
+  const attempt = useRef(0)
+  useEffect(() => () => { attempt.current += 1 }, [])
   const input = (
     <input
       ref={ref}
@@ -14,20 +18,31 @@ export function usePicker(onPhoto: (url: string) => void) {
       accept="image/*"
       className="hidden"
       aria-label="Choose a photo from your device"
-      onChange={(e) => {
+      onChange={async (e) => {
         const f = e.target.files?.[0]
         e.target.value = ''
         if (!f) return
+        const request = ++attempt.current
+        setBusy(false)
         if (!f.type.startsWith('image/')) {
-          setError('That file is not a photo. Choose a JPG, PNG, or HEIC image.')
+          setError('That file is not a photo. Choose a JPG or PNG image supported by your browser.')
           return
         }
         setError(null)
-        onPhoto(URL.createObjectURL(f))
+        setBusy(true)
+        const url = URL.createObjectURL(f)
+        try {
+          await decodePhoto(url)
+          if (request === attempt.current) onPhoto(url)
+          else URL.revokeObjectURL(url)
+        } catch {
+          URL.revokeObjectURL(url)
+          if (request === attempt.current) setError('This photo could not be opened. It may be damaged or unsupported. Choose a JPG or PNG; your current work is unchanged.')
+        } finally { if (request === attempt.current) setBusy(false) }
       }}
     />
   )
-  return { input, open: () => ref.current?.click(), error }
+  return { input, open: () => ref.current?.click(), error, busy }
 }
 
 /* ---------- 1. Capture ---------- */
@@ -50,8 +65,9 @@ export function Capture({
 }) {
   const picker = usePicker(onPhoto)
   return (
-    <main className="flex flex-1 flex-col gap-2 p-4 pb-3">
+    <main className="capture-screen flex flex-1 flex-col gap-2 p-4 pb-3">
       {picker.input}
+      {picker.busy && <Dialogue live title="Opening photo">Checking your selected photo…</Dialogue>}
       <div className="px-panel relative flex-1 overflow-hidden !bg-ink" style={{ minHeight: 380 }}>
         {cameraDenied ? (
           <div className="flex h-full flex-col items-center justify-center gap-4 p-6 text-center text-paper">
@@ -94,7 +110,7 @@ export function Capture({
                 Home
               </PxButton>
             </div>
-            <div className="absolute right-3 top-4">
+            <div className="absolute bottom-4 right-3">
               <Chip tone="paper">Simulated viewfinder</Chip>
             </div>
           </>
@@ -158,7 +174,13 @@ export function Preview({
   onRetake,
   onBack,
   onPhoto,
+  offline,
+  onKeep,
+  cancelled,
 }: {
+  offline: boolean
+  onKeep: () => void
+  cancelled: boolean
   draft: Draft
   onCrop: (c: Draft['crop']) => void
   onRecognize: () => void
@@ -167,15 +189,31 @@ export function Preview({
   onPhoto: (url: string) => void
 }) {
   const picker = usePicker(onPhoto)
+  const [photoStatus, setPhotoStatus] = useState<PhotoStatus>('loading')
   const box = useRef<HTMLDivElement>(null)
   const drag = useRef(false)
   const { x, y, s } = draft.crop
-  const clamp = (n: number) => Math.min(0.96, Math.max(0.04, n))
+  const [ratio, setRatio] = useState(1.5)
+  const bounded = (nx: number, ny: number, size = s) => {
+    size = Math.min(size, 1.5 / ratio)
+    const halfX = size / 2
+    const halfY = Math.min(0.5, size * ratio / 3)
+    return { x: Math.min(1 - halfX, Math.max(halfX, nx)), y: Math.min(1 - halfY, Math.max(halfY, ny)), s: size }
+  }
+  useEffect(() => {
+    if (photoStatus !== 'ready' || !box.current) return
+    const image = box.current.querySelector('img')
+    if (image?.naturalHeight) setRatio(image.naturalWidth / image.naturalHeight)
+  }, [photoStatus, draft.photo])
+  useEffect(() => {
+    const crop = bounded(x, y)
+    if (crop.x !== x || crop.y !== y || crop.s !== s) onCrop(crop)
+  }, [ratio, x, y, s])
 
   const move = (e: RPointerEvent) => {
     if (!drag.current || !box.current) return
     const r = box.current.getBoundingClientRect()
-    onCrop({ x: clamp((e.clientX - r.left) / r.width), y: clamp((e.clientY - r.top) / r.height), s })
+    onCrop(bounded((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height))
   }
   const key = (e: RKeyboardEvent) => {
     const step = 0.03
@@ -187,7 +225,7 @@ export function Preview({
     }
     if (d[e.key]) {
       e.preventDefault()
-      onCrop({ x: clamp(x + d[e.key][0]), y: clamp(y + d[e.key][1]), s })
+      onCrop(bounded(x + d[e.key][0], y + d[e.key][1]))
     }
   }
   const tooSmall = s < 0.2
@@ -195,17 +233,19 @@ export function Preview({
   return (
     <div className="flex flex-1 flex-col">
       {picker.input}
+      {picker.busy && <Dialogue live title="Opening photo">Checking your selected photo…</Dialogue>}
       <ScreenHeader title="Check photo" onBack={onBack} />
       <main className="flex flex-1 flex-col gap-3 p-4">
+        {cancelled && <Dialogue live title="Processing cancelled">Your photo and crop are still here. Resume when ready.</Dialogue>}
+        {offline && <Dialogue tone="warn" live title="Waiting for connection">Recognition needs a connection. Keep an unrecognized photo draft for later in this demo session.</Dialogue>}
         <Panel className="!p-2">
           <div ref={box} className="relative isolate mx-auto w-fit max-w-full overflow-hidden touch-none select-none bg-ink">
-            <img src={draft.photo} alt="Your photo, full frame" className="block max-h-[46dvh] max-w-full" draggable={false} />
+            <PhotoPreview key={draft.photo} src={draft.photo} alt="Your photo, full frame" className="block max-h-[46dvh] max-w-full" onStatus={setPhotoStatus}>
             <div
-              role="slider"
+              role="group"
               tabIndex={0}
               aria-label="Sign crop position. Use arrow keys to move."
-              aria-valuetext={`Centered ${Math.round(x * 100)}% across, ${Math.round(y * 100)}% down`}
-              aria-valuenow={Math.round(x * 100)}
+              aria-describedby="crop-position"
               onKeyDown={key}
               onPointerDown={(e) => {
                 drag.current = true
@@ -214,6 +254,7 @@ export function Preview({
               }}
               onPointerMove={move}
               onPointerUp={() => (drag.current = false)}
+              onPointerCancel={() => (drag.current = false)}
               className="absolute cursor-move"
               style={{
                 left: `${x * 100}%`,
@@ -226,8 +267,10 @@ export function Preview({
                 outlineOffset: '-2px',
               }}
             />
+            </PhotoPreview>
           </div>
         </Panel>
+        <p id="crop-position" role="status" className="text-paper">Crop center: {Math.round(x * 100)}% across, {Math.round(y * 100)}% down. Drag the crop or focus it and use arrow keys.</p>
 
         <Panel className="flex flex-col gap-3">
           <PanelTitle
@@ -244,11 +287,11 @@ export function Preview({
             <span className="font-pixel text-[16px] font-bold uppercase tracking-normal">Crop size</span>
             <input
               type="range"
-              min={0.1}
-              max={0.9}
+              min={Math.min(0.1, 1.5 / ratio)}
+              max={Math.min(0.9, 1.5 / ratio)}
               step={0.01}
               value={s}
-              onChange={(e) => onCrop({ x, y, s: Number(e.target.value) })}
+              onChange={(e) => onCrop(bounded(x, y, Number(e.target.value)))}
               className="h-10 w-full accent-ink"
             />
           </label>
@@ -266,9 +309,10 @@ export function Preview({
         )}
 
         <div className="mt-auto flex flex-col">
-          <PxButton v="primary" size="lg" icon="search" onClick={onRecognize}>
+          <PxButton v="primary" size="lg" icon="search" disabled={offline || photoStatus !== 'ready' || picker.busy} onClick={onRecognize}>
             Recognize sign
           </PxButton>
+          <PxButton onClick={onKeep}>Keep photo draft (demo)</PxButton>
           <div className="grid grid-cols-2 gap-2">
             <PxButton icon="camera" onClick={onRetake}>
               Retake
@@ -291,7 +335,9 @@ export function Recognizing({
   scenario,
   onDone,
   onCancel,
+  onBack,
 }: {
+  onBack: () => void
   draft: Draft
   scenario: Scenario
   onDone: (r: Result) => void
@@ -329,7 +375,7 @@ export function Recognizing({
     <div className="flex flex-1 flex-col">
       <ScreenHeader title="Recognizing" />
       <main className="flex flex-1 flex-col gap-4 p-4">
-        <Panel className="flex gap-4">
+        <Panel className="flex flex-wrap gap-4">
           <div className="relative w-32 shrink-0 self-start bg-ink">
             <img src={draft.photo} alt="Photo being recognized" className="block w-full" />
             <div
@@ -349,7 +395,7 @@ export function Recognizing({
               {failed ? 'No answer yet' : 'Working on it'}
             </h2>
             <p className="mt-1 text-[1rem]">
-              {failed ? 'The recognition service timed out. Your photo is safe.' : 'This takes a few seconds. You can cancel anytime.'}
+              {failed ? 'The recognition service timed out. Your photo is safe.' : 'Simulated recognition; no photo is uploaded. You can cancel anytime.'}
             </p>
           </div>
         </Panel>
@@ -387,7 +433,7 @@ export function Recognizing({
             </PxButton>
           )}
           <div className="grid grid-cols-2 gap-2">
-            <PxButton onClick={onCancel}>Back to photo</PxButton>
+            <PxButton onClick={onBack}>Back to photo</PxButton>
             <PxButton onClick={onCancel}>Cancel</PxButton>
           </div>
         </div>

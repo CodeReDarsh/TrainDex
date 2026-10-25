@@ -1,5 +1,7 @@
 # TrainDex — NYC subway rollsign reference backend
 
+See [backend implementation TODO](backend-implementation-todo.md) for the guest-first build sequence, two-person ownership split, and integration acceptance checks.
+
 An evidence-based reference catalog for a future train-spotting Dex. The reference backend contains PostgreSQL storage, reproducible imports, FastAPI access, and feature-based candidate retrieval. The independent marketing website lives alongside the backend in `apps/landing`.
 
 ## Advertisement website
