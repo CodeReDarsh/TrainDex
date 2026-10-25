@@ -1,0 +1,522 @@
+import { useEffect, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
+import {
+  type Card,
+  type Draft,
+  MODELS,
+  TIME_SOURCE_LABEL,
+  VARIANTS,
+  encounterInfo,
+  fmtDate,
+  nowLocal,
+} from './data'
+import {
+  Chip,
+  Dialogue,
+  Disclosure,
+  Field,
+  Panel,
+  PanelTitle,
+  PixelIcon,
+  PxButton,
+  ScreenHeader,
+  Sign,
+  TrainCard,
+} from './ui'
+
+/* ---------- Confirm dialog ---------- */
+export function Confirm({
+  title,
+  body,
+  confirm,
+  cancel = 'Keep it',
+  danger,
+  onConfirm,
+  onCancel,
+}: {
+  title: string
+  body: ReactNode
+  confirm: string
+  cancel?: string
+  danger?: boolean
+  onConfirm: () => void
+  onCancel: () => void
+}) {
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/70 p-6" onKeyDown={(e) => e.key === 'Escape' && onCancel()}>
+      <div role="alertdialog" aria-modal="true" aria-labelledby="cf-t" className="px-panel w-full max-w-[420px] p-5">
+        <h2 id="cf-t" className="font-pixel text-[24px] font-medium leading-tight">
+          {title}
+        </h2>
+        <div className="mb-4 mt-2 text-[1.0625rem]">{body}</div>
+        <div className="flex flex-col">
+          <PxButton v={danger ? 'danger' : 'primary'} onClick={onConfirm}>
+            {confirm}
+          </PxButton>
+          <PxButton autoFocus onClick={onCancel}>
+            {cancel}
+          </PxButton>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ---------- 4. Recognition review ---------- */
+export function Review({
+  draft,
+  cards,
+  signedIn,
+  deviceDefault,
+  onChange,
+  onSave,
+  onRetake,
+  onAdjust,
+  onTryAgain,
+  onFullPhoto,
+  onSignIn,
+}: {
+  draft: Draft
+  cards: Card[]
+  signedIn: boolean
+  deviceDefault: boolean
+  onChange: (p: Partial<Draft>) => void
+  onSave: () => void
+  onRetake: () => void
+  onAdjust: () => void
+  onTryAgain: () => void
+  onFullPhoto: () => void
+  onSignIn: () => void
+}) {
+  const r = draft.result
+  const [discard, setDiscard] = useState(false)
+  const timeId = 'cap-time'
+  const heading = useRef<HTMLHeadingElement>(null)
+  useEffect(() => heading.current?.focus(), [])
+
+  if (!r || r.kind === 'timeout' || r.kind === 'unclear') {
+    return (
+      <div className="flex flex-1 flex-col">
+        <ScreenHeader title="No match" onBack={onAdjust} />
+        <main className="flex flex-1 flex-col gap-4 p-4">
+          <Dialogue tone="error" live title="Route unclear">
+            <p>
+              We could not read the route lettering. Glare or a tight crop can hide it. Your photo has not been saved
+              anywhere.
+            </p>
+          </Dialogue>
+          <Panel className="!p-2">
+            <img src={draft.photo} alt="Your photo" className="block max-h-[40dvh] w-full object-contain" />
+          </Panel>
+          <div className="mt-auto flex flex-col">
+            <PxButton v="primary" size="lg" icon="camera" onClick={onRetake}>
+              Retake
+            </PxButton>
+            <PxButton icon="photo" onClick={onAdjust}>
+              Choose another photo
+            </PxButton>
+            <PxButton onClick={onAdjust}>Adjust crop</PxButton>
+          </div>
+        </main>
+      </div>
+    )
+  }
+
+  const uncertain = r.kind === 'uncertain'
+  const preview: Card = {
+    id: draft.id,
+    route: r.route,
+    variantId: r.variantId,
+    model: draft.model,
+    photo: draft.photo,
+    captureAt: draft.captureAt,
+    timeSource: draft.timeSource,
+    savedAt: nowLocal(),
+    station: draft.station,
+    storage: 'device',
+  }
+  const existing = encounterInfo(cards, preview)
+  const v = r.variantId ? VARIANTS[r.variantId] : null
+  const saveLabel = uncertain
+    ? 'Save with variant unknown'
+    : signedIn
+      ? 'Save to my account'
+      : deviceDefault
+        ? 'Save on this device'
+        : 'Save card'
+
+  return (
+    <div className="flex flex-1 flex-col">
+      <ScreenHeader title="Review card" onBack={onAdjust} backLabel="Back to crop" />
+      <main className="flex flex-1 flex-col gap-4 p-4">
+        <h2 ref={heading} tabIndex={-1} className="sr-only">
+          Recognition finished. Route {r.route}.
+        </h2>
+
+        {uncertain ? (
+          <Dialogue tone="warn" live title="Sign variant not identified">
+            We can see route {r.route}, but not which sign appearance it is. You can try again, adjust the crop, or save
+            with the variant left unknown. No encounter count is made up.
+          </Dialogue>
+        ) : existing ? (
+          <Dialogue tone="ok" live title="Another encounter">
+            This will be a <b>new personal card</b>. You already have {existing.count} saved with this sign (
+            {v?.name}). After saving: {existing.count + 1}.
+          </Dialogue>
+        ) : (
+          <Dialogue tone="ok" live title="New sign">
+            First time collecting this sign.
+          </Dialogue>
+        )}
+
+        <div className="px-1">
+          <TrainCard card={preview} cards={[...cards, preview]} sparkles={!uncertain} />
+        </div>
+
+        <Panel className="flex flex-col gap-4">
+          <PanelTitle>Card details</PanelTitle>
+
+          <div className="flex items-center gap-3">
+            <Sign route={r.route} variantId={r.variantId} unknown={!v} size={45} />
+            <div className="min-w-0 flex-1">
+              <div className="font-pixel text-[16px] font-medium">Route {r.route}</div>
+              <div className="text-[1rem]">{v ? v.style : 'Sign appearance not matched'}</div>
+            </div>
+          </div>
+
+          <Field
+            label="Train model"
+            id="model"
+            hint={
+              draft.modelSource === 'recognition'
+                ? 'Suggested from your photo. Change it any time.'
+                : 'Optional. Unknown never blocks saving.'
+            }
+          >
+            <select
+              id="model"
+              className="px-input"
+              value={draft.model ?? ''}
+              onChange={(e) => onChange({ model: e.target.value || null, modelSource: e.target.value ? 'user' : 'unknown' })}
+            >
+              <option value="">Unknown</option>
+              {MODELS.map((m) => (
+                <option key={m}>{m}</option>
+              ))}
+            </select>
+          </Field>
+
+          <Field
+            label="Capture time"
+            id={timeId}
+            hint={
+              draft.timeSource === 'estimated' ? (
+                <span>
+                  <Chip tone="gold">Time estimated — edit</Chip> Uploaded photo had no usable date.
+                </span>
+              ) : (
+                TIME_SOURCE_LABEL[draft.timeSource]
+              )
+            }
+          >
+            <input
+              id={timeId}
+              type="datetime-local"
+              className="px-input"
+              value={draft.captureAt ?? ''}
+              onChange={(e) =>
+                onChange({ captureAt: e.target.value || null, timeSource: e.target.value ? 'user' : 'unknown' })
+              }
+            />
+            <div>
+              <PxButton
+                size="sm"
+                inline
+                className="!mb-2"
+                onClick={() => onChange({ captureAt: null, timeSource: 'unknown' })}
+              >
+                Time unknown
+              </PxButton>
+            </div>
+          </Field>
+
+          <Field label="Station (optional)" id="station" hint="A coarse label only. Location data is never read from your photo.">
+            <input
+              id="station"
+              className="px-input"
+              placeholder="e.g. Jay St–MetroTech"
+              value={draft.station}
+              onChange={(e) => onChange({ station: e.target.value })}
+            />
+            {draft.station && (
+              <div>
+                <PxButton size="sm" inline className="!mb-2" onClick={() => onChange({ station: '' })}>
+                  Remove station
+                </PxButton>
+              </div>
+            )}
+          </Field>
+
+          <PxButton icon="photo" onClick={onFullPhoto}>
+            View full photo
+          </PxButton>
+        </Panel>
+
+        {v && (
+          <Disclosure title="Sign details">
+            <div className="flex items-center gap-3 pb-2">
+              <Sign route={v.route} variantId={v.id} size={45} />
+              <div>
+                <b>{v.name}</b>
+                <div>{v.style}</div>
+              </div>
+            </div>
+            <p className="text-ink/80">
+              Shape: {v.shape}. Color {v.color}. Credit: {v.credit}. The sign style does not prove which train model you
+              photographed.
+            </p>
+          </Disclosure>
+        )}
+
+        <Disclosure title="Something looks wrong?">
+          <p className="mb-2">Recognition can make mistakes. Pick a simple fix:</p>
+          <div className="flex flex-col">
+            <PxButton size="sm" icon="camera" onClick={() => setDiscard(true)}>
+              Retake
+            </PxButton>
+            <PxButton size="sm" icon="search" onClick={onTryAgain}>
+              Adjust crop and retry
+            </PxButton>
+            <PxButton
+              size="sm"
+              disabled={draft.model === null}
+              onClick={() => onChange({ model: null, modelSource: 'unknown' })}
+            >
+              Set train model to Unknown
+            </PxButton>
+          </div>
+        </Disclosure>
+
+        <div className="mt-2 flex flex-col">
+          {uncertain && (
+            <PxButton size="lg" icon="search" onClick={onTryAgain}>
+              Try again
+            </PxButton>
+          )}
+          <PxButton v="primary" size="lg" icon="check" onClick={onSave}>
+            {saveLabel}
+          </PxButton>
+          {!signedIn && deviceDefault && (
+            <button type="button" onClick={onSignIn} className="mb-3 min-h-[44px] text-center text-paper underline underline-offset-4">
+              Sign in to save to an account instead
+            </button>
+          )}
+          <PxButton icon="camera" onClick={() => setDiscard(true)}>
+            Retake
+          </PxButton>
+        </div>
+      </main>
+
+      {discard && (
+        <Confirm
+          title="Discard this card?"
+          body="Your photo and the details you entered will be thrown away. Nothing has been saved yet."
+          confirm="Discard and retake"
+          danger
+          onConfirm={onRetake}
+          onCancel={() => setDiscard(false)}
+        />
+      )}
+    </div>
+  )
+}
+
+/* ---------- 5. Guest save sheet (+ saving states) ---------- */
+export type SaveState =
+  | { mode: 'closed' }
+  | { mode: 'choose'; note?: string }
+  | { mode: 'auth'; kind: 'signin' | 'signup' }
+  | { mode: 'saving'; target: 'device' | 'account' }
+  | { mode: 'failed'; target: 'device' | 'account'; message: string }
+
+export function SaveSheet({
+  state,
+  onClose,
+  onDevice,
+  onAuth,
+  onAuthCancel,
+  onAuthContinue,
+  onRetry,
+}: {
+  state: SaveState
+  onClose: () => void
+  onDevice: () => void
+  onAuth: (k: 'signin' | 'signup') => void
+  onAuthCancel: () => void
+  onAuthContinue: () => void
+  onRetry: () => void
+}) {
+  if (state.mode === 'closed') return null
+  const busy = state.mode === 'saving'
+  return (
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/70" onKeyDown={(e) => e.key === 'Escape' && !busy && onClose()}>
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="sheet-t"
+        className="px-panel sheet-in w-full max-w-[480px] !m-0 px-4 pb-6 pt-4"
+        style={{ boxShadow: '0 -4px 0 0 #14233f, -4px 0 0 0 #14233f, 4px 0 0 0 #14233f' }}
+      >
+        {state.mode === 'choose' && (
+          <>
+            <h2 id="sheet-t" className="font-pixel text-[24px] font-medium">
+              Save your card
+            </h2>
+            <p className="mb-1 mt-1 text-[1.0625rem]">Device saves stay in this browser. Sign in to save to an account.</p>
+            <p className="mb-3 text-[0.9375rem] text-ink/80">
+              Clearing site data can remove cards saved on this device. Your photo and details are kept while you choose.
+            </p>
+            {state.note && (
+              <Dialogue tone="warn" live className="mb-3">
+                {state.note}
+              </Dialogue>
+            )}
+            <div className="flex flex-col">
+              <PxButton autoFocus v="primary" onClick={() => onAuth('signin')}>
+                Sign in
+              </PxButton>
+              <PxButton onClick={() => onAuth('signup')}>Create account</PxButton>
+              <PxButton v="teal" icon="check" onClick={onDevice}>
+                Save on this device for now
+              </PxButton>
+              <PxButton v="dark" onClick={onClose}>
+                Back to card
+              </PxButton>
+            </div>
+          </>
+        )}
+        {state.mode === 'auth' && (
+          <>
+            <h2 id="sheet-t" className="font-pixel text-[24px] font-medium">
+              {state.kind === 'signin' ? 'Sign in' : 'Create account'}
+            </h2>
+            <Dialogue tone="info" title="Placeholder" className="my-3">
+              Provider and forms are not decided yet. This simulated step stands in for them. Your card is held safely
+              until you continue.
+            </Dialogue>
+            <div className="flex flex-col">
+              <PxButton autoFocus v="primary" onClick={onAuthContinue}>
+                Continue (simulated)
+              </PxButton>
+              <PxButton onClick={onAuthCancel}>Cancel</PxButton>
+            </div>
+          </>
+        )}
+        {state.mode === 'saving' && (
+          <div role="status" aria-live="polite" className="py-4">
+            <h2 id="sheet-t" className="font-pixel text-[24px] font-medium">
+              {state.target === 'device' ? 'Saving on this device…' : 'Saving to your account…'}
+            </h2>
+            <div className="prog-bar my-4" />
+            <p className="text-[1rem]">Keep this screen open. The card is revealed only after saving is confirmed.</p>
+          </div>
+        )}
+        {state.mode === 'failed' && (
+          <>
+            <h2 id="sheet-t" className="font-pixel text-[24px] font-medium">
+              Save did not work
+            </h2>
+            <Dialogue tone="error" live className="my-3">
+              {state.message} Your photo and details are still here. Retrying keeps the same encounter, so nothing is
+              duplicated.
+            </Dialogue>
+            <div className="flex flex-col">
+              <PxButton autoFocus v="primary" onClick={onRetry}>
+                Retry save
+              </PxButton>
+              {state.target === 'account' && <PxButton onClick={onDevice}>Save on this device instead</PxButton>}
+              <PxButton v="dark" onClick={onClose}>
+                Back to card
+              </PxButton>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
+/* ---------- 6. Card reveal ---------- */
+export function Reveal({
+  card,
+  cards,
+  firstEncounter,
+  onView,
+  onScan,
+  onCollection,
+}: {
+  card: Card
+  cards: Card[]
+  firstEncounter: boolean | null
+  onView: () => void
+  onScan: () => void
+  onCollection: () => void
+}) {
+  const [skip, setSkip] = useState(false)
+  const info = encounterInfo(cards, card)
+  const device = card.storage === 'device'
+  return (
+    <div className="flex flex-1 flex-col">
+      <main className="flex flex-1 flex-col gap-4 p-4 pt-6">
+        <div className="text-center">
+          <div aria-live="polite">
+            <Chip tone="ok">
+              <PixelIcon name="check" size={14} />
+              {device ? 'Saved on this device' : 'Saved to your account'}
+            </Chip>
+          </div>
+          <h1 className="mt-2 font-pixel text-[24px] font-medium leading-none text-paper">
+            {firstEncounter === null ? 'Card saved!' : firstEncounter ? 'New sign!' : `Encounter #${info?.count}`}
+          </h1>
+          <p className="mt-1 text-[1rem] text-paper">
+            {firstEncounter === null
+              ? 'Saved with variant unknown. No count is made up.'
+              : firstEncounter
+                ? 'First time collecting this sign.'
+                : `Another encounter with ${VARIANTS[card.variantId!].name}.`}
+          </p>
+        </div>
+
+        <div className="px-3 [perspective:900px]" key={String(skip)}>
+          <TrainCard card={card} cards={cards} sparkles reveal={!skip} />
+        </div>
+
+        <Dialogue tone="ok" title={device ? 'On this device' : 'In your account'}>
+          {device
+            ? 'Simulated device save. In this prototype nothing is actually stored, and reloading resets the sample data.'
+            : 'Simulated account save. In this prototype nothing is actually sent or stored.'}
+          {info && <div className="mt-1">First collected {fmtDate(info.first)} · seen ×{info.count}</div>}
+        </Dialogue>
+
+        <div className="mt-auto flex flex-col">
+          <PxButton v="primary" size="lg" onClick={onView}>
+            View card
+          </PxButton>
+          <div className="grid grid-cols-2 gap-2">
+            <PxButton icon="camera" onClick={onScan}>
+              Scan another
+            </PxButton>
+            <PxButton icon="cards" onClick={onCollection}>
+              My Collection
+            </PxButton>
+          </div>
+          {!skip && (
+            <button type="button" onClick={() => setSkip(true)} className="min-h-[44px] text-center text-paper underline underline-offset-4">
+              Skip animation
+            </button>
+          )}
+        </div>
+      </main>
+    </div>
+  )
+}
