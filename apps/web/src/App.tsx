@@ -389,8 +389,8 @@ export default function App() {
     <PhotoPreviewContext.Provider value={{ state: photoState, reset: () => setPhotoState('ready') }}>
     <div data-motion={motion} className="min-h-dvh">
       <div style={{ maxWidth: `${previewWidth}px` }} className="screen-shell mx-auto flex min-h-dvh w-full max-w-[480px] flex-col bg-teal shadow-[0_0_0_4px_#14233f]">
-        <div className="sticky top-0 z-40 bg-ink text-paper">
-          <div className="flex min-h-[40px] items-center justify-between gap-2 px-3">
+        <div className="prototype-bar sticky top-0 z-40 bg-ink text-paper">
+          <div className="flex min-h-[44px] items-center justify-between gap-2 px-3">
             <span className="font-body text-[14px] font-medium uppercase tracking-normal">
               Design prototype · sample data
             </span>
@@ -398,7 +398,7 @@ export default function App() {
               type="button"
               aria-expanded={lab}
               onClick={() => setLab((l) => !l)}
-              className="flex min-h-[40px] items-center gap-1.5 px-2 font-body text-[13px] font-medium uppercase text-gold"
+              className="flex min-h-[44px] items-center gap-1.5 px-2 font-body text-[13px] font-medium uppercase text-gold"
             >
               <PixelIcon name="flask" size={14} />
               States
@@ -412,7 +412,7 @@ export default function App() {
                 </legend>
                 <div className="flex flex-col">
                   {SCENARIOS.map((s) => (
-                    <label key={s.id} className="flex min-h-[40px] items-center gap-2">
+                    <label key={s.id} className="flex min-h-[44px] items-center gap-2">
                       <input
                         type="radio"
                         name="sc"
@@ -437,7 +437,7 @@ export default function App() {
                     ['Detail photo missing', missingPhoto, setMissingPhoto],
                   ] as const
                 ).map(([l, v, set]) => (
-                  <label key={l} className="flex min-h-[40px] items-center gap-2">
+                  <label key={l} className="flex min-h-[44px] items-center gap-2">
                     <input
                       type="checkbox"
                       checked={v}

@@ -710,3 +710,47 @@
 @layer components {
   .px-panel { overflow-wrap: anywhere; }
 }
+
+/* Phone browsers: preserve zoom, fit cutouts, and keep controls reachable. */
+@layer base {
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  button, summary, a, input[type='checkbox'], input[type='radio'] { touch-action: manipulation; }
+  input, select, textarea { min-width: 0; font-size: max(16px, 1rem); }
+}
+  .screen-shell {
+    container-type: inline-size;
+    padding-inline: env(safe-area-inset-left, 0px) env(safe-area-inset-right, 0px);
+  }
+  .prototype-bar { padding-top: env(safe-area-inset-top, 0px); }
+  nav[aria-label='Main'] {
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  }
+  /* While typing, let navigation follow the document instead of covering fields. */
+  .screen-shell:has(input:not([type='radio']):not([type='checkbox']):not([type='range']):focus, textarea:focus) nav[aria-label='Main'] {
+    position: static;
+  }
+  .collection-cards {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.375rem), 1fr));
+  }
+  .confirm-overlay, .mobile-overlay {
+    padding-top: max(12px, env(safe-area-inset-top, 0px));
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+    padding-left: max(12px, env(safe-area-inset-left, 0px));
+    padding-right: max(12px, env(safe-area-inset-right, 0px));
+    overflow-y: auto;
+  }
+  .confirm-overlay > [role='alertdialog'], .mobile-overlay > .px-panel {
+    max-height: calc(100dvh - max(12px, env(safe-area-inset-top, 0px)) - max(12px, env(safe-area-inset-bottom, 0px)) - 8px);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+  .photo-dialog {
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+  }
+  .photo-dialog > :last-child { min-height: 0; }
+@container (max-width: 360px) {
+  .collection-summary { gap: 8px; }
+  .collection-summary > div { padding: 6px; }
+  nav[aria-label='Main'] { padding-inline: 8px; gap: 6px; }
+  nav[aria-label='Main'] button { font-size: .875rem; }
+}

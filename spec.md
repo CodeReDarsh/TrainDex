@@ -1,7 +1,9 @@
 # TrainDex — Product, Backend, Accounts, and Storage Specification
 
-**Project:** Four-person SBUHacks project  
-**Revision:** 2026-10-24 — camera-first collection, guest saves, cloud accounts/photos  
+**Project:** Two-person SBUHacks MVP
+
+**Revision:** 2026-10-25 — Mobile-browser MVP; Expo deferred; optional accounts
+
 **Status:** Implementation plan; distinguishes existing code from proposed work  
 **Frontend:** [Design specification](frontend-spec.md)
 
@@ -12,7 +14,7 @@ TrainDex opens directly into a camera. A user photographs the front or rear of a
 **Flow:** Capture → Preview/crop → Recognize → Review card → Save choice → Reveal → Collection.
 
 - No sign-in gate before capture or online recognition.
-- Guest Save offers sign-in/account creation or **Save on this device for now**.
+- Hackathon MVP Save uses **Save on this device**. Hide simulated account/import controls in the real demo. Sign-in and cloud saving become available only if the optional account milestone is completed.
 - Each deliberately saved encounter creates a separate card. Retrying the same save does not.
 - Group cards by subway route. Uncollected supported routes show question-mark placeholders; there is no public reference-catalog screen or pre-generated card inventory.
 - Card theme: original GBA-era pixel-art interface with foil accents. User photographs remain clear. Templates compose photos and attributes; generated art is not required for each card.
@@ -21,6 +23,14 @@ TrainDex opens directly into a camera. A user photographs the front or rear of a
 - Live car-to-route mappings and GTFS trip matching are not required.
 
 Labels: **Existing** means found in repository source, not confirmed deployed. **Proposed default** is the recommended build plan. **Open** requires a later product/deployment choice. No infrastructure has been provisioned by this specification update.
+
+### Hackathon scope and release gates
+
+**Required:** one real physical phone completes photo selection/capture → online recognition → honest review → durable device save → collection → reopen full photo after refresh/app restart. The primary target is the existing web UI in a mobile browser. Deploy a shared URL/QR, rehearse on a physical phone and judging network, and verify browser refresh/full-photo recovery. Expo is deferred.
+
+**Optional after this works:** Google accounts/cloud saves, explicit import, then email/password. Do not let account creation, TestFlight, App Store release, Android packaging, or polishing both clients block the first working phone demo. Accounts may be omitted entirely from the hackathon submission.
+
+**Agreed client choice:** prioritize optimizing the existing React DOM/Vite UI for mobile browsers. You own responsive/touch UI, browser camera/photo selection, IndexedDB/device saving and client API wiring. Your friend owns the complete backend including recognition, storage, database and deployment. Expo/React Native is deferred; no native app is required for this MVP. Keep API/data interfaces reusable without building a second client now.
 
 ## 2. Card fields and identity
 
@@ -51,13 +61,15 @@ Read EXIF before re-encoding. Preserve capture-time source (`exif | shutter | es
 - `app/`: Python/FastAPI + SQLAlchemy/Alembic reference catalog and metadata matching endpoints.
 - PostgreSQL is configured through Compose. Existing catalog migrations/imports must be preserved.
 - The Node recognition path currently calls Gemini directly and can load examples from a folder. It does not yet implement the complete OCR/retrieval pipeline, accounts, durable cards, cloud photo storage, or local collection persistence.
-- The planned React/Vite/Tailwind mobile PWA and pixel-art designs are separate from the current test page. Deployment status is not established by source code.
+- `apps/web/` contains the React DOM/Vite/Tailwind interactive prototype, separate from the API test page. Its account/recognition/save states are simulated and local persistence is not wired. There is no native Expo client in this checkout. Deployment status is not established by source code.
 
 ### Proposed default architecture
 
 ```mermaid
 flowchart LR
-  U[Camera-first PWA on Vercel] --> L[IndexedDB device cards and drafts]
+  U[Phone web UI on Vercel] --> L[IndexedDB device cards and drafts]
+  N[Deferred Expo native client] --> NL[SQLite metadata and durable photo files]
+  N -->|HTTPS / native session transport| C
   U -->|HTTPS / guest or account session| C[Caddy on Vultr]
   C --> A[Node Fastify application API and auth]
   A --> P[(PostgreSQL)]
@@ -72,49 +84,60 @@ flowchart LR
   U -->|Short-lived authorized media URLs| S
 ```
 
-- **Frontend:** React/TypeScript/Vite/Tailwind PWA hosted on Vercel.
+- **Primary demo frontend:** existing `apps/web/` React/TypeScript/Vite/Tailwind website hosted on Vercel and optimized for phone browsers. You own responsive/touch layout, camera/picker/crop, IndexedDB persistence, API integration and real-phone rehearsal. No app installation is required; PWA installation is optional.
+- **Deferred native client:** a future proposed `apps/mobile/` could reuse API types and pure data logic, but requires native screens/navigation, camera and SQLite/files adapters. Do not start an Expo port during the browser MVP work.
 - **Vultr compute:** One Ubuntu VPS initially, running Caddy, Node API/auth, Python catalog service, PostgreSQL, and worker via Compose.
 - **Vultr Object Storage:** Durable private photos, crops, and thumbnails. This is a separate cloud storage resource from VPS disk; use an S3-compatible client from Node.
 - **PostgreSQL:** Accounts/sessions, ownership, card metadata, reference catalog, job state, and object keys. Do not put photo blobs in ordinary card rows.
 - **Reference assets:** Keep the curated SVG seed versioned and available locally to the catalog/worker; optionally mirror immutable files in object storage. Rasterize trusted SVG references before sending to a vision model where necessary. Existing reference identity/provenance stays intact.
-- Node is the browser-facing application boundary. Python remains internal for the existing catalog; avoid a rewrite during the hackathon. Both use controlled schema ownership, not competing migrations of the same tables.
+- Node is the public application boundary for web and native clients. Python remains internal for the existing catalog; avoid a rewrite during the hackathon. Both use controlled schema ownership, not competing migrations of the same tables.
 - Gemini is an external recognition service. Reference images must be explicitly selected and supplied; it cannot inspect local storage automatically.
 
 Node handles network I/O well, but scalability comes from bounded work, shared storage, queues, indexes, and provider budgets. Move CPU-heavy decoding/resizing/rasterization off the API event loop into workers. Python catalog code does not prevent scaling.
 
-## 4. Account creation and authentication plan
+## 4. Optional account creation and authentication plan
 
-**Proposed default:** Better Auth integrated with Fastify, persisted in PostgreSQL, with **Continue with Google** as the first authentication method. First successful Google sign-in creates an account; returning sign-in restores access. This avoids custom password handling and an email-delivery dependency for the first release. Email/password can be added later with verification, password-reset delivery, and abuse controls; it is not silently assumed available.
+**Release gate:** no accounts are required for the hackathon MVP. Implement this section only after the phone demo and sharing gates pass. Google is the first optional provider; email/password is later scope.
 
-1. Guest begins capturing without an account prompt. Preserve the current photo/card draft in IndexedDB before redirecting to authentication.
+**Proposed default:** Better Auth integrated with Fastify, persisted in PostgreSQL, with **Continue with Google** as the first authentication method. First successful Google sign-in creates an account; returning sign-in restores access. This avoids custom password handling and an email-delivery dependency for the first account release. Email/password can be added later with verification, password-reset delivery, and abuse controls; it is not silently assumed available.
+
+1. Guest begins capturing without an account prompt. Preserve the current photo/card draft in the platform device repository before redirecting to authentication.
 2. On Save, offer Sign in/Create account (both can lead to Continue with Google) or device saving.
 3. The auth library handles OAuth state/PKCE as supported, callback verification, provider identity, and sessions. Use its supported integration rather than hand-building OAuth.
 4. On callback, resolve the user from the verified session and resume the pending card's save. Cancellation/error returns to the card with device saving still available.
 5. Show **Saved to your account** only after durable photo processing and card commit succeed. Sign-in alone is not a save.
 6. Sign-out revokes the session and clears account-specific cached data from the browser; separately saved guest cards stay in their own device collection.
 
+### Later email/password extension
+
+Better Auth can support email/password alongside Google. Use its generated credential schema and supported salted password hashing/verification; never store plaintext or reversibly encrypted passwords, or create a separate hand-written password system. Google-only identities have no local password. Add email ownership verification, transactional email delivery, expiring single-use password recovery, password-change/session-revocation flows, rate limits and non-enumerating responses. Test verified account linking so matching unverified email strings cannot take over a collection. This is a separate release gate, not merely another sign-in button.
+
 ### Session/deployment contract
+
+The cookie/domain rules below apply to the web client.
 
 - Use Secure/HttpOnly session cookies with library-supported settings; never store long-lived auth tokens in localStorage. Persist sessions in PostgreSQL so restarts/multiple API instances work.
 - Recommended domains: frontend `app.<owned-domain>` on Vercel and API `api.<owned-domain>` on Vultr. Configure exact trusted origins, credentialed CORS, CSRF/Origin checks, and explicit OAuth callbacks. Use a host-only API cookie when possible.
 - Verify HTTPS cookie/OAuth behavior on actual mobile browsers. If using the Vercel default domain, implement/test a same-origin API proxy or obtain the shared domain before relying on cross-site cookies.
 - Use the library's generated auth schema and supported version; don't invent incompatible session/token formats. Never auto-link identities merely because an unverified email string matches.
 - Google OAuth credentials, Gemini key, auth secret, DB credentials, and S3 credentials are server secrets. Limit OAuth scopes to identity needs.
-- Registration/provider configuration and deployment are future implementation steps, not actions performed by this document.
+- Native account auth needs the supported Expo/native integration, secure token storage and tested redirects/deep links; do not assume browser cookies/OAuth callbacks work unchanged in Expo Go. Defer this until the chosen runtime is proven. Registration/provider configuration and deployment are future implementation steps, not actions performed by this document.
 
 ## 5. Guest recognition and device-local saving
 
 ### Anonymous recognition session
 
-A guest can use the network recognition API without creating an account. Issue an opaque, short-lived HttpOnly guest-session cookie; store its hash and expiry. Guest sessions own temporary uploads/jobs/results and are not recoverable user accounts. Require that session on polling/read/delete requests; do not expose unguessable job IDs as the only access check.
+A guest can use the network recognition API without creating an account. For web, issue an opaque, short-lived HttpOnly guest-session cookie; store its hash and expiry. For native, define an explicit opaque guest bearer transport with the same ownership/expiry rules, store the token in SecureStore and send it only over HTTPS in the Authorization header. Do not put it in URLs/logs or treat it as a permanent account. Test browser cookie and native bearer paths separately; never weaken owner checks for mobile. Guest sessions own temporary uploads/jobs/results and are not recoverable user accounts. Require that session on polling/read/delete requests; do not expose unguessable job IDs as the only access check.
 
 **Proposed starting controls:** guest session lifetime 24 hours, completed guest-upload cleanup within 24 hours, small per-session/IP rate limits plus a global Gemini spend/concurrency limit. These are configurable operational defaults, not guarantees against quota evasion. Deny excess requests with actionable retry messaging. Avoid creating unlimited paid AI work before authentication.
 
 ### Device save
 
+If native is implemented later, it must meet the same durable-save contract with SQLite metadata and app-document photo files: copy picker/cache files before confirming Save, publish the metadata only after the files are ready, and recover/clean up partial writes. SQLite and filesystem writes are not one atomic transaction. Clearing browser data or uninstalling a native app can remove local collections; there is no cross-device recovery without accounts/export.
+
 - IndexedDB stores stable encounter UUID, photo Blob, crop/thumbnail, matched reference display asset, metadata, recognition receipt, and local save state. A preview URL or metadata-only localStorage record is not a photo save.
-- Commit photo and metadata in a transaction; show Saved on this device only on success. Handle quota/storage-denied errors without discarding the current preview.
-- Local cards/photos survive ordinary refresh when browser storage remains available; clearing site data or storage eviction can remove them. Offer persistent-storage permission where supported, without promising browser permanence.
+- Web: commit photo and metadata in an IndexedDB transaction; show Saved on this device only on success. Handle quota/storage-denied errors without discarding the current preview.
+- Web: local cards/photos survive ordinary refresh when browser storage remains available; clearing site data or storage eviction can remove them. Offer persistent-storage permission where supported, without promising browser permanence.
 - Local collection works without an account. Keeping a card locally does not mean it never left the device: online recognition uploads a temporary image/crop to the backend/Gemini.
 - If offline before recognition, save an unrecognized photo draft. If recognition is already complete, save the resulting card locally without connectivity. Cloud saves require connectivity.
 - Preserve a receipt binding the server's recognition result to photo checksum, encounter, catalog/model versions, and outcome. Use a signed, verifiable receipt or server record; do not trust edited browser JSON during later import. Never include private reference URLs or secrets in it.
@@ -173,7 +196,7 @@ Vultr supports presigned URLs/CORS/lifecycle operations, but its documented comp
 ## 8. Recognition and reference workflow
 
 1. Capture/crop; extract usable timestamp metadata; retain full photo locally.
-2. Browser OCR supplies text hypotheses and tool scores. It does not certify a sign appearance.
+2. OCR supplies text hypotheses and tool scores. For the demo, run OCR in the server worker so both web and Expo can use it without a custom native module; browser OCR is an optional adapter/optimization. It does not certify a sign appearance.
 3. Guest/account API creates a temporary capture and durable job.
 4. Worker queries the existing Python catalog for candidates using route hypotheses and visible attributes. Weak OCR broadens retrieval. Metadata scores are heuristic, not probabilities.
 5. Rasterize selected trusted SVG references when required; send a bounded candidate set with stable IDs plus query photo/crop to Gemini. Include full-frame context only when needed for optional train model.
@@ -210,7 +233,7 @@ Preserve existing Python-managed catalog tables (`sign_designs`, `routes`, `refe
 
 ### Constraints
 
-- Temporary captures/assets have exactly one owner: user or guest session. Cards require an account owner; device-only cards live in IndexedDB, not a permanent server guest collection.
+- Temporary captures/assets have exactly one owner: user or guest session. Cards require an account owner; device-only cards live in the platform device repository, not a permanent server guest collection.
 - Owner-aware foreign keys or transactional checks enforce capture/asset/card ownership. Caller-supplied user IDs are ignored.
 - Claiming a guest capture requires both current guest-session proof and authenticated destination account; transfer all dependent assets atomically and reject repeat claims to another account.
 - Unique `(user_id, encounter_uuid)` and unique card per capture. Guest captures also enforce `(guest_session_id, encounter_uuid)` uniqueness. UUIDs are idempotency keys, not access credentials.
@@ -221,16 +244,19 @@ Preserve existing Python-managed catalog tables (`sign_designs`, `routes`, `refe
 
 ## 10. Proposed API surface
 
-The existing `/v1/identify` remains a development entry point during migration; replace its synchronous-only flow with jobs without misrepresenting existing endpoint support.
+The [guest capture API contract v1](docs/contracts/guest-capture-v1.md) defines exact upload fields, examples, guest transport, crop/time rules, polling/results and errors. Processing retry may create a new run/crop on the same capture/encounter; the source image remains immutable and receipts bind the selected run. Upload idempotency remains tied to the original image/metadata fingerprint. Cancellation is idempotent and preserves a terminal completion if completion won the race. These are proposed implementation semantics, not existing endpoint support.
+
+The existing `/v1/identify` remains a development entry point during migration; replace its synchronous-only flow with jobs without misrepresenting existing endpoint support. MVP endpoints are guest-session, captures/status/retry/cancel, media, supported routes and health/readiness. Account/card/import endpoints below are deferred. Device-local card operations do not require server card rows.
 
 | Endpoint | Purpose / access |
 |---|---|
-| `/api/auth/*` | Library-managed Google sign-in/callback/session/logout |
+| `/api/auth/*` | Optional accounts: library-managed Google sign-in/callback/session/logout; email/password later |
 | `POST /v1/guest-session` | Establish rate-limited temporary recognition session |
 | `GET /v1/me` | Account state without forcing login |
 | `POST /v1/captures` | Multipart upload + encounter UUID; guest or user; return capture/job IDs |
 | `GET /v1/captures/:id` | Owner-only processing/result |
 | `POST /v1/captures/:id/retry` | Bounded retry; preserve encounter identity |
+| `POST /v1/captures/:id/cancel` | Owner-only cancellation; late completion cannot publish a usable result |
 | `POST /v1/captures/:id/claim` | Guest-session proof + account session; atomic ownership transfer |
 | `POST /v1/cards` | Account save of owned, ready capture; idempotent |
 | `GET /v1/cards`, `GET /v1/cards/:id` | Private account cards, route filters, cursor pagination |
@@ -261,6 +287,21 @@ Proposed operations defaults:
 - Monitor disk space, object bytes, failed uploads/deletions, queue age, API error/latency, DB connections, and Gemini usage. Do not log private photos, session tokens, signed URLs, or detailed travel histories.
 - Disclose temporary backend/Google image processing even for local-save guests. No photo is automatically added to the reference library.
 
+### Phone access and sharing plan
+
+The Vultr backend is independent of the client runtime: a phone browser, Expo Go app, or installed Android app calls the same public HTTPS Fastify API. `localhost` on a phone points to that phone, not the VPS. Keep Gemini/database/storage credentials exclusively on the server; the public API base URL may be client configuration.
+
+| Delivery path | What must be hosted/running | Hackathon use |
+| --- | --- | --- |
+| Existing phone website | Built frontend on Vercel + API/worker/catalog/database on Vultr | Primary demo and shared URL/QR; no developer laptop needed after deployment. |
+| Expo Go | Separate native client + supported JS bundle delivery/development server + hosted API | Deferred native testing option; not needed for the browser MVP. |
+| Android preview APK | EAS preview/internal build with bundled JS + hosted API | Optional install link; verify cold launch without Metro or a laptop. |
+| iOS standalone app | Apple signing/provisioning and an appropriate distribution route | TestFlight/App Store/ad hoc distribution is outside the required MVP. |
+
+Expo Go contains a fixed set of native libraries; pin a compatible SDK and prove camera, picker, storage, image rendering and networking on a real device before porting all screens. A hosted API does not host the Expo JavaScript bundle. A remote development server/tunnel can remove the laptop dependency for a supervised test, but is still a running development service, not a standalone release. Do not promise EAS Update as arbitrary Expo Go distribution without verifying the current supported workflow.
+
+Current Expo documentation checked October 25, 2026 says physical iOS Expo Go development-server access requires CLI and Expo Go signed in to the same Expo account. Do not ask judges to share the team's credentials; rehearse on a team-owned phone and provide the web URL for judges' own iPhones. If Expo access fails, use the proven web demo rather than blocking the showcase.
+
 ## 12. Scaling and cost plan
 
 ### Stage 1 — hackathon / small pilot
@@ -290,16 +331,21 @@ Set configurable account storage quotas (proposed pilot: 100 cards or 250 MB, wh
 
 ## 13. Implementation sequence and acceptance
 
-1. **Camera/local path:** IndexedDB photo/card repository, stable encounter IDs, EXIF/time handling, guest save UX, and offline draft versus matched-card distinction.
-2. **Cloud foundation:** Storage adapter/private bucket configuration, bounded upload/validation worker, DB ownership/job/media migrations, cleanup and thumbnail delivery.
-3. **Recognition integration:** Connect Node to the existing Python catalog, shortlist/rasterize references, retain OCR, implement Gemini validated match/Unknown model and receipts.
-4. **Accounts:** Better Auth + Google credentials/callbacks, shared-domain session testing, guest claim, account-owned card save and retrieval.
-5. **Import:** Explicit device-to-account import with resumable uploads, receipt/checksum validation, per-item success state, and deduplication.
-6. **Hardening/deploy:** Mobile camera/HEIC tests, quotas, provider failure recovery, privacy controls, backups/restores, account/card deletion, and demo rehearsal.
+1. **D0 — phone browser and contract:** A (you) checks the existing UI on a real phone; B (friend) exposes HTTPS API health/request fixtures. Agree guest session/upload/crop/time/result/error fields before independent wiring.
+2. **G1 — local path + hosted foundation in parallel:** A owns mobile-browser UI, camera/picker and durable IndexedDB photos/cards; B owns Vultr deployment, guest sessions, bounded upload/validation, database jobs, cleanup and staging HTTPS.
+3. **G2 — real guest vertical slice:** B owns OCR/catalog/Gemini, workers/media/receipts; A wires the browser review/save journey. Complete photo → recognize → review → device save → refresh → reopen full photo on a physical phone.
+4. **D1 — judge-ready sharing:** deploy the website and hosted backend, share a URL/QR, and rehearse phone/network, permissions, offline/error recovery and spend limits. No Metro, Expo Go, APK or TestFlight is required.
+5. **A1/A2 — only with spare time:** Google accounts/cloud cards, then explicit device import. Include ownership, privacy, deletion and failure tests before exposing account features.
+6. **A3 — later:** email/password plus verification, recovery, delivery, abuse controls and safe account linking. Native account integration is separately tested if native ships.
 
-Team ownership: frontend/local-save UX; recognition/catalog integration; Node auth/cards/storage APIs; infrastructure/reference assets/migrations. Agree owner and migration boundaries before concurrent schema changes.
+**Two-person ownership:** A = you, mobile-browser client/UI, IndexedDB device repository and API adapters. B = friend, all backend including OCR/catalog/Gemini, API, workers, database/migrations, private media and deployment. B owns `apps/api/**`, Python/catalog/migrations and infrastructure; A owns `apps/web/**`. B drafts the shared API contract and fixtures; A reviews them and builds against explicit fixtures while B tests the server independently. Layout changes should not affect backend internals; crop/image conventions, guest credentials and result/retry semantics require joint agreement. Expo remains deferred. See [backend implementation TODO](backend-implementation-todo.md).
+
+The following checks are phase-specific: guest/device/isolation/limits checks block the demo; account, cloud-save and import checks apply only if those optional features ship.
 
 Acceptance checks:
+
+- Deferred native release (only if implemented later): camera/picker, orientation/crop, safe areas, navigation, accessible touch controls and photo/metadata recovery after app restart work on a physical phone. Prove runtime/bundle access separately from API availability.
+- Mobile browser release: phone-sized layouts, safe areas, scrolling above bottom navigation, readable text, touch targets, keyboard/search behavior, camera permission fallback and reduced motion work on actual phones. Browser width controls are useful previews, not device validation.
 
 - Guest launch reaches camera; recognition works without account creation. Local save survives refresh with full photo.
 - Both sign-in cancellation and failed cloud save preserve the local card. Login resumes the intended save.
@@ -316,9 +362,14 @@ Acceptance checks:
 
 ## 14. Remaining decisions and sources
 
-Open product decisions: supported routes/historical signs/shuttles; unmatched-card versus draft handling; manual correction controls; permanent unlock history after deletion. Proposed engineering defaults here are Google/Better Auth, private Vultr Object Storage, IndexedDB guest storage, and explicit import. Confirm region, domain, budget, quotas, and recovery requirements before provisioning. Email/password is optional later work, not required for camera-first launch.
+Open product decisions: supported routes/historical signs/shuttles; unmatched-card versus draft handling; manual correction controls; permanent unlock history after deletion. Agreed engineering direction is mobile-browser-first, private Vultr Object Storage and IndexedDB device saving. Expo/SQLite/files are deferred. Google/Better Auth and explicit import are optional later milestones. Confirm region, domain, budget, quotas, and recovery requirements before provisioning. Email/password is optional later work, not required for camera-first launch.
 
-Checked official implementation references on 2026-10-24:
+Checked Expo references on 2026-10-25; earlier backend references were checked on 2026-10-24:
+
+- [Expo development server and physical iOS access](https://docs.expo.dev/get-started/start-developing/) — server/QR/tunnel and current same-account constraint.
+- [Expo Go and development builds](https://docs.expo.dev/develop/development-builds/introduction/) — fixed native runtime versus custom native builds.
+- [Expo internal distribution](https://docs.expo.dev/build/internal-distribution/) — Android APK and iOS provisioning distinctions.
+- [Expo SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/), [FileSystem](https://docs.expo.dev/versions/latest/sdk/filesystem/) and [SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/) — native persistence and credential adapters.
 
 - [Better Auth Fastify integration](https://better-auth.com/docs/integrations/fastify) — supported handler, trusted-origin and CORS integration.
 - [Better Auth Google provider](https://better-auth.com/docs/authentication/google) — OAuth configuration and callbacks.

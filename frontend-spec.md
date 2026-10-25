@@ -6,6 +6,10 @@
 
 > This revision supersedes earlier frontend proposals for mandatory sign-in, a browseable reference catalog, and grouping collection tiles by variant. The technical spec now includes a proposed account/cloud-storage plan aligned with guest recognition, device saving, timestamp handling, and route-grouped personal cards.
 
+## Current delivery priority — October 25, 2026
+
+The existing mobile-browser website is the primary client; Expo is deferred. You own responsive/touch layout, browser camera/picker, IndexedDB photo/card/draft storage and API wiring. Your friend owns the complete backend including recognition. Share the deployed website by URL/QR and verify it on actual phones. Account flows below are optional later features; the guest release uses device saving and hides simulated account/import actions. See [spec.md](spec.md) and [backend implementation TODO](backend-implementation-todo.md) for current gates and ownership.
+
 ## 1. Product direction and decisions
 
 TrainDex opens directly to Capture so users can start photographing subway signs. Each saved encounter creates a separate personal trading card from the user's photograph, recognized route, matching SVG sign variant, and optional train model. Cards have a trading-card foil aesthetic and are grouped by subway route in My Collection.

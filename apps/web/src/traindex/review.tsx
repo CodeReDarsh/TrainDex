@@ -46,7 +46,7 @@ export function Confirm({
 }) {
   const dialog = useDialog(true, onCancel)
   return (
-    <div ref={dialog} tabIndex={-1} className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/70 p-6">
+    <div ref={dialog} tabIndex={-1} className="confirm-overlay fixed inset-0 z-[60] flex items-center justify-center bg-ink/70 p-6">
       <div role="alertdialog" aria-modal="true" aria-labelledby="cf-t" className="px-panel w-full max-w-[420px] p-5">
         <h2 id="cf-t" className="font-pixel text-[24px] font-bold leading-tight">
           {title}
@@ -341,7 +341,7 @@ export function Review({
 function PreviousEncounters({ cards, allCards, onClose }: { cards: Card[]; allCards: Card[]; onClose: () => void }) {
   const dialog = useDialog(true, onClose)
   const [selected, setSelected] = useState<Card | null>(null)
-  return <div ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="previous-title" className="fixed inset-0 z-50 overflow-y-auto bg-ink/80 p-4">
+  return <div ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="previous-title" className="mobile-overlay fixed inset-0 z-50 overflow-y-auto bg-ink/80 p-4">
     <Panel className="mx-auto my-2 w-full max-w-[440px]">
       <h2 id="previous-title" className="mb-3 font-pixel text-[24px] font-bold">Previous encounters</h2>
       <p className="mb-4">Your new card is still unsaved. Its photo and entered details are kept while you look.</p>
@@ -375,7 +375,7 @@ export function SaveSheet({
   const dialog = useDialog(state.mode !== 'closed', () => { if (!busy) onClose() })
   if (state.mode === 'closed') return null
   return (
-    <div ref={dialog} tabIndex={-1} className="fixed inset-0 z-50 flex items-end justify-center overflow-y-auto bg-ink/70 p-1">
+    <div ref={dialog} tabIndex={-1} className="mobile-overlay fixed inset-0 z-50 flex items-end justify-center overflow-y-auto bg-ink/70 p-1">
       <div
         role="dialog"
         aria-modal="true"

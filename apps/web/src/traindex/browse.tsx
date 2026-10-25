@@ -176,7 +176,7 @@ export function Collection({ cards, signedIn, preferences, onPreferences, onScan
           <StorageChip signedIn={signedIn} />
           <span className="text-[0.9375rem]">Device + visible demo account cards</span>
         </div>
-        <dl className="grid grid-cols-3 gap-2 text-center">
+        <dl className="collection-summary grid grid-cols-3 gap-2 text-center">
           {[['Cards', cards.length], ['Routes', counts.size], ['Signs', variants]].map(([label, count]) => <div key={label} className="px-inset p-2">
             <dt className="font-pixel text-[16px] font-bold uppercase tracking-normal">{label}</dt>
             <dd><PixelText text={String(count)} scale={4} /></dd>
@@ -187,7 +187,7 @@ export function Collection({ cards, signedIn, preferences, onPreferences, onScan
       <div className="flex flex-col gap-3">
         <div className="relative">
           <label htmlFor="rq" className="sr-only">Search routes</label>
-          <input id="rq" type="search" inputMode="text" placeholder="Search route, e.g. A, F, 3, Q" className="px-input !pl-11" value={query} onChange={e => patch({ query: e.target.value })} />
+          <input id="rq" type="search" inputMode="text" enterKeyHint="search" autoComplete="off" autoCorrect="off" spellCheck={false} placeholder="Search route, e.g. A, F, 3, Q" className="px-input !pl-11" value={query} onChange={e => patch({ query: e.target.value })} />
           <PixelIcon name="search" size={20} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2" />
         </div>
         <div role="group" aria-label="Collection view" className="grid grid-cols-2 gap-2">
@@ -201,7 +201,7 @@ export function Collection({ cards, signedIn, preferences, onPreferences, onScan
       </div>
 
       <p role="status" className="text-paper">{view === 'groups' ? `${groups.length} route groups` : `${encounters.length} card${encounters.length === 1 ? '' : 's'}${encounters.length ? ' · tap any card to open it' : ''}`}</p>
-      {view === 'cards' ? encounters.length ? <ul aria-label="Collected cards" className="grid grid-cols-2 gap-4">
+      {view === 'cards' ? encounters.length ? <ul aria-label="Collected cards" className="collection-cards grid grid-cols-2 gap-4">
         {encounters.map(c => <li key={c.id} className="min-w-0"><button type="button" className="block w-full text-left" onClick={() => onOpen(c.id)} aria-label={`Open card: route ${c.route}, ${c.model ?? 'unknown model'}, ${fmtDateTime(c.captureAt)}`}>
           <TrainCard card={c} cards={cards} size="sm" />
         </button></li>)}
@@ -544,7 +544,7 @@ export function FullPhoto({ src, alt, onClose }: { src: string; alt: string; onC
       role="dialog"
       aria-modal="true"
       aria-label="Full photo"
-      className="fixed inset-0 z-[70] flex flex-col bg-ink"
+      className="photo-dialog fixed inset-0 z-[70] flex flex-col bg-ink"
     >
       <div className="flex items-center justify-between gap-2 p-4">
         <PxButton icon="close" onClick={onClose} inline className="!mb-2">

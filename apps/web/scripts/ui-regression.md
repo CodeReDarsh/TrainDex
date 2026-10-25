@@ -54,3 +54,11 @@ At 320px with 200% text, a DOM check confirmed the detail screen scroll width eq
 - A large collection/draft list and high encounter counts.
 - Automated browser regression coverage and full contrast/accessibility audit.
 - Integration tests for persistent storage, network conditions, real OAuth, and cross-device accounts.
+
+## Mobile-browser layout pass
+
+- At 320px content width, Collection card previews use one column; at 375/480px with default text, two columns fit. Repeat at 200% text and check for horizontal content overflow.
+- Summary labels and bottom navigation remain readable at narrow widths. States controls have at least 44px touch height.
+- Focus route search: search keyboard hint is present, spellcheck/autocorrection are off, font is at least 16px, and navigation becomes static while typing. Blur restores sticky navigation.
+- Open and cancel Delete card; tall confirmation/sheets can scroll within the viewport. Check Full photo close/zoom controls.
+- On real iOS/Android phones (pending): keyboard/browser chrome, landscape cutouts, home indicator, camera permission/fallback and pinch zoom. The desktop States width controls do not emulate those behaviors.

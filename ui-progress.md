@@ -1,5 +1,7 @@
 # TrainDex UI progress
 
+**Delivery priority (October 25, 2026):** mobile-browser optimization and real guest flow first; Expo is deferred. You own browser UI/storage/wiring; your friend owns the backend including recognition. Progress below describes the React DOM prototype, not a native app. See [backend implementation TODO](backend-implementation-todo.md).
+
 Last reviewed: October 25, 2026  
 Frontend: `apps/web`  
 Design references: [frontend-spec.md](frontend-spec.md) and [spec.md](spec.md)
@@ -120,3 +122,18 @@ No public catalog, trading, rarity, sharing, battle, or reference-publishing scr
 ## Updating this tracker
 
 Check off remaining items only after implementing and verifying them. Keep prototype completion separate from integration completion, record verification limitations, and update the review date. Do not use a single percentage that mixes UI coverage with production readiness.
+
+## Mobile-browser optimization pass — October 25, 2026
+
+- [x] Add viewport cutout support without disabling pinch zoom; request keyboard-aware viewport resizing where supported.
+- [x] Add safe-area spacing for the prototype bar, bottom navigation, save/confirmation overlays and full-photo viewer.
+- [x] Keep navigation in normal document flow while a text field is focused, reducing sticky keyboard overlap.
+- [x] Reflow collection cards to one column when two readable previews cannot fit; retain two columns at wider phone widths.
+- [x] Tighten narrow collection summary spacing and navigation labels; expand prototype controls to 44px touch targets.
+- [x] Add mobile search keyboard hints and disable route-search autocorrection/spell checking.
+- [x] Bound confirmation/sheet height and allow scrolling in short viewports or enlarged text.
+- [ ] Verify Safari/iOS and Chrome/Android camera permissions, browser chrome/virtual keyboard, cutouts and landscape on actual phones. Desktop width previews do not prove these device behaviors.
+
+Recognition, account flows and saved collections are still simulated/in memory; this layout pass does not implement backend wiring or durable IndexedDB storage.
+
+Validation for this pass: web typecheck/build passed; browser content previews checked at 320px and 375px, including 320px with 200% text, search-focus navigation behavior, grouping and opening/cancelling a confirmation. Real-phone behavior remains pending.
