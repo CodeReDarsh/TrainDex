@@ -1,0 +1,44 @@
+name: Deploy TrainDex landing page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/landing/dist/**"
+      - ".github/workflows/deploy-landing.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Check landing-page JavaScript
+        run: node --check apps/landing/dist/script.js
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload only the static landing page
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: apps/landing/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

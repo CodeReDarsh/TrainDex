@@ -1,6 +1,18 @@
 # TrainDex — NYC subway rollsign reference backend
 
-An evidence-based reference catalog for a future train-spotting Dex. This repository contains PostgreSQL storage, reproducible imports, FastAPI access, and feature-based candidate retrieval. It does not contain a frontend, accounts, uploads, collection tracking, or Gemini API calls.
+An evidence-based reference catalog for a future train-spotting Dex. The reference backend contains PostgreSQL storage, reproducible imports, FastAPI access, and feature-based candidate retrieval. The independent marketing website lives alongside the backend in `apps/landing`.
+
+## Advertisement website
+
+The one-page TrainDex landing page is in [`apps/landing`](apps/landing/README.md), separate from the API. It introduces the app and includes an illustrative phone preview and interactive bullet gallery. No build or dependency installation is needed.
+
+Private review link: <https://traindex-field-guide.orangemule18.chatgpt.site>.
+
+```bash
+python3 -m http.server 5173 --bind 127.0.0.1 --directory apps/landing/dist
+```
+
+Open <http://127.0.0.1:5173>. Edit `apps/landing/dist/index.html`, `styles.css`, and `script.js`. The advertisement and API can be deployed independently from this same repository.
 
 The fixed catalog includes **all 647 listings / 275 unique graphics** on the [NYC Subway Bullets specimen website](https://nyumathclinic.github.io/nyc-subway-bullets-font/specimen/), across eight sections. The populated database also retains 48 photographic design records with 92 reference photographs. The website graphics remain explicitly labeled reconstructed reference candidates. See the exact [website coverage audit](reports/specimen-coverage.md), [overall coverage](reports/coverage.md), and [research notes](docs/research.md).
 
