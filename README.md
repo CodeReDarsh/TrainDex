@@ -27,7 +27,7 @@ A readable route can still have an **Unknown sign variant**. Ambiguous results s
 
 TrainDex is a working browser prototype under active development. Live recognition and durable device cards are implemented. Google sign-in, account saves and import screens are demos; cloud sync and durable server-side capture jobs are not implemented. Unsaved photos remain in the current session. Real-phone testing and broader recognition evaluation are still in progress.
 
-The public site may lag the latest code in this repository. See [deployment status](docs/deployment-status.md) for the last recorded deployment and [the implementation checklist](backend-implementation-todo.md) for remaining work.
+The public site may lag the latest code in this repository. See [the implementation checklist](backend-implementation-todo.md) for remaining work.
 
 ## Run locally
 
@@ -84,14 +84,14 @@ For a phone on the same network, run `npm --prefix apps/web run phone` and use t
 
 ## Inside the repo
 
-| Path | Purpose |
-| --- | --- |
-| `apps/web` | React, TypeScript and Vite app: capture, cards, collection and pixel pets |
-| `apps/api` | Fastify API: Gemini recognition, image validation and live MTA status |
-| `app`, `alembic` | Internal FastAPI catalog, database models and migrations |
-| `data` | Curated catalog, reference artwork and attribution |
-| `shared` | Route groups shared by the app and API |
-| `apps/landing` | Standalone promotional website |
+| Path             | Purpose                                                                   |
+| ---------------- | ------------------------------------------------------------------------- |
+| `apps/web`       | React, TypeScript and Vite app: capture, cards, collection and pixel pets |
+| `apps/api`       | Fastify API: Gemini recognition, image validation and live MTA status     |
+| `app`, `alembic` | Internal FastAPI catalog, database models and migrations                  |
+| `data`           | Curated catalog, reference artwork and attribution                        |
+| `shared`         | Route groups shared by the app and API                                    |
+| `apps/landing`   | Standalone promotional website                                            |
 
 ## Checks
 
