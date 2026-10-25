@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent as RPointerEvent, KeyboardEvent as RKeyboardEvent } from 'react'
 import { type Draft, type Result, type SamplePhoto, type Scenario, SAMPLE_PHOTOS, resolveScenario, routeColor } from './data'
 import { useDialog } from './dialog'
-import { Chip, Dialogue, Panel, PanelTitle, PixelIcon, PxButton, ScreenHeader } from './ui'
+import { Chip, Dialogue, Panel, PixelIcon, PxButton, ScreenHeader } from './ui'
 import { recognize } from './live'
 import { EngineRoom } from './steam'
 
@@ -345,8 +345,6 @@ export function Preview({
       onCrop(bounded(x + d[e.key][0], y + d[e.key][1]))
     }
   }
-  const tooSmall = s < 0.2
-
   return (
     <div className="flex flex-1 flex-col">
       {picker.input}
@@ -380,36 +378,6 @@ export function Preview({
           </div>
         </Panel>
         <p id="crop-position" role="status" className="text-paper">Crop center: {Math.round(x * 100)}% across, {Math.round(y * 100)}% down. Drag to move, pinch with two fingers to resize, or focus the crop and use arrow keys.</p>
-
-        <Panel className="flex flex-col gap-3">
-          <PanelTitle
-            right={
-              <PxButton size="sm" inline className="!mb-3" onClick={() => onCrop({ x: 0.5, y: 0.4, s: 0.38 })}>
-                Reset
-              </PxButton>
-            }
-          >
-            Adjust crop
-          </PanelTitle>
-          <p className="text-[1rem]">Drag the box over the sign. Spread two fingers to enlarge it; pinch together to shrink it. You can also use the size slider. Your full photo is always kept.</p>
-          <label className="flex flex-col gap-1">
-            <span className="font-pixel text-[16px] font-bold uppercase tracking-normal">Crop size</span>
-            <input
-              type="range"
-              min={Math.min(0.1, 1.5 / ratio)}
-              max={Math.min(0.9, 1.5 / ratio)}
-              step={0.01}
-              value={s}
-              onChange={(e) => onCrop(bounded(x, y, Number(e.target.value)))}
-              className="h-10 w-full accent-ink"
-            />
-          </label>
-          {tooSmall && (
-            <Dialogue tone="warn" live>
-              Crop is very small. Recognition may miss the sign. Make the box a little larger.
-            </Dialogue>
-          )}
-        </Panel>
 
         {picker.error && (
           <Dialogue tone="error" live title="Invalid file">
