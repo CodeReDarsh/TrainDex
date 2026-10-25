@@ -26,6 +26,7 @@ import {
 } from './ui'
 import { Confirm } from './review'
 import { Logo, PixelText } from './pixel'
+import { PetSprite, isExpress, species } from './pets'
 
 const byCapture = (a: Card, b: Card) => (b.captureAt ?? b.savedAt).localeCompare(a.captureAt ?? a.savedAt)
 const bySaved = (a: Card, b: Card) => b.savedAt.localeCompare(a.savedAt)
@@ -43,6 +44,7 @@ export function Home({
   onOpen,
   onSettings,
   onSignIn,
+  onDex,
 }: {
   cards: Card[]
   signedIn: boolean
@@ -51,8 +53,10 @@ export function Home({
   onOpen: (id: string) => void
   onSettings: () => void
   onSignIn: () => void
+  onDex: () => void
 }) {
   const recent = [...cards].sort(bySaved).slice(0, 6)
+  const pets = [...new Set([...cards].sort(bySaved).map((c) => c.route))]
   const routes = new Set(cards.map((c) => c.route)).size
   return (
     <main className="flex flex-col gap-4 p-4">
@@ -87,6 +91,23 @@ export function Home({
           Scan a sign
         </PxButton>
       </div>
+
+      <Panel>
+        <PanelTitle right={<Chip tone="gold">{pets.length}/{ROUTES.length}</Chip>}>Traindex pets</PanelTitle>
+        {pets.length ? (
+          <ul className="no-sb -mx-1 flex gap-3 overflow-x-auto px-1 pb-1" aria-label="Your pets">
+            {pets.slice(0, 8).map((r) => (
+              <li key={r} className="flex shrink-0 flex-col items-center">
+                <PetSprite route={r} size={48} />
+                <span className="text-[0.75rem]">{species(r).name}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-[1rem]">Scan a train sign to hatch your first pet.</p>
+        )}
+        <PxButton icon="pet" className="mt-3 w-full" onClick={onDex}>Open Traindex</PxButton>
+      </Panel>
 
       <section aria-labelledby="recent-h">
         <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
@@ -318,7 +339,9 @@ export function Detail({
   photoMissing,
   backToCollection,
   onRetryPhoto,
+  onPet,
 }: {
+  onPet: () => void
   card: Card
   cards: Card[]
   onBack: () => void
@@ -387,6 +410,15 @@ export function Detail({
           </PxButton>
         </div>
 
+        <Panel className="flex items-center gap-4">
+          <PetSprite route={card.route} express={isExpress(card)} size={64} />
+          <div className="min-w-0 flex-1">
+            <p className="text-[0.875rem]">Companion</p>
+            <p className="font-pixel text-[18px] font-bold leading-tight">{species(card.route).name}</p>
+            <PxButton size="sm" inline className="!mb-1 mt-2" onClick={onPet}>Open in Traindex</PxButton>
+          </div>
+        </Panel>
+
         <Panel className="card-detail-panel">
           <PanelTitle right={<Chip tone={card.storage === 'device' ? 'paper' : 'ok'}>{card.storage === 'device' ? 'Device' : 'Account'}</Chip>}>
             Details
@@ -416,6 +448,7 @@ export function Detail({
               <div><dt className="inline font-bold">Color: </dt><dd className="inline">{v.color}</dd></div>
               <div><dt className="inline font-bold">Credit: </dt><dd className="inline">{v.credit}</dd></div>
             </dl>
+            {v.image && <img src={v.image} alt={`Reference picture: ${v.name}`} loading="lazy" className="sign-ref mt-3" />}
             <p className="mt-3 text-[0.875rem] text-ink/80">The sign style does not prove which train model you photographed.</p>
           </Disclosure>
         )}

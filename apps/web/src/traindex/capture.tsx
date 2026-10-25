@@ -2,8 +2,56 @@ import { decodePhoto, PhotoPreview, type PhotoStatus } from './photo'
 import { boundCrop, cropFromGesture, type CropPoint } from './crop'
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent as RPointerEvent, KeyboardEvent as RKeyboardEvent } from 'react'
-import { type Draft, type Result, type Scenario, PHOTO, resolveScenario } from './data'
+import { type Draft, type Result, type Scenario, resolveScenario } from './data'
 import { Chip, Dialogue, Panel, PanelTitle, PixelIcon, PxButton, ScreenHeader } from './ui'
+import { recognize } from './live'
+import { EngineRoom } from './steam'
+
+type CameraState = 'starting' | 'live' | 'denied' | 'unavailable'
+
+/** Rear camera stream for the viewfinder; stops as soon as Capture unmounts. */
+function useCamera(enabled: boolean) {
+  const video = useRef<HTMLVideoElement>(null)
+  const [state, setState] = useState<CameraState>('starting')
+  useEffect(() => {
+    if (!enabled) return
+    if (!navigator.mediaDevices?.getUserMedia) { setState('unavailable'); return }
+    let stream: MediaStream | null = null
+    let live = true
+    setState('starting')
+    navigator.mediaDevices
+      .getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 } }, audio: false })
+      .then((s) => {
+        if (!live) return s.getTracks().forEach((t) => t.stop())
+        stream = s
+        if (video.current) {
+          video.current.srcObject = s
+          video.current.play().catch(() => {})
+        }
+        setState('live')
+      })
+      .catch((e: DOMException) => {
+        if (live) setState(e.name === 'NotAllowedError' || e.name === 'SecurityError' ? 'denied' : 'unavailable')
+      })
+    return () => {
+      live = false
+      stream?.getTracks().forEach((t) => t.stop())
+    }
+  }, [enabled])
+
+  const snap = () =>
+    new Promise<string>((resolve, reject) => {
+      const v = video.current
+      if (!v?.videoWidth) return reject(new Error('camera not ready'))
+      const c = document.createElement('canvas')
+      c.width = v.videoWidth
+      c.height = v.videoHeight
+      c.getContext('2d')!.drawImage(v, 0, 0)
+      c.toBlob((b) => (b ? resolve(URL.createObjectURL(b)) : reject(new Error('snapshot failed'))), 'image/jpeg', 0.92)
+    })
+
+  return { video, state: enabled ? state : 'denied', snap }
+}
 
 /* ---------- Photo picker hook ---------- */
 export function usePicker(onPhoto: (url: string) => void) {
@@ -57,7 +105,7 @@ export function Capture({
   onDisclose,
 }: {
   onHome: () => void
-  onShutter: () => void
+  onShutter: (url: string) => void
   onPhoto: (url: string) => void
   onSample: () => void
   cameraDenied: boolean
@@ -65,17 +113,26 @@ export function Capture({
   onDisclose: () => void
 }) {
   const picker = usePicker(onPhoto)
+  const cam = useCamera(!cameraDenied)
+  const blocked = cam.state === 'denied' || cam.state === 'unavailable'
+  const [flash, setFlash] = useState(false)
+  const shoot = () => {
+    setFlash(true)
+    cam.snap().then(onShutter).catch(() => setFlash(false))
+  }
   return (
     <main className="capture-screen flex flex-1 flex-col gap-2 p-4 pb-3">
       {picker.input}
       {picker.busy && <Dialogue live title="Opening photo">Checking your selected photo…</Dialogue>}
       <div className="px-panel relative flex-1 overflow-hidden !bg-ink" style={{ minHeight: 380 }}>
-        {cameraDenied ? (
+        {blocked ? (
           <div className="flex h-full flex-col items-center justify-center gap-4 p-6 text-center text-paper">
             <PixelIcon name="ask" size={40} />
-            <h2 className="font-pixel text-[24px] font-bold">Camera is blocked</h2>
+            <h2 className="font-pixel text-[24px] font-bold">{cam.state === 'denied' ? 'Camera is blocked' : 'No camera found'}</h2>
             <p className="max-w-[28ch] text-[1.0625rem]">
-              Allow camera access in your browser, or choose a photo you already took. No account needed.
+              {cam.state === 'denied'
+                ? 'Allow camera access in your browser, or choose a photo you already took. No account needed.'
+                : 'This device or browser has no camera we can use. The camera also needs https or localhost. Choose a photo instead.'}
             </p>
             <PxButton v="primary" icon="photo" onClick={picker.open}>
               Choose photo
@@ -83,11 +140,19 @@ export function Capture({
           </div>
         ) : (
           <>
-            <img
-              src={PHOTO.finder}
-              alt="Simulated camera view of a subway platform"
+            <video
+              ref={cam.video}
+              playsInline
+              muted
+              aria-label="Live camera view"
               className="absolute inset-0 h-full w-full object-cover"
             />
+            {cam.state === 'starting' && (
+              <div className="absolute inset-0 flex items-center justify-center text-paper" role="status">
+                Starting camera…
+              </div>
+            )}
+            {flash && <span aria-hidden="true" className="shutter-flash" onAnimationEnd={() => setFlash(false)} />}
             <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
               <div
                 className="relative h-[26%] w-[74%]"
@@ -112,11 +177,11 @@ export function Capture({
               </PxButton>
             </div>
             <div className="absolute bottom-4 right-3">
-              <Chip tone="paper">Simulated viewfinder</Chip>
+              <Chip tone="paper">{cam.state === 'live' ? 'Live camera' : 'Waiting for camera'}</Chip>
             </div>
           </>
         )}
-        {cameraDenied && (
+        {blocked && (
           <div className="absolute left-3 top-3">
             <PxButton icon="home" onClick={onHome} size="sm">
               Home
@@ -154,8 +219,8 @@ export function Capture({
           size="icon"
           className="shutter"
           aria-label="Take photo"
-          disabled={cameraDenied}
-          onClick={onShutter}
+          disabled={cam.state !== 'live'}
+          onClick={shoot}
         >
           <PixelIcon name="camera" size={40} />
         </PxButton>
@@ -364,27 +429,38 @@ export function Recognizing({
   const [failed, setFailed] = useState(false)
   const done = useRef(onDone)
   done.current = onDone
+  const photo = useRef(draft)
+  photo.current = draft
+  const real = scenario === 'live'
 
   useEffect(() => {
     let live = true
     setStage(0)
     setFailed(false)
-    const t1 = setTimeout(() => live && setStage(1), 1000)
-    const t2 = setTimeout(() => live && setStage(2), 2000)
-    const t3 = setTimeout(() => {
+    const t1 = setTimeout(() => live && setStage(1), real ? 1500 : 1000)
+    const t2 = setTimeout(() => live && setStage(2), real ? 3500 : 2000)
+    const finish = (r: Result) => {
       if (!live) return
-      const eff: Scenario = scenario === 'timeout' && attempt > 0 ? 'first' : scenario
-      const r = resolveScenario(eff)
       if (r.kind === 'timeout') setFailed(true)
       else done.current(r)
-    }, 3000)
+    }
+
+    let t3 = 0
+    const request = new AbortController()
+    if (real) {
+      const limit = setTimeout(() => request.abort(new DOMException('Recognition timed out', 'TimeoutError')), 30000)
+      recognize(photo.current, request.signal).then(finish).finally(() => clearTimeout(limit))
+    } else {
+      t3 = window.setTimeout(() => finish(resolveScenario(scenario === 'timeout' && attempt > 0 ? 'first' : scenario)), 3000)
+    }
     return () => {
       live = false
       clearTimeout(t1)
       clearTimeout(t2)
       clearTimeout(t3)
+      request.abort()
     }
-  }, [attempt, scenario])
+  }, [attempt, scenario, real])
 
   const { x, y, s } = draft.crop
   return (
@@ -411,12 +487,17 @@ export function Recognizing({
               {failed ? 'No answer yet' : 'Working on it'}
             </h2>
             <p className="mt-1 text-[1rem]">
-              {failed ? 'The recognition service timed out. Your photo is safe.' : 'Simulated recognition; no photo is uploaded. You can cancel anytime.'}
+              {failed
+                ? 'The recognition service timed out. Your photo is safe.'
+                : real
+                  ? 'Sending the area around your crop to Gemini. You can cancel anytime.'
+                  : 'Simulated recognition; no photo is uploaded. You can cancel anytime.'}
             </p>
           </div>
         </Panel>
 
         <Panel>
+          <EngineRoom working={!failed} />
           {!failed && <div className="prog-bar mb-4" role="progressbar" aria-label="Recognition in progress" />}
           <ol className="flex flex-col gap-3" aria-live="polite">
             {STAGES.map((label, i) => {

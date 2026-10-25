@@ -8,7 +8,9 @@ export interface SignMatch {
   name: string;
   route: string | null;
   score: number;
+  shape: string;
   color: string | null;
+  ink: string | null;
   technology: string;
   status: string;
   historical: boolean;
@@ -23,7 +25,9 @@ interface ApiMatch {
   classification: { route_id: string | null; service_status: string; display_name: string };
   reference_images: { source_url: string; image_type: string; attribution: string | null }[];
   sign: {
+    shape: string;
     background_color: string | null;
+    foreground_color: string | null;
     sign_technology: string;
     is_historical: boolean;
     verification_status: string;
@@ -70,7 +74,9 @@ export async function findSigns(r: Reading, route: string): Promise<SignMatch[]>
       name: m.classification.display_name,
       route: m.classification.route_id,
       score: m.similarity_score,
+      shape: m.sign.shape,
       color: m.sign.background_color,
+      ink: m.sign.foreground_color,
       technology: m.sign.sign_technology,
       status: m.classification.service_status,
       historical: m.sign.is_historical,

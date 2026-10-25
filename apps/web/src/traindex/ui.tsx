@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react'
 import { glyphPath } from './pixel'
+import { PetSprite, isExpress } from './pets'
+import { RailStrip } from './steam'
 import {
   type Card,
   VARIANTS,
@@ -46,6 +48,7 @@ const ICONS = {
   ask: ['.######.', '########', '##....##', '.....###', '....###.', '...###..', '...##...', '...##...', '........', '...##...', '...##...'],
   spark: ['...#...', '...#...', '..###..', '#######', '..###..', '...#...', '...#...'],
   chev: ['#....', '##...', '###..', '####.', '###..', '##...', '#....'],
+  pet: ['.#........#.', '.##......##.', '.##########.', '############', '##..####..##', '##..####..##', '############', '####....####', '.##########.', '..##....##..'],
   flask: ['...####.....', '....##......', '....##......', '...####.....', '..######....', '.########...', '############'],
 } satisfies Record<string, string[]>
 
@@ -283,17 +286,21 @@ export function ScreenHeader({
   )
 }
 
-export function BottomNav({ active, go }: { active: 'home' | 'scan' | 'collection' | 'none'; go: (n: 'home' | 'scan' | 'collection') => void }) {
-  const items: { id: 'home' | 'scan' | 'collection'; label: string; icon: IconName }[] = [
+export type NavTab = 'home' | 'scan' | 'dex' | 'collection'
+
+export function BottomNav({ active, go }: { active: NavTab | 'none'; go: (n: NavTab) => void }) {
+  const items: { id: NavTab; label: string; icon: IconName }[] = [
     { id: 'home', label: 'Home', icon: 'home' },
     { id: 'scan', label: 'Scan', icon: 'camera' },
-    { id: 'collection', label: 'Collection', icon: 'cards' },
+    { id: 'dex', label: 'Traindex', icon: 'pet' },
+    { id: 'collection', label: 'Cards', icon: 'cards' },
   ]
   return (
     <nav
       aria-label="Main"
-      className="sticky bottom-0 z-30 mt-auto grid grid-cols-3 gap-2 border-t-4 border-ink bg-paper px-3 pb-3 pt-3"
+      className="sticky bottom-0 z-30 mt-auto grid grid-cols-4 gap-2 border-t-4 border-ink bg-paper px-3 pb-3 pt-3"
     >
+      <div className="col-span-4"><RailStrip /></div>
       {items.map((i) => (
         <button
           key={i.id}
@@ -454,6 +461,9 @@ export function TrainCard({
           </div>
           <div className="tc-photo">
             <CardPhoto key={card.photo} retry={lg} src={card.photo} alt={`Your photo of a route ${card.route} train`} />
+            {lg && (
+              <span className="tc-pet"><PetSprite route={card.route} express={isExpress(card)} size={48} idle={false} /></span>
+            )}
             {card.sample && showSample && (
               <span className="px-chip absolute bottom-1 left-1 !text-[0.6875rem]" data-tone="paper">
                 Sample

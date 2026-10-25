@@ -24,10 +24,29 @@ pnpm preview
 
 For Vercel, set the project root to `apps/web`, build command to `pnpm build`, and output directory to `dist`. Navigation currently uses React state, not URL routes.
 
+## Live mode (real camera + Gemini)
+
+The app now opens in **Live** mode: the Capture screen uses the real camera, and **Recognize sign** sends the area around your crop to the Gemini API in `apps/api`. The States menu still has every simulated scenario for design testing; pick **Live: real photo to Gemini** to go back.
+
+Run the API next to the dev server (it proxies `/api` to `http://127.0.0.1:3000`, or `TRAINDEX_API_URL`):
+
+```sh
+cd apps/api && npm install && npm run dev     # needs GEMINI_API_KEY in apps/api/.env
+cd apps/web && pnpm install && pnpm dev
+```
+
+Optional: run the Python sign catalog (repo root, `uvicorn app.main:app --port 8000`) and set `SIGNS_API_URL` in `apps/api/.env`. With it, cards get the exact catalog sign design; without it, cards save with the variant unknown. For a hosted API, build with `VITE_TRAINDEX_API_URL` and allow the site's origin on the API.
+
+The camera needs `https` or `localhost`. Saves, sign-in and drafts are still in-memory demo state.
+
+## Traindex pets
+
+Every line has a pixel pet (`src/traindex/pets.tsx`), generated from the route so it's the same for everyone. Saving a card hatches it, or levels it up. Diamond (express) signs hatch the express form. The Traindex tab lists all lines like a pokedex, with retired lines (K, V, 9...) appended when caught.
+
 ## Prototype boundaries
 
-- Camera view and shutter use a sample photo. The photo picker accepts a real local image for preview.
-- Recognition, authentication, and device/account saves are simulated. Cards live in React state; refreshing resets them. No connection to `apps/api` or the Python catalog is configured yet.
+- In Live mode the camera, shutter and recognition are real. Simulated scenarios remain in the States menu.
+- Authentication and device/account saves are simulated. Cards live in React state; refreshing resets them. No connection to `apps/api` or the Python catalog is configured yet.
 - Capture times and models in the sample scenarios are fixtures, not actual image analysis or EXIF extraction.
 - Sample photography is loaded from Unsplash and needs internet access. The UI currently uses Courier New with Courier/monospace fallbacks. The user-supplied VCR font is retained in `public/fonts/` as a design asset but is not loaded. Imported logos and application icons are local assets.
 - The manifest and icons provide install metadata; there is no service worker or complete offline PWA support.

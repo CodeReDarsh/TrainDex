@@ -1,6 +1,8 @@
 import { useDialog } from './dialog'
 import { useEffect, useRef, useState } from 'react'
 import { usePicker } from './capture'
+import { Hatch } from './pets'
+import { SparkBurst } from './steam'
 import type { ReactNode } from 'react'
 import {
   type Card,
@@ -290,6 +292,7 @@ export function Review({
               <div><dt className="inline font-bold">Color: </dt><dd className="inline">{v.color}</dd></div>
               <div><dt className="inline font-bold">Credit: </dt><dd className="inline">{v.credit}</dd></div>
             </dl>
+            {v.image && <img src={v.image} alt={`Reference picture: ${v.name}`} loading="lazy" className="sign-ref mt-3" />}
             <p className="mt-3 text-[0.875rem] text-ink/80">The sign style does not prove which train model you photographed.</p>
           </Disclosure>
         )}
@@ -453,6 +456,7 @@ export function Reveal({
   onView,
   onScan,
   onCollection,
+  onDex,
 }: {
   card: Card
   cards: Card[]
@@ -460,6 +464,7 @@ export function Reveal({
   onView: () => void
   onScan: () => void
   onCollection: () => void
+  onDex: () => void
 }) {
   const [skip, setSkip] = useState(false)
   const info = encounterInfo(cards, card)
@@ -486,9 +491,12 @@ export function Reveal({
           </p>
         </div>
 
-        <div className="px-3 [perspective:900px]" key={String(skip)}>
+        <div className="relative px-3 [perspective:900px]" key={String(skip)}>
           <TrainCard card={card} cards={cards} sparkles reveal={!skip} />
+          {!skip && <SparkBurst />}
         </div>
+
+        <Hatch card={card} cards={cards} onDex={onDex} />
 
         <Dialogue tone="ok" title={device ? 'On this device' : 'In your account'}>
           {device

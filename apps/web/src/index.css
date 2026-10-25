@@ -766,3 +766,209 @@
   max-height: none;
   object-fit: contain;
 }
+
+/* ---------- Steampunk layer ---------- */
+@layer components {
+  /* steel rivets in panel corners */
+  .px-panel {
+    background-image:
+      radial-gradient(circle at 8px 8px, #f4ead0 0 1px, #7d8794 1.5px 3px, transparent 3.5px),
+      radial-gradient(circle at calc(100% - 8px) 8px, #f4ead0 0 1px, #7d8794 1.5px 3px, transparent 3.5px),
+      radial-gradient(circle at 8px calc(100% - 8px), #f4ead0 0 1px, #7d8794 1.5px 3px, transparent 3.5px),
+      radial-gradient(circle at calc(100% - 8px) calc(100% - 8px), #f4ead0 0 1px, #7d8794 1.5px 3px, transparent 3.5px);
+  }
+  .px-panel[data-dark] {
+    background-image:
+      radial-gradient(circle at 8px 8px, #d9a441 0 2px, transparent 2.5px),
+      radial-gradient(circle at calc(100% - 8px) 8px, #d9a441 0 2px, transparent 2.5px),
+      radial-gradient(circle at 8px calc(100% - 8px), #d9a441 0 2px, transparent 2.5px),
+      radial-gradient(circle at calc(100% - 8px) calc(100% - 8px), #d9a441 0 2px, transparent 2.5px);
+  }
+
+  .gear { display: block; flex-shrink: 0; }
+  .gear-spin, .gear-spin-rev {
+    animation: gear-turn var(--gear-dur, 9s) linear infinite;
+    will-change: transform;
+  }
+  .gear-spin-rev { animation-direction: reverse; }
+
+  /* steam puffs: pixel squares that rise, grow and fade */
+  .steam { position: absolute; width: 12px; height: 12px; pointer-events: none; }
+  .steam i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 8px;
+    height: 8px;
+    background: #fffdf4;
+    box-shadow: 4px -3px 0 0 #fffdf4cc, -3px -2px 0 0 #fffdf499;
+    opacity: 0;
+    animation: puff 2.4s steps(8) infinite;
+  }
+  .steam i:nth-child(2) { animation-delay: .8s; }
+  .steam i:nth-child(3) { animation-delay: 1.6s; }
+
+  /* rails above the bottom nav with a passing engine */
+  .rail-strip {
+    position: relative;
+    height: 34px;
+    margin: -12px -12px 6px;
+    overflow: hidden;
+    contain: strict;
+    background:
+      linear-gradient(#7d8794, #7d8794) 0 calc(100% - 7px) / 100% 2px no-repeat,
+      linear-gradient(#4e5d6c, #4e5d6c) 0 calc(100% - 3px) / 100% 2px no-repeat,
+      repeating-linear-gradient(90deg, #8b5e34 0 5px, transparent 5px 13px) 0 calc(100% - 1px) / 100% 8px no-repeat;
+  }
+  .rail-run {
+    position: absolute;
+    inset: 0;
+    animation: rail-run 18s linear infinite;
+    will-change: transform;
+  }
+  .rail-loco { position: absolute; left: -54px; bottom: 6px; width: 44px; height: 24px; }
+  .rail-loco svg { display: block; animation: loco-rock .36s steps(2) infinite; }
+  .loco-steam { left: 31px; top: -6px; }
+  .loco-steam i { width: 6px; height: 6px; animation-duration: 1.4s; }
+  .loco-steam i:nth-child(2) { animation-delay: .47s; }
+  .loco-steam i:nth-child(3) { animation-delay: .94s; }
+  .loco-sparks { position: absolute; left: 4px; bottom: -3px; width: 36px; height: 6px; }
+  .loco-sparks i {
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: 2px;
+    background: #ffd84d;
+    box-shadow: 0 0 3px #ff9b2f;
+    animation: spark-fly .42s steps(3) infinite;
+  }
+  .loco-sparks i:nth-child(1) { left: 4px; }
+  .loco-sparks i:nth-child(2) { left: 16px; animation-delay: .14s; }
+  .loco-sparks i:nth-child(3) { left: 26px; animation-delay: .28s; }
+  .loco-sparks i:nth-child(4) { left: 10px; animation-delay: .21s; }
+
+  /* gears + pressure gauge while recognizing */
+  .engine { position: relative; height: 112px; margin: 0 auto; width: 220px; }
+  .engine .gear { position: absolute; animation-play-state: paused; }
+  .engine[data-working] .gear { animation-play-state: running; }
+  .engine-g1 { left: 22px; top: 10px; }
+  .engine-g2 { left: 100px; top: 2px; }
+  .engine-g3 { left: 104px; top: 60px; }
+  .gauge {
+    position: absolute;
+    right: 8px;
+    top: 18px;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: radial-gradient(#fffdf4 55%, #d9a441 56% 68%, #14233f 69%);
+  }
+  .gauge::after { content: ''; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; background: #14233f; border-radius: 50%; }
+  .needle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 2px;
+    height: 20px;
+    margin-left: -1px;
+    background: #a8322a;
+    transform-origin: 50% 0;
+    transform: rotate(150deg);
+  }
+  .engine[data-working] .needle { animation: needle 1.6s ease-in-out infinite; }
+  .engine-steam { left: 70px; top: 6px; }
+  .engine:not([data-working]) .steam { display: none; }
+
+  /* reveal sparks */
+  .burst { position: absolute; left: 50%; top: 45%; width: 0; height: 0; pointer-events: none; z-index: 5; }
+  .burst i {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ffd84d;
+    box-shadow: 0 0 6px #ff9b2f;
+    opacity: 0;
+    animation: burst .9s steps(6) both;
+  }
+  .burst i:nth-child(3n) { background: #fffdf4; }
+
+  .shutter-flash { position: absolute; inset: 0; z-index: 3; background: #fffdf4; animation: flash .35s ease-out both; pointer-events: none; }
+
+  /* page-margin gears on wide screens */
+  .bg-gears { display: none; }
+  @media (min-width: 720px) {
+    .bg-gears { display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .bg-gears .gear { position: absolute; opacity: .55; }
+    .bg-g1 { left: calc(50% - 470px); top: 8%; }
+    .bg-g2 { left: calc(50% - 330px); top: calc(8% + 200px); }
+    .bg-g3 { right: calc(50% - 450px); bottom: 10%; }
+  }
+  .screen-shell { position: relative; z-index: 1; }
+
+  /* ---------- Pets ---------- */
+  .pet { position: relative; display: inline-block; flex-shrink: 0; }
+  .pet svg { display: block; }
+  .pet-idle svg { animation: pet-bob 1.6s steps(2) infinite; }
+  .pet-steam { top: 2%; }
+  .pet-steam i { width: 14%; height: 14%; min-width: 4px; min-height: 4px; }
+  .dex-tile { min-height: 136px; }
+  .dex-tile:disabled { cursor: default; }
+  .dex-tile[data-retired]:not(:disabled) { background-color: #efe3ff; }
+  .dex-meter, .stat-bar {
+    position: relative;
+    display: block;
+    height: 14px;
+    background: #fffdf4;
+    box-shadow: 0 -2px 0 0 var(--ink), 0 2px 0 0 var(--ink), -2px 0 0 0 var(--ink), 2px 0 0 0 var(--ink);
+    margin: 2px;
+  }
+  .dex-meter span, .stat-bar span { position: absolute; inset: 2px auto 2px 2px; max-width: calc(100% - 4px); background: var(--gold); }
+  .stat-bar span { box-shadow: inset 0 -3px 0 #0003; }
+  .pet-stage { min-height: 250px; justify-content: flex-end; }
+  .pet-stage > .flex { position: relative; z-index: 1; }
+  .pet-stage-gear { position: absolute; left: -30px; top: -30px; opacity: .45; }
+  .pet-stage-gear2 { position: absolute; right: -14px; bottom: 20px; opacity: .45; }
+  .pet-plinth { width: 70%; height: 10px; margin-top: 4px; background: #d9a441; box-shadow: 0 4px 0 #8b5e34, 0 0 0 2px #0a1428; }
+  .hatch-pop { animation: hatch .7s steps(7) both; }
+  .hatch-steam { left: -6px; bottom: 6px; }
+  .tc-pet { position: absolute; right: 4px; bottom: 2px; filter: drop-shadow(2px 2px 0 #14233f99); }
+  .sign-ref { max-height: 120px; max-width: 100%; background: #fffdf4; padding: 6px; }
+}
+
+@keyframes gear-turn { to { transform: rotate(360deg); } }
+@keyframes puff {
+  0% { transform: translate(0, 0) scale(.5); opacity: .9; }
+  100% { transform: translate(-8px, -30px) scale(1.8); opacity: 0; }
+}
+@keyframes rail-run {
+  0% { transform: translateX(0); }
+  60%, 100% { transform: translateX(calc(100% + 64px)); }
+}
+@keyframes loco-rock { 50% { transform: translateY(-1px); } }
+@keyframes spark-fly {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(-7px, -5px); opacity: 0; }
+}
+@keyframes needle {
+  0%, 100% { transform: rotate(140deg); }
+  40% { transform: rotate(230deg); }
+  60% { transform: rotate(205deg); }
+}
+@keyframes burst {
+  0% { transform: translate(0, 0) scale(1.4); opacity: 1; }
+  100% { transform: translate(var(--bx), var(--by)) scale(.4); opacity: 0; }
+}
+@keyframes flash { from { opacity: .9; } to { opacity: 0; } }
+@keyframes pet-bob { 50% { transform: translateY(-6%); } }
+@keyframes hatch {
+  0% { transform: scale(0) translateY(40%); }
+  60% { transform: scale(1.25) translateY(-10%); }
+  100% { transform: none; }
+}
+@layer components {
+  /* the ink outline vanishes on the dark display case, so give it a light rim */
+  .pet-stage .pet { filter: drop-shadow(2px 0 0 #f7f0dc) drop-shadow(-2px 0 0 #f7f0dc) drop-shadow(0 2px 0 #f7f0dc) drop-shadow(0 -2px 0 #f7f0dc); }
+}
+@layer components {
+  .engine-steam i { background: #b9b4a3; box-shadow: 4px -3px 0 0 #b9b4a3cc, -3px -2px 0 0 #b9b4a399; }
+}

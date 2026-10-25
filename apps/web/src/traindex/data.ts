@@ -9,8 +9,11 @@ export interface Variant {
   ink: string
   style: string
   credit: string
+  /** Reference picture from the sign catalog, when there is one. */
+  image?: string
 }
 
+/** Sample variants plus every catalog design recognized in this session. */
 export const VARIANTS: Record<string, Variant> = {
   'a-circle': {
     id: 'a-circle',
@@ -43,6 +46,23 @@ export const VARIANTS: Record<string, Variant> = {
     credit: 'Sample artwork drawn for this prototype',
   },
 }
+
+export function registerVariant(v: Variant) {
+  VARIANTS[v.id] = v
+}
+
+/** MTA trunk-line colors. Retired lines fall back to grey. */
+export const ROUTE_COLORS: Record<string, string> = {
+  A: '#0039A6', C: '#0039A6', E: '#0039A6',
+  B: '#FF6319', D: '#FF6319', F: '#FF6319', M: '#FF6319',
+  G: '#6CBE45', L: '#A7A9AC', J: '#996633', Z: '#996633',
+  N: '#FCCC0A', Q: '#FCCC0A', R: '#FCCC0A', W: '#FCCC0A',
+  '1': '#EE352E', '2': '#EE352E', '3': '#EE352E',
+  '4': '#00933C', '5': '#00933C', '6': '#00933C',
+  '7': '#B933AD', S: '#808183',
+}
+
+export const routeColor = (route: string) => ROUTE_COLORS[route] ?? '#808183'
 
 export const ROUTES = [
   '1', '2', '3', '4', '5', '6', '7',
@@ -144,9 +164,10 @@ export type Result =
   | { kind: 'cancelled' }
   | { kind: 'unavailable' }
 
-export type Scenario = 'first' | 'repeat' | 'uncertain' | 'unclear' | 'timeout' | 'no-sign' | 'blurry' | 'upload-failed' | 'cancelled' | 'unavailable'
+export type Scenario = 'live' | 'first' | 'repeat' | 'uncertain' | 'unclear' | 'timeout' | 'no-sign' | 'blurry' | 'upload-failed' | 'cancelled' | 'unavailable'
 
 export const SCENARIOS: { id: Scenario; label: string }[] = [
+  { id: 'live', label: 'Live: real photo to Gemini' },
   { id: 'first', label: 'First encounter (Q diamond)' },
   { id: 'repeat', label: 'Repeat encounter (A circle)' },
   { id: 'uncertain', label: 'Uncertain variant (N)' },

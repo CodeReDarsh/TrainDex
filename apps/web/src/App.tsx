@@ -10,7 +10,9 @@ import {
   encounterInfo,
   nowLocal,
 } from './traindex/data'
-import { BottomNav, Dialogue, PixelIcon, PxButton } from './traindex/ui'
+import { BottomNav, Dialogue, PixelIcon, PxButton, type NavTab } from './traindex/ui'
+import { PetDetail, PetDex } from './traindex/pets'
+import { BackdropGears } from './traindex/steam'
 import { Capture, Preview, Recognizing } from './traindex/capture'
 import { type SaveState, Confirm, Review, Reveal, SaveSheet } from './traindex/review'
 import { DEFAULT_COLLECTION_PREFERENCES, type CollectionPreferences, Collection, Detail, FullPhoto, Home, RouteView, Settings } from './traindex/browse'
@@ -19,6 +21,7 @@ import { AccountFlow, ImportCards, PhotoDrafts, LoadState, type AuthOutcome } fr
 
 import { useScreenHistory, leavesCapture, type Nav } from './traindex/navigation'
 import { closeTopDialog } from './traindex/dialog'
+import { liveLabel } from './traindex/live'
 import { PhotoPreviewContext, type PhotoStatus } from './traindex/photo'
 
 const newDraft = (photo: string, captureAt: string | null, timeSource: Draft['timeSource']): Draft => ({
@@ -43,7 +46,7 @@ export default function App() {
   const [draft, setDraft] = useState<Draft | null>(null)
   const [signedIn, setSignedIn] = useState(false)
   const [deviceDefault, setDeviceDefault] = useState(false)
-  const [scenario, setScenario] = useState<Scenario>('first')
+  const [scenario, setScenario] = useState<Scenario>('live')
   const [failSave, setFailSave] = useState(false)
   const [failEdit, setFailEdit] = useState(false)
   const [detailBusy, setDetailBusy] = useState(false)
@@ -216,8 +219,8 @@ export default function App() {
   }, [nav])
 
   const flow = ['capture', 'preview', 'recognizing', 'review', 'reveal'].includes(nav.name)
-  const navActive = nav.name === 'home' ? 'home' : nav.name === 'collection' || nav.name === 'route' ? 'collection' : 'none'
-  const navTo = (n: 'home' | 'scan' | 'collection') =>
+  const navActive = nav.name === 'home' ? 'home' : nav.name === 'collection' || nav.name === 'route' ? 'collection' : nav.name === 'dex' || nav.name === 'pet' ? 'dex' : 'none'
+  const navTo = (n: NavTab) =>
     n === 'scan' ? toCapture() : go({ name: n })
 
   let body: React.ReactNode = null
@@ -229,7 +232,7 @@ export default function App() {
           disclosed={disclosed}
           onDisclose={() => setDisclosed(true)}
           onHome={() => go({ name: 'home' })}
-          onShutter={() => begin(PHOTO.finder, nowLocal(), 'shutter')}
+          onShutter={(u) => begin(u, nowLocal(), 'shutter')}
           onPhoto={(u) => begin(u, nowLocal(), 'estimated')}
           onSample={() => begin(PHOTO.sample, '2026-10-12T17:25', 'exif')}
         />
@@ -266,7 +269,7 @@ export default function App() {
           onSave={onSave}
           onRetake={toCapture}
           onAdjust={() => go({ name: 'preview' })}
-          onTryAgain={() => { if (draft.result?.kind === 'upload-failed' || draft.result?.kind === 'cancelled' || draft.result?.kind === 'unavailable') setScenario('first'); recognize() }}
+          onTryAgain={() => { if (scenario !== 'live' && (draft.result?.kind === 'upload-failed' || draft.result?.kind === 'cancelled' || draft.result?.kind === 'unavailable')) setScenario('first'); recognize() }}
           onPhoto={(u) => discardThen(() => begin(u, nowLocal(), 'estimated'))}
           onFullPhoto={() => setFull({ src: draft.photo, alt: 'Your full photo' })}
           onSignIn={() => setSave({ mode: 'choose' })}
@@ -283,6 +286,7 @@ export default function App() {
           onView={() => go({ name: 'detail', cardId: c.id })}
           onScan={toCapture}
           onCollection={() => go({ name: 'collection' })}
+          onDex={() => go({ name: 'pet', route: c.route })}
         />
       )
       break
@@ -297,6 +301,7 @@ export default function App() {
           onOpen={(id) => go({ name: 'detail', cardId: id })}
           onSettings={() => go({ name: 'settings' })}
           onSignIn={() => { go({ name: 'settings' }); setAuth({ kind: 'signin', card: false }) }}
+          onDex={() => go({ name: 'dex' })}
         />
       )
       break
@@ -339,6 +344,7 @@ export default function App() {
           onFullPhoto={() => setFull({ src: missingPhoto ? '' : c.photo, alt: `Full photo of your route ${c.route} train` })}
           imported={signedIn && imported.includes(c.id)}
           onRetryPhoto={() => setMissingPhoto(false)}
+          onPet={() => go({ name: 'pet', route: c.route })}
           onDirty={setDetailDirty}
           onBusy={setDetailBusy}
           onUpdate={async (p) => {
@@ -358,6 +364,12 @@ export default function App() {
       ) : <div className="p-4"><h1 className="mb-4 font-pixel font-bold text-paper">Card unavailable</h1><Dialogue live tone="warn" title="Card unavailable">This card was deleted, is no longer in this session, or belongs to a signed-out account. Your other cards are still available.</Dialogue><PxButton className="mt-4 w-full" onClick={() => go({ name: 'collection' })}>Back to Collection</PxButton></div>
       break
     }
+    case 'dex':
+      body = <PetDex cards={visibleCards} onOpen={(route) => go({ name: 'pet', route })} onBack={() => go({ name: 'home' })} onScan={toCapture} />
+      break
+    case 'pet':
+      body = <PetDetail route={nav.route} cards={visibleCards} onBack={() => go({ name: 'dex' })} onOpenCard={(id) => go({ name: 'detail', cardId: id })} />
+      break
     case 'drafts':
       body = <PhotoDrafts drafts={drafts} offline={offline} onBack={() => go({ name: 'home' })} onScan={toCapture} onResume={d => { setDraft(d); setCancelled(false); go({ name: 'preview' }) }} onDiscard={id => setDrafts(list => list.filter(d => d.id !== id))} />
       break
@@ -388,11 +400,12 @@ export default function App() {
   return (
     <PhotoPreviewContext.Provider value={{ state: photoState, reset: () => setPhotoState('ready') }}>
     <div data-motion={motion} className="min-h-dvh">
+      <BackdropGears />
       <div style={{ maxWidth: `${previewWidth}px` }} className="screen-shell mx-auto flex min-h-dvh w-full max-w-[480px] flex-col bg-teal shadow-[0_0_0_4px_#14233f]">
         <div className="prototype-bar sticky top-0 z-40 bg-ink text-paper">
           <div className="flex min-h-[44px] items-center justify-between gap-2 px-3">
             <span className="font-body text-[14px] font-medium uppercase tracking-normal">
-              Design prototype · sample data
+              {scenario === 'live' ? `Live · ${liveLabel}` : 'Design prototype · sample data'}
             </span>
             <button
               type="button"
