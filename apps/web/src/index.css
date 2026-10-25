@@ -972,3 +972,76 @@
 @layer components {
   .engine-steam i { background: #b9b4a3; box-shadow: 4px -3px 0 0 #b9b4a3cc, -3px -2px 0 0 #b9b4a399; }
 }
+
+/* ---------- Tab gate: copper plates close, gear locks, plates open ---------- */
+.gate {
+  position: fixed;
+  inset: 0 auto 0 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  z-index: 70;
+  overflow: hidden;
+  contain: strict;
+}
+.gate-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 51%;
+  will-change: transform;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 78px, #5e260c99 78px 80px),
+    linear-gradient(180deg, #e08a3c, #b5531f 55%, #7d3313);
+  box-shadow: inset 4px 0 0 #14233f, inset -4px 0 0 #14233f;
+}
+/* riveted brass strip along the edge where the plates meet */
+.gate-panel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background:
+    radial-gradient(circle, #fff1c9 0 2px, #6b4a12 2.5px 3.5px, transparent 4px) 6px 50% / 24px 20px repeat-x,
+    linear-gradient(#e8bd5a, #b07c1c);
+  border-block: 3px solid #14233f;
+}
+.gate-top { top: 0; transform: translateY(-100%); animation: gate-top-shut .22s cubic-bezier(.55, 0, .8, .2) forwards; }
+.gate-top::after { bottom: 0; }
+.gate-bottom { bottom: 0; transform: translateY(100%); animation: gate-bottom-shut .22s cubic-bezier(.55, 0, .8, .2) forwards; }
+.gate-bottom::after { top: 0; }
+.gate[data-phase='opening'] .gate-top { transform: none; animation: gate-top-open .26s cubic-bezier(.2, .9, .3, 1) .14s forwards; }
+.gate[data-phase='opening'] .gate-bottom { transform: none; animation: gate-bottom-open .26s cubic-bezier(.2, .9, .3, 1) .14s forwards; }
+
+.gate-lock {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  transform: scale(0);
+  animation: lock-in .14s .18s ease-out forwards;
+  filter: drop-shadow(0 0 10px #ffb34799);
+}
+.gate[data-phase='opening'] .gate-lock { transform: scale(1); animation: lock-out .16s .12s ease-in forwards; }
+.gate-gear { animation: gate-spin .6s cubic-bezier(.2, .8, .3, 1) .16s both; }
+
+.gate-steam { top: 50%; width: 22px; height: 22px; }
+.gate-steam i { width: 16px; height: 16px; animation-duration: .7s; animation-iteration-count: 1; animation-delay: .2s; background: #fff6e4; }
+.gate-steam i:nth-child(2) { animation-delay: .28s; }
+.gate-steam i:nth-child(3) { animation-delay: .36s; }
+
+.gate-leaf { position: absolute; top: -16px; opacity: 0; animation: leaf-fall .65s ease-in forwards; }
+
+@keyframes gate-top-shut { to { transform: none; } }
+@keyframes gate-bottom-shut { to { transform: none; } }
+@keyframes gate-top-open { to { transform: translateY(-100%); } }
+@keyframes gate-bottom-open { to { transform: translateY(100%); } }
+@keyframes lock-in { to { transform: scale(1); } }
+@keyframes lock-out { to { transform: scale(0); } }
+@keyframes gate-spin { from { transform: rotate(-90deg); } to { transform: rotate(180deg); } }
+@keyframes leaf-fall {
+  0% { transform: translate(0, 0) rotate(0); opacity: 1; }
+  100% { transform: translate(18px, 70vh) rotate(var(--spin)); opacity: 0; }
+}
