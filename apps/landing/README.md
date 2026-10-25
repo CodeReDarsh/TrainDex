@@ -12,7 +12,11 @@ Open <http://127.0.0.1:5173>. Edit `dist/index.html`, `dist/styles.css`, and `di
 
 The page introduces the product, explains the intended spotting experience, and offers an interactive example-bullet gallery. All collection/identification screens are labeled previews; the page does not take photos, perform identification, collect email addresses, or save collections. Its GitHub links point to the existing project.
 
-Photo: [R62A 6 Train 033.jpg](https://commons.wikimedia.org/wiki/File:R62A_6_Train_033.jpg), Kidfly182, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The original image is retained as `dist/assets/6-rollsign.jpg`; CSS layout crops and desaturates its display. The page includes visible source/license attribution in its footer.
+The visual theme follows `apps/web/src/index.css`: uppercase Courier typography, the teal checkerboard, cream panels, navy pixel borders, gold buttons, and foil trading cards. The logo and favicon are copied from the game's assets into `dist/assets` so this page stays independently deployable. Update those copies if the game's branding changes.
+
+The gallery is ordered express 6, express 7, yellow B, orange Q. Every card includes service years, route, purpose, and current status or the reason that color/route version ended. History panels link their sources; the active express services also link MTA timetables. The 6 and 7 dates describe the express services, which predate the displayed bullet designs. The default express 6 history is also rendered in HTML; keep it consistent with its entry in `dist/script.js` when editing the copy.
+
+Photo: [R62A 6 Train 033.jpg](https://commons.wikimedia.org/wiki/File:R62A_6_Train_033.jpg), Kidfly182, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The original image is retained as `dist/assets/6-rollsign.jpg`; CSS layout crops its display. The page includes visible source/license attribution in its footer.
 
 The marketing page and API can be deployed independently from the same repository. When the application has a stable public URL, replace or supplement the GitHub CTA with that URL.
 
