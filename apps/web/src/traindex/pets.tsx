@@ -92,92 +92,119 @@ export function stats(route: string, express: boolean) {
 
 /* ---------- Sprite ---------- */
 
-type Cell = '' | 'o' | 'b' | 'h' | 's' | 'l' | 'a' | 'w' | 'e' | 'c'
+// Front views of little train characters, 16x16. The cab windows are the eyes.
+// o outline  b body  h highlight  s shade  w glass  e pupil  l headlight  c cheek
+// m mouth  a brass  G dark metal  k headsign  d headsign dot (line color)
+type Model = 'subway' | 'steam' | 'trolley' | 'bullet' | 'switcher'
 
-// half-widths of the body for rows 4..13
-const PROFILES = [
-  [3, 5, 6, 6, 7, 7, 7, 6, 6, 4], // round
-  [2, 3, 4, 4, 5, 6, 7, 7, 7, 5], // pear
-  [3, 4, 4, 5, 5, 5, 5, 5, 5, 4], // tall
-  [5, 6, 6, 6, 6, 6, 6, 6, 6, 6], // boiler
-  [4, 6, 7, 7, 7, 7, 7, 7, 6, 5], // wide
-]
-
-type Hat = 'tophat' | 'chimney' | 'gear' | 'ears' | 'none'
-const HATS: Hat[] = ['tophat', 'chimney', 'gear', 'ears', 'none', 'chimney']
-
-export function design(route: string, express: boolean) {
-  const r = rng(`pet:${route}`)
-  const profile = PROFILES[Math.floor(r() * PROFILES.length)]
-  const hat = HATS[Math.floor(r() * HATS.length)]
-  const pattern = Math.floor(r() * 3) // 0 plain, 1 stripes, 2 rivets
-  const feet = r() > 0.5 ? 'wheels' : 'legs'
-  return { profile, hat, pattern, feet, goggles: express || r() > 0.8 }
+const MODELS: Record<Model, string[]> = {
+  subway: [
+    '...oooooooooo...',
+    '...okkkddkkko...',
+    '..oooooooooooo..',
+    '.obbbbbbbbbbbbo.',
+    '.obwwwbbbbwwwbo.',
+    '.obwwebbbbewwbo.',
+    '.obwwwbbbbwwwbo.',
+    '.obbbcbbbbcbbbo.',
+    '.obbbbbmmbbbbbo.',
+    '.ohhhhhhhhhhhho.',
+    '.olbbbbbbbbbblo.',
+    '.osssssssssssso.',
+    '..oGGGGGGGGGGo..',
+    '...oGo....oGo...',
+    '...ooo....ooo...',
+    '................',
+  ],
+  steam: [
+    '......oooo......',
+    '......oGGo......',
+    '......oGGo......',
+    '...oooooooooo...',
+    '..obbbbbbbbbbo..',
+    '.obbwwbbbbwwbbo.',
+    '.obbwebbbbewbbo.',
+    '.obbbbbbbbbbbbo.',
+    '.obcbbbmmbbbcbo.',
+    '.obbbbbbbbbbbbo.',
+    '..oaaaallaaaao..',
+    '..osssssssssso..',
+    '.oGGGGGGGGGGGGo.',
+    '..oGoGoGoGoGoo..',
+    '...oooooooooo...',
+    '................',
+  ],
+  trolley: [
+    '.....oooooo.....',
+    '......o..o......',
+    '.......oo.......',
+    '...oooooooooo...',
+    '..ohhhhhhhhhho..',
+    '.obbbbbbbbbbbbo.',
+    '.obwwwwbbwwwwbo.',
+    '.obwwewbbwewwbo.',
+    '.obwwwwbbwwwwbo.',
+    '.obbbbbmmbbbbbo.',
+    '.obcbbbbbbbbcbo.',
+    '.osssssssssssso.',
+    '.olsssssssssslo.',
+    '..oGGGGGGGGGGo..',
+    '...oGo....oGo...',
+    '...ooo....ooo...',
+  ],
+  bullet: [
+    '................',
+    '.....oooooo.....',
+    '...oohhhhhhoo...',
+    '..ohhbbbbbbhho..',
+    '.obbbbbbbbbbbbo.',
+    '.owwwwwwwwwwwwo.',
+    '.owwwewwwwewwwo.',
+    '.owwwwwwwwwwwwo.',
+    '.obbbbbmmbbbbbo.',
+    '.obcbbbbbbbbcbo.',
+    '.oaaaaaaaaaaaao.',
+    '.olbbbbbbbbbblo.',
+    '..osssssssssso..',
+    '...oGGGGGGGGo...',
+    '...oGo....oGo...',
+    '...ooo....ooo...',
+  ],
+  switcher: [
+    '......oaao......',
+    '......oaao......',
+    '..oooooooooooo..',
+    '..oGGGGGGGGGGo..',
+    '.obbbbbbbbbbbbo.',
+    '.obwwwbbbbwwwbo.',
+    '.obweebbbbeewbo.',
+    '.obwwwbbbbwwwbo.',
+    '.obbbbbbbbbbbbo.',
+    '.obbbbbmmbbbbbo.',
+    '.oaGaGaGaGaGaGo.',
+    '.olbbbbbbbbbblo.',
+    '.osssssssssssso.',
+    '..oGGGGGGGGGGo..',
+    '..oGo......oGo..',
+    '..ooo......ooo..',
+  ],
 }
 
-function build(route: string, express: boolean): Cell[][] {
-  const { profile, hat, pattern, feet, goggles } = design(route, express)
-  const g: Cell[][] = Array.from({ length: 16 }, () => Array<Cell>(16).fill(''))
-  const set = (y: number, x: number, c: Cell) => {
-    if (y < 0 || y > 15 || x < 0 || x > 15) return
-    g[y][x] = c
-    g[y][15 - x] = c
-  }
+const ORDER: Model[] = ['subway', 'steam', 'trolley', 'bullet', 'switcher']
 
-  profile.forEach((w, i) => {
-    const y = 4 + i
-    for (let x = 8 - w; x < 8; x++) {
-      const edge = x === 8 - w
-      let c: Cell = 'b'
-      if (i < 2 && !edge) c = 'h'
-      if (i >= 8) c = 's'
-      if (i >= 4 && i <= 8 && x >= 6) c = 'l'
-      if (pattern === 1 && edge && i % 2 === 0 && i < 8) c = 's'
-      set(y, x, c)
-    }
-  })
-  if (pattern === 2) {
-    set(9, 8 - profile[5] + 1, 'a')
-    set(11, 8 - profile[7] + 1, 'a')
-  }
+export const MODEL_NAMES: Record<Model, string> = {
+  subway: 'Subway car',
+  steam: 'Steam engine',
+  trolley: 'Trolley',
+  bullet: 'Bullet train',
+  switcher: 'Switcher',
+}
 
-  // eyes look toward the middle; goggles get a brass rim
-  if (goggles) for (const [y, x] of [[5, 3], [5, 4], [5, 5], [5, 6], [8, 3], [8, 4], [8, 5], [8, 6], [6, 3], [7, 3], [6, 6], [7, 6]]) set(y, x, 'a')
-  set(6, 4, 'w'); set(6, 5, 'e'); set(7, 4, 'e'); set(7, 5, 'e')
-  if (profile[5] >= 5) set(8, 3, goggles ? 'a' : 'c')
-  set(9, 7, 'o')
-
-  if (feet === 'wheels') {
-    set(14, 3, 'o'); set(14, 4, 'a'); set(14, 5, 'o'); set(15, 4, 'o')
-  } else {
-    set(14, 4, 's'); set(14, 5, 's'); set(15, 3, 'o'); set(15, 4, 'o'); set(15, 5, 'o')
-  }
-
-  if (hat === 'tophat') {
-    for (let x = 5; x < 8; x++) { set(0, x, 'o'); set(1, x, 'o'); set(2, x, 'a') }
-    for (let x = 3; x < 8; x++) set(3, x, 'o')
-  } else if (hat === 'gear') {
-    set(3, 7, 'o'); set(2, 7, 'o'); set(1, 6, 'a'); set(1, 7, 'a'); set(0, 7, 'a'); set(2, 6, 'a')
-  } else if (hat === 'ears') {
-    const x = 8 - profile[0]
-    set(3, x, 'b'); set(2, x, 'b'); set(3, x + 1, 'b')
-  }
-
-  if (hat === 'chimney') {
-    // off to one side, so it skips the mirror
-    for (let y = 1; y < 4; y++) { g[y][10] = 'a'; g[y][11] = 'a' }
-    g[0][9] = 'a'; g[0][10] = 'a'; g[0][11] = 'a'; g[0][12] = 'a'
-  }
-
-  // ink outline around everything that isn't already ink
-  const out = g.map((row) => [...row])
-  for (let y = 0; y < 16; y++)
-    for (let x = 0; x < 16; x++) {
-      if (g[y][x]) continue
-      const near = [[y - 1, x], [y + 1, x], [y, x - 1], [y, x + 1]].some(([a, b]) => g[a]?.[b] && g[a][b] !== 'o')
-      if (near) out[y][x] = 'o'
-    }
-  return out
+/** Lines that share a color get different train models, so siblings never look alike. */
+export function model(route: string): Model {
+  const group = TYPES.find(([, routes]) => routes.includes(route))
+  if (!group) return ORDER[hash(route) % ORDER.length]
+  return ORDER[(group[1].indexOf(route) + hash(group[0])) % ORDER.length]
 }
 
 const mix = (hex: string, to: string, t: number) => {
@@ -187,37 +214,38 @@ const mix = (hex: string, to: string, t: number) => {
   return `#${((1 << 24) | (ch(16) << 16) | (ch(8) << 8) | ch(0)).toString(16).slice(1)}`
 }
 
-function palette(color: string, express: boolean): Record<Exclude<Cell, ''>, string> {
-  const base = express ? mix(color, '#ffffff', 0.12) : color
+function palette(color: string, express: boolean): Record<string, string> {
   return {
     o: '#14233f',
-    b: base,
-    h: mix(base, '#ffffff', 0.35),
-    s: mix(base, '#000000', 0.3),
-    l: mix(base, '#f7f0dc', 0.55),
-    a: '#d9a441',
-    w: '#fffdf4',
+    b: color,
+    h: express ? '#ffd84d' : mix(color, '#ffffff', 0.38),
+    s: mix(color, '#000000', 0.32),
+    w: '#dff3ff',
     e: '#14233f',
-    c: '#ff8fa3',
+    l: '#ffe27a',
+    c: express ? '#ffd84d' : '#ff8fa3',
+    m: '#14233f',
+    a: '#d9a441',
+    G: '#4e5d6c',
+    k: '#14233f',
+    d: mix(color, '#ffffff', 0.15),
   }
 }
 
-const cache = new Map<string, { d: Record<string, string>; chimney: boolean }>()
+const cache = new Map<string, Record<string, string>>()
 
-function paths(route: string, express: boolean) {
-  const key = `${route}:${express}`
-  let hit = cache.get(key)
-  if (!hit) {
-    const d: Record<string, string> = {}
-    build(route, express).forEach((row, y) =>
-      row.forEach((c, x) => {
-        if (c) d[c] = (d[c] ?? '') + `M${x} ${y}h1v1h-1z`
+function paths(route: string) {
+  let d = cache.get(route)
+  if (!d) {
+    d = {}
+    MODELS[model(route)].forEach((row, y) =>
+      [...row].forEach((c, x) => {
+        if (c !== '.') d![c] = (d![c] ?? '') + `M${x} ${y}h1v1h-1z`
       }),
     )
-    hit = { d, chimney: design(route, express).hat === 'chimney' }
-    cache.set(key, hit)
+    cache.set(route, d)
   }
-  return hit
+  return d
 }
 
 export const PetSprite = memo(function PetSprite({
@@ -235,16 +263,17 @@ export const PetSprite = memo(function PetSprite({
   idle?: boolean
   label?: string
 }) {
-  const { d, chimney } = paths(route, express)
+  const d = paths(route)
   const colors = palette(routeColor(route), express)
+  const chimney = model(route) === 'steam'
   const scale = Math.max(1, Math.round(size / 16))
   const px = 16 * scale
   return (
     <span className={`pet ${idle && !hidden ? 'pet-idle' : ''}`} style={{ width: px, height: px }} role="img" aria-label={label ?? (hidden ? 'Unknown pet' : `${species(route).name} pet`)}>
-      {chimney && !hidden && idle && <SteamPuffs className="pet-steam" style={{ left: `${(10.5 / 16) * 100}%` }} />}
+      {chimney && !hidden && idle && <SteamPuffs className="pet-steam" style={{ left: '44%' }} />}
       <svg viewBox="0 0 16 16" width={px} height={px} shapeRendering="crispEdges" aria-hidden="true">
         {Object.entries(d).map(([c, path]) =>
-          <path key={c} d={path} fill={hidden ? '#14233f' : colors[c as keyof typeof colors]} opacity={hidden ? 0.55 : 1} />,
+          <path key={c} d={path} fill={hidden ? '#14233f' : colors[c]} opacity={hidden ? 0.55 : 1} />,
         )}
       </svg>
     </span>
@@ -324,6 +353,7 @@ export function PetDetail({ route, cards, onBack, onOpenCard }: { route: string;
           </div>
           <div className="mt-2 flex flex-wrap gap-2">
             <Chip tone="teal">{sp.type} type</Chip>
+            <Chip>{MODEL_NAMES[model(route)]}</Chip>
             <Chip>Line {route}</Chip>
             {express && <Chip tone="ok">Express form</Chip>}
             {sp.retired && <Chip tone="alert">Retired line</Chip>}
