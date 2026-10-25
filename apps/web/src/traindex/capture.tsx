@@ -153,24 +153,6 @@ export function Capture({
               </div>
             )}
             {flash && <span aria-hidden="true" className="shutter-flash" onAnimationEnd={() => setFlash(false)} />}
-            <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
-              <div
-                className="relative h-[26%] w-[74%]"
-                style={{ boxShadow: '0 0 0 999px rgba(20,35,63,0.5)' }}
-              >
-                {[
-                  'left-0 top-0 border-l-[6px] border-t-[6px]',
-                  'right-0 top-0 border-r-[6px] border-t-[6px]',
-                  'bottom-0 left-0 border-b-[6px] border-l-[6px]',
-                  'bottom-0 right-0 border-b-[6px] border-r-[6px]',
-                ].map((c) => (
-                  <span key={c} className={`absolute h-7 w-7 border-gold ${c}`} />
-                ))}
-              </div>
-            </div>
-            <div className="absolute inset-x-0 top-[calc(50%+17%)] flex justify-center" aria-hidden="true">
-              <Chip tone="gold">Frame the sign</Chip>
-            </div>
             <div className="absolute left-3 top-3">
               <PxButton icon="home" onClick={onHome} size="sm">
                 Home
@@ -207,7 +189,7 @@ export function Capture({
         </Dialogue>
       ) : (
         <p className="px-2 text-center text-[0.9375rem] text-paper">
-          Hold steady and tilt away from glare. Sign fills the frame.
+          Hold steady and tilt away from glare. You can crop the sign after taking your photo.
         </p>
       )}
 

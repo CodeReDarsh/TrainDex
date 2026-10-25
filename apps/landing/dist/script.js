@@ -51,19 +51,16 @@ const examples = {
       timetable: 'https://www.mta.info/schedules/subway/6-train',
     },
   },
-  'seven-express': {
-    description: 'A purple diamond marks the Flushing Express, with roots in the 1939 World’s Fair.',
-    shape: 'DIAMOND / EXPRESS',
+  'jfk-express': {
+    description: 'A turquoise airplane for the JFK Express, the subway’s premium-fare airport connection.',
+    shape: 'CIRCLE / AIRPORT EXPRESS',
     history: {
-      years: '1939–present, with interruptions. Flushing express service began April 24, 1939; the purple diamond design came later.',
-      route: 'Usual route: Flushing–Main Street, Queens, to 34th Street–Hudson Yards, Manhattan. Weekday trains run express in Queens toward Manhattan in the morning and toward Flushing in the afternoon and evening.',
-      purpose: 'Express service began to carry World’s Fair crowds using the Flushing Line’s middle track. Today it gives Queens riders a faster trip in the busiest direction.',
-      purposeLabel: 'Why it exists',
-      ended: 'Still operating as scheduled weekday peak-direction express service. Past suspensions and construction reroutes have changed the pattern, with no permanent termination of the express service.',
-      endedLabel: 'Current status',
-      source: 'https://erausa.org/pdf/bulletin/2000s/2009/2009-04-bulletin.pdf#page=8',
-      sourceLabel: 'History source: Electric Railroaders’ Association ↗',
-      timetable: 'https://www.mta.info/schedules/subway/7-train',
+      years: 'September 23, 1978–April 15, 1990.',
+      route: '57th Street–Sixth Avenue to Howard Beach–JFK Airport via Sixth Avenue, Eighth Avenue, Fulton Street, and the Rockaway Line. Extended to 21st Street–Queensbridge in October 1989. Shuttle buses connected Howard Beach to the airport terminals.',
+      purpose: 'To offer airport travelers a limited-stop rail-and-bus connection from Midtown Manhattan to JFK, with a premium fare and space for luggage.',
+      ended: 'Discontinued because low ridership and high operating costs made the service uneconomical. The required bus transfer reduced its appeal, while the cheaper, more frequent A train also served Howard Beach.',
+      source: 'https://en.wikipedia.org/wiki/JFK_Express#History',
+      sourceLabel: 'History source: JFK Express service history ↗',
     },
   },
   'b-yellow': {
