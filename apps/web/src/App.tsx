@@ -3,8 +3,8 @@ import {
   type Card,
   type Draft,
   type Result,
+  type SamplePhoto,
   type Scenario,
-  PHOTO,
   SAMPLE_CARDS,
   SCENARIOS,
   encounterInfo,
@@ -13,7 +13,7 @@ import {
 } from './traindex/data'
 import { BottomNav, Dialogue, PixelIcon, PxButton, type NavTab } from './traindex/ui'
 import { PetDetail, PetDex } from './traindex/pets'
-import { BackdropGears } from './traindex/steam'
+import { BackdropGears, Gate } from './traindex/steam'
 import { Capture, Preview, Recognizing } from './traindex/capture'
 import { type SaveState, Confirm, Review, Reveal, SaveSheet } from './traindex/review'
 import { DEFAULT_COLLECTION_PREFERENCES, type CollectionPreferences, Collection, Detail, FullPhoto, Home, RouteView, Settings } from './traindex/browse'
@@ -136,9 +136,10 @@ export default function App() {
   useEffect(() => {
     if (offline && nav.name === 'recognizing') { setCancelled(true); setNav({ name: 'preview' }) }
   }, [offline, nav.name])
-  const begin = (photo: string, at: string | null, src: Draft['timeSource']) => {
+  const begin = (photo: string, at: string | null, src: Draft['timeSource'], sample?: SamplePhoto) => {
     setCancelled(false)
-    setDraft(newDraft(photo, at, src))
+    const d = newDraft(photo, at, src)
+    setDraft(sample ? { ...d, crop: sample.crop, photoCredit: sample.credit } : d)
     setNav({ name: 'preview' })
   }
   const patchDraft = (p: Partial<Draft>) => setDraft((d) => (d ? { ...d, ...p } : d))
@@ -171,6 +172,7 @@ export default function App() {
       savedAt: nowLocal(),
       station: draft.station,
       storage: target,
+      photoCredit: draft.photoCredit,
     }
   }
 
@@ -238,8 +240,15 @@ export default function App() {
 
   const flow = ['capture', 'preview', 'recognizing', 'review', 'reveal'].includes(nav.name)
   const navActive = nav.name === 'home' ? 'home' : nav.name === 'collection' || nav.name === 'route' ? 'collection' : nav.name === 'dex' || nav.name === 'pet' ? 'dex' : 'none'
-  const navTo = (n: NavTab) =>
-    n === 'scan' ? toCapture() : go({ name: n })
+  const [gate, setGate] = useState<{ to: NavTab; phase: 'closing' | 'opening' } | null>(null)
+  const switchTab = (n: NavTab) => (n === 'scan' ? toCapture() : go({ name: n }))
+  const navTo = (n: NavTab) => {
+    const reduced = motion === 'reduce' || (motion === 'system' && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+    // anything that might pop a "discard?" dialog skips the gate, so the dialog isn't hidden behind it
+    const busy = !!draft || detailDirty || detailBusy || importBusy
+    if (reduced || busy || gate || n === navActive) switchTab(n)
+    else setGate({ to: n, phase: 'closing' })
+  }
 
   let body: React.ReactNode = null
   switch (nav.name) {
@@ -249,10 +258,10 @@ export default function App() {
           cameraDenied={camDenied}
           disclosed={disclosed}
           onDisclose={() => setDisclosed(true)}
-          onHome={() => go({ name: 'home' })}
+          onHome={() => navTo('home')}
           onShutter={(u) => begin(u, nowLocal(), 'shutter')}
           onPhoto={(u) => begin(u, nowLocal(), 'estimated')}
-          onSample={() => begin(PHOTO.sample, '2026-10-12T17:25', 'exif')}
+          onSample={(p) => begin(p.photo, nowLocal(), 'estimated', p)}
         />
       )
       break
@@ -421,11 +430,20 @@ export default function App() {
     <PhotoPreviewContext.Provider value={{ state: photoState, reset: () => setPhotoState('ready') }}>
     <div data-motion={motion} className="min-h-dvh">
       <BackdropGears />
+      {gate && (
+        <Gate
+          phase={gate.phase}
+          width={Number(previewWidth)}
+          onClosed={() => { switchTab(gate.to); setGate({ ...gate, phase: 'opening' }) }}
+          onOpened={() => setGate(null)}
+        />
+      )}
       <div style={{ maxWidth: `${previewWidth}px` }} className="screen-shell mx-auto flex min-h-dvh w-full max-w-[480px] flex-col bg-teal shadow-[0_0_0_4px_#14233f]">
         <div className="prototype-bar sticky top-0 z-40 bg-ink text-paper">
           <div className="flex min-h-[44px] items-center justify-between gap-2 px-3">
-            <span className="font-body text-[14px] font-medium uppercase tracking-normal">
-              {scenario === 'live' ? `Live · ${liveLabel}` : 'Design prototype · sample data'}
+            <span className="demo-plate font-body text-[13px] font-medium uppercase tracking-normal">
+              {scenario === 'live' && <span className="live-dot" />}
+              {scenario === 'live' ? `Live · ${liveLabel}` : 'Demo · simulated result'}
             </span>
             <button
               type="button"

@@ -26,6 +26,7 @@ import {
 } from './ui'
 import { Confirm } from './review'
 import { Logo, PixelText } from './pixel'
+import { LeafDrift } from './steam'
 import { PetSprite, isExpress, species } from './pets'
 
 const byCapture = (a: Card, b: Card) => (b.captureAt ?? b.savedAt).localeCompare(a.captureAt ?? a.savedAt)
@@ -59,10 +60,11 @@ export function Home({
   const pets = [...new Set([...cards].sort(bySaved).map((c) => c.route))]
   const routes = new Set(cards.map((c) => c.route)).size
   return (
-    <main className="flex flex-col gap-4 p-4">
+    <main className="home-screen relative flex flex-col gap-4 p-4">
+      <LeafDrift />
       <header className="flex items-center gap-3">
         <h1 className="flex-1">
-          <Logo width={250} />
+          <Logo width={244} />
         </h1>
         <PxButton size="icon" aria-label="Settings" onClick={onSettings} className="!mb-2">
           <PixelIcon name="gear" size={24} />
@@ -432,6 +434,7 @@ export function Detail({
             ))}
           </dl>
           {card.sample && <p className="sample-note"><Chip tone="gold">Sample</Chip><span>Prototype data, not a real encounter.</span></p>}
+          {card.photoCredit && <p className="mt-2 text-[0.75rem] text-ink/75">{card.photoCredit}</p>}
         </Panel>
 
         {v && (

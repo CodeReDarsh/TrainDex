@@ -125,7 +125,7 @@ h1 span { color: var(--gold); }
 .dex-heading > p { font-size: 12px; line-height: 1.8; color: #dce7d9; }
 .bullet-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
 .dex-card { --route: #00933c; display: flex; flex-direction: column; align-items: stretch; position: relative; min-width: 0; padding: 18px; color: var(--ink); background: linear-gradient(145deg, #edf0d7, var(--paper) 54%, #d3e3d5) padding-box, var(--foil) border-box; border: 7px solid transparent; box-shadow: var(--panel-edge), 4px 8px 0 #0a142866; text-align: left; transition: transform .15s; }
-.dex-card[data-design='seven-express'] { --route: #b933ad; }
+.dex-card[data-design='jfk-express'] { --route: #00add0; }
 .dex-card[data-design='q-orange'] { --route: #ff6319; }
 .dex-card[data-design='b-yellow'] { --route: #fccc0a; }
 .large-bullet.yellow { color: #000; }
@@ -134,6 +134,9 @@ h1 span { color: var(--gold); }
 .dex-card.selected { transform: translateY(-6px); box-shadow: var(--panel-edge), 0 10px 0 var(--gold); }
 .card-index { font-size: 8px; letter-spacing: .5px; font-weight: 700; padding-bottom: 12px; border-bottom: 2px solid #14233f33; position: relative; }
 .large-bullet { display: grid; place-items: center; width: 100px; height: 100px; margin: 30px auto; border-radius: 50%; background: var(--route); color: white; font: 700 76px/1 Arial, sans-serif; position: relative; }
+.large-bullet.jfk-bullet { background: transparent; }
+/* The reference SVG includes padding; align its circle with the other bullets. */
+.jfk-bullet img { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 131.1%; height: 131.1%; max-width: none; }
 .large-bullet.diamond { border-radius: 0; width: 84px; height: 84px; transform: rotate(45deg); margin-block: 38px; }
 .diamond > span { transform: rotate(-45deg); }
 .card-title { display: flex; align-items: start; justify-content: space-between; gap: 8px; font-size: 14px; line-height: 1.35; font-weight: 700; margin-top: auto; position: relative; }

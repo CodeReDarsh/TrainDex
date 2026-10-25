@@ -10,15 +10,17 @@ python3 -m http.server 5173 --bind 127.0.0.1 --directory apps/landing/dist
 
 Open <http://127.0.0.1:5173>. Edit `dist/index.html`, `dist/styles.css`, and `dist/script.js` directly. `dist` is the canonical, checked-in source and deployable directory; there is no build step. The nested `.openai/hosting.json` identifies this landing page's private Sites deployment, not the backend.
 
-The page introduces the product, explains the intended spotting experience, and offers an interactive example-bullet gallery. All collection/identification screens are labeled previews; the page does not take photos, perform identification, collect email addresses, or save collections. Its GitHub links point to the existing project.
+The page introduces the product, explains the intended spotting experience, and offers an interactive example-bullet gallery. All collection/identification screens are labeled previews; the page does not take photos, perform identification, collect email addresses, or save collections. The header, hero, and closing Play buttons all open `https://play.traindex.wiki` in the current tab. The idea and Dex navigation links still scroll to their page sections.
 
 The visual theme follows `apps/web/src/index.css`: uppercase Courier typography, the teal checkerboard, cream panels, navy pixel borders, gold buttons, and foil trading cards. The logo and favicon are copied from the game's assets into `dist/assets` so this page stays independently deployable. Update those copies if the game's branding changes.
 
-The gallery is ordered express 6, express 7, yellow B, orange Q. Every card includes service years, route, purpose, and current status or the reason that color/route version ended. History panels link their sources; the active express services also link MTA timetables. The 6 and 7 dates describe the express services, which predate the displayed bullet designs. The default express 6 history is also rendered in HTML; keep it consistent with its entry in `dist/script.js` when editing the copy.
+The gallery is ordered express 6, JFK Express, yellow B, orange Q. Every card includes service years, route, purpose, and current status or the reason that color/route version ended. History panels link their sources; the active express 6 also links its MTA timetable. Its dates describe the express service, which predates the displayed bullet design. The default express 6 history is also rendered in HTML; keep it consistent with its entry in `dist/script.js` when editing the copy.
+
+The JFK Express airplane bullet in `dist/assets/jfk-express.svg` is copied from the repository's reference artwork (`ART_20498D22B739676A06C6`), originally cataloged from the [NYC Subway Bullets specimen](https://nyumathclinic.github.io/nyc-subway-bullets-font/specimen/). Its SVG is retained unchanged; CSS compensates for the artwork's surrounding padding.
 
 Photo: [R62A 6 Train 033.jpg](https://commons.wikimedia.org/wiki/File:R62A_6_Train_033.jpg), Kidfly182, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The original image is retained as `dist/assets/6-rollsign.jpg`; CSS layout crops its display. The page includes visible source/license attribution in its footer.
 
-The marketing page and API can be deployed independently from the same repository. When the application has a stable public URL, replace or supplement the GitHub CTA with that URL.
+The marketing page, game, and API can be deployed independently from the same repository. The Play destination is configured directly in the three call-to-action links in `dist/index.html`.
 
 ## GitHub Pages and a Porkbun domain
 

@@ -3,6 +3,7 @@ import multipart from "@fastify/multipart";
 import { readFileSync } from "node:fs";
 import { identify } from "./identify.ts";
 import { lines } from "./lines.ts";
+import { lineStatus } from "./status.ts";
 
 const app = Fastify({ logger: true });
 
@@ -17,6 +18,17 @@ app.get("/", (_req, reply) => reply.type("text/html").send(page));
 app.get("/healthz", async () => ({ ok: true }));
 
 app.get("/v1/lines", async () => lines);
+
+app.get<{ Params: { route: string } }>("/v1/lines/:route/status", async (req, reply) => {
+  try {
+    const status = await lineStatus(req.params.route.toUpperCase());
+    if (!status) return reply.code(404).send({ error: { code: "no_feed", message: "No live feed for this line" } });
+    return status;
+  } catch (err) {
+    req.log.warn(err, "mta feed failed");
+    return reply.code(503).send({ error: { code: "mta_unavailable", message: "MTA live data is unavailable right now" } });
+  }
+});
 
 app.post("/v1/identify", async (req, reply) => {
   const file = await req.file();

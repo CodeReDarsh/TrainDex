@@ -1,7 +1,7 @@
 import { useDialog } from './dialog'
 import { useEffect, useRef, useState } from 'react'
 import { usePicker } from './capture'
-import { Hatch } from './pets'
+import { Hatch, HatchCutscene } from './pets'
 import { SparkBurst } from './steam'
 import type { ReactNode } from 'react'
 import {
@@ -467,6 +467,8 @@ export function Reveal({
   onDex: () => void
 }) {
   const [skip, setSkip] = useState(false)
+  // the first card on a line hatches a new pet, which gets its own little scene
+  const [cutscene, setCutscene] = useState(() => cards.filter((c) => c.route === card.route).length === 1)
   const info = encounterInfo(cards, card)
   const device = card.storage === 'device'
   return (
@@ -491,7 +493,8 @@ export function Reveal({
           </p>
         </div>
 
-        <div className="relative px-3 [perspective:900px]" key={String(skip)}>
+        {cutscene && <HatchCutscene card={card} onDone={() => setCutscene(false)} />}
+        <div className="relative px-3 [perspective:900px]" key={`${skip}-${cutscene}`}>
           <TrainCard card={card} cards={cards} sparkles reveal={!skip} />
           {!skip && <SparkBurst />}
         </div>

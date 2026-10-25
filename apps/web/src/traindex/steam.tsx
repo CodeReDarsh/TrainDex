@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect, useRef } from 'react'
 import type { CSSProperties } from 'react'
 
 /* Decorative steampunk bits. Everything animates with transform/opacity only,
@@ -151,6 +151,100 @@ export const BackdropGears = memo(function BackdropGears() {
       <Gear size={260} teeth={16} className="gear-spin bg-g1" color="#1d4248" />
       <Gear size={170} teeth={11} className="gear-spin-rev bg-g2" color="#1d4248" />
       <Gear size={220} teeth={14} className="gear-spin-rev bg-g3" color="#1d4248" />
+    </div>
+  )
+})
+
+/* ---------- Gate transition between tabs ---------- */
+
+const LEAF = 'M2 0h3v1h1v1h1v3h-1v1h-1v1h-3v-1h-1v-1h-1v-3h1v-1h1z'
+const LEAVES = [
+  { left: '12%', delay: 0, color: '#d9772f', spin: 220 },
+  { left: '34%', delay: 0.08, color: '#b8452a', spin: -160 },
+  { left: '58%', delay: 0.03, color: '#e0a13a', spin: 190 },
+  { left: '80%', delay: 0.11, color: '#c65f24', spin: -240 },
+  { left: '46%', delay: 0.16, color: '#8a3d17', spin: 140 },
+]
+
+/**
+ * Two copper plates close from the top and bottom, a brass gear locks the seam,
+ * then they open again. The screen underneath swaps while they're shut.
+ */
+export function Gate({
+  phase,
+  width,
+  onClosed,
+  onOpened,
+}: {
+  phase: 'closing' | 'opening'
+  width: number
+  onClosed: () => void
+  onOpened: () => void
+}) {
+  const fired = useRef(false)
+  const finish = () => {
+    if (fired.current) return
+    fired.current = true
+    if (phase === 'closing') onClosed()
+    else onOpened()
+  }
+  useEffect(() => {
+    fired.current = false
+    // backup in case animationend never fires (tab hidden, motion turned off mid-way)
+    const t = window.setTimeout(finish, phase === 'closing' ? 450 : 700)
+    return () => window.clearTimeout(t)
+  }, [phase])
+
+  return (
+    <div className="gate" data-phase={phase} style={{ maxWidth: width }} aria-hidden="true">
+      <div className="gate-panel gate-top" onAnimationEnd={(e) => e.target === e.currentTarget && finish()} />
+      <div className="gate-panel gate-bottom" />
+      <div className="gate-lock">
+        <Gear size={84} teeth={12} color="#e0b04a" className="gate-gear" />
+      </div>
+      <SteamPuffs className="gate-steam" style={{ left: '18%' }} />
+      <SteamPuffs className="gate-steam" style={{ right: '18%' }} />
+      {LEAVES.map((l, i) => (
+        <svg
+          key={i}
+          className="gate-leaf"
+          viewBox="0 0 7 7"
+          width={14}
+          height={14}
+          shapeRendering="crispEdges"
+          style={{ left: l.left, animationDelay: `${l.delay}s`, '--spin': `${l.spin}deg` } as CSSProperties}
+        >
+          <path d={LEAF} fill={l.color} />
+          <path d="M3 2h1v4h-1z" fill="#5e260c" />
+        </svg>
+      ))}
+    </div>
+  )
+}
+
+/* ---------- A few autumn leaves drifting down the home screen ---------- */
+
+const DRIFT = [
+  { left: '8%', delay: 0, dur: 14, color: '#d9772f', sway: 40 },
+  { left: '31%', delay: 5, dur: 17, color: '#b8452a', sway: -50 },
+  { left: '63%', delay: 2.5, dur: 15, color: '#e0a13a', sway: 35 },
+  { left: '86%', delay: 8, dur: 18, color: '#c65f24', sway: -30 },
+]
+
+export const LeafDrift = memo(function LeafDrift() {
+  return (
+    <div className="leaf-drift" aria-hidden="true">
+      {DRIFT.map((l, i) => (
+        <span
+          key={i}
+          style={{ left: l.left, animationDuration: `${l.dur}s`, animationDelay: `${l.delay}s`, '--sway': `${l.sway}px` } as CSSProperties}
+        >
+          <svg viewBox="0 0 7 7" width={14} height={14} shapeRendering="crispEdges">
+            <path d={LEAF} fill={l.color} />
+            <path d="M3 2h1v4h-1z" fill="#5e260c" />
+          </svg>
+        </span>
+      ))}
     </div>
   )
 })
