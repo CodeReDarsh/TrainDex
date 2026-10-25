@@ -221,3 +221,30 @@ export function Gate({
     </div>
   )
 }
+
+/* ---------- A few autumn leaves drifting down the home screen ---------- */
+
+const DRIFT = [
+  { left: '8%', delay: 0, dur: 14, color: '#d9772f', sway: 40 },
+  { left: '31%', delay: 5, dur: 17, color: '#b8452a', sway: -50 },
+  { left: '63%', delay: 2.5, dur: 15, color: '#e0a13a', sway: 35 },
+  { left: '86%', delay: 8, dur: 18, color: '#c65f24', sway: -30 },
+]
+
+export const LeafDrift = memo(function LeafDrift() {
+  return (
+    <div className="leaf-drift" aria-hidden="true">
+      {DRIFT.map((l, i) => (
+        <span
+          key={i}
+          style={{ left: l.left, animationDuration: `${l.dur}s`, animationDelay: `${l.delay}s`, '--sway': `${l.sway}px` } as CSSProperties}
+        >
+          <svg viewBox="0 0 7 7" width={14} height={14} shapeRendering="crispEdges">
+            <path d={LEAF} fill={l.color} />
+            <path d="M3 2h1v4h-1z" fill="#5e260c" />
+          </svg>
+        </span>
+      ))}
+    </div>
+  )
+})

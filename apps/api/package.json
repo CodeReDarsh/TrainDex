@@ -10,6 +10,7 @@
     "@fastify/multipart": "^10.1.6",
     "@google/genai": "^2.31.0",
     "fastify": "^5.12.7",
+    "gtfs-realtime-bindings": "^2.2.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {

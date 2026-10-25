@@ -1,8 +1,10 @@
-import { memo, useMemo } from 'react'
+import { memo, useEffect, useMemo, useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
 import { type Card, ROUTES, VARIANTS, fmtDate, routeColor } from './data'
 import { Chip, Panel, PanelTitle, PixelIcon, PxButton, ScreenHeader } from './ui'
 import { PixelText } from './pixel'
 import { Gear, SteamPuffs } from './steam'
+import { type LineStatus, fetchLineStatus } from './live'
 
 /* ---------- Species ---------- */
 
@@ -360,6 +362,7 @@ export function PetDetail({ route, cards, onBack, onOpenCard }: { route: string;
           </div>
           <p className="mt-3 text-[1rem]">{sp.blurb}</p>
         </Panel>
+        <LiveStatus route={route} name={sp.name} />
         <Panel>
           <PanelTitle>Stats</PanelTitle>
           <dl className="flex flex-col gap-2">
@@ -413,6 +416,123 @@ export function Hatch({ card, cards, onDex }: { card: Card; cards: Card[]; onDex
         <p className="text-[0.9375rem]">{count > 1 ? `Lv ${Math.min(99, count * 5)} · ${count} cards on line ${card.route}` : `New Traindex entry #${String(sp.no).padStart(3, '0')}${express ? ' · express form' : ''}`}</p>
         <PxButton size="sm" inline className="!mb-1 mt-2" onClick={onDex}>Open in Traindex</PxButton>
       </div>
+    </Panel>
+  )
+}
+
+const reducedMotion = () => {
+  const m = document.querySelector('[data-motion]')?.getAttribute('data-motion')
+  return m === 'reduce' || (m !== 'full' && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+}
+
+/**
+ * Full-screen intro for a brand-new pet: it rolls out of the tunnel, brakes,
+ * lets off steam, and its nameplate stamps in. Tap anywhere to skip.
+ */
+export function HatchCutscene({ card, onDone }: { card: Card; onDone: () => void }) {
+  const sp = species(card.route)
+  const express = isExpress(card)
+  const [leaving, setLeaving] = useState(false)
+  const done = useRef(onDone)
+  done.current = onDone
+
+  useEffect(() => {
+    if (reducedMotion()) {
+      done.current()
+      return
+    }
+    const out = window.setTimeout(() => setLeaving(true), 3000)
+    const end = window.setTimeout(() => done.current(), 3350)
+    return () => {
+      window.clearTimeout(out)
+      window.clearTimeout(end)
+    }
+  }, [])
+
+  const skip = () => {
+    setLeaving(true)
+    window.setTimeout(() => done.current(), 200)
+  }
+
+  return (
+    <div
+      className="cut"
+      data-leaving={leaving ? '' : undefined}
+      role="dialog"
+      aria-label={`${sp.name} hatched`}
+      onClick={skip}
+      style={{ '--line': sp.color } as CSSProperties}
+    >
+      <div className="cut-stage">
+        <div className="cut-tunnel" />
+        <div className="cut-light" />
+        <div className="cut-rails"><div className="cut-ties" /></div>
+        <div className="cut-train">
+          <div className="cut-jolt">
+            <PetSprite route={card.route} express={express} size={136} idle={false} />
+          </div>
+          <span className="cut-sparks"><i /><i /><i /><i /><i /><i /></span>
+          <SteamPuffs className="cut-steam" />
+        </div>
+        <div className="cut-plate" data-legendary={sp.retired ? '' : undefined}>
+          <span className="cut-kicker">{sp.retired ? 'Legendary pet!' : express ? 'New pet · express form' : 'New pet!'}</span>
+          <span className="cut-name">{sp.name}</span>
+          <span className="cut-no">#{String(sp.no).padStart(3, '0')} · {sp.type} · line {card.route}</span>
+        </div>
+        <button type="button" className="cut-skip" onClick={skip}>Tap to skip</button>
+      </div>
+    </div>
+  )
+}
+
+/** What the pet's real line is doing right now, from the MTA's live feeds. */
+function LiveStatus({ route, name }: { route: string; name: string }) {
+  const [state, setState] = useState<{ status?: LineStatus | null; error?: boolean }>({})
+  useEffect(() => {
+    const ctrl = new AbortController()
+    const load = () =>
+      fetchLineStatus(route, ctrl.signal)
+        .then((status) => setState({ status }))
+        .catch(() => !ctrl.signal.aborted && setState((s) => (s.status ? s : { error: true })))
+    load()
+    const t = window.setInterval(load, 30_000)
+    return () => {
+      ctrl.abort()
+      window.clearInterval(t)
+    }
+  }, [route])
+
+  const { status, error } = state
+  return (
+    <Panel className="live-status" aria-live="polite">
+      <PanelTitle right={status ? <Chip tone="ok"><span className="live-dot" aria-hidden="true" />Live</Chip> : undefined}>
+        On the rails now
+      </PanelTitle>
+      {status === undefined && !error && <p>Checking the MTA live feed…</p>}
+      {error && <p>MTA live data isn't reachable right now. {name} is still in your Traindex.</p>}
+      {status === null && <p>The {route} line doesn't run anymore, so there's nothing live to show. That's what makes {name} rare.</p>}
+      {status && (
+        <>
+          <p className="font-pixel text-[18px] font-bold">
+            {status.trains ? `${status.trains} ${route} train${status.trains === 1 ? '' : 's'} running right now` : `No ${route} trains running right now`}
+          </p>
+          {status.alerts.length ? (
+            <ul className="mt-3 flex flex-col gap-2">
+              {status.alerts.map((a) => (
+                <li key={a.text} className="px-inset p-2">
+                  <Chip tone={a.type.includes('Delay') ? 'alert' : 'gold'}>{a.type}</Chip>
+                  <p className="mt-1 text-[0.9375rem]">{a.text.replace(/\[(\w+)\]/g, '$1').split('\n')[0]}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-2">No delays or service changes. Good service.</p>
+          )}
+          <p className="mt-2 text-[0.8125rem] text-ink/70">
+            MTA live data · updated {new Date(status.updatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+          </p>
+        </>
+      )}
     </Panel>
   )
 }

@@ -119,3 +119,18 @@ export async function recognize(draft: Draft, signal: AbortSignal): Promise<Resu
 }
 
 export const liveLabel = API ? 'Gemini via hosted API' : 'Gemini'
+
+export interface LineStatus {
+  route: string
+  trains: number
+  alerts: { type: string; text: string }[]
+  updatedAt: string
+}
+
+/** null means the line has no live feed (retired lines like the K). Throws when the MTA can't be reached. */
+export async function fetchLineStatus(route: string, signal?: AbortSignal): Promise<LineStatus | null> {
+  const res = await fetch(`${API}/v1/lines/${encodeURIComponent(route)}/status`, { signal })
+  if (res.status === 404) return null
+  if (!res.ok) throw new Error('MTA live data is unavailable right now')
+  return res.json()
+}

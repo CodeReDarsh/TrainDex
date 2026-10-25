@@ -45,6 +45,36 @@ export const VARIANTS: Record<string, Variant> = {
     style: 'Express diamond, black letter on yellow',
     credit: 'Sample artwork drawn for this prototype',
   },
+  '3-circle': {
+    id: '3-circle',
+    route: '3',
+    name: '3 circle bullet',
+    shape: 'circle',
+    color: '#EE352E',
+    ink: '#ffffff',
+    style: 'Circle bullet, white numeral on red',
+    credit: 'Sample artwork drawn for this prototype',
+  },
+  'g-circle': {
+    id: 'g-circle',
+    route: 'G',
+    name: 'G circle bullet',
+    shape: 'circle',
+    color: '#6CBE45',
+    ink: '#ffffff',
+    style: 'Circle bullet, white letter on lime green',
+    credit: 'Sample artwork drawn for this prototype',
+  },
+  'z-circle': {
+    id: 'z-circle',
+    route: 'Z',
+    name: 'Z circle bullet',
+    shape: 'circle',
+    color: '#996633',
+    ink: '#ffffff',
+    style: 'Circle bullet, white letter on brown',
+    credit: 'Sample artwork drawn for this prototype',
+  },
 }
 
 export function registerVariant(v: Variant) {
@@ -72,16 +102,89 @@ export const ROUTES = [
 
 export const MODELS = ['R46', 'R62A', 'R68', 'R142A', 'R160', 'R179', 'R188', 'R211']
 
-const u = (id: string, w = 900) =>
-  `https://images.unsplash.com/photo-${id}?w=${w}&auto=format&fit=crop&q=75`
-
-export const PHOTO = {
-  a: u('1521075821520-ae40128c1ea0'),
-  b: u('1470133294210-94114cf67cc6'),
-  c: u('1502666308545-76d8a0c5602f'),
-  finder: u('1551050004-8d7f30baac7d', 1100),
-  sample: u('1508619209906-bfca41e2286e'),
+/* Real rollsign photos from Wikimedia Commons, resized for the app. Each one was
+   checked end to end: Gemini reads the line and the catalog matches the design. */
+export interface SamplePhoto {
+  id: string
+  route: string
+  title: string
+  blurb: string
+  photo: string
+  /** Where the crop box starts, so the sign is already framed. */
+  crop: { x: number; y: number; s: number }
+  credit: string
 }
+
+const sample = (file: string) => `${import.meta.env.BASE_URL}samples/${file}.jpg`
+const commons = (who: string, license: string) => `Photo: ${who}, ${license}, via Wikimedia Commons (resized)`
+
+export const SAMPLE_PHOTOS: SamplePhoto[] = [
+  {
+    id: 'k-circle-museum',
+    route: 'K',
+    title: 'K train',
+    blurb: 'Legendary. Retired in 1988, seen on a museum car.',
+    photo: sample('k-circle-museum'),
+    crop: { x: 0.45, y: 0.42, s: 0.62 },
+    credit: commons('Billie Grace Ward', 'CC BY 2.0'),
+  },
+  {
+    id: 'r-diamond-brown',
+    route: 'R',
+    title: 'Brown R diamond',
+    blurb: 'Rare old Nassau St rollsign.',
+    photo: sample('r-diamond-brown'),
+    crop: { x: 0.36, y: 0.77, s: 0.42 },
+    credit: commons('The All-Nite Images', 'CC BY-SA 2.0'),
+  },
+  {
+    id: '6-diamond-led',
+    route: '6',
+    title: '6 express',
+    blurb: 'LED diamond on an R62A.',
+    photo: sample('6-diamond-led'),
+    crop: { x: 0.64, y: 0.38, s: 0.5 },
+    credit: commons('JoesphBarbaro', 'CC BY-SA 4.0'),
+  },
+  {
+    id: 'w-r68',
+    route: 'W',
+    title: 'W train',
+    blurb: 'R68 rollsign, Astoria bound.',
+    photo: sample('w-r68'),
+    crop: { x: 0.6, y: 0.4, s: 0.55 },
+    credit: commons('Kidfly182', 'CC BY-SA 4.0'),
+  },
+  {
+    id: 'g-r68a',
+    route: 'G',
+    title: 'G train',
+    blurb: 'R68A rollsign, Court Square.',
+    photo: sample('g-r68a'),
+    crop: { x: 0.55, y: 0.42, s: 0.5 },
+    credit: commons('Kidfly182', 'CC BY 4.0'),
+  },
+  {
+    id: '3-r62',
+    route: '3',
+    title: '3 train',
+    blurb: 'R62 rollsign at Franklin Ave.',
+    photo: sample('3-r62'),
+    crop: { x: 0.5, y: 0.37, s: 0.62 },
+    credit: commons('Gafas naranjas', 'CC BY-SA 4.0'),
+  },
+  {
+    id: 'z-r32',
+    route: 'Z',
+    title: 'Z train',
+    blurb: 'R32 rollsign, Broad St.',
+    photo: sample('z-r32'),
+    crop: { x: 0.32, y: 0.66, s: 0.38 },
+    credit: commons('SubwayIguana', 'CC BY 4.0'),
+  },
+]
+
+const photoOf = (id: string) => SAMPLE_PHOTOS.find((p) => p.id === id)!
 
 export type TimeSource = 'exif' | 'shutter' | 'estimated' | 'user' | 'unknown'
 
@@ -97,45 +200,50 @@ export interface Card {
   station: string
   storage: 'device' | 'account'
   sample?: boolean
+  /** Attribution when the photo isn't the user's own. */
+  photoCredit?: string
 }
 
 export const SAMPLE_CARDS: Card[] = [
   {
-    id: 'sample-a-1',
-    route: 'A',
-    variantId: 'a-circle',
-    model: 'R179',
-    photo: PHOTO.a,
+    id: 'sample-3-1',
+    route: '3',
+    variantId: '3-circle',
+    model: 'R62',
+    photo: photoOf('3-r62').photo,
+    photoCredit: photoOf('3-r62').credit,
     captureAt: '2026-10-18T08:42',
     timeSource: 'shutter',
     savedAt: '2026-10-18T09:05',
-    station: 'Jay St–MetroTech',
+    station: 'Franklin Av',
     storage: 'device',
     sample: true,
   },
   {
-    id: 'sample-a-2',
-    route: 'A',
-    variantId: 'a-circle',
-    model: 'R46',
-    photo: PHOTO.b,
+    id: 'sample-g-1',
+    route: 'G',
+    variantId: 'g-circle',
+    model: 'R68A',
+    photo: photoOf('g-r68a').photo,
+    photoCredit: photoOf('g-r68a').credit,
     captureAt: '2026-09-30T18:11',
     timeSource: 'exif',
     savedAt: '2026-09-30T18:20',
-    station: 'Fulton St',
+    station: 'Court Sq',
     storage: 'device',
     sample: true,
   },
   {
-    id: 'sample-7-1',
-    route: '7',
-    variantId: '7-diamond',
-    model: 'R188',
-    photo: PHOTO.c,
+    id: 'sample-z-1',
+    route: 'Z',
+    variantId: 'z-circle',
+    model: 'R32',
+    photo: photoOf('z-r32').photo,
+    photoCredit: photoOf('z-r32').credit,
     captureAt: '2026-10-12T17:25',
     timeSource: 'exif',
     savedAt: '2026-10-12T17:40',
-    station: 'Grand Central–42 St',
+    station: 'Broad St',
     storage: 'device',
     sample: true,
   },
@@ -151,6 +259,7 @@ export interface Draft {
   model: string | null
   modelSource: 'recognition' | 'user' | 'unknown'
   result?: Result
+  photoCredit?: string
 }
 
 export type Result =

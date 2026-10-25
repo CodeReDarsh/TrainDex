@@ -2,7 +2,8 @@ import { decodePhoto, PhotoPreview, type PhotoStatus } from './photo'
 import { boundCrop, cropFromGesture, type CropPoint } from './crop'
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent as RPointerEvent, KeyboardEvent as RKeyboardEvent } from 'react'
-import { type Draft, type Result, type Scenario, resolveScenario } from './data'
+import { type Draft, type Result, type SamplePhoto, type Scenario, SAMPLE_PHOTOS, resolveScenario, routeColor } from './data'
+import { useDialog } from './dialog'
 import { Chip, Dialogue, Panel, PanelTitle, PixelIcon, PxButton, ScreenHeader } from './ui'
 import { recognize } from './live'
 import { EngineRoom } from './steam'
@@ -107,7 +108,7 @@ export function Capture({
   onHome: () => void
   onShutter: (url: string) => void
   onPhoto: (url: string) => void
-  onSample: () => void
+  onSample: (sample: SamplePhoto) => void
   cameraDenied: boolean
   disclosed: boolean
   onDisclose: () => void
@@ -116,6 +117,7 @@ export function Capture({
   const cam = useCamera(!cameraDenied)
   const blocked = cam.state === 'denied' || cam.state === 'unavailable'
   const [flash, setFlash] = useState(false)
+  const [picking, setPicking] = useState(false)
   const shoot = () => {
     setFlash(true)
     cam.snap().then(onShutter).catch(() => setFlash(false))
@@ -206,11 +208,57 @@ export function Capture({
         >
           <PixelIcon name="camera" size={40} />
         </PxButton>
-        <PxButton v="teal" onClick={onSample} className="!px-2 text-[1rem]">
-          Sample photo
+        <PxButton v="teal" onClick={() => setPicking(true)} className="!px-2 text-[1rem]">
+          Sample signs
         </PxButton>
       </div>
+      {picking && <SamplePicker onPick={(p) => { setPicking(false); onSample(p) }} onClose={() => setPicking(false)} />}
     </main>
+  )
+}
+
+/** Real rollsign photos for trying the scanner without a train nearby. */
+function SamplePicker({ onPick, onClose }: { onPick: (p: SamplePhoto) => void; onClose: () => void }) {
+  const dialog = useDialog(true, onClose)
+  return (
+    <div ref={dialog} tabIndex={-1} className="fixed inset-0 z-50 flex items-end justify-center overflow-y-auto bg-ink/70 p-3 sm:items-center">
+      <Panel role="dialog" aria-modal="true" aria-labelledby="samples-title" className="sample-sheet my-auto w-full max-w-[460px] !p-4">
+        <div className="mb-3 flex items-start justify-between gap-2">
+          <div>
+            <h2 id="samples-title" className="font-pixel text-[22px] font-bold leading-tight">Sample signs</h2>
+            <p className="text-[0.875rem] text-ink/80">Real rollsign photos. Pick one and scan it like you took it.</p>
+          </div>
+          <PxButton size="icon" aria-label="Close" onClick={onClose}>
+            <PixelIcon name="close" size={20} />
+          </PxButton>
+        </div>
+        <ul className="grid grid-cols-2 gap-2">
+          {SAMPLE_PHOTOS.map((p) => (
+            <li key={p.id}>
+              <button type="button" className="sample-tile" onClick={() => onPick(p)}>
+                <span className="sample-photo">
+                  <img src={p.photo} alt="" loading="lazy" />
+                  <span
+                    className="sample-bullet"
+                    style={{ background: routeColor(p.route), color: ['N', 'Q', 'R', 'W'].includes(p.route) ? '#14233f' : '#fff' }}
+                  >
+                    {p.route}
+                  </span>
+                </span>
+                <b>{p.title}</b>
+                <span>{p.blurb}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <details className="mt-3 text-[0.75rem] text-ink/75">
+          <summary className="cursor-pointer">Photo credits</summary>
+          <ul className="mt-1 flex flex-col gap-1">
+            {SAMPLE_PHOTOS.map((p) => <li key={p.id}>{p.title}: {p.credit.replace('Photo: ', '')}</li>)}
+          </ul>
+        </details>
+      </Panel>
+    </div>
   )
 }
 
