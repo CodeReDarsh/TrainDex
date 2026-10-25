@@ -393,7 +393,7 @@ export function SaveSheet({
             </h2>
             <p className="mb-1 mt-1 text-[1.0625rem]">Try a device or account save in this prototype.</p>
             <p className="mb-3 text-[0.9375rem] text-ink/80">
-              All saves are simulated and reset on refresh. Your photo and details stay in this open session while you choose.
+              Device saves stay in this browser after a refresh. Account saves are a demo for now. Your photo and details stay here while you choose.
             </p>
             {state.note && (
               <Dialogue tone="warn" live className="mb-3">
@@ -500,8 +500,8 @@ export function Reveal({
 
         <Dialogue tone="ok" title={device ? 'On this device' : 'In your account'}>
           {device
-            ? 'Simulated device save. In this prototype nothing is actually stored, and reloading resets the sample data.'
-            : 'Simulated account save. In this prototype nothing is actually sent or stored.'}
+            ? 'Saved in this browser. It stays after a refresh, on this device only.'
+            : 'Account saving is a demo for now, so this card is kept in this browser.'}
           {info && <div className="mt-1">First collected {fmtDate(info.first)} · seen ×{info.count}</div>}
         </Dialogue>
 

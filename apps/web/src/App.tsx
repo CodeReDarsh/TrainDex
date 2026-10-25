@@ -9,6 +9,7 @@ import {
   SCENARIOS,
   encounterInfo,
   nowLocal,
+  registerVariant,
 } from './traindex/data'
 import { BottomNav, Dialogue, PixelIcon, PxButton, type NavTab } from './traindex/ui'
 import { PetDetail, PetDex } from './traindex/pets'
@@ -22,6 +23,7 @@ import { AccountFlow, ImportCards, PhotoDrafts, LoadState, type AuthOutcome } fr
 import { useScreenHistory, leavesCapture, type Nav } from './traindex/navigation'
 import { closeTopDialog } from './traindex/dialog'
 import { liveLabel } from './traindex/live'
+import { clearCards, deleteCard, loadSaved, saveCard, updateCard } from './traindex/storage'
 import { PhotoPreviewContext, type PhotoStatus } from './traindex/photo'
 
 const newDraft = (photo: string, captureAt: string | null, timeSource: Draft['timeSource']): Draft => ({
@@ -42,6 +44,16 @@ export default function App() {
     requestNavigation(safe, () => { apply(); if (safe !== next) setNav(safe, true) })
   })
   const [cards, setCards] = useState<Card[]>(SAMPLE_CARDS)
+  // sample cards only show until this browser has saved cards of its own
+  useEffect(() => {
+    let live = true
+    loadSaved().then(({ cards: saved, variants }) => {
+      if (!live) return
+      variants.forEach(registerVariant)
+      if (saved.length) setCards(saved)
+    })
+    return () => { live = false }
+  }, [])
   const [collectionPreferences, setCollectionPreferences] = useState<CollectionPreferences>(DEFAULT_COLLECTION_PREFERENCES)
   const [draft, setDraft] = useState<Draft | null>(null)
   const [signedIn, setSignedIn] = useState(false)
@@ -145,10 +157,10 @@ export default function App() {
     go({ name: 'review' })
   }
 
-  const finalize = (target: 'device' | 'account') => {
-    if (!draft?.result || (draft.result.kind !== 'matched' && draft.result.kind !== 'uncertain')) return
+  const buildCard = (target: 'device' | 'account'): Card | null => {
+    if (!draft?.result || (draft.result.kind !== 'matched' && draft.result.kind !== 'uncertain')) return null
     const r = draft.result
-    const card: Card = {
+    return {
       id: draft.id,
       route: r.route,
       variantId: r.variantId,
@@ -160,7 +172,10 @@ export default function App() {
       station: draft.station,
       storage: target,
     }
-    const first = r.variantId ? !encounterInfo(visibleCards, card) : null
+  }
+
+  const finalize = (card: Card) => {
+    const first = card.variantId ? !encounterInfo(visibleCards, card) : null
     setCards((cs) => (cs.some((c) => c.id === card.id) ? cs : [card, ...cs]))
     setSave({ mode: 'closed' })
     setDrafts(list => list.filter(d => d.id !== card.id))
@@ -170,24 +185,26 @@ export default function App() {
 
   const commit = (target: 'device' | 'account') => {
     if (target === 'account' && (offline || !signedIn)) { setSave({ mode: 'failed', target, message: offline ? 'Account saving needs a connection.' : 'Session expired. Return to your card and sign in again.' }); return }
+    const card = buildCard(target)
+    if (!card) return
     setSave({ mode: 'saving', target })
     window.clearTimeout(timer.current)
-    timer.current = window.setTimeout(() => {
-      if (failSave) {
+    if (failSave) {
+      timer.current = window.setTimeout(() => {
         setFailSave(false)
-        setSave({
-          mode: 'failed',
-          target,
-          message:
-            target === 'device'
-              ? 'Device storage is full or unavailable.'
-              : 'We could not reach your account.',
-        })
-        return
-      }
-      if (target === 'device') setDeviceDefault(true)
-      finalize(target)
-    }, 1100)
+        setSave({ mode: 'failed', target, message: target === 'device' ? 'Device storage is full or unavailable.' : 'We could not reach your account.' })
+      }, 1100)
+      return
+    }
+    // account saves are still a demo, so they are kept in this browser too
+    saveCard(card)
+      .then(() => {
+        if (target === 'device') setDeviceDefault(true)
+        finalize(card)
+      })
+      .catch(() =>
+        setSave({ mode: 'failed', target, message: 'This browser could not store the card. Storage may be full, or this may be a private window.' }),
+      )
   }
 
   const onSave = () => {
@@ -201,6 +218,7 @@ export default function App() {
   const resetData = (empty: boolean) => {
     window.clearTimeout(timer.current)
     setCards(empty ? [] : SAMPLE_CARDS)
+    clearCards()
     setImported([])
     setDrafts([])
     setDraft(null)
@@ -351,11 +369,13 @@ export default function App() {
             await new Promise(resolve => window.setTimeout(resolve, 800))
             if (failEdit || (offline && c.storage === 'account')) { setFailEdit(false); return false }
             setCards(cs => cs.map(x => x.id === c.id ? { ...x, ...p } : x))
+            updateCard({ ...c, ...p }).catch(() => {})
             setNotice('')
             return true
           }}
           onDelete={() => {
             setCards((cs) => cs.filter((x) => x.id !== c.id))
+            deleteCard(c.id)
             setImported(ids => ids.filter(id => id !== c.id))
             setDetailDirty(false)
             setNav(nav.from === 'collection' ? { name: 'collection' } : { name: 'route', route: c.route })
@@ -488,7 +508,7 @@ export default function App() {
                   Empty collection
                 </PxButton>
               </div>
-              <p className="text-paper/80">Saves here are simulated. Nothing is stored; reload resets everything.</p>
+              <p className="text-paper/80">Cards are saved in this browser and stay after a refresh. Reset samples or Empty collection also clears them. Sign-in and account saves are simulated.</p>
             </div>
           )}
         </div>

@@ -1,4 +1,5 @@
-import { type Draft, type Result, registerVariant, routeColor } from './data'
+import { type Draft, type Result, type Variant, registerVariant, routeColor } from './data'
+import { saveVariant } from './storage'
 
 // same origin by default: the dev server proxies /v1 to apps/api and the deployed server routes it there too.
 // Set VITE_TRAINDEX_API_URL only when the API lives on another host.
@@ -67,7 +68,7 @@ async function cropped(draft: Draft): Promise<Blob> {
 
 function variantFrom(m: SignMatch, route: string) {
   const variant = m.name.split(' — ').slice(1).join(' — ')
-  registerVariant({
+  const v: Variant = {
     id: m.id,
     route,
     name: m.name.split(' — ')[0] || `${route} sign`,
@@ -77,7 +78,10 @@ function variantFrom(m: SignMatch, route: string) {
     style: variant || 'Catalog sign design',
     credit: m.credit ?? 'TrainDex sign catalog',
     image: m.image ?? undefined,
-  })
+  }
+  registerVariant(v)
+  // cards saved in this browser need the design back after a refresh
+  saveVariant(v)
   return m.id
 }
 
