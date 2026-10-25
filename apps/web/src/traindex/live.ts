@@ -1,7 +1,8 @@
 import { type Draft, type Result, registerVariant, routeColor } from './data'
 
-// dev server proxies /api to apps/api (see vite.config.ts); set VITE_TRAINDEX_API_URL for a hosted API
-const API = (import.meta.env.VITE_TRAINDEX_API_URL as string | undefined)?.replace(/\/$/, '') ?? '/api'
+// same origin by default: the dev server proxies /v1 to apps/api and the deployed server routes it there too.
+// Set VITE_TRAINDEX_API_URL only when the API lives on another host.
+const API = (import.meta.env.VITE_TRAINDEX_API_URL as string | undefined)?.replace(/\/$/, '') ?? ''
 
 interface Reading {
   sign_text: string
@@ -113,4 +114,4 @@ export async function recognize(draft: Draft, signal: AbortSignal): Promise<Resu
   return { kind: 'matched', route, variantId: variantFrom(best, route), model: null }
 }
 
-export const liveLabel = API === '/api' ? 'Gemini via local API' : 'Gemini via hosted API'
+export const liveLabel = API ? 'Gemini via hosted API' : 'Gemini'

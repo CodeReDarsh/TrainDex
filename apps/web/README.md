@@ -28,7 +28,7 @@ For Vercel, set the project root to `apps/web`, build command to `pnpm build`, a
 
 The app now opens in **Live** mode: the Capture screen uses the real camera, and **Recognize sign** sends the area around your crop to the Gemini API in `apps/api`. The States menu still has every simulated scenario for design testing; pick **Live: real photo to Gemini** to go back.
 
-Run the API next to the dev server (it proxies `/api` to `http://127.0.0.1:3000`, or `TRAINDEX_API_URL`):
+Run the API next to the dev server (it proxies `/v1` to `http://127.0.0.1:3000`, or `TRAINDEX_API_URL`; a deployed server should route `/v1` to the API the same way):
 
 ```sh
 cd apps/api && npm install && npm run dev     # needs GEMINI_API_KEY in apps/api/.env

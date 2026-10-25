@@ -15,11 +15,7 @@ export default defineConfig(({ mode }) => ({
     port: 5173,
     // the Gemini API (apps/api); same-origin in dev so no CORS setup is needed
     proxy: {
-      '/api': {
-        target: process.env.TRAINDEX_API_URL ?? 'http://127.0.0.1:3000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
+      '/v1': { target: process.env.TRAINDEX_API_URL ?? 'http://127.0.0.1:3000', changeOrigin: true },
     },
   },
   preview: { host: '127.0.0.1', port: 4173 },
